@@ -37,9 +37,6 @@ import { GlobalErrorHandlingService } from './services/global-error-handling.ser
 
 import { RootComponent } from './component/root/root.component'
 import { LoginComponent } from './component/login/login.component'
-import { AppFooterComponent } from './component/app-footer/app-footer.component'
-import { AppNavBarComponent } from './component/app-nav-bar/app-nav-bar.component'
-import { AppPublicNavBarComponent } from './component/app-public-nav-bar/app-public-nav-bar.component'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
 import { DialogConfirmComponent } from './component/dialog-confirm/dialog-confirm.component'
@@ -83,11 +80,8 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
   declarations: [
     RootComponent,
     LoginComponent,
-    AppNavBarComponent,
-    AppPublicNavBarComponent,
     TncComponent,
     TncRendererComponent,
-    AppFooterComponent,
     InvalidUserComponent,
     DialogConfirmComponent,
     LoginRootComponent,
