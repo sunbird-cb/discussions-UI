@@ -15,6 +15,7 @@ body {
   margin: 0px;
   font-family: $font-family-lato;
   scroll-behavior: smooth;
+  height: 100%;
   // letter-spacing: $letter-spacing;
   // word-spacing: $word-spacing;
 }
@@ -580,5 +581,43 @@ h3.shepherd-title {
 #editmetagrp {
   mat-tab-header {
     display: none;
+  }
+}
+
+.theme-igot.day-mode {
+  .mat-list-base {
+    .mat-list-item, .mat-list-option {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  .ws-active-discuss-route {
+    background-color: #eee !important;
+    font-weight: 700;
+
+    &:before {
+      content: "";
+      position: absolute;
+      border-color: #347bb6;
+      border-style: solid;
+      border-width: 0 0 0 2px;
+      height: inherit;
+    }
+  }
+}
+
+.discuss-categories__container {
+  .flex-1 {
+    flex: unset;
+    flex-basis: 23%;
+    @media only screen and(max-width: 768px){
+      flex-basis: 100%;
+    }
+    @media only screen and (min-width: 769px) and(max-width: 1024px){
+      flex-basis: 45%;
+    }
+    @media only screen and (min-width: 1025px) and(max-width: 1440px){
+      flex-basis: 30%;
+    }
   }
 }

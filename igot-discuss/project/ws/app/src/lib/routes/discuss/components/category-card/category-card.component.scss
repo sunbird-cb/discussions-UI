@@ -3,13 +3,13 @@
 @import 'ws-mixins';
 
 .category-card {
-  flex: 1;
+  // flex: 1;
   height: auto;
   max-width: 481px;
-  width: max-content;
+  width: 100%;
 
   @include breakpoint-xs {
-    width: auto;
+    max-width: 100%;
   }
 }
 
