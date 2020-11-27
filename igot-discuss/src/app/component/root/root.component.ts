@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -36,7 +35,7 @@ import { RootService } from './root.service'
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss'],
 })
-export class RootComponent implements OnInit, AfterViewInit {
+export class RootComponent implements OnInit {
   @ViewChild('previewContainer', { read: ViewContainerRef, static: true })
   previewContainerViewRef: ViewContainerRef | null = null
   @ViewChild('appUpdateTitle', { static: true })
