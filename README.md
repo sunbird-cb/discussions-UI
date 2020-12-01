@@ -1,12 +1,14 @@
 # discussion-forum
 
 **Branching**
+
 	1. Go to the latest branch of the project.
-	**Running http-server**
+
+**Running http-server**
 	
  1. go to "clent-assets"
  2. run "yarn install"
- 3. run "http-server" and hit enter
+ 3. run "http-server" and hit enter [if http-server could not be found, then run "npm i http-server -g"] 
  
 **Running front-end client**
  1. go to "igot-discuss"
