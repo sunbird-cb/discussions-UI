@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@ws-widget/resolver": ["library/ws-widget/resolver"],
+      "@ws-widget/resolver/*": ["library/ws-widget/resolver/*"],
+      "@ws-widget/collection": ["library/ws-widget/collection"],
+      "@ws-widget/collection/*": ["library/ws-widget/collection/*"],
+      "@ws-widget/utils": ["library/ws-widget/utils"],
+      "@ws-widget/utils/*": ["library/ws-widget/utils/*"],
+      "@ws/app": ["projects/ws/app"],
+      "@ws/app/*": ["projects/ws/app/*"]
+    }
+  },
+  "sourceMap": true,
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
