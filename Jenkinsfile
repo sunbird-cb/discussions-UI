@@ -31,7 +31,7 @@ node() {
                     sh """
 		      npm install @angular/cli
 		      npm install
-		      ng build
+		      npm run ng build
                     """
                 }
                 
