@@ -29,9 +29,8 @@ node() {
 
                 stage('Build') {
                     sh """
-		      npm install @angular/cli
 		      npm install
-		      npm run ng build
+		      ng build
                     """
                 }
                 
