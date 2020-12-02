@@ -22,12 +22,13 @@ import {
   MatTooltipModule,
   MatInputModule,
   MatFormFieldModule,
-} from '@angular/material'
+} from '@angular/material';
 import { LoggerService } from '@ws-widget/utils/src/public-api';
 import { InitService } from './services/init.service';
 import { AppInterceptorService } from './services/app-interceptor.service';
 import { KeycloakAngularModule } from 'keycloak-angular';
-import { WIDGET_REGISTERED_MODULES, StickyHeaderModule, WIDGET_REGISTRATION_CONFIG, ErrorResolverModule } from '@ws-widget/collection/src/public-api';
+import { WIDGET_REGISTERED_MODULES,
+  StickyHeaderModule, WIDGET_REGISTRATION_CONFIG, ErrorResolverModule } from '@ws-widget/collection/src/public-api';
 
 // const appInitializer = (initSvc: InitService, logger: LoggerService) => async () => {
 //   try {

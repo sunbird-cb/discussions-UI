@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { NSDiscussData } from '../../models/discuss.model'
-import { Router } from '@angular/router'
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { NSDiscussData } from '../../models/discuss.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dicuss-post-card',
   templateUrl: './post-card.component.html',
@@ -10,9 +10,9 @@ import { Router } from '@angular/router'
   /* tslint:enable */
 })
 
-export class PostCardComponent implements OnInit {
+export class PostCardComponent implements OnInit, OnChanges {
   @Input()
-  discuss!: NSDiscussData.IPosts
+  discuss!: NSDiscussData.IPosts;
   constructor(
     private router: Router,
     // private snackBar: MatSnackBar,
@@ -20,6 +20,9 @@ export class PostCardComponent implements OnInit {
     // private configSvc: ConfigurationsService,
   ) { }
 
+  ngOnChanges() {
+    console.log('card-----', this.discuss);
+  }
   ngOnInit() { }
   upvote(discuss: NSDiscussData.IPosts) {
     // console.log(discuss)
@@ -36,7 +39,7 @@ export class PostCardComponent implements OnInit {
   }
   getDiscussion() {
     if (this.discuss && this.discuss.topic && this.discuss.topic) {
-      this.router.navigate([`/app/discuss/home/${this.discuss.topic.tid}`])
+      this.router.navigate([`/discuss/home/${this.discuss.topic.slug}`]);
     }
   }
 }

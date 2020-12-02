@@ -38,7 +38,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'home/:topicId',
+        path: 'home/:topicId/:slug',
         component: DiscussionComponent,
         data: {
           load: ['ckeditor'],

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core'
 import { NSDiscussData } from '../../models/discuss.model'
 import { Router } from '@angular/router'
 import { DiscussUtilsService } from '../../services/discuss-utils.service'
+import * as _ from 'lodash';
 @Component({
   selector: 'app-dicuss-card',
   templateUrl: './discuss-card.component.html',
@@ -37,7 +38,7 @@ export class DiscussCardComponent implements OnInit {
     }
   }
   getDiscussion() {
-    this.router.navigate([`/app/discuss/home/${this.discuss.tid}`])
+    this.router.navigate([`/discuss/home/${_.get(this.discuss, 'slug')}`]);
   }
 
   public getBgColor(tagTitle: any) {

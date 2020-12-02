@@ -13,11 +13,11 @@ export class DiscussCategoriesComponent implements OnInit {
   categories!: NSDiscussData.ICategorie[]
 
   constructor(private route: ActivatedRoute) {
-    // this.categories = this.data.categories
+    this.categories = this.data.categories;
   }
 
   ngOnInit(): void {
-    this.initC()
+   // this.initC()
 
   }
   initC() {
