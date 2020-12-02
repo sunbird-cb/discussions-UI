@@ -87,9 +87,9 @@ export class DiscussAllComponent implements OnInit, AfterViewInit {
   fillPopular(page: any) {
     // this.discussionList =;
     this.discussService.fetchPopularD(page).subscribe((response: any) => {
-      this.paginationData = response.pagination
-      this.setPagination()
-      this.discussionList = _.get(response, 'topics')
+      this.paginationData = response.pagination;
+      this.setPagination();
+      this.discussionList = _.get(response, 'topics');
     })
     // , () => {
     //   // IN TROUBL
@@ -99,9 +99,9 @@ export class DiscussAllComponent implements OnInit, AfterViewInit {
   refreshData(page: any) {
     if (this.fetchNewData) {
       if (this.currentFilter === 'recent') {
-        this.getRecentData(page)
+        this.getRecentData(page);
       } else {
-        this.fillPopular(page)
+        this.fillPopular(page);
       }
     }
   }
@@ -109,10 +109,10 @@ export class DiscussAllComponent implements OnInit, AfterViewInit {
   getRecentData(page: any) {
     return this.discussService.fetchRecentD(page).subscribe(
       (data: any) => {
-        this.paginationData = data.pagination
-        this.setPagination()
-        this.discussionList = _.get(data, 'topics')
-      })
+        this.paginationData = data.pagination;
+        this.setPagination();
+        this.discussionList = _.get(data, 'topics');
+      });
   }
 
   setPagination() {

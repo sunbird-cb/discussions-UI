@@ -2,28 +2,28 @@
   <mat-card class="flex-custom">
     <mat-card-header class="flex-custom-m">
       <div mat-card-avatar class="example-header-image">
-        <ws-widget-avatar-photo *ngIf="profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'"
+        <ws-widget-avatar-photo *ngIf="profilePhoto" [photoUrl]="profilePhoto" [name]="data?.fullname || 'User'"
           size="xl-s">
         </ws-widget-avatar-photo>
-        <ws-widget-avatar-photo *ngIf="!profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'"
+        <ws-widget-avatar-photo *ngIf="!profilePhoto" [photoUrl]="profilePhoto" [name]="data?.fullname || 'User'"
           size="xl-s">
         </ws-widget-avatar-photo>
       </div>
       <div class="flex-1">
-        <mat-card-title class="mobile-margin text-capitalize" [innerHTML]="data.fullname"></mat-card-title>
+        <mat-card-title class="mobile-margin text-capitalize" [innerHTML]="data?.fullname"></mat-card-title>
         <mat-card-subtitle>{{department}}</mat-card-subtitle>
         <mat-card-subtitle>{{location}} </mat-card-subtitle>
-        <mat-card-subtitle>{{data.email}}</mat-card-subtitle>
+        <mat-card-subtitle>{{data?.email}}</mat-card-subtitle>
         <ng-container>
           <div class="flex flex-1 custom margin-0 margin-top-xl">
             <div class="flex flex-1 flex-custom-m">
               <span class="flex margin-right-l mobile">
-                <span class="ws-mat-default-text">{{data.topiccount || 0 }}</span>
+                <span class="ws-mat-default-text">{{data?.topiccount || 0 }}</span>
                 <span class="pad-4">Discussions</span>
 
               </span>
               <span class="flex margin-right-l mobile">
-                <span class="ws-mat-default-text">{{data.postcount || 0 }}</span>
+                <span class="ws-mat-default-text">{{data?.postcount || 0 }}</span>
                 <span class="pad-4">Posts</span>
               </span>
             </div>

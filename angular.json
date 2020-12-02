@@ -5,6 +5,11 @@
   "projects": {
     "discussion-ui": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -34,54 +39,14 @@
                 "input": "src/styles/libraries.scss",
                 "bundleName": "libraries"
               },
-              "node_modules/material-icons/iconfont/material-icons.scss",
-              "src/styles/mat-typography.scss",
-              "src/styles/styles.scss",
-              {
-                "input": "src/themes/theme-deep-purple.scss",
-                "bundleName": "theme-deep-purple",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-grey.scss",
-                "bundleName": "theme-grey",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-indigo.scss",
-                "bundleName": "theme-indigo",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-lite-blue.scss",
-                "bundleName": "theme-lite-blue",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-orange.scss",
-                "bundleName": "theme-orange",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-teal.scss",
-                "bundleName": "theme-teal",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-blue.scss",
-                "bundleName": "theme-blue",
-                "lazy": true
-              },
-              {
-                "input": "src/themes/theme-deep-blue.scss",
-                "bundleName": "theme-deep-blue",
-                "lazy": true
-              },
               {
                 "input": "src/themes/theme-igot.scss",
                 "bundleName": "theme-igot",
                 "lazy": true
               },
+              "node_modules/material-icons/iconfont/material-icons.scss",
+              "src/styles/styles.scss",
+              "node_modules/pdfjs-dist/web/pdf_viewer.css",
               "src/mdo-assets/fonts/lato/stylesheet.css",
               "src/mdo-assets/fonts/montserrat/stylesheet.css"
             ],
@@ -152,12 +117,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              {
-                "input": "src/themes/theme-deep-purple.scss",
-                "bundleName": "theme-deep-purple",
-                "lazy": true
-              }
+              "src/styles.scss"
             ],
             "scripts": []
           }
