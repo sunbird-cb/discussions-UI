@@ -29,8 +29,7 @@ node() {
 
                 stage('Build') {
                     sh """
-		      npm install
-		      npm run ng -- build
+		      ./build.sh
                     """
                 }
                 
