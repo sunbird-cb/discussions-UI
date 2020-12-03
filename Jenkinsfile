@@ -37,7 +37,7 @@ node() {
                 
                 stage('ArchiveArtifacts') {
                     sh """
-                        mv dist discussion-ui-artifacts
+                        mv dist/discussion-ui discussion-ui-artifacts
                         zip -j discussion-ui-artifacts.zip:${artifact_version}  discussion-ui-artifacts/*                      
                     """
                     archiveArtifacts "discussion-ui-artifacts.zip:${artifact_version}"
