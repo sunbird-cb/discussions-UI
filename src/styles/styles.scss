@@ -1,6 +1,7 @@
 @import 'ws-vars';
 @import 'ws-mixins';
 @import './utility.scss';
+@import '~@angular/material/theming';
 
 @include print {
   * {
@@ -10,13 +11,14 @@
   }
 }
 
+@include mat-core();
+
+@import '../themes/theme-igot.scss';
+
 html,
 body {
   margin: 0px;
-  font-family: $font-family-lato;
-  scroll-behavior: smooth;
-  // letter-spacing: $letter-spacing;
-  // word-spacing: $word-spacing;
+  font-family: $font-family-sans;
 }
 
 ::selection {
@@ -34,11 +36,11 @@ body {
 }
 
 .font-sans {
-  font-family: $font-family-lato;
+  font-family: $font-family-sans;
 }
 
 .font-serif {
-  font-family: $font-family-lato;
+  font-family: $font-family-sans;
 }
 
 .font-mono {
@@ -174,10 +176,6 @@ iframe {
   border: 0;
 }
 
-.mat-menu-panel {
-  max-width: 290px !important;
-}
-
 // Material Over-rides
 .auto-mat-form-field-input-infix {
   .mat-form-field-infix {
@@ -190,16 +188,10 @@ iframe {
   line-height: 1 !important;
 }
 
-.mat-expansion-indicator::after {
-  margin-right: 5px;
-}
-
 mat-toolbar {
-
   &.mat-toolbar-row,
   &.mat-toolbar-single-row {
-    // height: 56px;
-    height: auto;
+    height: 56px;
   }
 }
 
@@ -356,43 +348,8 @@ area {
   box-sizing: border-box;
 }
 
-// for showing body in details page
-.wingspan-siemens-content-body {
-  p:first-of-type {
-    display: flex;
-
-    @include breakpoint-lt-m {
-      display: initial;
-    }
-  }
-
-  img {
-    padding-bottom: 1em;
-    padding-right: 1em;
-    float: left;
-    width: auto;
-  }
-
-  @include breakpoint-lt-m {
-    img {
-      display: block;
-      float: none;
-      padding-right: 0;
-    }
-  }
-}
-
-.wingspan-siemens-content-video {
-  text-align: center !important;
-
-  video {
-    min-width: 90% !important;
-    height: auto !important;
-  }
-}
-
 .night-mode .ql-editor.ql-blank::before {
-  color: rgba(0, 0, 0, 0.87);
+  color: #cccccc;
 }
 
 .ws-widget-user-autocomplete {
@@ -436,58 +393,61 @@ ws-app-role {
   }
 }
 
+//Tour Guide
+
 h3.shepherd-title {
   margin: 0px 0px 0px 0px !important;
   font-weight: 600 !important;
 }
-
 .shepherd-has-title .shepherd-content .shepherd-header {
   padding: 0.75rem !important;
 }
-
 .shepherd-text {
   padding: 1em !important;
   font-weight: 400 !important;
   line-height: initial !important;
 }
-
 .tour-darkmode {
   background: #303030 !important;
   color: #fff;
-
   .shepherd-text {
     color: #fff !important;
   }
-
   .shepherd-header {
-    background: #333333 !important;
+    background: #424242 !important;
     color: #fff !important;
   }
-
   .shepherd-arrow:before {
     content: '';
     transform: rotate(45deg);
-    background: #303030 !important;
-  }
-
+    background: #e6e6e6 !important;
+}
   h3.shepherd-title,
   .shepherd-cancel-icon {
     color: #fff !important;
   }
+  .shepherd-content{
+    background: #303030;
+  }
+}
+.shepherd-title{
+  @include breakpoint-xs{
+    width: 80% !important;
+  }
+}
+.shepherd-title{
+  @include breakpoint-xs{
+    width: 80% !important;
+  }
 }
 
 .shepherd-enabled.shepherd-element {
-  // position: relative !important;
   top: 15px !important;
   margin-right: 10px !important;
   margin-left: 10px !important;
 }
 
-// .scrollRemove{
-//   overflow: hidden;
-// }
-
-.checkbox-sidenav>div.mat-drawer-inner-container {
+.checkbox-sidenav > div.mat-drawer-inner-container {
   height: auto !important;
   overflow: hidden !important;
 }
@@ -500,85 +460,39 @@ h3.shepherd-title {
   color: #102b4e !important;
 }
 
-.mat-flat-button {
-  // font-weight: bold;
-  border: 1px solid;
+.draggable {
+  cursor: move;
+  user-select: none;
 }
-
-#bannerColors {
-  .mat-radio-label {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .mat-radio-label-content {
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-
-  .mat-radio-container {
-    margin: 0 0 0 10px;
+.shepherd-arrow:before{
+  background: #e6e6e6 !important;
+}
+.shepherd-content{
+  border: 2px solid #e6e6e6;
+  background: #ffffff;
+  @include breakpoint-xs {
+    max-width: 200px !important;
   }
 }
-
-.br-8 {
-  border-radius: 8px;
+.warning-popup {
+  color: #856404 !important;
+  background-color: #fff3cd !important;
 }
-
-.mat-step-header .mat-step-icon {
-  background-color: transparent !important;
-  color: inherit;
+.faqBlock img{
+  width: 60%;
 }
-
-.mat-step-header.cdk-keyboard-focused,
-.mat-step-header.cdk-program-focused,
-.mat-step-header:hover {
-  background-color: transparent !important;
+.faqTable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #eeeeee;
 }
-
-.mat-expansion-panel-header-description,
-.mat-expansion-indicator::after {
-  color: inherit !important;
-}
-
-.mat-step-icon .mat-icon {
-  font-size: 32px !important;
-  height: 32px !important;
-  width: 32px !important;
-}
-
-// top right menu
-.profile-link {
-  padding-left: $size-xs;
-  padding-right: 0;
-  padding-top: $size-xs;
-}
-
-// used at discussion start component
-.remove-pad {
-  .mat-dialog-container {
-    padding: 0 24px;
-  }
-}
-
-@media only screen and(max-width: 585px) {
-  #bannerColors {
-    flex-direction: column;
-
-    .mat-radio-label {
-      flex-direction: row;
-      align-items: center;
-    }
-
-    //  .mat-radio-label-content {}
-    //    .mat-radio-container {}
-  }
-}
-
-#editmetagrp {
-  mat-tab-header {
-    display: none;
+.faqBlock{
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 15px;
+  @include breakpoint-xs{
+    width: 100% !important;
   }
 }
