@@ -2,7 +2,9 @@
   <div class="flex flex-3 flex-column">
     <div class="flex flex-1 flex-row margin-fix flex-wrap">
       <ng-container *ngFor="let data of categories">
+        <div (click)="navigateToDiscussionPage(data?.slug)">
         <app-dicuss-category-card [category]="data"></app-dicuss-category-card>
+      </div>
       </ng-container>
     </div>
   </div>

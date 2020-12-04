@@ -1,16 +1,6 @@
 {
     "tabs": [
         {
-            "name": "All Discussions",
-            "key": "alldiscussions",
-            "badges": {
-                "enabled": true,
-                "uri": "/api/unread/total"
-            },
-            "enabled": true,
-            "routerLink": "/discuss/home"
-        },
-        {
             "name": "Categories",
             "key": "categories",
             "badges": {
@@ -19,6 +9,16 @@
             },
             "enabled": true,
             "routerLink": "/discuss/categories"
+        },
+        {
+            "name": "Discussions",
+            "key": "alldiscussions",
+            "badges": {
+                "enabled": true,
+                "uri": "/api/unread/total"
+            },
+            "enabled": false,
+            "routerLink": "/discuss/home"
         },
         {
             "name": "Groups",

@@ -4,7 +4,7 @@ import { NSDiscussData } from '../models/discuss.model';
 import { ConfigurationsService, NsUser } from 'library/ws-widget/utils/src/public-api';
 
 const API_ENDPOINTS = {
-  user: 'venkat',
+  user: 'admin',
   getAllCategories: '/apis/discussion/categories',
   getSingleCategoryDetails: (cid: number) => `/apis/discussion/category/${cid}`,
   getAllTags: '/apis/discussion/tags',
@@ -22,6 +22,7 @@ const API_ENDPOINTS = {
   listDownVoted: (slug: string) => `/apis/discussion/user/${slug}/downvoted`,
   listSaved: (slug: string) => `/apis/discussion/user/${slug}/bookmarks`,
   fetchNetworkProfile: '/apis/discussion/user/profileDetails/getUserRegistry',
+  getContextBasedTopics: (slug: string) => `/apis/discussion/category/${slug}/1`
   // Above line is to fetch own details only for loged in user.
 };
 /* this page needs refactor*/
@@ -73,6 +74,10 @@ export class DiscussService {
 
   fetchPostDetails() {
     return this.http.get<NSDiscussData.ITag[]>(API_ENDPOINTS.getAllTags);
+  }
+
+  getContextBasedTopic(slug: string) {
+    return this.http.get(API_ENDPOINTS.getContextBasedTopics(slug));
   }
 
   votePost(pid: number, data: any) {
