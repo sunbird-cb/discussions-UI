@@ -29,6 +29,7 @@ export class DiscussAllComponent implements OnInit, AfterViewInit {
   paginationData!: any
   currentActivePage!: any
   fetchNewData = false
+  slug: string;
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -36,13 +37,23 @@ export class DiscussAllComponent implements OnInit, AfterViewInit {
     private router: Router
   ) {
     this.trendingTags = _.get(this.route.snapshot.data.availableTags.data, 'tags') || [];
-    this.discussionList = _.get(this.route.snapshot.data.recent.data, 'topics') || [];
+    // this.discussionList = _.get(this.route.snapshot.data.recent.data, 'topics') || [];
     this.paginationData = _.get(this.route.snapshot.data.recent.data, 'pagination') || [];
     // this.setPagination();
     // this.unread = this.route.snapshot.data.unread
+    this.route.params.subscribe(params => {
+      this.slug = _.get(params, 'slug');
+      this.getDiscussionList(this.slug);
+    });
   }
   ngAfterViewInit(): void {
     // throw new Error('Method not implemented.')
+  }
+
+  getDiscussionList(slug: string) {
+    this.discussService.getContextBasedTopic(slug).subscribe(data => {
+      this.discussionList = _.get(data, 'topics');
+    });
   }
   ngOnInit() {
     // load page based on 'page' query param or default to 1

@@ -25,13 +25,12 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home',
+        redirectTo: 'categories',
       },
       {
-        path: 'home',
+        path: 'home/:slug',
         component: DiscussAllComponent,
         resolve: {
-          availCategories: DiscussCategoriesResolve,
           availableTags: DiscussTagsResolve,
           recent: DiscussRecentResolve,
           // unread: DiscussUnreadResolve,
@@ -79,7 +78,7 @@ const routes: Routes = [
       },
     ],
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
