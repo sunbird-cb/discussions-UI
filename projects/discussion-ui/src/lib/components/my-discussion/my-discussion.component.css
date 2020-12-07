@@ -1,0 +1,7 @@
+.profileCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-start;
+    text-align: start;
+}

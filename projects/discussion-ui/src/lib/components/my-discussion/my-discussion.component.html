@@ -1,0 +1,87 @@
+<div class="flex flex-1 flex-column">
+  <div class="flex-custom">
+    <div class="profileCard">
+      <div class="example-header-image">
+        <lib-avatar-photo *ngIf="profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'" size="xl-s">
+        </lib-avatar-photo>
+        <lib-avatar-photo *ngIf="!profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'" size="xl-s">
+        </lib-avatar-photo>
+      </div>
+      <div class="flex-1">
+        <div class="mobile-margin text-capitalize" [innerHTML]="data.fullname"></div>
+        <div>{{department}}</div>
+        <div>{{location}} </div>
+        <div>{{data.email || data.username}}</div>
+        <ng-container>
+          <div class="flex flex-1 custom margin-0 margin-top-xl">
+            <div class="flex flex-1 flex-custom-m">
+              <span class="flex margin-right-l mobile">
+                <span class="ws-mat-default-text">{{data.topiccount || 0 }}</span>
+                <span class="pad-4">Discussions</span>
+
+              </span>
+              <span class="flex margin-right-l mobile">
+                <span class="ws-mat-default-text">{{data.postcount || 0 }}</span>
+                <span class="pad-4">Posts</span>
+              </span>
+            </div>
+            <div class="flex flex-1" class="text-right mobile2">
+              <!-- Enable lated when other user can visit your profile -->
+              <!-- <span class="noocoments" mat-card-subtitle>Last online {{data.lastonline | pipeRelativeTime}}</span> -->
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div>
+
+    </div>
+  </div>
+
+  <ng-container>
+    <div class="recent-tabs">
+      <div class="flex flex-1 flex-column">
+        <div class="flex flex-1 filter flex-wrap">
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
+                              'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
+            (click)="filter('timestamp')">
+            Recent posts </a>
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'best',
+                              'ws-mat-accent-border font-medium':currentFilter !== 'best'}" (click)="filter('best')">
+            Best posts </a>
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'saved',
+                                          'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
+            (click)="filter('saved')">
+            Saved posts </a>
+          <!-- <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
+                                            'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
+            (click)="filter('watched')">
+            Watched </a> -->
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvoted',
+                                              'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
+            (click)="filter('upvoted')">
+            Upvoted </a>
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'downvoted',
+                                                'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
+            (click)="filter('downvoted')">
+            Downvoted </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="discussionList && discussionList.length > 0">
+    <ng-container *ngFor="let data of discussionList">
+      <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
+    <div class="mat-card margin-bottom-l">
+      <div>
+        <div>No Data</div>
+      </div>
+      <div>
+        <span>&nbsp;</span>
+      </div>
+    </div>
+  </ng-container>
+</div>
