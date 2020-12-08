@@ -1,0 +1,22 @@
+export const urlConfig = {
+    host: 'http://localhost:3002',
+    userName: "nodebb",
+    getAllCategories: () => `${urlConfig.host}/discussionHub/categories`,
+    getSingleCategoryDetails: (cid: number) => `discussionHub/categories/${cid}`,
+    getAllTags: 'discussionHub/tags',
+    createPost: 'discussionHub/writeApi/v2/topics',
+    votePost: (pid: number) => `apis/discussionHub/writeApi/v2/posts/${pid}/vote`,
+    replyPost: (tid: number) => `apis/discussionHub/writeApi/v2/topics/${tid}`,
+    bookmarkPost: (pid: number) => `apis/discussionHub/writeApi/v2/posts/${pid}/bookmark`,
+    recentPost: 'discussionHub/topics/recent',
+    popularPost: `discussionHub/topics/popular`,
+    unread: `discussionHub/topics/unread/total`,
+    getTopic: `discussionHub/topics/`,
+    profile: `discussionHub/users/me`,
+    fetchProfile: (slug: string) => `${urlConfig.host}/discussionHub/users/${slug}/about`,
+    listUpVote: (slug: string) => `${urlConfig.host}/discussionHub/user/${slug}/upvoted`,
+    listDownVoted: (slug: string) => `${urlConfig.host}/discussionHub/user/${slug}/downvoted`,
+    listSaved: (slug: string) => `${urlConfig.host}/discussionHub/user/${slug}/bookmarks`,
+    fetchNetworkProfile: `user/profileDetails/getUserRegistry`,
+    userdetails: (slug: string) => `${urlConfig.host}/discussionHub/user/${slug}`
+};
