@@ -95,8 +95,8 @@ export class DiscussionService {
     return this.http.get(url);
   }
 
-  fetchTopicById(topicId: number, page?: any) {
-    let url = urlConfig.getTopic + topicId.toString();
+  fetchTopicById(topicId: number, slug?: any, page?: any) {
+    let url = urlConfig.host + '/' + urlConfig.getTopic + '/' + topicId.toString() + '/' + slug;
     url = this.appendPage(page, url);
     return this.http.get(url);
   }
@@ -135,5 +135,9 @@ export class DiscussionService {
   }
   fetchNetworkProfile() {
     return this.http.get<any>(urlConfig.userdetails(urlConfig.userName));
+  }
+
+  getContextBasedTopic(slug: string) {
+    return this.http.get(urlConfig.getContextBasedTopics(slug));
   }
 }
