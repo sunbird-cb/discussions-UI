@@ -29,7 +29,7 @@ export class DiscussionService {
   }
 
   fetchAllTags() {
-    const tags = this.http.get(urlConfig.getAllTags)
+    const tags = this.http.get(urlConfig.getAllTags())
       .toPromise();
     return tags;
   }
@@ -43,8 +43,8 @@ export class DiscussionService {
   fetchAllCategories() {
     return this.http.get<NSDiscussData.ICategorie[]>(urlConfig.getAllCategories()).pipe(
       map((data: any) => {
-          // Taking only "categories" from the response 
-          let resp = (data as any).categories;
+          // Taking only "categories" from the response
+          const resp = (data as any).categories;
           return resp;
       }),
       catchError( error => {
@@ -54,11 +54,11 @@ export class DiscussionService {
   }
 
   fetchAllTag() {
-    return this.http.get(urlConfig.getAllTags);
+    return this.http.get(urlConfig.getAllTags());
   }
 
   fetchPostDetails() {
-    return this.http.get(urlConfig.getAllTags);
+    return this.http.get(urlConfig.getAllTags());
   }
 
   votePost(pid: number, data: any) {
@@ -116,13 +116,13 @@ export class DiscussionService {
   fetchProfileInfo(slug: string) {
     return this.http.get(urlConfig.fetchProfile(slug));
   }
-  fetchUpvoted() {//0
+  fetchUpvoted() {// 0
     return this.http.get(urlConfig.listUpVote(urlConfig.userName));
   }
-  fetchDownvoted() { //0
+  fetchDownvoted() { // 0
     return this.http.get(urlConfig.listDownVoted(urlConfig.userName));
   }
-  fetchSaved() { //0 this.usr.userId
+  fetchSaved() { // 0 this.usr.userId
     return this.http.get(urlConfig.listSaved(urlConfig.userName));
   }
   fetchSingleCategoryDetails(cid: number, page?: any) {

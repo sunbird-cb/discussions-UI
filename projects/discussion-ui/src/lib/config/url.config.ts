@@ -1,9 +1,9 @@
 export const urlConfig = {
     host: 'http://localhost:3002',
-    userName: 'nodebb',
+    userName: 'admin',
     getAllCategories: () => `${urlConfig.host}/discussion/categories`,
     getSingleCategoryDetails: (cid: number) => `discussion/categories/${cid}`,
-    getAllTags: 'discussion/tags',
+    getAllTags: () => `${urlConfig.host}/discussion/tags`,
     createPost: 'discussion/writeApi/v2/topics',
     votePost: (pid: number) => `apis/discussion/writeApi/v2/posts/${pid}/vote`,
     replyPost: (tid: number) => `apis/discussion/writeApi/v2/topics/${tid}`,

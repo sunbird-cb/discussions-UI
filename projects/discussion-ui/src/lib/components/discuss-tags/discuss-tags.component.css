@@ -1,0 +1,12 @@
+.border {
+    border: 1px solid black;
+}
+
+.tag {
+    width: 7%;
+    margin: 0.5%;
+}
+.count {
+    text-align: center;
+    padding-left: 15%;
+}
