@@ -9,6 +9,7 @@ import { DiscussCategoryComponent } from './discuss-category/discuss-category.co
 import { DiscussTagsComponent } from './discuss-tags/discuss-tags.component';
 import { MyDiscussionComponent } from './my-discussion/my-discussion.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { DiscussionDetailsComponent } from './discussion-details/discussion-deta
   imports: [
     CommonModule,
     HttpClientModule,
-    ElementsModule
+    ElementsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SidePannelComponent,

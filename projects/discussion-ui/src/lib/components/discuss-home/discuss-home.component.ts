@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as Constants from '../../common/constants.json';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DiscussionService } from '../../services/discussion.service';
+
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
 
 @Component({
   selector: 'lib-discuss-home',
@@ -9,16 +14,31 @@ import { Router } from '@angular/router';
 })
 export class DiscussHomeComponent implements OnInit {
 
+  discussionList: [];
+  routeParams: any;
+
   constructor(
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute,
+    private discussionService: DiscussionService
   ) { }
 
-  topics: any = (Constants as any).default.topics;
-
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.routeParams = params;
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    });
   }
 
-  navigateToDiscussionDetails(topicId) {
-    this.router.navigate([`/discussion/home/${topicId}`]);
+  navigateToDiscussionDetails(discussionData) {
+    console.log('discussionData', discussionData);
+    this.router.navigate([`/discussion/home/${_.get(discussionData, 'slug')}`]);
+  }
+
+  getDiscussionList(slug: string) {
+    this.discussionService.getContextBasedTopic(slug).subscribe(data => {
+    this.discussionList = _.get(data, 'topics');
+    console.log('this.discussionList', this.discussionList);
+    });
   }
 }
