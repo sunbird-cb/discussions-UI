@@ -1,6 +1,7 @@
 export const urlConfig = {
     host: 'http://localhost:3002',
     userName: 'admin',
+    slug: 'discussion',
     getAllCategories: () => `${urlConfig.host}/discussion/categories`,
     getSingleCategoryDetails: (cid: number) => `discussion/categories/${cid}`,
     getAllTags: () => `${urlConfig.host}/discussion/tags`,
@@ -19,5 +20,5 @@ export const urlConfig = {
     listSaved: (slug: string) => `${urlConfig.host}/discussion/user/${slug}/bookmarks`,
     fetchNetworkProfile: `user/profileDetails/getUserRegistry`,
     userdetails: (slug: string) => `${urlConfig.host}/discussion/user/${slug}`,
-    getContextBasedTopics: (slug: string) => `${urlConfig.host}/discussion/category/${slug}/1`
+    getContextBasedTopics: (slug: string) => `${urlConfig.host}/discussion/category/${slug}`
 };
