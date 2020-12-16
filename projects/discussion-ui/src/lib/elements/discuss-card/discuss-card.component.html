@@ -1,57 +1,57 @@
 <!-- Card container -->
-<div class="discuss-card cursor-pointer border">
+<div class="discuss-card-content cursor-pointer border">
 
-    <!-- Card header -->
+  <!-- Card header -->
+  <div>
+    <!-- Card title-->
     <div>
-      <!-- Card title-->
-      <div>
-        <a href="javascript:void(0)" i18n-aria-label role="link">
-          <h2 class="cursor-pointer f-medium" [innerHTML]="discussionData.title"></h2>
-        </a>
-      </div>
-      <!-- /Card title -->
-  
-      <!-- Card subtitle -->
-      <div class="responsive">
-        <span class="flex ws-mat-default-text">
-          <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
-        </span>
-        <span class="dot" *ngIf="discussionData?.user?.fullname">{{discussionData?.user?.fullname}}</span>
-        <span class="dot" *ngIf="!(discussionData?.user?.fullname)">{{'Anonymous'}}</span>
-        <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
-      </div>
-      <!-- /Card subtitle -->
+      <a href="javascript:void(0)" i18n-aria-label role="link">
+        <h3 class='discuss-card-title' [innerHTML]="discussionData.title"></h3>
+      </a>
     </div>
-    <!-- /Card header -->
-  
-    <!-- Card content -->
-    <div class="flex flex-1">
-      <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
-        <span *ngFor="let tag of discussionData.tags" class="tag">
-          {{tag.value}}
-        </span>
-      </ng-container>
+    <!-- /Card title -->
+
+    <!-- Card subtitle -->
+    <div class="discuss-card-subtitle responsive">
+      <span class="flex ws-mat-default-text">
+        <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
+      </span>
+      <span class="dot" *ngIf="discussionData?.user?.fullname">{{discussionData?.user?.fullname}}</span>
+      <span class="dot" *ngIf="!(discussionData?.user?.fullname)">{{'Anonymous'}}</span>
+      <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
-    <!-- /Card content -->
-  
-    <!-- Card footer -->
-    <div class="flex flex-1 custom margin-0">
-      <div class="flex flex-1 flex-row margin-left-xs">
-        <span class="flex margin-right-l mobile">
-          <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
-          <span class="pad-4">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
-        </span>
-        <span class="flex mobile">
-          <!-- <mat-icon>trending_up</mat-icon> -->
-          <span class="pad-4">{{discussionData.viewcount || 0}} Views</span>
-        </span>
-      </div>
-      <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-        <span class="noocoments ws-mat-default-text">{{((discussionData.postcount || 1) -1) }}
-          comments</span>
-      </div>
-    </div>
-  
-    <!-- /Card footer -->
+    <!-- /Card subtitle -->
   </div>
   <!-- /Card header -->
+
+  <!-- Card content -->
+  <div class="flex flex-1">
+    <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
+      <span *ngFor="let tag of discussionData.tags" class="tag">
+        {{tag.value}}
+      </span>
+    </ng-container>
+  </div>
+  <!-- /Card content -->
+
+  <!-- Card footer -->
+  <div class="discuss-card-comments">
+    <div class="flex flex-1 flex-row margin-left-xs">
+      <span class="flex margin-right-l mobile">
+        <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
+        <span class="pad-4">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
+      </span>
+      <span class="flex mobile">
+        <!-- <mat-icon>trending_up</mat-icon> -->
+        <span class="pad-4">{{discussionData.viewcount || 0}} Views</span>
+      </span>
+    </div>
+    <div class="flex flex-1" class="cursor-pointer text-right mobile2">
+      <span class="noocoments ws-mat-default-text">{{((discussionData.postcount || 1) -1) }}
+        comments</span>
+    </div>
+  </div>
+
+  <!-- /Card footer -->
+</div>
+<!-- /Card header -->

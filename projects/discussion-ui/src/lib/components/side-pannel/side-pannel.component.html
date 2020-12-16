@@ -1,4 +1,6 @@
-<button *ngIf="false" (click)="navigate('home')">All discussions</button>
-<button (click)="navigate('categories')">Categories</button>
-<button (click)="navigate('tags')" >Tags</button>
-<button (click)="navigate('my-discussion')" >My discussions</button>
+<ul class="sb-sidebar-menu">
+    <li (click)="navigate('home')"><a *ngIf="false">All discussions</a></li>
+    <li (click)="navigate('categories')"><a class="active">Categories</a></li>
+    <li (click)="navigate('tags')"><a>Tags</a></li>
+    <li (click)="navigate('my-discussion')"><a>My discussions</a></li>
+</ul>

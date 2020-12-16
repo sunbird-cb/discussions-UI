@@ -1,0 +1,32 @@
+.discuss-category{
+    display: flex;
+    flex: 1 1 0%;
+}
+.discuss-category-content {
+    display: flex;
+    flex:3;
+    flex-direction: column;
+}
+.discuss-category-cards{
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.categories-card-content {
+   display: flex;
+   margin: 12px;
+   margin-top:24px;
+}
+
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3) {
+    .discuss-category-cards{
+        flex-direction:column;
+    }
+    .categories-card-content {
+        width: 100%;
+    }
+  }

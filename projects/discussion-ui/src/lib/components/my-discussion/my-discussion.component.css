@@ -1,7 +1,57 @@
+
 .profileCard{
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: flex-start;
     text-align: start;
+}
+.recent-tabs{
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    box-shadow: none!important;
+    border-radius: unset;
+    background: inherit!important; 
+}
+.tabs-content{
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+}
+.tabs-filter{
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+}
+.filter-option{
+    margin: 12px;
+    border: 1px solid #ddd;
+    border-width: 0 0 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    min-width: 64px;
+    line-height: 40px;
+    padding: 0 16px;
+    overflow: visible;
+    font-size: 16px;
+    color: #000;
+}
+.filter-option:first-child {
+    margin-left: 0;
+}
+.filter-option:hover,.active {
+    border-bottom: 3px solid #0074b6;
+    font-weight: 700;
 }
