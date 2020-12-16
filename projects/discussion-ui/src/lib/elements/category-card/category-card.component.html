@@ -1,32 +1,33 @@
-<div class="category-card border">
-    <div>
+<div class="category-card">
+    <div class="category-card-header">
       <div class="example-header-image">
         <!-- <mat-icon>hdr_strong</mat-icon> -->
         <!-- <mat-icon style="width: auto; height: auto;" svgIcon="category_m"></mat-icon> -->
       </div>
-      <div> <h2 [innerHTML]="category.name"></h2> </div>
       <div>
-        <span class="ws-mat-primary-text">{{category.description}}</span>
-        <!-- <span class="dot">{{category.user.username}}</span> -->
-        <!-- <span class="margin-left-s">{{category.timestamp | date}}</span> -->
+        <div class="category-card-header-label" [innerHTML]="category.name"></div>
+        <div>{{category.description}}
+          <!-- <span class="dot">{{category.user.username}}</span> -->
+          <!-- <span class="margin-left-s">{{category.timestamp | date}}</span> -->
+        </div>
       </div>
     </div>
-    <div class="flex flex-1 custom">
-      <div class="flex flex-1 flex-row margin-left-xs">
-        <!-- <span class="flex margin-right-l mobile">
-          <span class="pad-4">{{category.upvotes}} viwes</span>
-        </span> -->
-        <span class="flex margin-right-l mobile">
-          <span class="pad-4">{{category.totalTopicCount}} discussions</span>
-        </span>
-        <span class="flex mobile">
-          <span class="pad-4">{{category.totalPostCount}} posts</span>
-        </span>
+    <div class="category-card-main">
+      <div class="category-card-main-content">
+        <!-- <div>
+          <span>{{category.upvotes}} viwes</span>
+        </div> -->
+        <div>
+          <span>{{category.totalTopicCount}} discussions</span>
+        </div>
+        <div>
+          <span class="post-label">{{category.totalPostCount}} posts</span>
+        </div>
       </div>
       <div class="flex flex-1" class="cursor-pointer text-right mobile2">
         <!-- <span class="noocoments ws-mat-default-text" (click)="getcategoryion()">{{(category.teaser.index || 1) -1 }}
-          comments</span> -->
-        <!-- <mat-icon class="noocoments ws-mat-default-text">remove_red_eye</mat-icon> -->
+          comments</span> 
+        <mat-icon class="noocoments ws-mat-default-text">remove_red_eye</mat-icon> -->
       </div>
     </div>
     <!-- <mat-card-footer class="flex flex-1 custom margin-0">

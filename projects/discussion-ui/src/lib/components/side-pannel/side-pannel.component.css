@@ -1,0 +1,18 @@
+.sb-sidebar-menu {
+    list-style-type: none;
+    padding-left: 0;
+}
+.sb-sidebar-menu li {
+    margin-bottom: 0px;
+    padding: 0.75rem 1rem;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    border-left: 0.125rem solid transparent;
+}
+.sb-sidebar-menu li:hover,.sb-sidebar-menu li.active {
+    background: #e6e3e3;
+    border-left: 0.125rem solid #005391;
+    color: #002e50;
+    font-weight: bold;
+}

@@ -5,26 +5,27 @@
         <!-- header -->
         <div role="link" tabindex="0">
           <!-- title -->
-          <div class="margin-l-0 f-medium" [innerHTML]="data?.title"></div>
+          <div class="margin-l-0 f-medium discussion-card-title" [innerHTML]="data?.title"></div>
           <!-- <mat-card-subtitle>{{'General discussion'}}</mat-card-subtitle> -->
         </div>
         <!-- /header -->
         <ng-container *ngFor="let post of data?.posts">
           <!-- card content -->
-          <div class="margin-left-m mb-0-imp">
+          <div class="margin-left-m mb-0-imp ">
             <!-- <div [innerHTML]="post.content | safeHtml"></div> -->
-            <p role="link" tabindex="0">{{ post.content }}</p>
-            <div class="flex flex-1" role="link" tabindex="0">
+            <p role="link" tabindex="0" class="discussion-heading">{{ post.content }}</p>
+            <div class="flex flex-1 discussion-content" role="link" tabindex="0">
               <!-- <span class="ws-mat-default-text">{{'Asked by'}}</span> -->
               <!-- TODO: avatar photo -->
               <!-- <ws-widget-avatar-photo [name]="post.user.fullname || 'Anonymous'" size="s"></ws-widget-avatar-photo> -->
-              <span class="margin-left-s">{{'Asked by '}}</span>
-              <span class="margin-left-s capitalize f-medium" *ngIf="post.user.fullname"
+              <span class="circle-text"><span class="circle-label">CF</span></span>
+              <span class="discussion-labels">{{'Asked by '}}</span>
+              <span class="discussion-labels" *ngIf="post.user.fullname"
                 [innerHTML]="post.user.fullname"></span>
-              <span class="margin-left-s capitalize f-medium" *ngIf="!post.user.fullname"
+              <span class="margin-left-s capitalize f-medium discussion-labels" *ngIf="!post.user.fullname"
                 [innerHTML]="post.user.username"></span>
                 <!-- TODO: pipeRelativeTime -->
-              <!-- <span class="margin-left-s">{{ post.timestamp | pipeRelativeTime}}</span> -->
+              <!-- <span class="discussion-labels margin-left-s">{{ post.timestamp | pipeRelativeTime}}</span> -->
             </div>
   
   
@@ -36,7 +37,7 @@
                 </span>
               </ng-container>
             </div>
-            <div class="flex flex-1 flex-wrap custom margin-0 margin-top-xl">
+            <div class="flex flex-1 flex-wrap custom margin-0 margin-top-xl comments-count">
               <div class="flex flex-1 flex-row margin-left-xs margin-right-xs">
                 <span class="flex margin-right-l mobile">
                   <a href="javascript:void(0)" i18n-aria-label role="link" *ngIf="!post.upvoted" (click)="upvote(post)"
@@ -105,7 +106,7 @@
                 </ws-widget-ck-editor> -->
                 <div appearance="outline" class="flex-1 w-full"
                   [ngClass]="{ 'mat-form-field-invalid': showError('answer') }">
-                  <textarea formControlName="answer" ></textarea>
+                  <textarea formControlName="answer" class="text-content"></textarea>
                   <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required">
                     This is mandatory
                   </div>
@@ -119,7 +120,7 @@
           <div align="end">
             <!-- TODO: Add check below:  [disabled]="answer.value.length < 3 -->
             <button mat-raised-button type="button" (click)="postReply(post)"
-              class="text-white ws-mat-primary-background flex-auto-display margin-right-xs">
+              class="text-white ws-mat-primary-background flex-auto-display margin-right-xs post-btn">
               <span class="text-white" i18n>Post reply</span>
             </button>
             <!-- <button mat-raised-button type="button" [mat-dialog-close]="true"

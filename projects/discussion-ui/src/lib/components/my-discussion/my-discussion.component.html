@@ -1,4 +1,4 @@
-<div class="flex flex-1 flex-column">
+<div class="flex flex-1 flex-column my-discussion">
   <div class="flex-custom">
     <div class="profileCard">
       <div class="example-header-image">
@@ -40,9 +40,9 @@
 
   <ng-container>
     <div class="recent-tabs">
-      <div class="flex flex-1 flex-column">
-        <div class="flex flex-1 filter flex-wrap">
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
+      <div class="tabs-content">
+        <div class="tabs-filter">
+          <a href="javascript:void(0)" role="button" class="filter-option active" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
             (click)="filter('timestamp')">
             Recent posts </a>
