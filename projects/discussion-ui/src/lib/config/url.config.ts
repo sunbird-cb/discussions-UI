@@ -1,7 +1,7 @@
 export const urlConfig = {
     host: 'http://localhost:3002',
     userName: 'admin',
-    slug: 'discussion',
+    apiSlug: '/discussion',
     getAllCategories: () => `${urlConfig.host}/discussion/categories`,
     getSingleCategoryDetails: (cid: number) => `discussion/categories/${cid}`,
     getAllTags: () => `${urlConfig.host}/discussion/tags`,
