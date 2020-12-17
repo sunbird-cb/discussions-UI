@@ -5,10 +5,21 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { urlConfig } from './../config/url.config';
 import { NSDiscussData } from '../models/discuss.model';
 
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
+
 @Injectable({
   providedIn: 'root'
 })
 export class DiscussionService {
+
+  // tslint:disable-next-line:variable-name
+  private _apiSlug: string;
+
+  // tslint:disable-next-line:variable-name
+  private _host: string;
+
   usr: any;
 
   constructor( private http: HttpClient ) {
@@ -35,7 +46,7 @@ export class DiscussionService {
   }
 
   createPost(data: any) {
-    return this.http.post(urlConfig.createPost, data);
+    return this.http.post(urlConfig.createPost(), data);
   }
   /**
    * @description To get all the categories
@@ -87,16 +98,16 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    const url = this.appendPage(page, urlConfig.recentPost);
+    const url = this.appendPage(page, urlConfig.recentPost());
     return this.http.get(url);
   }
   fetchPopularD(page?: any) {
-    const url = this.appendPage(page, urlConfig.popularPost);
+    const url = this.appendPage(page, urlConfig.popularPost());
     return this.http.get(url);
   }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
-    let url = urlConfig.host + '/' + urlConfig.getTopic + '/' + topicId.toString() + '/' + slug;
+    let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
     url = this.appendPage(page, url);
     return this.http.get(url);
   }
@@ -108,10 +119,10 @@ export class DiscussionService {
   }
 
   fetchUnreadCOunt() {
-    return this.http.get<any>(urlConfig.unread);
+    return this.http.get<any>(urlConfig.unread());
   }
   fetchProfile() {
-    return this.http.get(urlConfig.profile);
+    return this.http.get(urlConfig.profile());
   }
   fetchProfileInfo(slug: string) {
     return this.http.get(urlConfig.fetchProfile(slug));
@@ -139,5 +150,20 @@ export class DiscussionService {
 
   getContextBasedTopic(slug: string) {
     return this.http.get(urlConfig.getContextBasedTopics(slug));
+  }
+
+  set apiHost(host) {
+    this._host = host;
+  }
+
+  get apiHost() {
+    return this._host;
+  }
+  set apiSlug(slug) {
+    this._apiSlug = slug;
+  }
+
+  get apiSlug() {
+    return this._apiSlug;
   }
 }

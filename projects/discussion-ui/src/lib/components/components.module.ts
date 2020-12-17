@@ -10,6 +10,7 @@ import { DiscussTagsComponent } from './discuss-tags/discuss-tags.component';
 import { MyDiscussionComponent } from './my-discussion/my-discussion.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DiscussStartComponent } from './discuss-start/discuss-start.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DiscussTagsComponent,
     MyDiscussionComponent,
     DiscussionDetailsComponent,
+    DiscussStartComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DiscussCategoryComponent,
     DiscussTagsComponent,
     MyDiscussionComponent,
-    DiscussionDetailsComponent
+    DiscussionDetailsComponent,
+    DiscussStartComponent
   ],
   providers: [
     DiscussionService
