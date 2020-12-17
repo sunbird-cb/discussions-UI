@@ -1,3 +1,9 @@
-<div (click)="navigateToDiscussionDetails(discussionData)" *ngFor="let discussionData of discussionList">
-    <lib-discuss-card [discussionData]="discussionData" ></lib-discuss-card>
+<div>
+    <button (click)="startDiscussion()">Start Discusion</button>
 </div>
+
+<div (click)="navigateToDiscussionDetails(discussionData)" *ngFor="let discussionData of discussionList">
+    <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+</div>
+
+<lib-discuss-start *ngIf="showStartDiscussionModal"></lib-discuss-start>

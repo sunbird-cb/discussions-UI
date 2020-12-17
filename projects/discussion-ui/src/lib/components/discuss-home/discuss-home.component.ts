@@ -16,6 +16,7 @@ export class DiscussHomeComponent implements OnInit {
 
   discussionList: [];
   routeParams: any;
+  showStartDiscussionModal = false;
 
   constructor(
     public router: Router,
@@ -40,5 +41,9 @@ export class DiscussHomeComponent implements OnInit {
     this.discussionList = _.get(data, 'topics');
     console.log('this.discussionList', this.discussionList);
     });
+  }
+
+  startDiscussion() {
+    this.showStartDiscussionModal = true;
   }
 }
