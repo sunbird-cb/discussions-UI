@@ -7,7 +7,8 @@
     <div>
       <a href="javascript:void(0)" i18n-aria-label role="link">
         <h3 class='discuss-card-title' *ngIf="discussionData?.title" [innerHTML]="discussionData?.title"></h3>
-        <h3 class='discuss-card-title' *ngIf="!discussionData?.title" [innerHTML]="discussionData?.topic?.title"></h3>
+        <h3 class='discuss-card-title' *ngIf="!discussionData?.title && discussionData?.topic?.title" [innerHTML]="discussionData?.topic?.title"></h3>
+        <h3 class='discuss-card-title' *ngIf="!discussionData?.title && !discussionData?.topic?.title && discussionData?.name" [innerHTML]="discussionData?.name"></h3>
       </a>
     </div>
     <!-- /Card title -->

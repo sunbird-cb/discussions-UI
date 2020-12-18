@@ -7,7 +7,7 @@ export const urlConfig = {
 
     // URLs...!
     getAllCategories: () => `${urlConfig.apiBasePath()}/categories`,
-    getSingleCategoryDetails: (cid: number) => `${urlConfig.apiBasePath()}/categories/${cid}`,
+    getSingleCategoryDetails: (cid: number) => `${urlConfig.apiBasePath()}/category/${cid}`,
     getAllTags: () => `${urlConfig.apiBasePath()}/tags`,
     createPost: () => `${urlConfig.apiBasePath()}/v2/topics`,
     votePost: (pid: number) => `${urlConfig.apiBasePath()}/v2/posts/${pid}/vote`,
