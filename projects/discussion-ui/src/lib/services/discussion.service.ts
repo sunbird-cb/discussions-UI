@@ -64,6 +64,14 @@ export class DiscussionService {
     );
   }
 
+  fetchSingleCategoryDetails(cid: any) {
+    return this.http.get<NSDiscussData.ICategorie>(urlConfig.getSingleCategoryDetails(cid));
+  }
+  fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
+    const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
+    return this.http.get(`${url}&sort=${sort}`);
+  }
+
   fetchAllTag() {
     return this.http.get(urlConfig.getAllTags());
   }
@@ -136,14 +144,7 @@ export class DiscussionService {
   fetchSaved() { // 0 this.usr.userId
     return this.http.get(urlConfig.listSaved(urlConfig.userName));
   }
-  fetchSingleCategoryDetails(cid: number, page?: any) {
-    const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
-    return this.http.get(url);
-  }
-  fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
-    const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
-    return this.http.get(`${url}&sort=${sort}`);
-  }
+
   fetchNetworkProfile() {
     return this.http.get<any>(urlConfig.userdetails(urlConfig.userName));
   }

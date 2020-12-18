@@ -14,7 +14,7 @@ import * as _ from 'lodash'
 })
 export class DiscussHomeComponent implements OnInit {
 
-  discussionList: [];
+  discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
 
@@ -38,7 +38,7 @@ export class DiscussHomeComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.discussionService.getContextBasedTopic(slug).subscribe(data => {
-    this.discussionList = _.get(data, 'topics');
+    this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
     console.log('this.discussionList', this.discussionList);
     });
   }

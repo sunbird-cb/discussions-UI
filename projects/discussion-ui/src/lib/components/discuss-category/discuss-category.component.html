@@ -1,7 +1,7 @@
 
     <div class="discuss-category-cards">
       <ng-container  *ngFor="let data of categories">
-        <div (click)="navigateToDiscussionPage(data?.slug)" class="categories-card-content">
+        <div (click)="navigateToDiscussionPage(data)" class="categories-card-content">
         <lib-category-card [category]="data" ></lib-category-card>
         </div>
       </ng-container>
