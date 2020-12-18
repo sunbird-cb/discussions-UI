@@ -13,7 +13,7 @@
           <!-- card content -->
           <div class="margin-left-m mb-0-imp ">
             <!-- <div [innerHTML]="post.content | safeHtml"></div> -->
-            <p role="link" tabindex="0" class="discussion-heading">{{ post.content }}</p>
+            <p role="link" tabindex="0" class="discussion-heading" [innerHTML]="post?.content"></p>
             <div class="flex flex-1 discussion-content" role="link" tabindex="0">
               <!-- <span class="ws-mat-default-text">{{'Asked by'}}</span> -->
               <!-- TODO: avatar photo -->

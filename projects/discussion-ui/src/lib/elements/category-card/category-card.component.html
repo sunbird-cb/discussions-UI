@@ -6,10 +6,10 @@
       </div>
       <div>
         <div class="category-card-header-label" [innerHTML]="category.name"></div>
-        <div>{{category.description}}
+        <p class="category-card-header-text">{{category.description}}
           <!-- <span class="dot">{{category.user.username}}</span> -->
           <!-- <span class="margin-left-s">{{category.timestamp | date}}</span> -->
-        </div>
+        </p>
       </div>
     </div>
     <div class="category-card-main">
@@ -18,7 +18,7 @@
           <span>{{category.upvotes}} viwes</span>
         </div> -->
         <div>
-          <span>{{category.totalTopicCount}} discussions</span>
+          <span class="discussion-label">{{category.totalTopicCount}} discussions</span>
         </div>
         <div>
           <span class="post-label">{{category.totalPostCount}} posts</span>
@@ -28,6 +28,7 @@
         <!-- <span class="noocoments ws-mat-default-text" (click)="getcategoryion()">{{(category.teaser.index || 1) -1 }}
           comments</span> 
         <mat-icon class="noocoments ws-mat-default-text">remove_red_eye</mat-icon> -->
+        <img src="../../assets/images/eye-icon.png" width="16px">
       </div>
     </div>
     <!-- <mat-card-footer class="flex flex-1 custom margin-0">
