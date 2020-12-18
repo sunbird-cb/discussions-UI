@@ -1,8 +1,10 @@
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-// import { NSDiscussData } from '../../models/discuss.model';
-// import { ConfigurationsService } from '@ws-widget/utils';
+import { ActivatedRoute, Router } from '@angular/router';
+
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
 
 @Component({
   selector: 'lib-my-discussion',
@@ -18,16 +20,18 @@ export class MyDiscussionComponent implements OnInit {
   location!: string | null;
   profilePhoto!: string;
 
-  constructor(private route: ActivatedRoute, private discussService: DiscussionService, /* private configSvc: ConfigurationsService */) {
+  constructor(
+    private route: ActivatedRoute,
+    private discussService: DiscussionService,
+    public router: Router) {
     this.fetchNetworkProfile();
   }
- 
-
   fetchNetworkProfile() {
     this.discussService.fetchNetworkProfile().subscribe(response => {
       console.log(response);
-      this.profilePhoto =  'http://localhost:4567/assets/uploads/profile/1-profileavatar.png'; // response['uploadedpicture']; // _.get(_.first(response), 'photo');
       this.data = response;
+      this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
+      console.log('>>>>>>>', this.discussionList);
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
       // }
@@ -43,7 +47,6 @@ export class MyDiscussionComponent implements OnInit {
     // this.fillDummyData()
     // this.data = this.route.snapshot.data.profile.data;
     // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
-    this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
     this.department = this.discussService.getUserProfile.departmentName || null;
     this.location = this.discussService.getUserProfile.country || null;
   }
@@ -111,6 +114,11 @@ export class MyDiscussionComponent implements OnInit {
           break;
       }
     }
+  }
+
+  navigateToDiscussionDetails(discussionData) {
+    console.log('discussionData', discussionData);
+    this.router.navigate([`/discussion/category/${_.get(discussionData, 'topic.slug')}`]);
   }
 
 }

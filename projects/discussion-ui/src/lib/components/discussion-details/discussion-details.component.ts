@@ -206,7 +206,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`/discussion/home/${this.topicId}`], { queryParams: { page } });
+      this.router.navigate([`/discussion/category/${this.topicId}`], { queryParams: { page } });
     }
   }
 
