@@ -32,6 +32,6 @@ export class DiscussCategoryComponent implements OnInit {
 
   navigateToDiscussionPage(slug) {
     console.log('clicked', slug);
-    this.router.navigate([`/discussion/home/`, `${slug}`]);
+    this.router.navigate([`/discussion/category/`, `${slug}`]);
   }
 }

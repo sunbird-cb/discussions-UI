@@ -6,7 +6,8 @@
     <!-- Card title-->
     <div>
       <a href="javascript:void(0)" i18n-aria-label role="link">
-        <h3 class='discuss-card-title' [innerHTML]="discussionData.title"></h3>
+        <h3 class='discuss-card-title' *ngIf="discussionData?.title" [innerHTML]="discussionData?.title"></h3>
+        <h3 class='discuss-card-title' *ngIf="!discussionData?.title" [innerHTML]="discussionData?.topic?.title"></h3>
       </a>
     </div>
     <!-- /Card title -->
@@ -16,8 +17,8 @@
       <span class="flex ws-mat-default-text">
         <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
       </span>
-      <span class="dot" *ngIf="discussionData?.user?.fullname">{{discussionData?.user?.fullname}}</span>
-      <span class="dot" *ngIf="!(discussionData?.user?.fullname)">{{'Anonymous'}}</span>
+      <span class="dot" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
+      <span class="dot" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
     <!-- /Card subtitle -->

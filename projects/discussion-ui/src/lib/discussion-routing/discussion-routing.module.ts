@@ -35,12 +35,12 @@ const routes: Routes = [
         component: MyDiscussionComponent
       },
       {
-        path: 'home/:slug',
+        path: 'category/:slug',
         pathMatch: 'full',
         component: DiscussHomeComponent
       },
       {
-        path: 'home/:topicId/:slug',
+        path: 'category/:topicId/:slug',
         pathMatch: 'full',
         component: DiscussionDetailsComponent
       }

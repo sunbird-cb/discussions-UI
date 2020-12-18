@@ -12,6 +12,7 @@ export class DiscussCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('discussionData', this.discussionData);
   }
 
 }

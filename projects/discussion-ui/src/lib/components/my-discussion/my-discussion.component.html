@@ -71,7 +71,9 @@
   </ng-container>
   <ng-container *ngIf="discussionList && discussionList.length > 0">
     <ng-container *ngFor="let data of discussionList">
-      <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+      <div (click)="navigateToDiscussionDetails(data)">
+        <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+      </div>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
