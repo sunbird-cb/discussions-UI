@@ -1,10 +1,12 @@
+@import "../../../assets/styles/global.css";
+
 .related-discussion {
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     background: #fff;
     color: rgba(0,0,0,.87);
     flex: 1;
     height: auto;
-    width: 90%;
+    /* width: 90%; */
     margin: 16px;
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
@@ -21,6 +23,15 @@
     font-size: 20px;
 }
 .discussion-content{
+    display: flex;
+    align-items: center;
+}
+.comment-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+.post-header-content{
     display: flex;
     align-items: center;
 }
@@ -52,12 +63,32 @@
     color:#948e8e;
     font-size: 16px;
 }
+.text-form-field{
+    display: flex;
+    flex-direction: column;
+    /* width: 97.6%;   */
+}
 .text-content{
-    width: 98%;
-    border-color: #ccc;
-    min-height: 160px;
-    margin-bottom: 8px;
+    min-height: 108px;
+    max-height: 540px;
+    /* width: 97.6%;  */
+    border-color: #ddd;
+    border-radius: 4px;
+    margin: 16px 0;
+    cursor: pointer;
     padding: 16px;
+}
+
+.text-content.is-invalid,
+.text-content.is-invalid:hover,
+.text-content.is-invalid:focus {
+  border: 1px solid #ff6979;
+}
+
+.text-content.is-valid,
+.text-content.is-valid:hover,
+.text-content.is-valid:focus {
+  border: 1px solid #0074b6;
 }
 
 .post-btn{
@@ -73,16 +104,112 @@
     border-radius: 4px;
     font-size: 14px;
     font-weight: 700;
+    cursor: pointer;
+}
+.up-vote-text,.down-vote-text{
+    margin-left: 16px;
+    font-size: 16px;
+    color: rgba(0,0,0,.6);
+}
+.comment-btns{
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px 0 24px;
+}
+.cancel-btn,.reply-btn{
+    cursor: pointer;
+    position: relative;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    overflow: visible;
+    color: #000;
+    font-weight: 700;
+    margin-right: 16px;
+    font-size: 14px;
+    background: none;
+    border-radius: 4px;
+}
+.cancel-btn:hover,.reply-btn:hover{
+    background: #ddd;
 }
 
-@media only screen 
-and (min-device-width: 320px) 
-and (max-device-width: 768px) 
-and (-webkit-min-device-pixel-ratio: 3) {
-    .related-discussion {
-        width: auto;
-    }
-    .text-content{
-        width: 88%;
-    }
+.recent-tabs{
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 16px 0;
+    box-shadow: none!important;
+    border-radius: unset;
+    background: inherit!important; 
+}
+.tabs-content{
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+}
+.tabs-filter{
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+}
+.filter-option{
+    margin: 12px;
+    border: 1px solid #ddd;
+    border-width: 0 0 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    min-width: 64px;
+    line-height: 40px;
+    padding: 0 16px;
+    overflow: visible;
+    font-size: 16px;
+    color: #000;
+}
+.filter-option:first-child {
+    margin-left: 0;
+}
+.filter-option:hover,.active {
+    border-bottom: 3px solid #0074b6;
+    font-weight: 700;
+}
+.post-card{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+.comments-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-name{
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 16px;
+}
+.post-time{
+    color: rgba(0,0,0,.6);
+    font-size: 16px;  
+}
+.reply-area{
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
 }
