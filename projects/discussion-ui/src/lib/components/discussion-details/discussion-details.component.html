@@ -14,7 +14,7 @@
           <div class="margin-left-m mb-0-imp ">
             <!-- <div [innerHTML]="post.content | safeHtml"></div> -->
             <p role="link" tabindex="0" class="discussion-heading" [innerHTML]="post?.content"></p>
-            <div class="flex flex-1 discussion-content" role="link" tabindex="0">
+            <div class="discussion-content" role="link" tabindex="0">
               <!-- <span class="ws-mat-default-text">{{'Asked by'}}</span> -->
               <!-- TODO: avatar photo -->
               <!-- <ws-widget-avatar-photo [name]="post.user.fullname || 'Anonymous'" size="s"></ws-widget-avatar-photo> -->
@@ -104,9 +104,8 @@
                 <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
                   [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
                 </ws-widget-ck-editor> -->
-                <div appearance="outline" class="flex-1 w-full"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('answer') }">
-                  <textarea formControlName="answer" class="text-content"></textarea>
+                <div appearance="outline" class="flex-1 w-full text-form-field">
+                  <textarea formControlName="answer" class="text-content"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
                   <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required">
                     This is mandatory
                   </div>
@@ -134,17 +133,17 @@
       <!-- /card end -->
 
       <ng-container *ngIf="data?.posts && data?.postcount > 1">
-        <div class="recent-most">
-          <div class="flex flex-1 flex-column">
-            <div class="flex flex-1 filter">
-              <a href="javascript:void(0)" class="filter-option" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
+        <div class="recent-tabs">
+          <div class="tabs-content">
+            <div class="tabs-filter">
+              <a href="javascript:void(0)" class="filter-option active" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border':currentFilter !== 'timestamp'}" mat-button
                 (click)="filter('timestamp')">
                 Recent </a>
-              <a href="javascript:void(0)" class="filter-option" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvotes',
+              <!-- <a href="javascript:void(0)" class="filter-option" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvotes',
                               'ws-mat-accent-border':currentFilter !== 'upvotes'}" mat-button
                 (click)="filter('upvotes')">
-                Most upvoted </a>
+                Most upvoted </a> -->
             </div>
           </div>
         </div>
@@ -157,30 +156,34 @@
             <!-- TODO: Avatar photo -->
             <!-- <ws-widget-avatar-photo [name]="post?.user?.fullname || post?.user?.username" size="s">
             </ws-widget-avatar-photo> -->
-            <span class="margin-left-s capitalize f-medium width-expand" *ngIf="post?.user?.fullname"
-              [innerHTML]="post?.user?.fullname"></span>
-            <span class="margin-left-s capitalize f-medium width-expand" *ngIf="!post?.user?.fullname"
-              [innerHTML]="post?.user?.username"></span>
-            <span class="posttime">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
+            <div class="post-header-content">
+              <span class="circle-text"><span class="circle-label">CF</span></span>
+              <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="post?.user?.fullname"
+                [innerHTML]="post?.user?.fullname"></span>
+              <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="!post?.user?.fullname"
+                [innerHTML]="post?.user?.username"></span>
+            </div>
+            <span class="post-time">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
           </div>
           <!-- / header -->
           <div>
             <p role="link" tabindex="0" [innerHTML]="post?.content"></p>
   
-            <div class="flex flex-1 custom margin-0 margin-top-xl">
+            <div class="reply-area">
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex mobile">
-                  <a href="javascript:void(0)" *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post)"
-                    aria-label="upvote comment">
-                     <!-- upward arrow -->
-                     <i class="fas fa-arrow-up"></i>
+                   <!-- upward arrow -->
+                  <img src="../../../assets/images/up-arrow.png">
+                  <a href="javascript:void(0)" class="up-vote-text"  *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post)"
+                    aria-label="upvote comment">    
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
-                  <a href="javascript:void(0)" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post)"
+                  <!-- upward arrow -->
+                  <img src="../../../assets/images/down-arrow.png">
+                  <a href="javascript:void(0)" class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post)"
                     aria-label="delete upvote on comment">
-                     <!-- upward arrow -->
-                     <i class="fas fa-arrow-up"></i>
+                     
                   </a>
                   <span class="pad-4">{{post?.upvotes}}</span>
                 </span>
@@ -203,15 +206,16 @@
                   <mat-icon>trending_up</mat-icon>
                   <span class="pad-4">{{post.viewcount}} views</span>
                 </span> -->
-                <!-- <span class="flex mobile">
-                  <mat-icon [ngClass]="{'ws-mat-accent-text': !!post.bookmarked }">bookmark</mat-icon
-                </span> -->
+                <span class="flex mobile">
+                  <img src="../../../assets/images/bookmarks.png">
+                  <!-- <mat-icon [ngClass]="{'ws-mat-accent-text': !!post.bookmarked }">bookmark</mat-icon> -->
+                </span>
               </div>
-              <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-                <button mat-button (click)="post.toggle =! post.toggle; post.comment=''">
+              
+                <button mat-button (click)="post.toggle =! post.toggle; post.comment=''" class="reply-btn">
                   <span class="noocoments"> Reply</span>
                 </button>
-              </div>
+           
             </div>
             <div class="w-full" *ngIf="post?.toggle">
               <ng-container [ngTemplateOutlet]="reply" [ngTemplateOutletContext]="{post:post}">
@@ -330,17 +334,17 @@
           <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
             [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
           </ws-widget-ck-editor> -->
-          <div appearance="outline" class="flex-1 w-full">
-            <textarea [(ngModel)]="post.comment" ></textarea>
+          <div appearance="outline" class="flex-1 w-full text-form-field">
+            <textarea [(ngModel)]="post.comment" class="text-content"></textarea>
           </div>
         </form>
       </div>
-      <div class="flex flex-1 justify-end">
-        <button mat-button class="mr-2" (click)="post.toggle=!post.toggle; post.comment=''">
+      <div class="comment-btns">
+        <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment=''">
           <span class="noocoments"> Cancel</span>
         </button>
         <button mat-raised-button type="button" (click)="postCommentsReply(post, post?.comment )"
-          [disabled]="post?.comment?.length < 3" class="text-white ws-mat-primary-background flex-auto-display">
+          [disabled]="post?.comment?.length < 3" class="text-white ws-mat-primary-background flex-auto-display post-btn">
           <span class="text-white" i18n>Post reply</span>
         </button>
       </div>
@@ -357,11 +361,13 @@
             <!-- TODO: avatar photo -->
             <!-- <ws-widget-avatar-photo [name]="post?.user?.fullname || post?.user?.username" size="s">
             </ws-widget-avatar-photo> -->
-            <span class="margin-left-s capitalize f-medium width-expand" *ngIf="post?.user?.fullname"
+            <div class="post-header-content">
+              <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="post?.user?.fullname"
               [innerHTML]="post?.user?.fullname"></span>
-            <span class="margin-left-s capitalize f-medium width-expand" *ngIf="!post?.user?.fullname"
+            <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
-            <span class="posttime">{{ post?.timestamp | date}}</span>
+            </div>
+            <span class="post-time">{{ post?.timestamp | date}}</span>
           </div>
           <!-- /card-header -->
 

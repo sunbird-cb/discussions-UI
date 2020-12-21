@@ -1,4 +1,4 @@
-<button (click)="startDiscussion()" class="start-discussion-btn">Start Discusion</button>
+<button (click)="startDiscussion()" class="start-discussion-btn" data-toggle="modal" data-target="#myModal">Start Discusion</button>
 
 <div (click)="navigateToDiscussionDetails(discussionData)" *ngFor="let discussionData of discussionList">
     <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>

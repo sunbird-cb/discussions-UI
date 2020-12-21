@@ -1,130 +1,134 @@
-<form [formGroup]="startForm">
-    <!-- <h2 mat-dialog-title>Install Angular</h2> -->
-    <!-- Popup content -->
-    <div class="mat-typography pad-fix">
-      <div class="flex flex-1 custom">
-        <div class="flex flex-4 flex-column margin-right-l">
-          <div class="flex flex-1 custom">
-            <div class="flex flex-1 flex-column">
-              <!-- form field top section -->
-              <div appearance="fill" class="margin-top-l">
-                <span>Select category</span>
-                <!-- select and option to be added -->
-                <div formControlName="category" #category [required]="true">
-                  <div *ngFor="let c of allCategories" [innerHTML]="c.name"></div>
+<!--modals-->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <form [formGroup]="startForm">
+          <!-- <h2 mat-dialog-title>Install Angular</h2> -->
+          <div class="mat-typography pad-fix">
+            <div class="flex flex-1 custom">
+              <div class="flex flex-4 flex-column margin-right-l">
+                <div class="flex flex-1 custom">
+                  <div class="flex flex-1 flex-column">
+                    <div appearance="fill" class="floating-label">
+                      <select formControlName="category" #category [required]="true " class="floating-select">
+                        <option [value]="c.cid" *ngFor="let c of allCategories" [innerHTML]="c.name"></option>
+                      </select>
+                      <label>Select category</label>
+                      <small class="mandatory-label" *ngIf="showError('category')" i18n="category Error|Explains category is required">
+                        category is mandatory
+                      </small>
+                    </div>
+
+                  </div>
+                  <div class="flex flex-3 flex-column margin-left-m mob">
+                    <!-- <p class="margin-remove-bottom">
+                      Tags
+                    </p> -->
+                    <div appearance="outline" class="floating-label"
+                      [ngClass]="{ 'is-invalid': showError('subTitle') }">
+
+                      <input class="floating-input" formControlName="question" #question maxlength="1000"
+                        i18n-placeholder placeholder="" [required]="true" />
+                      <label>Ask a question or post an idea</label>
+                      <small class="mandatory-label" *ngIf="showError('question')" i18n="question Error|Explains question is required">
+                        Question is mandatory
+                      </small>
+                      <!-- <mat-hint align="end">{{ subTitle.value.length }} / 1000</mat-hint> -->
+                    </div>
+
+                  </div>
                 </div>
-                <!-- / select and option to be added -->
-                <span *ngIf="showError('category')" i18n="category Error|Explains category is required">
-                  category is mandatory
-                </span>
-              </div>
-            </div>
-            <div class="flex flex-3 flex-column margin-left-m mob">
-              <!-- <p class="margin-remove-bottom">
-                Tags
-              </p> -->
-              <!-- 2nd input section -->
-              <div appearance="outline" class="margin-top-m"
-                [ngClass]="{ 'mat-form-field-invalid': showError('subTitle') }">
-                <span>Ask a question or post an idea</span>
-                <input matInput formControlName="question" #question maxlength="1000" i18n-placeholder
-                  placeholder="" [required]="true" />
-                <!-- <mat-hint align="end">{{ subTitle.value.length }} / 1000</mat-hint> -->
-                <span *ngIf="showError('question')" i18n="question Error|Explains question is required">
-                  Question is mandatory
-                </span>
-              </div>
-              <!-- /2nd input section -->
-            </div>
-          </div>
-          <!-- middle question section -->
-          <div class="flex flex-1">
-            <div appearance="outline" class="flex-1">
-              <span>Please elabourate your question or idea here</span>
-              <textarea matInput formControlName="description" #description [required]="true"></textarea>
-              <span *ngIf="showError('description')" i18n="description Error|Explains description is required">
-                Description is mandatory
-              </span>
-            </div>
-          </div>
-           <!-- / middle question section -->
-          <div class="flex flex-1 flex-column">
-            <p class="margin-remove-bottom">
-              Tags
-            </p>
-            <!-- <mat-form-field appearance="outline" class="margin-top-xs"
-              [ngClass]="{ 'mat-form-field-invalid': showError('tags') }">
-              <input matInput formControlName="tags" #tags maxlength="1000" i18n-placeholder
-                placeholder="Enter tags here between 3 to 24 characters each " [required]="false" />
-            </mat-form-field> -->
+                <div class="flex flex-1">
+                  <div appearance="outline" class="floating-label">
+                    <textarea class="floating-input floating-textarea" formControlName="description" #description
+                      cdkTextareaAutosize cdkAutosizeMinRows="10" cdkAutosizeMaxRows="30" [required]="true"></textarea>
+                    <label>Please elabourate your question or idea here</label>
+                    <small class="mandatory-label" *ngIf="showError('description')" i18n="description Error|Explains description is required">
+                      Description is mandatory
+                    </small>
+                    <!--come in line 43 #autosize="cdkTextareaAutosize" -->
+                  </div>
 
-            <!-- below tags section -->
-            <div appearance="outline" class="margin-top-xs" [ngClass]="{ 'mat-form-field-invalid': showError('tags') }">
-              <div #postTags>
-                <div *ngFor="let tag of postTagsArray">
-                  {{ tag }}
-                  <!-- <mat-icon matChipRemove>cancel</mat-icon> -->
+                </div>
+                <div class="flex flex-1 flex-column">
+                  <p class="margin-remove-bottom tag-label">
+                    Tags
+                  </p>
+                  <!-- <div appearance="outline" class="margin-top-xs"
+                    [ngClass]="{ 'is-invalid': showError('tags') }">
+                    <input matInput formControlName="tags" #tags maxlength="1000" i18n-placeholder
+                      placeholder="Enter tags here between 3 to 24 characters each " [required]="false" />
+                  </mat-form-field> -->
+                  <div appearance="outline" class="floating-label"
+                    [ngClass]="{ 'is-invalid': showError('tags') }">
+                    <div #postTags>
+                      <div *ngFor="let tag of postTagsArray">
+                        <!--  come in line 61 [selectable]="true" [removable]="true"
+                        (removed)="removePersonalInterests(tag)" -->
+                        {{ tag }}
+                        <!-- <mat-icon matChipRemove>cancel</mat-icon> -->
+                      </div>
+                    </div>
+                    <input class="floating-input" placeholder="Enter tags here between 3 to 24 characters each"
+                      formControlName="tags" maxlength="24" [required]="false" />
+                    <!-- (matChipInputTokenEnd)="addPersonalInterests($event)" -->
+                  </div>
+                </div>
+                <!-- <div class="flex flex-1 flex-column">
+                  <p class="margin-remove-bottom">
+                    Suggested tags
+                  </p>
+                  <div class="margin-top-xs">
+                    <span *ngFor="let t of allTags">
+                      {{t.value}}
+                    </span>
+                  </div>
+                </div> -->
+                <div *ngIf="showErrorMsg">
+                  <small class="mandatory-label">
+                    {{createErrorMsg}}
+                  </small>
+                </div>
+                <div align="end" class="mb-0-imp">
+                  <button mat-raised-button type="button" class="discard-btn">
+                    <span class="ws-mat-default-text" i18n>Discard</span>
+                  </button>
+                  <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
+                    <!-- <span [diameter]="30"></span> -->
+                  </span>
+                  <button type="submit" class="submit-post-btn"
+                    [disabled]="uploadSaveData || startForm?.invalid" (click)="submitPost(startForm)">
+                    <span class="text-white" i18n>Submit post</span>
+                  </button>
+                </div>
               </div>
+              <div class="flex flex-2 flex-column mat-app-background similar">
+                <div class="margin-l">
+                  <h2>Similar discussions</h2>
+                  <h3>We will display similar discussions here as you type</h3>
+                </div>
               </div>
-              <input matInput i18n-placeholder="Enter tags here between 3 to 24 characters each"
-                placeholder="Enter tags here between 3 to 24 characters each" formControlName="tags" i18n-aria-label
-                aria-label="Enter tags" 
-                maxlength="24"
-                class="w-full-imp" [required]="false"/>
-            </div>
-            <!-- / below tags section -->
-
-          </div>
-          <!-- <div class="flex flex-1 flex-column">
-            <p class="margin-remove-bottom">
-              Suggested tags
-            </p>
-            <div class="margin-top-xs">
-              <span *ngFor="let t of allTags">
-                {{t.value}}
-              </span>
-            </div>
-          </div> -->
-          <div *ngIf="showErrorMsg">
-            <div>
-              {{createErrorMsg}}
             </div>
           </div>
-          <!-- submit and discard buttons section -->
-          <div align="end" class="mb-0-imp">
-            <button mat-raised-button type="button"
-              class="ws-mat-accent-border flex-auto-display">
-              <span class="ws-mat-default-text" i18n>Discard</span>
-            </button>
-            <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
-              <!--  Loader should be added -->
-              please wait...!!!
-              <!-- <mat-spinner [diameter]="30"></mat-spinner> -->
-            </span>
-            <button mat-raised-button type="submit"
-              class="text-white ws-mat-primary-background flex-auto-display" 
-              [disabled]="uploadSaveData || startForm?.invalid" (click)="submitPost(startForm)">
-              <span class="text-white" i18n>Submit post</span>
-            </button>
-          </div>
-          <!-- / submit and discard buttons section -->
-        </div>
-        <div class="flex flex-2 flex-column mat-app-background similar">
-          <div class="margin-l">
-            <h2>Similar discussions</h2>
-            <h3>We will display similar discussions here as you type</h3>
-          </div>
-        </div>
+          ​
+        </form>
+        ​
+        <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
+          value="Post created successfully!" #toastSuccess />
+        <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
+          value="Error in creating new post!" #toastError />
       </div>
     </div>
-  
-  </form>
-  
-  <!-- TODO:  !!!! Important  -->
-  <!-- Success toast -->
-  <!-- <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
+  </div>
+</div>
+
+<!-- TODO:  !!!! Important  -->
+<!-- Success toast -->
+<!-- <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
     value="Post created successfully!" #toastSuccess /> -->
 
-  <!-- Error toast -->
-  <!-- <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
+<!-- Error toast -->
+<!-- <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
     value="Error in creating new post!" #toastError /> -->
