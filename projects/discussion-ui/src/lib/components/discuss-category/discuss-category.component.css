@@ -5,3 +5,12 @@
     align-items: stretch;
     margin-bottom: 24px;
 }
+.start-discussion-btn{
+    background: no-repeat padding-box #0074b6;
+    border-radius: 4px;
+    padding: 12px 32px;
+    min-width: fit-content;
+    color: #fff;
+    border: 0;
+    margin: 16px 0;
+}
