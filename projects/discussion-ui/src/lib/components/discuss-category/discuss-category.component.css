@@ -2,10 +2,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
     grid-gap: 24px;
-    align-items: stretch;
     margin-bottom: 24px;
 }
-.start-discussion-btn{
+.start-discussion-btn {
     background: no-repeat padding-box #0074b6;
     border-radius: 4px;
     padding: 12px 32px;
@@ -13,4 +12,10 @@
     color: #fff;
     border: 0;
     margin: 16px 0;
+}
+
+@media (max-width: 700px) {
+.discuss-category-cards {
+    grid-template-columns: 1fr;
+ } 
 }
