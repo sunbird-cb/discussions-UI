@@ -1,12 +1,9 @@
-@import "../../../assets/styles/global.css";
-
 .related-discussion {
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     background: #fff;
     color: rgba(0,0,0,.87);
     flex: 1;
     height: auto;
-    /* width: 90%; */
     margin: 16px;
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
@@ -212,4 +209,10 @@
     display: flex;
     justify-content: space-between;
     margin: 16px 0;
+}
+
+@media (max-width: 700px) {
+.related-discussion{
+  margin: 0px;
+ }
 }

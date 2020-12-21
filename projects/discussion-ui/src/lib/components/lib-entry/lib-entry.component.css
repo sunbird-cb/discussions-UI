@@ -1,5 +1,42 @@
-.data-cards{
+.discussion-forum{
+    background: #eee;
+    width: 100%;
+    height: 100vh;
+}
+
+.row {
     width: 90%;
     margin-left: auto !important;
     margin-right: auto !important;
+    display: flex;
+    flex-direction: row;
+    padding: 24px;
 }
+
+.discuss-left-panel{
+    width: 25%;
+    padding: 0 24px;
+}
+
+.discuss-main-panel{
+    width: 75%;
+    padding-right: 24px;
+}
+
+@media (max-width: 768px) {
+    .discussion-forum{
+        height: 100%;
+    }
+    .row {   
+      flex-direction: column;
+      padding: 0;
+    }
+    .discuss-left-panel{
+        width: auto;
+        padding: 0px;
+    }
+    .discuss-main-panel{
+        width: auto;
+        padding-right: 0;
+    }
+  }
