@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -63,8 +63,6 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   navigateToDiscussionPage(data) {
-
-    console.log('discuss category', data);
     this.addTelemetry('category-card', [
       {
         id: _.get(data, 'cid') || _.get(data, 'category.cid'),

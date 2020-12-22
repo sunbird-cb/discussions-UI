@@ -12,7 +12,7 @@ export class DiscussionEventsService {
   constructor() { }
 
   emitTelemetry(event) {
-    console.log('evennene', event);
+    console.log('Lib Event', event);
     this.telemetryEvent.next(event);
   }
 }
