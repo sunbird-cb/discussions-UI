@@ -63,21 +63,13 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   navigateToDiscussionPage(data) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: _.get(data, 'slug') + '-' + 'card' ,
-          type: 'CLICK',
-          pageid: 'discussion-category' + '-' + _.get(data, 'slug')
-      },
-      context: [
-        {
-          id: _.get(data, 'cid'),
-          type: 'Category'
-        }
-      ]
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+
+    console.log('discuss category', data);
+    this.addTelemetry('category-card', [
+      {
+        id: _.get(data, 'cid') || _.get(data, 'category.cid'),
+        type: 'Category'
+      }]);
     this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
@@ -97,6 +89,20 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   startDiscussion() {
+    this.addTelemetry('start-discussion');
     this.showStartDiscussionModal = true;
+  }
+
+  addTelemetry(id, context?: Array<{}>) {
+    const eventData = {
+      eid: 'INTERACT',
+      edata: {
+          id: id ,
+          type: 'CLICK',
+          pageid: 'discussion-category'
+      },
+      context,
+    }
+    this.discussionEvents.emitTelemetry(eventData);
   }
 }

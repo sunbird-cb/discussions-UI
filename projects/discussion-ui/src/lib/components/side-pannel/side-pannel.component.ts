@@ -28,6 +28,7 @@ export class SidePannelComponent implements OnInit {
 
   navigate(pageName: string) {
     const interactEvent = {
+      eid: 'INTERACT',
       edata: {
           id: pageName ,
           type: 'CLICK',

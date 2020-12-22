@@ -65,14 +65,7 @@ export class MyDiscussionComponent implements OnInit {
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
       this.currentFilter = key;
-      const eventData = {
-        edata: {
-            id: key ,
-            type: 'CLICK',
-            pageid: 'my-discussion'
-        }
-    }
-      this.discussionEvents.emitTelemetry(eventData);
+      this.addTelemetry(`${key + 'posts'}`);
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
@@ -138,7 +131,20 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
+    this.addTelemetry('discuss-card');
     this.router.navigate([`/discussion/category/${_.get(discussionData, 'topic.slug')}`]);
+  }
+
+  addTelemetry(id) {
+    const eventData = {
+      eid: 'INTERACT',
+      edata: {
+          id: id ,
+          type: 'CLICK',
+          pageid: 'my-discussion'
+      }
+    }
+    this.discussionEvents.emitTelemetry(eventData);
   }
 
 }

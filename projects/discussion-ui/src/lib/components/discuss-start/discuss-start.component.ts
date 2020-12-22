@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { DiscussionEventsService } from './../../discussion-events.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
@@ -25,6 +27,8 @@ export class DiscussStartComponent implements OnInit {
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
+    private discussionEvents: DiscussionEventsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,6 +60,7 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
+    this.addTelemetry('submit-discussion-start-form');
     form.value.tags = this.postTagsArray;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
@@ -86,7 +91,17 @@ export class DiscussStartComponent implements OnInit {
       });
   }
 
-
+  addTelemetry(id) {
+    const eventData = {
+      eid: 'INTERACT',
+      edata: {
+          id: id ,
+          type: 'CLICK',
+          pageid: this.router.url
+      }
+    }
+    this.discussionEvents.emitTelemetry(eventData);
+  }
 
 }
 

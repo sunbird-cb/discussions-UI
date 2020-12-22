@@ -44,6 +44,20 @@ export class DiscussHomeComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
+    this.addTelemetry('topic-card', [
+      {
+        id: _.get(discussionData, 'cid') || _.get(discussionData, 'category.cid'),
+        type: 'Category'
+      },
+      {
+        id: _.get(discussionData, 'tid'),
+        type: 'Topic'
+      },
+      {
+        id: _.get(discussionData, 'mainPid') || _.get(discussionData, 'pid'),
+        type: 'Post'
+      }
+    ])
     this.router.navigate([`/discussion/category/${_.get(discussionData, 'slug')}`]);
   }
 
@@ -55,6 +69,21 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   startDiscussion() {
+
+    this.addTelemetry('start-discussion');
     this.showStartDiscussionModal = true;
+  }
+
+  addTelemetry(id, context?: Array<{}>) {
+    const eventData = {
+      eid: 'INTERACT',
+      edata: {
+          id: id ,
+          type: 'CLICK',
+          pageid: this.router.url
+      },
+      context,
+    }
+    this.discussionEvents.emitTelemetry(eventData);
   }
 }
