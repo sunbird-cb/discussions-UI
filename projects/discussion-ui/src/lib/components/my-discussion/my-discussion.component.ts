@@ -1,3 +1,4 @@
+import { DiscussionEventsService } from './../../discussion-events.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,7 +24,8 @@ export class MyDiscussionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private discussService: DiscussionService,
-    public router: Router) {
+    public router: Router,
+    private discussionEvents: DiscussionEventsService) {
     this.fetchNetworkProfile();
   }
   fetchNetworkProfile() {
@@ -47,12 +49,30 @@ export class MyDiscussionComponent implements OnInit {
     // this.fillDummyData()
     // this.data = this.route.snapshot.data.profile.data;
     // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
+    const impressionEvent = {
+      eid: 'IMPRESSION',
+      edata: {
+        type: 'view',
+        pageid: 'my-discussion',
+        uri: this.router.url
+      },
+      context: []
+      }
+    this.discussionEvents.emitTelemetry(impressionEvent);
     this.department = this.discussService.getUserProfile.departmentName || null;
     this.location = this.discussService.getUserProfile.country || null;
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
       this.currentFilter = key;
+      const eventData = {
+        edata: {
+            id: key ,
+            type: 'CLICK',
+            pageid: 'my-discussion'
+        }
+    }
+      this.discussionEvents.emitTelemetry(eventData);
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');

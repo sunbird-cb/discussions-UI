@@ -5,6 +5,7 @@ import { DiscussionRoutingModule } from './discussion-routing/discussion-routing
 
 import { NgModule } from '@angular/core';
 
+import { DiscussionEventsService } from './discussion-events.service';
 
 @NgModule({
   declarations: [ LibEntryComponent],
@@ -13,6 +14,7 @@ import { NgModule } from '@angular/core';
     DiscussionRoutingModule,
     ElementsModule
   ],
-  exports: [ ComponentsModule ]
+  exports: [ ComponentsModule ],
+  providers: [ DiscussionEventsService ]
 })
 export class DiscussionUiModule { }

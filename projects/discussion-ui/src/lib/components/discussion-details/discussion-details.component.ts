@@ -1,3 +1,4 @@
+import { DiscussionEventsService } from './../../discussion-events.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -29,10 +30,20 @@ export class DiscussionDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private discussionEvents: DiscussionEventsService,
   ) { }
 
   ngOnInit() {
+    const impressionEvent = {
+      eid: 'IMPRESSION',
+      edata: {
+        type: 'view',
+        pageid: 'discussion-details',
+        uri: this.router.url
+      }
+      }
+    this.discussionEvents.emitTelemetry(impressionEvent);
     this.initializeFormFiled();
     this.route.params.subscribe(params => {
       this.routeParams = params;
@@ -93,6 +104,24 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   upvote(discuss: NSDiscussData.IDiscussionData) {
+    const eventData = {
+      edata: {
+          id: 'upvote' ,
+          type: 'CLICK',
+          pageid: 'discussion-details'
+      },
+      context: [
+        {
+          id: this.topicId,
+          type: 'topic'
+        },
+        {
+          id: '',
+          type: 'post'
+        }
+      ]
+  }
+    this.discussionEvents.emitTelemetry(eventData);
     const req = {
       delta: 1,
     };
@@ -100,6 +129,20 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   downvote(discuss: NSDiscussData.IDiscussionData) {
+    const eventData = {
+      edata: {
+          id: 'downvote' ,
+          type: 'CLICK',
+          pageid: 'discussion-details'
+      },
+      context: [
+        {
+          id: this.topicId,
+          type: 'topic'
+        }
+      ]
+    }
+    this.discussionEvents.emitTelemetry(eventData);
     const req = {
       delta: -1,
     };

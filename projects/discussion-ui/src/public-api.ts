@@ -4,3 +4,4 @@
 
 export * from './lib/discussion-ui.service';
 export * from './lib/discussion-ui.module';
+export * from './lib/discussion-events.service';

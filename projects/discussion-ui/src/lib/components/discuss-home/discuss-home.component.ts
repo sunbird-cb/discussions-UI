@@ -1,3 +1,4 @@
+import { DiscussionEventsService } from './../../discussion-events.service';
 import { Component, OnInit } from '@angular/core';
 import * as Constants from '../../common/constants.json';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,10 +22,20 @@ export class DiscussHomeComponent implements OnInit {
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private discussionService: DiscussionService
+    private discussionService: DiscussionService,
+    private discussionEvents: DiscussionEventsService
   ) { }
 
   ngOnInit() {
+    const impressionEvent = {
+      eid: 'IMPRESSION',
+      edata: {
+        type: 'view',
+        pageid: 'discussion-home',
+        uri: this.router.url
+      }
+    }
+    this.discussionEvents.emitTelemetry(impressionEvent);
     this.route.params.subscribe(params => {
       this.routeParams = params;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));

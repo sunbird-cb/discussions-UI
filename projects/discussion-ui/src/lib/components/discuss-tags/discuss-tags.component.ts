@@ -1,3 +1,5 @@
+import { DiscussionEventsService } from './../../discussion-events.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 /* tslint:disable */
@@ -17,10 +19,21 @@ export class DiscussTagsComponent implements OnInit {
   filteredTags: NSDiscussData.ITag[];
 
   constructor(
-    private discussionService: DiscussionService
+    private discussionService: DiscussionService,
+    private router: Router,
+    private discussionEvents: DiscussionEventsService
   ) { }
 
   ngOnInit() {
+    const impressionEvent = {
+      eid: 'IMPRESSION',
+      edata: {
+        type: 'view',
+        pageid: 'discussion-tags',
+        uri: this.router.url
+      }
+    }
+    this.discussionEvents.emitTelemetry(impressionEvent);
     this.fetchAllTags();
   }
 
