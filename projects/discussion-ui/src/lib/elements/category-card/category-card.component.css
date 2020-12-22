@@ -8,6 +8,7 @@
     padding: 24px;
     border-radius: 4px;
     height: 10rem;
+    width: auto;
 }
 
 .category-card-header {
@@ -69,4 +70,3 @@
     font-size: 18px;
     font-weight: 600;
 }
-

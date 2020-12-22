@@ -1,8 +1,11 @@
 
-    <div class="discuss-category-cards">
-      <ng-container  *ngFor="let data of categories">
-        <div (click)="navigateToDiscussionPage(data)" class="categories-card-content">
-        <lib-category-card [category]="data" ></lib-category-card>
-        </div>
-      </ng-container>
-    </div>
+ <button (click)="startDiscussion()" *ngIf="isTopicCreator" class="start-discussion-btn">Start Discusion</button>
+  <div class="discuss-category-cards">
+    <ng-container  *ngFor="let data of categories">
+      <div (click)="navigateToDiscussionPage(data)" class="categories-card-content">
+      <lib-category-card [category]="data" ></lib-category-card>
+      </div>
+    </ng-container>
+  </div>
+
+  <lib-discuss-start *ngIf="showStartDiscussionModal" ></lib-discuss-start>

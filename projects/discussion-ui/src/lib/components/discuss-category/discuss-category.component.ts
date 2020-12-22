@@ -22,6 +22,10 @@ export class DiscussCategoryComponent implements OnInit {
 
   pageId = 0;
 
+  isTopicCreator = false;
+
+  showStartDiscussionModal = false;
+
   constructor(
     public discussService: DiscussionService,
     public router: Router,
@@ -30,7 +34,6 @@ export class DiscussCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log('thisss', this.categoryIds);
     const impressionEvent = 
     {
       eid: 'IMPRESSION',
@@ -41,29 +44,25 @@ export class DiscussCategoryComponent implements OnInit {
       }
       }
     this.discussionEvents.emitTelemetry(impressionEvent);
-    this.fetchAvailableCategories(this.categoryIds);
+    this.fetchAllAvailableCategories(this.categoryIds);
   }
 
-  fetchAvailableCategories(ids) {
+  fetchAllAvailableCategories(ids) {
     ids.forEach(cid => {
-      this.discussService.fetchSingleCategoryDetails(cid).subscribe(data => {
+      this.fetchCategory(cid).subscribe(data => {
         this.categories.push(data);
       }, error => {
-        console.log(error);
+        // TODO: Toast error
+        console.log('issue fetching category', error);
       });
     });
   }
 
+  fetchCategory(cid) {
+    return this.discussService.fetchSingleCategoryDetails(cid);
+  }
+
   navigateToDiscussionPage(data) {
-    let id  = 0;
-    if (_.get(data, 'children').length > 0) {
-      this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { id: id++ } });
-      this.categories = [];
-      _.get(data, 'children').forEach(subCategoryData => {
-        this.categories.push(subCategoryData);
-      });
-    } else {
-    console.log('clicked', data);
     const eventData = {
       eid: 'INTERACT',
       edata: {
@@ -77,9 +76,27 @@ export class DiscussCategoryComponent implements OnInit {
           type: 'Category'
         }
       ]
-  }
-    this.discussionEvents.emitTelemetry(eventData);
-    this.router.navigate([`/discussion/category/`, `${_.get(data, 'slug')}`]);
     }
+    this.discussionEvents.emitTelemetry(eventData);
+    this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
+      this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
+      this.showStartDiscussionModal = false;
+      if (_.get(response, 'children').length > 0) {
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent });
+        this.categories = [];
+        _.get(response, 'children').forEach(subCategoryData => {
+          this.categories.push(subCategoryData);
+        });
+      } else {
+        this.router.navigate([`/discussion/category/`, `${_.get(data, 'slug')}`]);
+      }
+    }, error => {
+      // TODO: Toast error
+      console.log('issue fetching category', error);
+    });
+  }
+
+  startDiscussion() {
+    this.showStartDiscussionModal = true;
   }
 }
