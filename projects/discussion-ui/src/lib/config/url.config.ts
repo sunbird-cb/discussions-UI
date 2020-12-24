@@ -1,7 +1,6 @@
 export const urlConfig = {
     // endpoint configs...!
     host: 'http://localhost:3002',
-    userName: 'admin',
     apiSlug: '/discussion',
     apiBasePath: () => `${urlConfig.host}${urlConfig.apiSlug}`,
 
@@ -23,6 +22,6 @@ export const urlConfig = {
     listDownVoted: (slug: string) => `${urlConfig.apiBasePath()}/user/${slug}/downvoted`,
     listSaved: (slug: string) => `${urlConfig.apiBasePath()}/user/${slug}/bookmarks`,
     fetchNetworkProfile: `user/profileDetails/getUserRegistry`,
-    userdetails: (slug: string) => `${urlConfig.apiBasePath()}/user/${slug}`,
+    userDetails: (username: string) => `${urlConfig.apiBasePath()}/user/${username}`,
     getContextBasedTopics: (slug: string) => `${urlConfig.apiBasePath()}/category/${slug}`
 };

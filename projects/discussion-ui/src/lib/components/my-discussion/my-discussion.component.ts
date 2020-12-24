@@ -24,10 +24,12 @@ export class MyDiscussionComponent implements OnInit {
     private route: ActivatedRoute,
     private discussService: DiscussionService,
     public router: Router) {
-    this.fetchNetworkProfile();
+
   }
-  fetchNetworkProfile() {
-    this.discussService.fetchNetworkProfile().subscribe(response => {
+
+  /** To fetch user details */
+  fetchUserProfile(userName) {
+    this.discussService.fetchUserProfile(userName).subscribe(response => {
       console.log(response);
       this.data = response;
       this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
@@ -44,9 +46,15 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.fillDummyData()
-    // this.data = this.route.snapshot.data.profile.data;
-    // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
+    if (this.discussService.userDetails) {
+    // setting the user details;
+    this.data = this.discussService.userDetails;
+    this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
+    } else {
+      // If fetch user details api failed previously.
+      this.fetchUserProfile(this.discussService.userName);
+    }
+
     this.department = this.discussService.getUserProfile.departmentName || null;
     this.location = this.discussService.getUserProfile.country || null;
   }
