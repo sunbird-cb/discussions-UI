@@ -1,7 +1,7 @@
 import { DiscussionEventsService } from './../../discussion-events.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 /* tslint:disable */
@@ -15,14 +15,14 @@ import * as _ from 'lodash'
   styleUrls: ['./discussion-details.component.css']
 })
 export class DiscussionDetailsComponent implements OnInit {
-  topicId: any;
+  @Input() topicId: any;
   routeParams: any;
   currentActivePage = 1;
   currentFilter = 'timestamp'; // 'recent
   data: any;
   paginationData!: any;
   pager = {};
-  slug: string;
+  @Input() slug: string;
   postAnswerForm!: FormGroup;
   fetchSingleCategoryLoader = false;
 
@@ -36,13 +36,17 @@ export class DiscussionDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.initializeFormFiled();
-    this.route.params.subscribe(params => {
-      this.routeParams = params;
-      console.log('discuss params', params);
-      this.slug = _.get(this.routeParams, 'slug');
-      this.topicId = _.get(this.routeParams, 'topicId');
+    if (!this.topicId && !this.slug) {
+      this.route.params.subscribe(params => {
+        this.routeParams = params;
+        console.log('discuss params', params);
+        this.slug = _.get(this.routeParams, 'slug');
+        this.topicId = _.get(this.routeParams, 'topicId');
+        this.refreshPostData(this.currentActivePage);
+      });
+    } else {
       this.refreshPostData(this.currentActivePage);
-    });
+    }
 
     this.route.queryParams.subscribe(x => {
       if (x.page) {

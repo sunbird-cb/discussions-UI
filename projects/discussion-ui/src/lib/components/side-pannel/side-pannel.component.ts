@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionEventsService } from './../../discussion-events.service';
+import * as _ from 'lodash-es';
 @Component({
   selector: 'lib-side-pannel',
   templateUrl: './side-pannel.component.html',
   styleUrls: ['./side-pannel.component.css']
 })
 export class SidePannelComponent implements OnInit {
-
+  hideSidePanel: boolean;
   constructor(
     public router: Router,
     private discussionEvents: DiscussionEventsService,
@@ -15,6 +16,8 @@ export class SidePannelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.hideSidePanel = document.body.classList.contains('widget');
     const impressionEvent = {
     eid: 'IMPRESSION',
     edata: {

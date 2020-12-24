@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ export class DiscussCategoryComponent implements OnInit {
 
   categories: NSDiscussData.ICategorie[] = [];
 
-  categoryIds = ['1', '2', '6'];
+  @Input() categoryIds = ['1', '2', '6'];
 
   pageId = 0;
 
