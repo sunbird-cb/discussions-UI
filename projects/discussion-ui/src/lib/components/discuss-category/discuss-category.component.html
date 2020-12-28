@@ -1,8 +1,8 @@
 
- <button (click)="startDiscussion()" *ngIf="isTopicCreator" class="start-discussion-btn">Start Discusion</button>
+ <button (click)="startDiscussion();logTelemetry($event)" *ngIf="isTopicCreator" class="start-discussion-btn" id="start-discussion">Start Discusion</button>
   <div class="discuss-category-cards">
     <ng-container  *ngFor="let data of categories">
-      <div (click)="navigateToDiscussionPage(data)" class="categories-card-content">
+      <div (click)="navigateToDiscussionPage(data);logTelemetry($event)" class="categories-card-content" id="category-card">
       <lib-category-card [category]="data" ></lib-category-card>
       </div>
     </ng-container>

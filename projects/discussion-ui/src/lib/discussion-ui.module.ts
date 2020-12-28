@@ -1,3 +1,4 @@
+import { TelemetryUtilsService } from './telemetry-utils.service';
 import { ElementsModule } from './elements/elements.module';
 import { LibEntryComponent } from './components/lib-entry/lib-entry.component';
 import { ComponentsModule } from './components/components.module';
@@ -15,6 +16,6 @@ import { DiscussionEventsService } from './discussion-events.service';
     ElementsModule
   ],
   exports: [ ComponentsModule ],
-  providers: [ DiscussionEventsService ]
+  providers: [ DiscussionEventsService, TelemetryUtilsService ]
 })
 export class DiscussionUiModule { }

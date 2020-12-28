@@ -1,6 +1,6 @@
-<button (click)="startDiscussion()" class="start-discussion-btn" data-toggle="modal" data-target="#myModal">Start Discusion</button>
+<button (click)="startDiscussion();logTelemetry($event)" class="start-discussion-btn" data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discusion</button>
 
-<div (click)="navigateToDiscussionDetails(discussionData)" *ngFor="let discussionData of discussionList">
+<div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" *ngFor="let discussionData of discussionList" id="topic-card">
     <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
 </div>
 

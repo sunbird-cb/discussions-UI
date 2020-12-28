@@ -1,4 +1,4 @@
-import { DiscussionEventsService } from './../../discussion-events.service';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
@@ -31,10 +31,11 @@ export class DiscussionDetailsComponent implements OnInit {
     private discussionService: DiscussionService,
     private formBuilder: FormBuilder,
     public router: Router,
-    private discussionEvents: DiscussionEventsService,
+    private telemetryUtils: TelemetryUtilsService,
   ) { }
 
   ngOnInit() {
+    this.telemetryUtils.context = [];
     this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
@@ -54,27 +55,8 @@ export class DiscussionDetailsComponent implements OnInit {
         this.refreshPostData(this.currentActivePage);
       }
     });
-
-    const impressionEvent = {
-      eid: 'IMPRESSION',
-      edata: {
-        type: 'view',
-        pageid: 'discussion-details',
-        uri: this.router.url
-      },
-      context: [
-        {
-          id: this.topicId,
-          type: 'Topic'
-        },
-        {
-          id: this.slug,
-          type: 'Category'
-        }
-      ]
-      }
-    this.discussionEvents.emitTelemetry(impressionEvent);
-
+    this.setContext();
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
@@ -121,7 +103,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   upvote(discuss: NSDiscussData.IDiscussionData) {
-    this.addTelemetry('up-vote', {id: discuss.mainPid, type: 'Post'});
     const req = {
       delta: 1,
     };
@@ -129,7 +110,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   downvote(discuss: NSDiscussData.IDiscussionData) {
-    this.addTelemetry('down-vote', {id: discuss.mainPid, type: 'Post'});
     const req = {
       delta: -1,
     };
@@ -153,10 +133,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   bookmark(discuss: any) {
-    const pid = _.get(discuss, 'pid') || _.get(discuss, 'mainPid') ? 
-    {id: _.get(discuss, 'pid') || _.get(discuss, 'mainPid'), type: 'Post'} : {};
-
-    this.addTelemetry('bookmark', pid);
     this.discussionService.bookmarkPost(discuss.pid).subscribe( data => {
         // toast
         // this.openSnackbar('Bookmark added successfully!');
@@ -169,10 +145,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   unBookMark(discuss: any) {
-    const pid = _.get(discuss, 'pid') || _.get(discuss, 'mainPid') ? 
-    {id: _.get(discuss, 'pid') || _.get(discuss, 'mainPid'), type: 'Post'} : {};
-    this.addTelemetry('un-bookmark', pid);
-
     this.discussionService.deleteBookmarkPost(discuss.pid).subscribe( data => {
        // toast
         this.refreshPostData(this.currentActivePage);
@@ -184,10 +156,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   delteVote(discuss: any) {
-    const pid = _.get(discuss, 'pid') || _.get(discuss, 'mainPid') ? 
-    {id: _.get(discuss, 'pid') || _.get(discuss, 'mainPid'), type: 'Post'} : {};
-    this.addTelemetry('delete-vote', pid);
-
     this.discussionService.deleteVotePost(discuss.pid).subscribe( data => {
       // toast
         this.refreshPostData(this.currentActivePage);
@@ -199,7 +167,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postReply(post: NSDiscussData.IDiscussionData) {
-    this.addTelemetry('post-reply', {id: post.mainPid, type: 'Post'});
     const req = {
       // tslint:disable-next-line:no-string-literal
       content: this.postAnswerForm.controls['answer'].value,
@@ -222,7 +189,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postCommentsReply(post: NSDiscussData.IPosts, comment: string) {
-    this.addTelemetry('post-reply-comment', {id: post.pid, type: 'Post'});
     const req = {
       content: comment,
       toPid: post.pid,
@@ -261,28 +227,25 @@ export class DiscussionDetailsComponent implements OnInit {
     return false;
   }
 
-  addTelemetry(id, data?) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: id ,
-          type: 'CLICK',
-          pageid: 'discussion-details'
+  logTelemetry(event, data?) {
+    const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ? 
+    {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
+
+    this.setContext();
+    this.telemetryUtils.uppendContext(pid);
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
+  }
+
+  setContext() {
+    this.telemetryUtils.context = [
+      {
+        id: this.topicId,
+        type: 'Topic'
       },
-      context: [
-        {
-          id: this.topicId,
-          type: 'Topic'
-        },
-        {
-          id: this.slug,
-          type: 'Category'
-        }
-      ]
-    }
-    if (!_.isEmpty(data)) {
-      eventData.context.push(data)
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+      {
+        id: this.slug,
+        type: 'Category'
+      }
+    ]
   }
 }

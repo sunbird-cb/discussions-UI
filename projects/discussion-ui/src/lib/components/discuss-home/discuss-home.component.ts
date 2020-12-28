@@ -1,11 +1,10 @@
-import { DiscussionEventsService } from './../../discussion-events.service';
 import { Component, OnInit } from '@angular/core';
-import * as Constants from '../../common/constants.json';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
-
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { NSDiscussData } from '../../models/discuss.model';
 /* tslint:enable */
 
 @Component({
@@ -18,24 +17,18 @@ export class DiscussHomeComponent implements OnInit {
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
+  pageName = 'discussion-home'
 
   constructor(
     public router: Router,
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
-    private discussionEvents: DiscussionEventsService
+    private telemetryUtils: TelemetryUtilsService
   ) { }
 
   ngOnInit() {
-    const impressionEvent = {
-      eid: 'IMPRESSION',
-      edata: {
-        type: 'view',
-        pageid: 'discussion-home',
-        uri: this.router.url
-      }
-    }
-    this.discussionEvents.emitTelemetry(impressionEvent);
+    this.telemetryUtils.context = [];
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.route.params.subscribe(params => {
       this.routeParams = params;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
@@ -44,7 +37,7 @@ export class DiscussHomeComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.addTelemetry('topic-card', [
+    this.telemetryUtils._context = [
       {
         id: _.get(discussionData, 'cid') || _.get(discussionData, 'category.cid'),
         type: 'Category'
@@ -57,7 +50,7 @@ export class DiscussHomeComponent implements OnInit {
         id: _.get(discussionData, 'mainPid') || _.get(discussionData, 'pid'),
         type: 'Post'
       }
-    ])
+    ];
     this.router.navigate([`/discussion/category/${_.get(discussionData, 'slug')}`]);
   }
 
@@ -69,21 +62,10 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   startDiscussion() {
-
-    this.addTelemetry('start-discussion');
     this.showStartDiscussionModal = true;
   }
 
-  addTelemetry(id, context?: Array<{}>) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: id ,
-          type: 'CLICK',
-          pageid: this.router.url
-      },
-      context,
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
   }
 }

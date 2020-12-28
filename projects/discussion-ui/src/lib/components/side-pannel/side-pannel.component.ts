@@ -1,7 +1,8 @@
+import { NSDiscussData } from './../../models/discuss.model';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DiscussionEventsService } from './../../discussion-events.service';
 import * as _ from 'lodash-es';
 @Component({
   selector: 'lib-side-pannel',
@@ -16,36 +17,20 @@ export class SidePannelComponent implements OnInit {
   constructor(
     public router: Router,
     public discussService: DiscussionService,
-    private discussionEvents: DiscussionEventsService,
-    private activatedRoute: ActivatedRoute,
+    private telemetryUtils: TelemetryUtilsService,
   ) { }
 
   ngOnInit() {
+    this.telemetryUtils.context = [];
     this.hideSidePanel = document.body.classList.contains('widget');
-    const impressionEvent = {
-    eid: 'IMPRESSION',
-    edata: {
-      type: 'view',
-      pageid: 'discussion-home',
-      uri: this.router.url
-    }
-    }
-    this.discussionEvents.emitTelemetry(impressionEvent);
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
   
     this.discussService.userName = this.userName;
     this.fetchUserProfile(this.userName);
   }
 
-  navigate(pageName: string) {
-    const interactEvent = {
-      eid: 'INTERACT',
-      edata: {
-          id: pageName ,
-          type: 'CLICK',
-          pageid:  'discussion-home'
-      }   
-  }
-    this.discussionEvents.emitTelemetry(interactEvent);
+  navigate(pageName: string, event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     this.router.navigate([`/discussion/${pageName}`]);
   }
 

@@ -17,32 +17,62 @@ const routes: Routes = [
       {
         path: 'home',
         pathMatch: 'full',
-        component: DiscussHomeComponent
+        component: DiscussHomeComponent,
+        data: 
+          {
+            pageId: 'discussion-home'
+          }
+        
       },
       {
         path: 'categories',
         pathMatch: 'full',
-        component: DiscussCategoryComponent
+        component: DiscussCategoryComponent,
+        data: 
+          {
+            pageId: 'discussion-category'
+          }
+        
       },
       {
         path: 'tags',
         pathMatch: 'full',
-        component: DiscussTagsComponent
+        component: DiscussTagsComponent,
+        data: 
+          {
+            pageId: 'discussion-tags'
+          }
+        
       },
       {
         path: 'my-discussion',
         pathMatch: 'full',
-        component: MyDiscussionComponent
+        component: MyDiscussionComponent,
+        data: 
+          {
+            pageId: 'my-discussion'
+          }
+        
       },
       {
         path: 'category/:slug',
         pathMatch: 'full',
-        component: DiscussHomeComponent
+        component: DiscussHomeComponent,
+        data: 
+          {
+            pageId: 'discussion-category'
+          }
+        
       },
       {
         path: 'category/:topicId/:slug',
         pathMatch: 'full',
-        component: DiscussionDetailsComponent
+        component: DiscussionDetailsComponent,
+        data: 
+          {
+            pageId: 'discussion-details'
+          }
+        
       }
     ]
   },

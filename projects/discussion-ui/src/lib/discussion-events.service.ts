@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-
+import * as _ from 'lodash-es';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +13,8 @@ export class DiscussionEventsService {
 
   emitTelemetry(event) {
     console.log('Lib Event', event);
-    this.telemetryEvent.next(event);
+    if (!_.isEmpty(event)) {
+      this.telemetryEvent.next(event);
+    }
   }
 }

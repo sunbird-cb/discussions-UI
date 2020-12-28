@@ -1,10 +1,8 @@
-import { Router } from '@angular/router';
-import { DiscussionEventsService } from './../../discussion-events.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
-
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -27,11 +25,12 @@ export class DiscussStartComponent implements OnInit {
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
-    private discussionEvents: DiscussionEventsService,
-    private router: Router
+    private telemetryUtils: TelemetryUtilsService
   ) { }
 
   ngOnInit() {
+    this.telemetryUtils.context = [];
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
     this.startForm = this.formBuilder.group({
       category: [],
@@ -60,7 +59,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    this.addTelemetry('submit-discussion-start-form');
     form.value.tags = this.postTagsArray;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
@@ -91,16 +89,8 @@ export class DiscussStartComponent implements OnInit {
       });
   }
 
-  addTelemetry(id) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: id ,
-          type: 'CLICK',
-          pageid: this.router.url
-      }
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.START);
   }
 
 }

@@ -40,13 +40,13 @@
             <div class="flex flex-1 flex-wrap custom margin-0 margin-top-xl comments-count">
               <div class="flex flex-1 flex-row margin-left-xs margin-right-xs">
                 <span class="flex margin-right-l mobile">
-                  <a href="javascript:void(0)" i18n-aria-label role="link" *ngIf="!post.upvoted" (click)="upvote(post)"
-                    aria-label="upvote the post">
+                  <a href="javascript:void(0)" i18n-aria-label role="link" *ngIf="!post.upvoted" (click)="upvote(post);logTelemetry($event, post)"
+                    aria-label="upvote the post" id="up-vote">
                     <!-- upward arrow -->
                     <i class="fas fa-arrow-up"></i>
                   </a>
-                  <a href="javascript:void(0)" i18n-aria-label *ngIf="post.upvoted" role="link" (click)="delteVote(post)"
-                    aria-label="remove upvote">
+                  <a href="javascript:void(0)" i18n-aria-label *ngIf="post.upvoted" role="link" (click)="delteVote(post);logTelemetry($event, post)"
+                    aria-label="remove upvote" id="delete-vote">
                     <!-- upward arrow -->
                     <i class="fas fa-arrow-up"></i>
                   </a>
@@ -55,12 +55,12 @@
                 </span>
                 <span class="flex margin-right-l mobile">
                   <a href="javascript:void(0)" *ngIf="!post?.downvoted" i18n-aria-label role="link"
-                    (click)="downvote(post)" aria-label="downvote post">
+                    (click)="downvote(post);logTelemetry($event, post)" aria-label="downvote post" id="down-vote">
                     <!-- downward arrow -->
                     <i class="fas fa-arrow-down"></i>
                   </a>
                   <a href="javascript:void(0)" *ngIf="post?.downvoted" i18n-aria-label role="link"
-                    (click)="delteVote(post)" aria-label="remove down vote">
+                    (click)="delteVote(post);logTelemetry($event, post)" aria-label="remove down vote" id="delete-vote">
                     <!-- downward arrow -->
                     <i class="fas fa-arrow-down"></i>
                   </a>
@@ -74,12 +74,12 @@
                 </span>
                 <span class="flex mobile">
                   <a href="javascript:void(0)" *ngIf="!data?.posts[0]?.bookmarked" i18n-aria-label role="link"
-                    (click)="bookmark(post)" aria-label="Bookmark post">
+                    (click)="bookmark(post);logTelemetry($event, post)" aria-label="Bookmark post" id="bookmark">
                     <!-- bookmark -->
                     <i style="font-size:24px" class="fa">&#xf097;</i>
                   </a>
                   <a href="javascript:void(0)" *ngIf="data?.posts[0]?.bookmarked" i18n-aria-label role="link"
-                    (click)="unBookMark(post)" aria-label="unBookmark post">
+                    (click)="unBookMark(post);logTelemetry($event, post)" aria-label="unBookmark post" id="un-bookmark-vote">
                      <!-- bookmark -->
                      <i style="font-size:24px" class="fa">&#xf097;</i>
                   </a>
@@ -118,8 +118,8 @@
           <!-- post reply -->
           <div align="end">
             <!-- TODO: Add check below:  [disabled]="answer.value.length < 3 -->
-            <button mat-raised-button type="button" (click)="postReply(post)"
-              class="text-white ws-mat-primary-background flex-auto-display margin-right-xs post-btn">
+            <button mat-raised-button type="button" (click)="postReply(post);logTelemetry($event, post)"
+              class="text-white ws-mat-primary-background flex-auto-display margin-right-xs post-btn" id="post-reply">
               <span class="text-white" i18n>Post reply</span>
             </button>
             <!-- <button mat-raised-button type="button" [mat-dialog-close]="true"
@@ -138,7 +138,7 @@
             <div class="tabs-filter">
               <a href="javascript:void(0)" class="filter-option active" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border':currentFilter !== 'timestamp'}" mat-button
-                (click)="filter('timestamp')">
+                (click)="filter('timestamp');logTelemetry($event)" id="recent-post">
                 Recent </a>
               <!-- <a href="javascript:void(0)" class="filter-option" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvotes',
                               'ws-mat-accent-border':currentFilter !== 'upvotes'}" mat-button
@@ -174,29 +174,29 @@
                 <span class="flex mobile">
                    <!-- upward arrow -->
                   <img src="../../../assets/images/up-arrow.png">
-                  <a href="javascript:void(0)" class="up-vote-text"  *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post)"
+                  <a href="javascript:void(0)" class="up-vote-text"  id="up-vote" *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post);logTelemetry($event, post)"
                     aria-label="upvote comment">    
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
                   <!-- upward arrow -->
                   <img src="../../../assets/images/down-arrow.png">
-                  <a href="javascript:void(0)" class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post)"
+                  <a href="javascript:void(0)" class="down-vote-text" id="delete-vote" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post);logTelemetry($event, post)"
                     aria-label="delete upvote on comment">
                      
                   </a>
                   <span class="pad-4">{{post?.upvotes}}</span>
                 </span>
                 <span class="flex mobile">
-                  <a href="javascript:void(0)" *ngIf="!post?.downvoted" i18n-aria-label role="link"
-                    (click)="downvote(post)" aria-label="downvote comment">
+                  <a href="javascript:void(0)" id="down-vote" *ngIf="!post?.downvoted" i18n-aria-label role="link"
+                    (click)="downvote(post);logTelemetry($event, post)" aria-label="downvote comment">
                      <!-- downward arrow -->
                      <i class="fas fa-arrow-down"></i>
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
-                  <a href="javascript:void(0)" *ngIf="post?.downvoted" i18n-aria-label role="link"
-                    (click)="delteVote(post)" aria-label="delete downvote on comment">
+                  <a href="javascript:void(0)" id="delete-vote" *ngIf="post?.downvoted" i18n-aria-label role="link"
+                    (click)="delteVote(post);logTelemetry($event, post)" aria-label="delete downvote on comment">
                      <!-- down arrow -->
                      <i class="fas fa-arrow-down"></i>
                   </a>
@@ -212,7 +212,7 @@
                 </span>
               </div>
               
-                <button mat-button (click)="post.toggle =! post.toggle; post.comment=''" class="reply-btn">
+                <button mat-button (click)="post.toggle =! post.toggle; post.comment='';logTelemetry($event, post)" class="reply-btn" id="reply-comment">
                   <span class="noocoments"> Reply</span>
                 </button>
            
@@ -231,7 +231,7 @@
                       </ws-widget-avatar-photo>
                     </ng-container>
                   </div> -->
-                  <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
+                  <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle;logTelemetry($event, post)">
                     <a href="javascript:void(0)" class="flex align-center" i18n-aria-label role="link"
                       aria-label="reply toggle">
                       <span class="cursor-pointer"> 1 reply </span>
@@ -340,10 +340,10 @@
         </form>
       </div>
       <div class="comment-btns">
-        <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment=''">
+        <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment='';logTelemetry($event, post)" id="cancel-comment-reply">
           <span class="noocoments"> Cancel</span>
         </button>
-        <button mat-raised-button type="button" (click)="postCommentsReply(post, post?.comment )"
+        <button mat-raised-button type="button" (click)="postCommentsReply(post, post?.comment );logTelemetry($event, post)" id="post-comment-vote"
           [disabled]="post?.comment?.length < 3" class="text-white ws-mat-primary-background flex-auto-display post-btn">
           <span class="text-white" i18n>Post reply</span>
         </button>
@@ -378,13 +378,13 @@
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex margin-right-l mobile">
                   <!-- up arrow -->
-                  <i (click)="upvote(post)" class="cursor-pointer fas fa-arrow-up"></i>
-                  <i (click)="delteVote(post)" class="cursor-pointer upvoted fas fa-arrow-down"></i>
+                  <i (click)="upvote(post);logTelemetry($event, post)" id="up-vote" class="cursor-pointer fas fa-arrow-up"></i>
+                  <i (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" class="cursor-pointer upvoted fas fa-arrow-down"></i>
                   <span class="pad-4">{{post.upvotes}}</span>
                 </span>
                 <span class="flex margin-right-l mobile">
-                  <i *ngIf="!post?.downvoted" (click)="upvote(post)" (click)="downvote(post)" class="cursor-pointer fas fa-arrow-down"></i>
-                  <i *ngIf="post?.downvoted" (click)="delteVote(post)" class="cursor-pointer downvoted fas fa-arrow-down"></i>
+                  <i *ngIf="!post?.downvoted" (click)="upvote(post);logTelemetry($event, post)" id="up-vote" (click)="downvote(post)" class="cursor-pointer fas fa-arrow-down"></i>
+                  <i *ngIf="post?.downvoted" (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" class="cursor-pointer downvoted fas fa-arrow-down"></i>
                   <span class="pad-4">{{post?.downvotes}}</span>
                 </span>
               </div>

@@ -1,8 +1,8 @@
-import { DiscussionEventsService } from './../../discussion-events.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { NSDiscussData } from './../../models/discuss.model';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -20,12 +20,10 @@ export class MyDiscussionComponent implements OnInit {
   department!: string | null;
   location!: string | null;
   profilePhoto!: string;
-
   constructor(
-    private route: ActivatedRoute,
     private discussService: DiscussionService,
     public router: Router,
-    private discussionEvents: DiscussionEventsService) {
+    private telemetryUtils: TelemetryUtilsService) {
 
   }
 
@@ -48,16 +46,8 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
-    const impressionEvent = {
-      eid: 'IMPRESSION',
-      edata: {
-        type: 'view',
-        pageid: 'my-discussion',
-        uri: this.router.url
-      },
-      context: []
-      }
-    this.discussionEvents.emitTelemetry(impressionEvent);
+    this.telemetryUtils.context = [];
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
     // setting the user details;
     this.data = this.discussService.userDetails;
@@ -73,7 +63,6 @@ export class MyDiscussionComponent implements OnInit {
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
       this.currentFilter = key;
-      this.addTelemetry(`${key + 'posts'}`);
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
@@ -139,20 +128,11 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.addTelemetry('discuss-card');
     this.router.navigate([`/discussion/category/${_.get(discussionData, 'topic.slug')}`]);
   }
 
-  addTelemetry(id) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: id ,
-          type: 'CLICK',
-          pageid: 'my-discussion'
-      }
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.MY_DISCUSSION);
   }
 
 }

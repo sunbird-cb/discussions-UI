@@ -2,8 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DiscussionEventsService } from './../../discussion-events.service';
-
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -25,25 +24,18 @@ export class DiscussCategoryComponent implements OnInit {
   isTopicCreator = false;
 
   showStartDiscussionModal = false;
+  pageName = 'discussion-category';
 
   constructor(
     public discussService: DiscussionService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    private discussionEvents: DiscussionEventsService
+    private telemetryUtils: TelemetryUtilsService
     ) { }
 
   ngOnInit() {
-    const impressionEvent = 
-    {
-      eid: 'IMPRESSION',
-      edata: {
-        type: 'view',
-        pageid: 'discussion-category',
-        uri: this.router.url
-      }
-      }
-    this.discussionEvents.emitTelemetry(impressionEvent);
+    this.telemetryUtils.context = [];
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
     this.fetchAllAvailableCategories(this.categoryIds);
   }
 
@@ -63,11 +55,6 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   navigateToDiscussionPage(data) {
-    this.addTelemetry('category-card', [
-      {
-        id: _.get(data, 'cid') || _.get(data, 'category.cid'),
-        type: 'Category'
-      }]);
     this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
@@ -87,20 +74,10 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   startDiscussion() {
-    this.addTelemetry('start-discussion');
     this.showStartDiscussionModal = true;
   }
 
-  addTelemetry(id, context?: Array<{}>) {
-    const eventData = {
-      eid: 'INTERACT',
-      edata: {
-          id: id ,
-          type: 'CLICK',
-          pageid: 'discussion-category'
-      },
-      context,
-    }
-    this.discussionEvents.emitTelemetry(eventData);
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.CATEGORY);
   }
 }

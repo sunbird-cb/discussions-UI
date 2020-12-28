@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div>
-        <a href="#close" title="Close" class="close" (click)="addTelemetry('close-discussion-start-form')">X</a>
+        <a href="#close" title="Close" class="close" (click)="logTelemetry($event)" id="close-discussion-start-form">X</a>
         <form [formGroup]="startForm">
           <!-- <h2 mat-dialog-title>Install Angular</h2> -->
           <div class="mat-typography pad-fix">
@@ -92,14 +92,14 @@
                   </small>
                 </div>
                 <div align="end" class="mb-0-imp">
-                  <button mat-raised-button type="button" class="discard-btn" (click)="addTelemetry('discard-discussion-start-form')">
+                  <button mat-raised-button type="button" class="discard-btn" (click)="logTelemetry($event)" id="discard-discussion-start-form">
                     <span class="ws-mat-default-text" i18n>Discard</span>
                   </button>
                   <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
                     <!-- <span [diameter]="30"></span> -->
                   </span>
                   <button type="submit" class="submit-post-btn"
-                    [disabled]="uploadSaveData || startForm?.invalid" (click)="submitPost(startForm)">
+                    [disabled]="uploadSaveData || startForm?.invalid" (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
                     <span class="text-white" i18n>Submit post</span>
                   </button>
                 </div>

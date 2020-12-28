@@ -1,11 +1,10 @@
-import { DiscussionEventsService } from './../../discussion-events.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 /* tslint:disable */
 import * as _ from 'lodash'
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from '../../models/discuss.model';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 /* tslint:enable */
 
 @Component({
@@ -17,23 +16,14 @@ export class DiscussTagsComponent implements OnInit {
 
   query: string;
   filteredTags: NSDiscussData.ITag[];
-
   constructor(
     private discussionService: DiscussionService,
-    private router: Router,
-    private discussionEvents: DiscussionEventsService
+    private telemetryUtils: TelemetryUtilsService
   ) { }
 
   ngOnInit() {
-    const impressionEvent = {
-      eid: 'IMPRESSION',
-      edata: {
-        type: 'view',
-        pageid: 'discussion-tags',
-        uri: this.router.url
-      }
-    }
-    this.discussionEvents.emitTelemetry(impressionEvent);
+    this.telemetryUtils.context = [];
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
     this.fetchAllTags();
   }
 
