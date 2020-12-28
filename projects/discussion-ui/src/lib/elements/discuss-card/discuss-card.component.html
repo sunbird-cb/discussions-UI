@@ -15,11 +15,12 @@
 
     <!-- Card subtitle -->
     <div class="discuss-card-subtitle responsive">
-      <span class="flex ws-mat-default-text">
+      <span class="discuss-card-label">
         <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
       </span>
       <span class="dot" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
       <span class="dot" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+      <span class="timing">2 months ago</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
     <!-- /Card subtitle -->
@@ -38,20 +39,20 @@
 
   <!-- Card footer -->
   <div class="discuss-card-comments">
-    <div class="flex flex-1 flex-row margin-left-xs">
+    <div class="discuss-comments-area">
       <span class="flex margin-right-l mobile votes-content">
         <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
-        <img src="../../../assets/images/import-export-arrows.png" width="16px" height="16px">
+        <img src="./discussion-ui/assets/images/import-export-arrows.png">
         <span class="pad-4">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
       </span>
       <span class="flex mobile views-content">
         <!-- <mat-icon>trending_up</mat-icon> -->
-        <img src="../../../assets/images/profits.png" width="16px" height="16px">
+        <img src="./discussion-ui/assets/images/profits.png">
         <span class="pad-4">{{discussionData.viewcount || 0}} Views</span>
       </span>
     </div>
     <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-      <span class="noocoments ws-mat-default-text">{{((discussionData.postcount || 1) -1) }}
+      <span class="comments-count ws-mat-default-text">{{((discussionData.postcount || 1) -1) }}
         comments</span>
     </div>
   </div>
