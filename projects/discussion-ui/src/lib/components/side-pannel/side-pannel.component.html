@@ -1,4 +1,4 @@
-<ul class="sb-sidebar-menu">
+<ul class="sb-sidebar-menu" *ngIf="!hideSidePanel">
     <li *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
     <li (click)="navigate('categories', $event)" class="active" id="discussion-categories"><a>Categories</a></li>
     <li (click)="navigate('tags', $event)" id="discussion-tags"><a>Tags</a></li>
