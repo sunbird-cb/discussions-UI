@@ -117,18 +117,18 @@ label {
 }
 
 
-.floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label .is-invalid,
+/* .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label .is-invalid,
 .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-invalid:hover,
 .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-invalid:focus {
   color: red;
   border: 2px solid red;
-}
-.floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-valid,
+} */
+/* .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-valid,
 .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-valid:hover,
 .floating-input ~ label,.floating-textarea ~ label,.floating-select ~ label.is-valid:focus {
   color: #008840;
   border:#008840;
-}
+} */
 
 /* active state */
 .floating-input:focus ~ .bar:before, .floating-input:focus ~ .bar:after, .floating-select:focus ~ .bar:before, .floating-select:focus ~ .bar:after {
