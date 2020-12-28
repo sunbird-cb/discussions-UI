@@ -1,3 +1,4 @@
+import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionEventsService } from './../../discussion-events.service';
@@ -8,15 +9,18 @@ import * as _ from 'lodash-es';
   styleUrls: ['./side-pannel.component.css']
 })
 export class SidePannelComponent implements OnInit {
+
+  // TODO: to take this as input
+  userName = 'admin';
   hideSidePanel: boolean;
   constructor(
     public router: Router,
+    public discussService: DiscussionService,
     private discussionEvents: DiscussionEventsService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-
     this.hideSidePanel = document.body.classList.contains('widget');
     const impressionEvent = {
     eid: 'IMPRESSION',
@@ -27,6 +31,9 @@ export class SidePannelComponent implements OnInit {
     }
     }
     this.discussionEvents.emitTelemetry(impressionEvent);
+  
+    this.discussService.userName = this.userName;
+    this.fetchUserProfile(this.userName);
   }
 
   navigate(pageName: string) {
@@ -42,4 +49,13 @@ export class SidePannelComponent implements OnInit {
     this.router.navigate([`/discussion/${pageName}`]);
   }
 
+  fetchUserProfile(userName) {
+    this.discussService.fetchUserProfile(userName).subscribe(response => {
+      console.log('user', response);
+      this.discussService.userDetails = response;
+    }, (error) => {
+      // TODO: toaster error
+        console.log('error fetching user details');
+      });
+  }
 }

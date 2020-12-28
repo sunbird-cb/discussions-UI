@@ -20,6 +20,13 @@ export class DiscussionService {
   // tslint:disable-next-line:variable-name
   private _host: string;
 
+  // tslint:disable-next-line:variable-name
+  private _userDetails: any;
+
+  // tslint:disable-next-line:variable-name
+  private _userName: any;
+
+
   usr: any;
 
   constructor( private http: HttpClient ) {
@@ -136,21 +143,37 @@ export class DiscussionService {
     return this.http.get(urlConfig.fetchProfile(slug));
   }
   fetchUpvoted() {// 0
-    return this.http.get(urlConfig.listUpVote(urlConfig.userName));
+    return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, 'username')));
   }
   fetchDownvoted() { // 0
-    return this.http.get(urlConfig.listDownVoted(urlConfig.userName));
+    return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, 'username')));
   }
   fetchSaved() { // 0 this.usr.userId
-    return this.http.get(urlConfig.listSaved(urlConfig.userName));
+    return this.http.get(urlConfig.listSaved(_.get(this._userDetails, 'username')));
   }
 
-  fetchNetworkProfile() {
-    return this.http.get<any>(urlConfig.userdetails(urlConfig.userName));
+  fetchUserProfile(userName) {
+    return this.http.get<any>(urlConfig.userDetails(userName));
   }
 
   getContextBasedTopic(slug: string) {
     return this.http.get(urlConfig.getContextBasedTopics(slug));
+  }
+
+  set userDetails(userDetails) {
+    this._userDetails = userDetails;
+  }
+
+  get userDetails() {
+    return this._userDetails;
+  }
+
+  set userName(userName) {
+    this._userName = userName;
+  }
+
+  get userName() {
+    return this._userName;
   }
 
   set apiHost(host) {
