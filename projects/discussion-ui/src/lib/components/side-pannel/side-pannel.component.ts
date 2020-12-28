@@ -19,20 +19,10 @@ export class SidePannelComponent implements OnInit {
 
   ngOnInit() {
     this.discussService.userName = this.userName;
-    this.fetchUserProfile(this.userName);
+    this.discussService.initializeUserDetails(this.userName);
   }
 
   navigate(pageName: string) {
     this.router.navigate([`/discussion/${pageName}`]);
-  }
-
-  fetchUserProfile(userName) {
-    this.discussService.fetchUserProfile(userName).subscribe(response => {
-      console.log('user', response);
-      this.discussService.userDetails = response;
-    }, (error) => {
-      // TODO: toaster error
-        console.log('error fetching user details');
-      });
   }
 }
