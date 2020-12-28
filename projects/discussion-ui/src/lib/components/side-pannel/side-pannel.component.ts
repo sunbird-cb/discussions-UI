@@ -2,8 +2,7 @@ import { NSDiscussData } from './../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash-es';
+import { Router } from '@angular/router';
 @Component({
   selector: 'lib-side-pannel',
   templateUrl: './side-pannel.component.html',

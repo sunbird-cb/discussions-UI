@@ -17,7 +17,6 @@ export class DiscussHomeComponent implements OnInit {
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
-  pageName = 'discussion-home'
 
   constructor(
     public router: Router,
@@ -37,7 +36,7 @@ export class DiscussHomeComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.telemetryUtils._context = [
+    this.telemetryUtils.context = [
       {
         id: _.get(discussionData, 'cid') || _.get(discussionData, 'category.cid'),
         type: 'Category'

@@ -24,7 +24,6 @@ export class DiscussCategoryComponent implements OnInit {
   isTopicCreator = false;
 
   showStartDiscussionModal = false;
-  pageName = 'discussion-category';
 
   constructor(
     public discussService: DiscussionService,
