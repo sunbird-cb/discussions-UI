@@ -22,6 +22,29 @@
     border: 1px solid #ddd;
     margin-right: 24px;
 }
+.name-label{
+    color: rgba(0,0,0,.54);
+    font-size: 21px;
+    margin: 16px 0; 
+}
+.email,.location,.department{
+    color: rgba(0,0,0,.54);
+    font-size: 18px;
+    margin: 16px 0;  
+}
+.post-count-area{
+    margin-left:32px;
+}
+.labels{
+    color: rgba(0,0,0,.87);
+    font-weight: bold;
+    font-size: 18px;
+}
+.number{
+    color: #0074b6;
+    margin-right: 16px;
+    font-size: 20px;   
+}
 .recent-tabs{
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
@@ -61,7 +84,7 @@
     line-height: 40px;
     padding: 0 16px;
     overflow: visible;
-    font-size: 16px;
+    font-size: 18px;
     color: #000;
 }
 .filter-option:first-child {

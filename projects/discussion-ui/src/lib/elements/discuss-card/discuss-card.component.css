@@ -17,23 +17,58 @@
     color: #000;  
     cursor:pointer;
 }
+.discuss-card-label{
+    color: #0074b6;  
+}
 .discuss-card-subtitle{
     margin: 16px 0;
-    font-size: 16px;
+    font-size: 18px;
+    text-transform: capitalize;
 }
 .discuss-card-comments{
   display: flex;
   justify-content: space-between;
   margin: 16px 0;
+  font-size: 18px;
+}
+.discuss-comments-area{
+    display: flex;
+}
+.dot:before {
+    content: "•";
+    margin: 1rem;
+    color: rgba(0,0,0,.54);
+}
+.timing{
+    margin-left:16px;
+    color: rgba(0,0,0,.54);  
 }
 .views-content{
     margin-left:16px;
+    display: flex;
+    align-items: center;
+    color: rgba(0,0,0,.6);
+    font-weight: 700;
+}
+.votes-content{
+    display: flex;
+    align-items: center;
+    color: rgba(0,0,0,.6);
+    font-weight: 700;
 }
 .votes-content img{
     margin-right:8px;
+    height: 20px;
+    width: 20px;
 }
 .views-content img{
     margin-right:8px;
+    height: 20px;
+    width: 20px;
+}
+.comments-count{
+    color: #0074b6;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {

@@ -29,7 +29,7 @@
             </div>
   
   
-            <div class="flex flex-1 margin-top-m" role="link" tabindex="0" aria-label="tags">
+            <div class="flex flex-1 margin-top-m" role="link" tabindex="0" aria-label="tags" >
               <ng-container *ngIf="data && data?.tags && data?.tags?.length > 0">
                 <span *ngFor="let tag of data?.tags" class="tag"  role="link" tabindex="0"
                   i18n-aria-label>
@@ -43,12 +43,12 @@
                   <a href="javascript:void(0)" i18n-aria-label role="link" *ngIf="!post.upvoted" (click)="upvote(post);logTelemetry($event, post)"
                     aria-label="upvote the post" id="up-vote">
                     <!-- upward arrow -->
-                    <i class="fas fa-arrow-up"></i>
+                    <img src="./discussion-ui/assets/images/up-arrow.png" width="16px" height="16px" class="icons">
                   </a>
                   <a href="javascript:void(0)" i18n-aria-label *ngIf="post.upvoted" role="link" (click)="delteVote(post);logTelemetry($event, post)"
                     aria-label="remove upvote" id="delete-vote">
                     <!-- upward arrow -->
-                    <i class="fas fa-arrow-up"></i>
+                    <img src="./discussion-ui/assets/images/up-arrow.png" width="16px" height="16px">
                   </a>
                   <span class="pad-4" role="text"
                     [attr.aria-label]="'total upvoat is' + data?.upvotes">{{data?.upvotes}}</span>
@@ -57,31 +57,31 @@
                   <a href="javascript:void(0)" *ngIf="!post?.downvoted" i18n-aria-label role="link"
                     (click)="downvote(post);logTelemetry($event, post)" aria-label="downvote post" id="down-vote">
                     <!-- downward arrow -->
-                    <i class="fas fa-arrow-down"></i>
+                    <img src="./discussion-ui/assets/images/down-arrow.png" width="16px" height="16px">
                   </a>
                   <a href="javascript:void(0)" *ngIf="post?.downvoted" i18n-aria-label role="link"
                     (click)="delteVote(post);logTelemetry($event, post)" aria-label="remove down vote" id="delete-vote">
                     <!-- downward arrow -->
-                    <i class="fas fa-arrow-down"></i>
+                    <img src="./discussion-ui/assets/images/down-arrow.png" width="16px" height="16px">
                   </a>
                   <span class="pad-4" role="text"
                     [attr.aria-label]="'total upvoat is' + data?.upvotes">{{data?.downvotes}}</span>
                 </span>
                 <span class="flex margin-right-l mobile" role="link" tabindex="0">
                    <!-- trending -->
-                   <i class="fas fa-chart-line"></i>
+                   <img src="./discussion-ui/assets/images/profits.png" width="16px" height="16px">
                   <span class="pad-4" i18n-aria-label aria-label="views count">{{data.viewcount}} views</span>
                 </span>
-                <span class="flex mobile">
+                <span class="flex mobile margin-right-l">
                   <a href="javascript:void(0)" *ngIf="!data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                     (click)="bookmark(post);logTelemetry($event, post)" aria-label="Bookmark post" id="bookmark">
                     <!-- bookmark -->
-                    <i style="font-size:24px" class="fa">&#xf097;</i>
+                    <img src="./discussion-ui/assets/images/bookmarks.png" width="16px" height="16px">
                   </a>
                   <a href="javascript:void(0)" *ngIf="data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                     (click)="unBookMark(post);logTelemetry($event, post)" aria-label="unBookmark post" id="un-bookmark-vote">
                      <!-- bookmark -->
-                     <i style="font-size:24px" class="fa">&#xf097;</i>
+                     <img src="./discussion-ui/assets/images/bookmarks.png" width="16px" height="16px">
                   </a>
                 </span>
               </div>
@@ -173,16 +173,16 @@
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex mobile">
                    <!-- upward arrow -->
-                  <img src="../../../assets/images/up-arrow.png">
-                  <a href="javascript:void(0)" class="up-vote-text"  id="up-vote" *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post);logTelemetry($event, post)"
-                    aria-label="upvote comment">    
+                   <img src="./discussion-ui/assets/images/up-arrow.png" width="16px" height="16px">
+                  <a href="javascript:void(0)" class="up-vote-text"  *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post);logTelemetry($event, post)"
+                    aria-label="upvote comment" id="up-vote">    
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
                   <!-- upward arrow -->
-                  <img src="../../../assets/images/down-arrow.png">
-                  <a href="javascript:void(0)" class="down-vote-text" id="delete-vote" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post);logTelemetry($event, post)"
-                    aria-label="delete upvote on comment">
+                  
+                  <a href="javascript:void(0)" class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post);logTelemetry($event, post)"
+                    aria-label="delete upvote on comment" id="delete-vote">
                      
                   </a>
                   <span class="pad-4">{{post?.upvotes}}</span>
@@ -191,14 +191,14 @@
                   <a href="javascript:void(0)" id="down-vote" *ngIf="!post?.downvoted" i18n-aria-label role="link"
                     (click)="downvote(post);logTelemetry($event, post)" aria-label="downvote comment">
                      <!-- downward arrow -->
-                     <i class="fas fa-arrow-down"></i>
+                     <img src="./discussion-ui/assets/images/down-arrow.png" width="16px" height="16px">
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
                   <a href="javascript:void(0)" id="delete-vote" *ngIf="post?.downvoted" i18n-aria-label role="link"
                     (click)="delteVote(post);logTelemetry($event, post)" aria-label="delete downvote on comment">
                      <!-- down arrow -->
-                     <i class="fas fa-arrow-down"></i>
+                     <img src="./discussion-ui/assets/images/down-arrow.png" width="16px" height="16px">
                   </a>
                   <span class="pad-4">{{post?.downvotes}}</span>
                 </span>
@@ -207,7 +207,7 @@
                   <span class="pad-4">{{post.viewcount}} views</span>
                 </span> -->
                 <span class="flex mobile">
-                  <img src="../../../assets/images/bookmarks.png">
+                  <img src="./discussion-ui/assets/images/bookmarks.png" width="16px" height="16px">
                   <!-- <mat-icon [ngClass]="{'ws-mat-accent-text': !!post.bookmarked }">bookmark</mat-icon> -->
                 </span>
               </div>
