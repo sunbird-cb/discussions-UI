@@ -35,7 +35,6 @@ export class DiscussionDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
     this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
@@ -55,7 +54,6 @@ export class DiscussionDetailsComponent implements OnInit {
         this.refreshPostData(this.currentActivePage);
       }
     });
-    this.setContext();
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
   initializeFormFiled() {
@@ -230,22 +228,7 @@ export class DiscussionDetailsComponent implements OnInit {
   logTelemetry(event, data?) {
     const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ? 
     {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
-
-    this.setContext();
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
-  }
-
-  setContext() {
-    this.telemetryUtils.context = [
-      {
-        id: this.topicId,
-        type: 'Topic'
-      },
-      {
-        id: this.slug,
-        type: 'Category'
-      }
-    ]
   }
 }

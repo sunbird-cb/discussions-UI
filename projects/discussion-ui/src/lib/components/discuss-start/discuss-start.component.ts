@@ -29,7 +29,6 @@ export class DiscussStartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
     this.startForm = this.formBuilder.group({

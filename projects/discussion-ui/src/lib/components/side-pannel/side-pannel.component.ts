@@ -20,7 +20,6 @@ export class SidePannelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
   

@@ -22,7 +22,7 @@ export class DiscussTagsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
+    this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
     this.fetchAllTags();
   }

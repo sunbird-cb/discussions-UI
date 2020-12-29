@@ -33,7 +33,7 @@ export class DiscussCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
+    this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
     this.fetchAllAvailableCategories(this.categoryIds);
   }
@@ -54,6 +54,11 @@ export class DiscussCategoryComponent implements OnInit {
   }
 
   navigateToDiscussionPage(data) {
+    if (!_.isEmpty(_.get(data, 'parent'))) {
+      this.telemetryUtils.uppendContext({id: _.get(data, 'cid'), type: 'Sub-Category'});
+    } else {
+      this.telemetryUtils.uppendContext({id: _.get(data, 'cid'), type: 'Category'});
+    }
     this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;

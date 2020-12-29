@@ -1,6 +1,6 @@
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { NSDiscussData } from './../../models/discuss.model';
 /* tslint:disable */
@@ -23,9 +23,7 @@ export class MyDiscussionComponent implements OnInit {
   constructor(
     private discussService: DiscussionService,
     public router: Router,
-    private telemetryUtils: TelemetryUtilsService) {
-
-  }
+    private telemetryUtils: TelemetryUtilsService) {}
 
   /** To fetch user details */
   fetchUserProfile(userName) {
@@ -46,7 +44,7 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
+    this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
     // setting the user details;

@@ -21,14 +21,26 @@ export class TelemetryUtilsService {
     private router: Router
   ) { }
 
-  set context(context) {
+  setContext(context) {
     this._context = context;
   }
 
   uppendContext(data) {
-    if (!_.isEmpty(data)) {
+    const matchedC = _.find(this._context, {id: data.id});
+    if (!_.isEmpty(data) && !_.isEqual(data, matchedC)) {
       this._context.push(data);
     }
+  }
+
+  deleteContext(prevTopic) {
+    const topic = _.find(this._context, prevTopic);
+    if (topic) {
+      this._context = _.reject(this._context, topic);
+    }
+  }
+
+  getContext() {
+    return this._context;
   }
 
   logImpression(pageId) {

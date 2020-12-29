@@ -22,11 +22,9 @@ export class DiscussHomeComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
-    private telemetryUtils: TelemetryUtilsService
-  ) { }
+    private telemetryUtils: TelemetryUtilsService) {}
 
   ngOnInit() {
-    this.telemetryUtils.context = [];
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.route.params.subscribe(params => {
       this.routeParams = params;
@@ -35,21 +33,17 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   navigateToDiscussionDetails(discussionData) {
-    console.log('discussionData', discussionData);
-    this.telemetryUtils.context = [
-      {
-        id: _.get(discussionData, 'cid') || _.get(discussionData, 'category.cid'),
-        type: 'Category'
-      },
-      {
-        id: _.get(discussionData, 'tid'),
-        type: 'Topic'
-      },
-      {
-        id: _.get(discussionData, 'mainPid') || _.get(discussionData, 'pid'),
-        type: 'Post'
-      }
-    ];
+    console.log('discussionData', discussionData, this.telemetryUtils.getContext());
+
+    const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
+    if (matchedTopic) {
+      this.telemetryUtils.deleteContext(matchedTopic);
+    }
+
+    this.telemetryUtils.uppendContext({
+      id: _.get(discussionData, 'tid'),
+      type: 'Topic'
+    });
     this.router.navigate([`/discussion/category/${_.get(discussionData, 'slug')}`]);
   }
 
