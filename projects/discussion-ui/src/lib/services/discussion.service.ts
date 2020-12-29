@@ -35,8 +35,14 @@ export class DiscussionService {
     this.usr = { userId: '1234' };
   }
 
-  get getUserProfile() {
-    return this.usr;
+  initializeUserDetails(userName) {
+    this.fetchUserProfile(userName).subscribe(response => {
+      console.log('user', response);
+      this.userDetails = response;
+    }, (error) => {
+      // TODO: toaster error
+        console.log('error fetching user details');
+      });
   }
 
   appendPage(page: any, url: string) {
@@ -158,6 +164,10 @@ export class DiscussionService {
 
   getContextBasedTopic(slug: string) {
     return this.http.get(urlConfig.getContextBasedTopics(slug));
+  }
+
+  registerUser(data) {
+    return this.http.post(urlConfig.registerUser(), data);
   }
 
   set userDetails(userDetails) {

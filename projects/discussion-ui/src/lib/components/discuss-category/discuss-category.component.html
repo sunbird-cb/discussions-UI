@@ -8,4 +8,4 @@
     </ng-container>
   </div>
 
-  <lib-discuss-start *ngIf="showStartDiscussionModal" ></lib-discuss-start>
+  <lib-discuss-start (close)="closeModal($event)" [categoryId]="categoryId" *ngIf="showStartDiscussionModal" ></lib-discuss-start>

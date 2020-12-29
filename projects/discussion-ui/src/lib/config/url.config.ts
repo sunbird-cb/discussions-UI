@@ -23,5 +23,6 @@ export const urlConfig = {
     listSaved: (slug: string) => `${urlConfig.apiBasePath()}/user/${slug}/bookmarks`,
     fetchNetworkProfile: `user/profileDetails/getUserRegistry`,
     userDetails: (username: string) => `${urlConfig.apiBasePath()}/user/${username}`,
-    getContextBasedTopics: (slug: string) => `${urlConfig.apiBasePath()}/category/${slug}`
+    getContextBasedTopics: (slug: string) => `${urlConfig.apiBasePath()}/category/${slug}`,
+    registerUser: () => `${urlConfig.apiBasePath()}/user/v1/create`
 };
