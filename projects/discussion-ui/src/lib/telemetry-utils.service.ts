@@ -6,7 +6,7 @@ import * as _ from 'lodash-es';
 interface ITelemetryObj {
   eid: string,
   edata: {},
-  context?: Array<{}>
+  context?: {}
 }
 
 @Injectable({
@@ -15,6 +15,7 @@ interface ITelemetryObj {
 export class TelemetryUtilsService {
 
   _context = []
+  currentObj = {};
 
   constructor(
     private discussionEvents: DiscussionEventsService,
@@ -23,13 +24,15 @@ export class TelemetryUtilsService {
 
   setContext(context) {
     this._context = context;
+    this.currentObj = _.last(context);
   }
 
   uppendContext(data) {
-    const matchedC = _.find(this._context, {id: data.id});
+    const matchedC = _.find(this._context, { id: data.id });
     if (!_.isEmpty(data) && !_.isEqual(data, matchedC)) {
       this._context.push(data);
     }
+    this.currentObj = _.last(this._context);
   }
 
   deleteContext(prevTopic) {
@@ -53,7 +56,9 @@ export class TelemetryUtilsService {
         uri: this.router.url
       }
     }
-    impressionEvent.context = this._context;
+    if (this.currentObj) {
+      impressionEvent.context = { cdata: [this.currentObj]};
+    }
     this.discussionEvents.emitTelemetry(impressionEvent);
   }
 
@@ -67,9 +72,38 @@ export class TelemetryUtilsService {
         pageid: pageId
       }
     };
-    interactEvent.context = this._context;
+
+    if (this.currentObj) {
+      const object = {
+        id: _.get(this.currentObj, 'id'),
+        type: _.get(this.currentObj, 'type'),
+        ver: '1'
+      }
+      object['rollup'] = this._context.length > 1 ?  this.getRollUp() : {};
+      interactEvent.context = { cdata: [this.currentObj], object };
+    }
 
     this.discussionEvents.emitTelemetry(interactEvent);
+  }
+
+  getRollUp() {
+
+      const rollUp = {};
+      const data = _.reject(this._context, this.currentObj);
+
+      if (this._context.length > 1) {
+        data.forEach((element, index) => {
+          console.log('rollup', element);
+          rollUp['l' + (index + 1)] = element
+        });
+      }
+
+      if (_.get(this.currentObj, 'type') !== 'Post') {
+        return rollUp;
+      }
+
+      return {};
+
   }
 
 }

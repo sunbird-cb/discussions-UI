@@ -28,6 +28,7 @@ export class SidePannelComponent implements OnInit {
   }
 
   navigate(pageName: string, event) {
+    this.telemetryUtils.setContext([]);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     this.router.navigate([`/discussion/${pageName}`]);
   }
