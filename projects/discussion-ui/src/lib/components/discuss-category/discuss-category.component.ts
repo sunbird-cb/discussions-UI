@@ -25,6 +25,8 @@ export class DiscussCategoryComponent implements OnInit {
 
   showStartDiscussionModal = false;
 
+  categoryId: any;
+
   constructor(
     public discussService: DiscussionService,
     public router: Router,
@@ -60,6 +62,7 @@ export class DiscussCategoryComponent implements OnInit {
       this.telemetryUtils.uppendContext({id: _.get(data, 'cid'), type: 'Category'});
     }
     this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
+      this.categoryId  = _.get(response, 'cid') ;
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
       if (_.get(response, 'children').length > 0) {
@@ -79,6 +82,11 @@ export class DiscussCategoryComponent implements OnInit {
 
   startDiscussion() {
     this.showStartDiscussionModal = true;
+  }
+
+  closeModal(event) {
+    console.log('event', event);
+    this.showStartDiscussionModal = false;
   }
 
   logTelemetry(event) {

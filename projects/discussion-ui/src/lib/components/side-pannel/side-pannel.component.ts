@@ -24,21 +24,11 @@ export class SidePannelComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
   
     this.discussService.userName = this.userName;
-    this.fetchUserProfile(this.userName);
+    this.discussService.initializeUserDetails(this.userName);
   }
 
   navigate(pageName: string, event) {
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     this.router.navigate([`/discussion/${pageName}`]);
-  }
-
-  fetchUserProfile(userName) {
-    this.discussService.fetchUserProfile(userName).subscribe(response => {
-      console.log('user', response);
-      this.discussService.userDetails = response;
-    }, (error) => {
-      // TODO: toaster error
-        console.log('error fetching user details');
-      });
   }
 }

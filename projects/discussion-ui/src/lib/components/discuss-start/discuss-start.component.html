@@ -27,9 +27,7 @@
                     <div appearance="outline" class="floating-label"
                       [ngClass]="{ 'is-invalid': showError('subTitle') }">
 
-                      <input class="floating-input" formControlName="question" #question maxlength="1000"
-                        i18n-placeholder placeholder="" [required]="true" />
-                      <label>Ask a question or post an idea</label>
+                      <input placeholder="Ask a question or post an idea" class="floating-input" formControlName="question" #question maxlength="1000" [required]="true" />
                       <small class="mandatory-label" *ngIf="showError('question')" i18n="question Error|Explains question is required">
                         Question is mandatory
                       </small>
@@ -40,9 +38,8 @@
                 </div>
                 <div class="flex flex-1">
                   <div appearance="outline" class="floating-label">
-                    <textarea class="floating-input floating-textarea" formControlName="description" #description
+                    <textarea placeholder="Please elaborate your question or idea here" class="floating-input floating-textarea" formControlName="description" #description
                       cdkTextareaAutosize cdkAutosizeMinRows="10" cdkAutosizeMaxRows="30" [required]="true"></textarea>
-                    <label>Please elabourate your question or idea here</label>
                     <small class="mandatory-label" *ngIf="showError('description')" i18n="description Error|Explains description is required">
                       Description is mandatory
                     </small>
@@ -90,7 +87,7 @@
                   </small>
                 </div>
                 <div align="end" class="mb-0-imp">
-                  <button mat-raised-button type="button" class="discard-btn" (click)="logTelemetry($event)" id="discard-discussion-start-form">
+                  <button (click)="closeModal();logTelemetry($event)" mat-raised-button type="button" class="discard-btn" id="discard-discussion-start-form">
                     <span class="ws-mat-default-text" i18n>Discard</span>
                   </button>
                   <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
@@ -102,12 +99,6 @@
                   </button>
                 </div>
               </div>
-              <!-- <div class="flex flex-2 flex-column mat-app-background similar">
-                <div class="margin-l">
-                  <h2>Similar discussions</h2>
-                  <h3>We will display similar discussions here as you type</h3>
-                </div>
-              </div> -->
             </div>
           </div>
           ​

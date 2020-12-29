@@ -54,9 +54,6 @@ export class MyDiscussionComponent implements OnInit {
       // If fetch user details api failed previously.
       this.fetchUserProfile(this.discussService.userName);
     }
-
-    this.department = this.discussService.getUserProfile.departmentName || null;
-    this.location = this.discussService.getUserProfile.country || null;
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
