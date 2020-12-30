@@ -17,7 +17,7 @@ export class DiscussCategoryComponent implements OnInit {
 
   categories: NSDiscussData.ICategorie[] = [];
 
-  categoryIds = ['1', '2', '6'];
+  categoryIds = ['1', '2', '6', '16'];
 
   pageId = 0;
 
@@ -33,7 +33,18 @@ export class DiscussCategoryComponent implements OnInit {
     public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.fetchAllAvailableCategories(this.categoryIds);
+    /** It will look for the queryParams, if back button is clicked,
+     * the queryParams will change and it will fetch the categories
+     * if there is no queryParams available, then it will fetch the default categories of the forumIds
+     */
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if ( _.get(params, 'cid')) {
+        this.navigateToDiscussionPage(_.get(params, 'cid'));
+      } else {
+        this.categories = [];
+        this.fetchAllAvailableCategories(this.categoryIds);
+      }
+    });
   }
 
   fetchAllAvailableCategories(ids) {
@@ -51,19 +62,23 @@ export class DiscussCategoryComponent implements OnInit {
     return this.discussService.fetchSingleCategoryDetails(cid);
   }
 
-  navigateToDiscussionPage(data) {
-    this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
+  /**
+   * It will fetch the children for each category click.
+   * if there is no children available the it will redirect to the topic list page
+   */
+  navigateToDiscussionPage(cid, slug?) {
+    this.fetchCategory(cid).subscribe(response => {
       this.categoryId  = _.get(response, 'cid') ;
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
       if (_.get(response, 'children').length > 0) {
-        this.router.navigate([], { relativeTo: this.activatedRoute.parent });
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId }});
         this.categories = [];
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
         });
       } else {
-        this.router.navigate([`/discussion/category/`, `${_.get(data, 'slug')}`]);
+        this.router.navigate([`/discussion/category/`, `${slug}`]);
       }
     }, error => {
       // TODO: Toast error

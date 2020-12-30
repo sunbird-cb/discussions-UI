@@ -46,4 +46,9 @@ export class DiscussHomeComponent implements OnInit {
   startDiscussion() {
     this.showStartDiscussionModal = true;
   }
+
+  closeModal(event) {
+    console.log('event', event);
+    this.showStartDiscussionModal = false;
+  }
 }
