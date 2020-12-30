@@ -23,6 +23,7 @@ export class DiscussionDetailsComponent implements OnInit {
   pager = {};
   slug: string;
   postAnswerForm!: FormGroup;
+  replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
 
   constructor(
@@ -51,6 +52,10 @@ export class DiscussionDetailsComponent implements OnInit {
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
+    });
+
+    this.replyForm = this.formBuilder.group({
+      reply: []
     });
   }
 
@@ -178,9 +183,11 @@ export class DiscussionDetailsComponent implements OnInit {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts, comment: string) {
+  postCommentsReply(post: NSDiscussData.IPosts) {
+    console.log('<><><><><>', post);
     const req = {
-      content: comment,
+      // tslint:disable-next-line:no-string-literal
+      content: this.replyForm.controls['reply'].value,
       toPid: post.pid,
     };
     if (post && post.tid) {
