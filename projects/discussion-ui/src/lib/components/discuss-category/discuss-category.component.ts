@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,11 +14,11 @@ import * as _ from 'lodash'
   templateUrl: './discuss-category.component.html',
   styleUrls: ['./discuss-category.component.css']
 })
-export class DiscussCategoryComponent implements OnInit {
+export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   categories: NSDiscussData.ICategorie[] = [];
 
-  categoryIds = ['1', '2', '6', '16'];
+  forumIds: any;
 
   pageId = 0;
 
@@ -26,6 +27,8 @@ export class DiscussCategoryComponent implements OnInit {
   showStartDiscussionModal = false;
 
   categoryId: any;
+
+  paramsSubscription: Subscription;
 
   constructor(
     public discussService: DiscussionService,
@@ -37,12 +40,13 @@ export class DiscussCategoryComponent implements OnInit {
      * the queryParams will change and it will fetch the categories
      * if there is no queryParams available, then it will fetch the default categories of the forumIds
      */
-    this.activatedRoute.queryParams.subscribe((params) => {
+    this.forumIds = this.discussService.forumIds;
+    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       if ( _.get(params, 'cid')) {
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
         this.categories = [];
-        this.fetchAllAvailableCategories(this.categoryIds);
+        this.fetchAllAvailableCategories(this.forumIds);
       }
     });
   }
@@ -78,7 +82,7 @@ export class DiscussCategoryComponent implements OnInit {
           this.categories.push(subCategoryData);
         });
       } else {
-        this.router.navigate([`/discussion/category/`, `${slug}`]);
+        this.router.navigate([`/discussions/category/`, `${slug}`]);
       }
     }, error => {
       // TODO: Toast error
@@ -93,5 +97,11 @@ export class DiscussCategoryComponent implements OnInit {
   closeModal(event) {
     console.log('event', event);
     this.showStartDiscussionModal = false;
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
   }
 }

@@ -123,7 +123,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`/discussion/category/${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`/discussions/category/${_.get(discussionData, 'topic.slug')}`]);
   }
 
 }

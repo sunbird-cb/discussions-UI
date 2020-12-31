@@ -33,7 +33,7 @@ export class DiscussHomeComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`/discussion/category/${_.get(discussionData, 'slug')}`]);
+    this.router.navigate([`/discussions/category/${_.get(discussionData, 'slug')}`]);
   }
 
   getDiscussionList(slug: string) {

@@ -1,10 +1,11 @@
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { Subscription } from 'rxjs';
 /* tslint:enable */
 
 
@@ -13,7 +14,7 @@ import * as _ from 'lodash'
   templateUrl: './discussion-details.component.html',
   styleUrls: ['./discussion-details.component.css']
 })
-export class DiscussionDetailsComponent implements OnInit {
+export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   topicId: any;
   routeParams: any;
   currentActivePage = 1;
@@ -25,6 +26,7 @@ export class DiscussionDetailsComponent implements OnInit {
   postAnswerForm!: FormGroup;
   replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
+  paramsSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +44,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.refreshPostData(this.currentActivePage);
     });
 
-    this.route.queryParams.subscribe(x => {
+    this.paramsSubscription = this.route.queryParams.subscribe(x => {
       if (x.page) {
         this.currentActivePage = x.page || 1;
         this.refreshPostData(this.currentActivePage);
@@ -184,7 +186,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postCommentsReply(post: NSDiscussData.IPosts) {
-    console.log('<><><><><>', post);
     const req = {
       // tslint:disable-next-line:no-string-literal
       content: this.replyForm.controls['reply'].value,
@@ -213,7 +214,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`/discussion/category/${this.topicId}`], { queryParams: { page } });
+      this.router.navigate([`/discussions/category/${this.topicId}`], { queryParams: { page } });
     }
   }
 
@@ -245,6 +246,12 @@ export class DiscussionDetailsComponent implements OnInit {
 
   getContrast() {
     return 'rgba(255, 255, 255, 80%)';
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
   }
 
 }
