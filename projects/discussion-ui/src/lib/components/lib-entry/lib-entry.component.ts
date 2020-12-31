@@ -17,10 +17,6 @@ export class LibEntryComponent implements OnInit {
     private discussionService: DiscussionService
   ) { }
 
-  ngOnInit() {
-    const apiData = this.activatedRoute.snapshot.data;
-    this.discussionService.apiHost = _.get(apiData, 'host');
-    this.discussionService.apiSlug = _.get(apiData, 'apiSlug');
-  }
+  ngOnInit() {  }
 
 }
