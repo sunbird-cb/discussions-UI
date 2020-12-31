@@ -299,4 +299,13 @@ export namespace NSDiscussData {
     bestPosts: IPosts[]
     title: string
   }
+
+  export enum IPageName {
+    HOME = 'discussion-home',
+    START = 'discussion-start',
+    DETAILS = 'discussion-details',
+    CATEGORY = 'discussion-category',
+    TAGS = 'discussion-category',
+    MY_DISCUSSION = 'my-discussion'
+  }
 }

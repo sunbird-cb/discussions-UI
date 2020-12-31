@@ -1,3 +1,5 @@
+import { NSDiscussData } from './../../models/discuss.model';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,15 +23,19 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   defaultPage = 'categories';
 
   queryParams: any;
+  hideSidePanel: boolean;
 
   constructor(
     public router: Router,
     public discussService: DiscussionService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    private telemetryUtils: TelemetryUtilsService,
   ) { }
 
   ngOnInit() {
     // TODO: loader or spinner
+    this.hideSidePanel = document.body.classList.contains('widget');
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       console.log('params', params);
       this.queryParams = params;
@@ -46,7 +52,11 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     }
   }
 
-  navigate(pageName: string) {
+  navigate(pageName: string, event?) {
+    this.telemetryUtils.setContext([]);
+    if (event) {
+      this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
+    }
     this.router.navigate([`/discussions/${pageName}`], { queryParams: this.queryParams });
   }
 

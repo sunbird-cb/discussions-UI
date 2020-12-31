@@ -42,14 +42,14 @@
         <div class="tabs-filter">
           <a href="javascript:void(0)" role="button" class="filter-option active" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
-            (click)="filter('timestamp')">
+            (click)="filter('timestamp');logTelemetry($event)" id="recent-post">
             Recent posts </a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'best',
-                              'ws-mat-accent-border font-medium':currentFilter !== 'best'}" (click)="filter('best')">
+                              'ws-mat-accent-border font-medium':currentFilter !== 'best'}" (click)="filter('best');logTelemetry($event)" id="best-post">
             Best posts </a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'saved',
                                           'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
-            (click)="filter('saved')">
+            (click)="filter('saved');logTelemetry($event)" id="saved-post">
             Saved posts </a>
           <!-- <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
                                             'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
@@ -57,11 +57,11 @@
             Watched </a> -->
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvoted',
                                               'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
-            (click)="filter('upvoted')">
+            (click)="filter('upvoted');logTelemetry($event)" id="upvoted-post">
             Upvoted </a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'downvoted',
                                                 'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
-            (click)="filter('downvoted')">
+            (click)="filter('downvoted');logTelemetry($event)" id="downvoted-post">
             Downvoted </a>
         </div>
       </div>
@@ -69,7 +69,7 @@
   </ng-container>
   <ng-container *ngIf="discussionList && discussionList.length > 0">
     <ng-container *ngFor="let data of discussionList">
-      <div (click)="navigateToDiscussionDetails(data)">
+      <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" id="discuss-card">
         <lib-discuss-card [discussionData]="data"></lib-discuss-card>
       </div>
     </ng-container>

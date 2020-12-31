@@ -1,7 +1,8 @@
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { NSDiscussData } from './../../models/discuss.model';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -19,13 +20,10 @@ export class MyDiscussionComponent implements OnInit {
   department!: string | null;
   location!: string | null;
   profilePhoto!: string;
-
   constructor(
-    private route: ActivatedRoute,
     private discussService: DiscussionService,
-    public router: Router) {
-
-  }
+    public router: Router,
+    private telemetryUtils: TelemetryUtilsService) {}
 
   /** To fetch user details */
   fetchUserProfile(userName) {
@@ -46,6 +44,8 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.telemetryUtils.setContext([]);
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
     // setting the user details;
     this.data = this.discussService.userDetails;
@@ -124,6 +124,10 @@ export class MyDiscussionComponent implements OnInit {
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
     this.router.navigate([`/discussions/category/${_.get(discussionData, 'topic.slug')}`]);
+  }
+
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.MY_DISCUSSION);
   }
 
 }

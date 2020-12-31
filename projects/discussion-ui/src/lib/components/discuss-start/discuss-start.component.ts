@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
-
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -29,9 +29,11 @@ export class DiscussStartComponent implements OnInit {
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
+    private telemetryUtils: TelemetryUtilsService
   ) { }
 
   ngOnInit() {
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
     this.startForm = this.formBuilder.group({
       question: [],
@@ -87,6 +89,10 @@ export class DiscussStartComponent implements OnInit {
 
   closeModal() {
     this.close.emit({message: 'close modal'});
+  }
+
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.START);
   }
 
 

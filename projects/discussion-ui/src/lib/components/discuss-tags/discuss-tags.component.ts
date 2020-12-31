@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash'
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from '../../models/discuss.model';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 /* tslint:enable */
 
 @Component({
@@ -15,12 +16,14 @@ export class DiscussTagsComponent implements OnInit {
 
   query: string;
   filteredTags: NSDiscussData.ITag[];
-
   constructor(
-    private discussionService: DiscussionService
+    private discussionService: DiscussionService,
+    private telemetryUtils: TelemetryUtilsService
   ) { }
 
   ngOnInit() {
+    this.telemetryUtils.setContext([]);
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
     this.fetchAllTags();
   }
 

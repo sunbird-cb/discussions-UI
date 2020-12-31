@@ -1,6 +1,7 @@
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 /* tslint:disable */
@@ -15,14 +16,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./discussion-details.component.css']
 })
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
-  topicId: any;
+  @Input() topicId: any;
   routeParams: any;
   currentActivePage = 1;
   currentFilter = 'timestamp'; // 'recent
   data: any;
   paginationData!: any;
   pager = {};
-  slug: string;
+  @Input() slug: string;
   postAnswerForm!: FormGroup;
   replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
@@ -32,17 +33,23 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private telemetryUtils: TelemetryUtilsService,
   ) { }
 
   ngOnInit() {
     this.initializeFormFiled();
-    this.route.params.subscribe(params => {
-      this.routeParams = params;
-      this.slug = _.get(this.routeParams, 'slug');
-      this.topicId = _.get(this.routeParams, 'topicId');
+    if (!this.topicId && !this.slug) {
+      this.route.params.subscribe(params => {
+        this.routeParams = params;
+        console.log('discuss params', params);
+        this.slug = _.get(this.routeParams, 'slug');
+        this.topicId = _.get(this.routeParams, 'topicId');
+        this.refreshPostData(this.currentActivePage);
+      });
+    } else {
       this.refreshPostData(this.currentActivePage);
-    });
+    }
 
     this.paramsSubscription = this.route.queryParams.subscribe(x => {
       if (x.page) {
@@ -50,6 +57,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.refreshPostData(this.currentActivePage);
       }
     });
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
@@ -246,6 +254,13 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   getContrast() {
     return 'rgba(255, 255, 255, 80%)';
+  }
+
+  logTelemetry(event, data?) {
+    const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ? 
+    {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
+    this.telemetryUtils.uppendContext(pid);
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
 
   ngOnDestroy() {
