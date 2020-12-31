@@ -15,17 +15,13 @@ import * as _ from 'lodash'
 export class DiscussionService {
 
   // tslint:disable-next-line:variable-name
-  private _apiSlug: string;
-
-  // tslint:disable-next-line:variable-name
-  private _host: string;
-
-  // tslint:disable-next-line:variable-name
   private _userDetails: any;
 
   // tslint:disable-next-line:variable-name
   private _userName: any;
 
+  // tslint:disable-next-line:variable-name
+  private _forumIds: any;
 
   usr: any;
 
@@ -186,18 +182,11 @@ export class DiscussionService {
     return this._userName;
   }
 
-  set apiHost(host) {
-    this._host = host;
+  set forumIds(ids) {
+    this._forumIds = ids;
   }
 
-  get apiHost() {
-    return this._host;
-  }
-  set apiSlug(slug) {
-    this._apiSlug = slug;
-  }
-
-  get apiSlug() {
-    return this._apiSlug;
+  get forumIds() {
+    return this._forumIds;
   }
 }

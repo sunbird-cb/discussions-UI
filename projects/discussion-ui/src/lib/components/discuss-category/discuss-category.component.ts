@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,10 +14,11 @@ import * as _ from 'lodash'
   templateUrl: './discuss-category.component.html',
   styleUrls: ['./discuss-category.component.css']
 })
-export class DiscussCategoryComponent implements OnInit {
+export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   categories: NSDiscussData.ICategorie[] = [];
 
+  forumIds: any;
   @Input() categoryIds = ['1', '2', '6'];
 
   pageId = 0;
@@ -27,6 +29,8 @@ export class DiscussCategoryComponent implements OnInit {
 
   categoryId: any;
 
+  paramsSubscription: Subscription;
+
   constructor(
     public discussService: DiscussionService,
     public router: Router,
@@ -35,9 +39,21 @@ export class DiscussCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    /** It will look for the queryParams, if back button is clicked,
+     * the queryParams will change and it will fetch the categories
+     * if there is no queryParams available, then it will fetch the default categories of the forumIds
+     */
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
-    this.fetchAllAvailableCategories(this.categoryIds);
+    this.forumIds = this.discussService.forumIds;
+    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
+      if ( _.get(params, 'cid')) {
+        this.navigateToDiscussionPage(_.get(params, 'cid'));
+      } else {
+        this.categories = [];
+        this.fetchAllAvailableCategories(this.forumIds);
+      }
+    });
   }
 
   fetchAllAvailableCategories(ids) {
@@ -55,20 +71,24 @@ export class DiscussCategoryComponent implements OnInit {
     return this.discussService.fetchSingleCategoryDetails(cid);
   }
 
-  navigateToDiscussionPage(data) {
-    this.telemetryUtils.uppendContext({id: _.get(data, 'cid'), type: 'Category'});
-    this.fetchCategory(_.get(data, 'cid')).subscribe(response => {
+  /**
+   * It will fetch the children for each category click.
+   * if there is no children available the it will redirect to the topic list page
+   */
+  navigateToDiscussionPage(cid, slug?) {
+    this.telemetryUtils.uppendContext({id: cid, type: 'Category'});
+    this.fetchCategory(cid).subscribe(response => {
       this.categoryId  = _.get(response, 'cid') ;
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
       if (_.get(response, 'children').length > 0) {
-        this.router.navigate([], { relativeTo: this.activatedRoute.parent });
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId }});
         this.categories = [];
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
         });
       } else {
-        this.router.navigate([`/discussion/category/`, `${_.get(data, 'slug')}`]);
+        this.router.navigate([`/discussions/category/`, `${slug}`]);
       }
     }, error => {
       // TODO: Toast error
@@ -87,5 +107,11 @@ export class DiscussCategoryComponent implements OnInit {
 
   logTelemetry(event) {
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.CATEGORY);
+  };
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
   }
 }

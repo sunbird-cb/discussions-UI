@@ -33,7 +33,7 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   navigateToDiscussionDetails(discussionData) {
-    console.log('discussionData', discussionData, this.telemetryUtils.getContext());
+    console.log('discussionData', discussionData);
 
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
     if (matchedTopic) {
@@ -44,7 +44,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`/discussion/category/${_.get(discussionData, 'slug')}`]);
+    this.router.navigate([`/discussions/category/${_.get(discussionData, 'slug')}`]);
   }
 
   getDiscussionList(slug: string) {
@@ -60,5 +60,10 @@ export class DiscussHomeComponent implements OnInit {
 
   logTelemetry(event) {
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
+  }
+
+  closeModal(event) {
+    console.log('event', event);
+    this.showStartDiscussionModal = false;
   }
 }

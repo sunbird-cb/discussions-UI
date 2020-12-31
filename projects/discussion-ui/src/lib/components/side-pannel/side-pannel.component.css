@@ -13,7 +13,7 @@
 .sb-sidebar-menu li:hover,.sb-sidebar-menu li.active {
     background-color: #eee;
     font-weight: 700;
-    border-left: 0.125rem solid #005391;
+    border-left: 3px solid #005391;
     color: #002e50;
 }
 

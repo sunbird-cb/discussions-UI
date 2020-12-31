@@ -4,4 +4,4 @@
     <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
 </div>
 
-<lib-discuss-start *ngIf="showStartDiscussionModal"></lib-discuss-start>
+<lib-discuss-start (close)="closeModal($event)" *ngIf="showStartDiscussionModal"></lib-discuss-start>

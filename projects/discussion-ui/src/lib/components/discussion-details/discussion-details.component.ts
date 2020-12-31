@@ -1,11 +1,12 @@
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { Subscription } from 'rxjs';
 /* tslint:enable */
 
 
@@ -14,7 +15,7 @@ import * as _ from 'lodash'
   templateUrl: './discussion-details.component.html',
   styleUrls: ['./discussion-details.component.css']
 })
-export class DiscussionDetailsComponent implements OnInit {
+export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
   routeParams: any;
   currentActivePage = 1;
@@ -24,7 +25,9 @@ export class DiscussionDetailsComponent implements OnInit {
   pager = {};
   @Input() slug: string;
   postAnswerForm!: FormGroup;
+  replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
+  paramsSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,7 +51,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.refreshPostData(this.currentActivePage);
     }
 
-    this.route.queryParams.subscribe(x => {
+    this.paramsSubscription = this.route.queryParams.subscribe(x => {
       if (x.page) {
         this.currentActivePage = x.page || 1;
         this.refreshPostData(this.currentActivePage);
@@ -59,6 +62,10 @@ export class DiscussionDetailsComponent implements OnInit {
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
+    });
+
+    this.replyForm = this.formBuilder.group({
+      reply: []
     });
   }
 
@@ -186,9 +193,10 @@ export class DiscussionDetailsComponent implements OnInit {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts, comment: string) {
+  postCommentsReply(post: NSDiscussData.IPosts) {
     const req = {
-      content: comment,
+      // tslint:disable-next-line:no-string-literal
+      content: this.replyForm.controls['reply'].value,
       toPid: post.pid,
     };
     if (post && post.tid) {
@@ -214,7 +222,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`/discussion/category/${this.topicId}`], { queryParams: { page } });
+      this.router.navigate([`/discussions/category/${this.topicId}`], { queryParams: { page } });
     }
   }
 
@@ -225,10 +233,40 @@ export class DiscussionDetailsComponent implements OnInit {
     return false;
   }
 
+  public getBgColor(tagTitle: any) {
+    const bgColor = this.stringToColor(tagTitle.toLowerCase());
+    const color = this.getContrast();
+    return { color, 'background-color': bgColor };
+  }
+
+  stringToColor(title) {
+    let hash = 0;
+
+    for (let i = 0; i < title.length; i++) {
+      // tslint:disable-next-line: no-bitwise
+      hash = title.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    // tslint:disable-next-line: prefer-template
+    const colour = 'hsl(' + hue + ',100%,30%)';
+    return colour;
+  }
+
+  getContrast() {
+    return 'rgba(255, 255, 255, 80%)';
+  }
+
   logTelemetry(event, data?) {
     const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ? 
     {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
+  }
+
 }
