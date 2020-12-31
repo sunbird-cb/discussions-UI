@@ -8,7 +8,7 @@
     </div> -->
     <div class="sb-search-box large">
       <div class="input-div relative">
-          <i class="search icon"></i>
+        <img src="./discussion-ui/assets/images/search-icon.png" class="search-icon">
           <input class="sb-search-input" type="text" #question autocomplete="off" maxlength="20" [(ngModel)]="query" i18n-placeholder
           placeholder="Search by name" [required]="false" />
       </div>
@@ -16,7 +16,7 @@
   </ng-container>
 
   <ng-container *ngIf="filteredTags && filteredTags.length > 0">
-    <div class="discuss-tags">
+    <div class="tags">
       <div *ngFor="let tag of filteredTags " class="tag" [ngStyle]="getBgColor(tag.value)">
         <!-- Can enable random colors from below commented code -->
         <!-- <div *ngFor="let tag of filteredTags | pipeFilter:'score,value':query"
