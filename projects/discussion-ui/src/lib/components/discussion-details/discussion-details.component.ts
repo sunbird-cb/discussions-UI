@@ -23,6 +23,7 @@ export class DiscussionDetailsComponent implements OnInit {
   pager = {};
   slug: string;
   postAnswerForm!: FormGroup;
+  replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
 
   constructor(
@@ -51,6 +52,10 @@ export class DiscussionDetailsComponent implements OnInit {
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
+    });
+
+    this.replyForm = this.formBuilder.group({
+      reply: []
     });
   }
 
@@ -178,9 +183,11 @@ export class DiscussionDetailsComponent implements OnInit {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts, comment: string) {
+  postCommentsReply(post: NSDiscussData.IPosts) {
+    console.log('<><><><><>', post);
     const req = {
-      content: comment,
+      // tslint:disable-next-line:no-string-literal
+      content: this.replyForm.controls['reply'].value,
       toPid: post.pid,
     };
     if (post && post.tid) {
@@ -215,6 +222,29 @@ export class DiscussionDetailsComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  public getBgColor(tagTitle: any) {
+    const bgColor = this.stringToColor(tagTitle.toLowerCase());
+    const color = this.getContrast();
+    return { color, 'background-color': bgColor };
+  }
+
+  stringToColor(title) {
+    let hash = 0;
+
+    for (let i = 0; i < title.length; i++) {
+      // tslint:disable-next-line: no-bitwise
+      hash = title.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    // tslint:disable-next-line: prefer-template
+    const colour = 'hsl(' + hue + ',100%,30%)';
+    return colour;
+  }
+
+  getContrast() {
+    return 'rgba(255, 255, 255, 80%)';
   }
 
 }

@@ -1,4 +1,4 @@
-.discuss-tags{
+.tags{
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -15,8 +15,9 @@
     align-items: center;
     text-transform: lowercase;
     padding: 8px 16px;
-    border-radius: 28px 8px 8px 28px;
+    border-radius: 24px 8px 8px 24px;
 }
+
 .count {
     height: auto;
     background: #fff;
@@ -32,38 +33,42 @@
     font: 700 14px/21px Lato;
 }
 
-.sb-search-box .sb-search-input {
-    width: 90%;
-    font-size: 0.75rem;
-    min-height: 2rem;
-    outline: 0;
-    border-radius: 0.1875rem 0 0 0.1875rem;
-    line-height: normal;
-    background: #fff;
-    padding: 1em;
-    border-radius: 5px;
-}
-
-.sb-search-box .icon {
-    position: absolute;
-    margin: 0;
-    height: 1rem;
-    width: 1rem;
-    line-height: normal;
-}
-
-.sb-search-box .input-div {
-    flex: auto;
-}
-
 .sb-search-box {
     display: flex;
     align-items: center;
-    /* border: 0.0625rem solid #7ab4ee; */
-    border-radius: 0.125rem;
-    max-width: 100%;
+    margin: 16px;
+}
+
+.sb-search-box .sb-search-input {
     width: 100%;
-    margin: 24px 0 16px;
+    font-size: 14px;
+    min-height: 2rem;
+    outline: 0;
+    border-radius: 0;
+    line-height: normal;
+    background: none;
+    padding: 1em;
+    border-radius: 5px;
+    border:0px;
+}
+
+.search-icon{
+    width: 18px;
+    height: 18px;
+    margin: 16px 0px 16px 16px;
+}
+
+.sb-search-box .input-div {
+    border-radius: 4px;
+    background: #ffff;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.sb-search-box .input-div:hover{
+    border-color: #0074b6;
 }
 
 @media (max-width: 768px) {

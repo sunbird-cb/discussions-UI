@@ -1,7 +1,7 @@
 .discussion-forum{
-    background: #f5f6fa;
+    background: #ddd;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh
 }
 
 .row {
@@ -10,26 +10,21 @@
     margin-right: auto !important;
     display: flex;
     flex-direction: row;
-    padding: 24px;
 }
 
 .discuss-left-panel{
     width: 25%;
-    padding: 0 24px;
+    padding: 24px;
 }
 
 .discuss-main-panel{
     width: 75%;
-    padding-right: 24px;
+    padding: 24px;
 }
 
 @media (max-width: 768px) {
-    .discussion-forum{
-        height: 100%;
-    }
     .row {   
       flex-direction: column;
-      padding: 0;
     }
     .discuss-left-panel{
         width: auto;
@@ -37,6 +32,6 @@
     }
     .discuss-main-panel{
         width: auto;
-        padding-right: 0;
+        padding: 0;
     }
   }

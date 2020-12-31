@@ -10,6 +10,7 @@
         </div>
         <!-- /header -->
         <ng-container *ngFor="let post of data?.posts">
+          <div *ngIf="post?.index === 0">
           <!-- card content -->
           <div class="margin-left-m mb-0-imp ">
             <!-- <div [innerHTML]="post.content | safeHtml"></div> -->
@@ -29,10 +30,10 @@
             </div>
   
   
-            <div class="flex flex-1 margin-top-m" role="link" tabindex="0" aria-label="tags" >
+            <div class="flex flex-1 margin-top-m tags" role="link" tabindex="0" aria-label="tags" >
               <ng-container *ngIf="data && data?.tags && data?.tags?.length > 0">
                 <span *ngFor="let tag of data?.tags" class="tag"  role="link" tabindex="0"
-                  i18n-aria-label>
+                  i18n-aria-label [ngStyle]="getBgColor(tag.value)">
                   {{tag.value}}
                 </span>
               </ng-container>
@@ -128,6 +129,7 @@
                     </button> -->
                   </div>
           <!-- /post reply -->
+        </div>
         </ng-container>
       </div>
       <!-- /card end -->
@@ -231,10 +233,10 @@
                       </ws-widget-avatar-photo>
                     </ng-container>
                   </div> -->
-                  <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
+                  <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">,
                     <a href="javascript:void(0)" class="flex align-center" i18n-aria-label role="link"
                       aria-label="reply toggle">
-                      <span class="cursor-pointer"> 1 reply </span>
+                      <span class="cursor-pointer margin-gap-tb"> 1 reply </span>
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer ws-mat-accent-text" *ngIf="post?.replyCountToggle"
                         aria-label="reply toggle upwards">
                         <!-- up arrow -->
@@ -251,7 +253,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="" role="link" tabindex="0">
+                <div class="margin-gap-tb" role="link" tabindex="0">
                   <span *ngIf="!post?.replyCountToggle">Last reply
                     {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
                 </div>
@@ -274,7 +276,7 @@
                     </ng-container>
                   </div> -->
                   <div class="ml-2 flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
-                    <span class="cursor-pointer"> {{post?.replies?.count}} replies </span>
+                    <span class="cursor-pointer margin-gap-tb"> {{post?.replies?.count}} replies </span>
                     <a href="javascript:void(0)" class="flex align-center" *ngIf="post?.replyCountToggle" i18n-aria-label
                       role="link" aria-label="reply toggle">
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer" *ngIf="post?.replyCountToggle"
@@ -293,7 +295,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="">
+                <div class="margin-gap-tb">
                   <span *ngIf="!post.replyCountToggle">Last reply
                     {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
                 </div>
@@ -330,12 +332,12 @@
   <ng-template #reply let-post="post">
     <div class="mt-2 flex flex-col">
       <div class="flex-1">
-        <form name="replyForm">
+        <form [formGroup]="replyForm">
           <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
             [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
           </ws-widget-ck-editor> -->
           <div appearance="outline" class="flex-1 w-full text-form-field">
-            <textarea [(ngModel)]="post.comment" class="text-content"></textarea>
+            <textarea formControlName="reply" class="text-content"></textarea>
           </div>
         </form>
       </div>
@@ -343,8 +345,7 @@
         <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment=''">
           <span class="noocoments"> Cancel</span>
         </button>
-        <button mat-raised-button type="button" (click)="postCommentsReply(post, post?.comment )"
-          [disabled]="post?.comment?.length < 3" class="text-white ws-mat-primary-background flex-auto-display post-btn">
+        <button mat-raised-button type="button" (click)="postCommentsReply(post)" class="text-white ws-mat-primary-background flex-auto-display post-btn">
           <span class="text-white" i18n>Post reply</span>
         </button>
       </div>
