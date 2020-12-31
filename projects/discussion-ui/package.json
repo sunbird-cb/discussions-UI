@@ -1,5 +1,5 @@
 {
-  "name": "@project-subird/discussion-ui",
+  "name": "@project-sunbird/discussions-ui",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -17,5 +17,11 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
-  }
+  },
+  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinu Kumar",
+  "license": "ISC"
 }

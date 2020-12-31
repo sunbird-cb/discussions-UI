@@ -1,6 +1,6 @@
 {
-  "name": "sunbird-ed-discussion-library",
-  "version": "0.0.0",
+  "name": "sunbird-ed-discussions-ui",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -53,5 +53,21 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  }
+  },
+  "description": "Sunbird discussions ui library",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunbird-Ed/discussions-UI.git"
+  },
+  "keywords": [
+    "sunbird",
+    "discussion",
+    "angular"
+  ],
+  "author": "Vinu Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sunbird-Ed/discussions-UI/issues"
+  },
+  "homepage": "https://github.com/Sunbird-Ed/discussions-UI#readme"
 }
