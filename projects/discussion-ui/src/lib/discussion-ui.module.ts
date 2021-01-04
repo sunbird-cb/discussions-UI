@@ -8,6 +8,9 @@ import { NgModule } from '@angular/core';
 
 import { DiscussionEventsService } from './discussion-events.service';
 
+export function provideCsModule(){
+  return window['CsModule'];
+}
 @NgModule({
   declarations: [ LibEntryComponent],
   imports: [
@@ -16,6 +19,6 @@ import { DiscussionEventsService } from './discussion-events.service';
     ElementsModule
   ],
   exports: [ ComponentsModule ],
-  providers: [ DiscussionEventsService, TelemetryUtilsService ]
+  providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
 export class DiscussionUiModule { }

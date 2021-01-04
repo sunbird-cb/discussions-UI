@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { of as observableOf, throwError as observableThrowError, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpResponse } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { NSDiscussData } from '../models/discuss.model';
 
 /* tslint:disable */
 import * as _ from 'lodash'
+import { CsDiscussionService } from '@project-sunbird/client-services/services/discussion';
+import { CsModule } from '@project-sunbird/client-services';
 /* tslint:enable */
 
 @Injectable({
@@ -22,13 +24,19 @@ export class DiscussionService {
 
   // tslint:disable-next-line:variable-name
   private _forumIds: any;
+  private csDiscussionService: CsDiscussionService
 
   usr: any;
 
-  constructor( private http: HttpClient ) {
+  constructor( 
+    private http: HttpClient,
+    @Inject('CsModule') private csModule: CsModule 
+    ) {
     // TODO: Take from the logged in user data;
     // this.usr = this.configSvc.userProfile
     this.usr = { userId: '1234' };
+    console.log('CsModule init---', CsModule.instance)
+    this.csDiscussionService = CsModule.instance.discussionService;
   }
 
   initializeUserDetails(userName) {
@@ -49,32 +57,42 @@ export class DiscussionService {
   }
 
   fetchAllTags() {
-    const tags = this.http.get(urlConfig.getAllTags())
-      .toPromise();
-    return tags;
+    // const tags = this.http.get(urlConfig.getAllTags())
+    //   .toPromise();
+    // return tags;
+    console.log('innn fetchAllTags');
+    return this.csDiscussionService.fetchAllTags()
   }
 
   createPost(data: any) {
-    return this.http.post(urlConfig.createPost(), data);
+    // return this.http.post(urlConfig.createPost(), data);
+    return this.csDiscussionService.createPost(data)
   }
   /**
    * @description To get all the categories
    */
+
   fetchAllCategories() {
-    return this.http.get<NSDiscussData.ICategorie[]>(urlConfig.getAllCategories()).pipe(
-      map((data: any) => {
-          // Taking only "categories" from the response
-          const resp = (data as any).categories;
-          return resp;
-      }),
-      catchError( error => {
-        return throwError( 'Something went wrong!' );
-      })
-    );
+    // return this.http.get<NSDiscussData.ICategorie[]>(urlConfig.getAllCategories()).pipe(
+    //   map((data: any) => {
+    //       // Taking only "categories" from the response
+    //       const resp = (data as any).categories;
+    //       return resp;
+    //   }),
+    //   catchError( error => {
+    //     return throwError( 'Something went wrong!' );
+    //   })
+    // );
+    console.log('in fetchall categories');
+    return this.csDiscussionService.fetchAllCategories().pipe(
+      map((data: any) => data.categories)
+    )
+    
   }
 
   fetchSingleCategoryDetails(cid: any) {
-    return this.http.get<NSDiscussData.ICategorie>(urlConfig.getSingleCategoryDetails(cid));
+    return this.csDiscussionService.fetchSingleCategoryDetails(cid);
+    // return this.http.get<NSDiscussData.ICategorie>(urlConfig.getSingleCategoryDetails(cid));
   }
   fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
     const url = this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
@@ -82,84 +100,104 @@ export class DiscussionService {
   }
 
   fetchAllTag() {
-    return this.http.get(urlConfig.getAllTags());
+    return this.csDiscussionService.fetchAllTags()
+    // return this.http.get(urlConfig.getAllTags());
   }
 
   fetchPostDetails() {
-    return this.http.get(urlConfig.getAllTags());
+    return this.csDiscussionService.fetchAllTags()
+    // return this.http.get(urlConfig.getAllTags());
   }
 
   votePost(pid: number, data: any) {
-    const url = urlConfig.votePost(pid);
-    return this.http.post(url, data);
+    return this.csDiscussionService.votePost(pid, data);
+    // const url = urlConfig.votePost(pid);
+    // return this.http.post(url, data);
   }
 
   deleteVotePost(pid: number) {
-    const url = urlConfig.votePost(pid);
-    return this.http.delete(url);
+    // const url = urlConfig.votePost(pid);
+    // return this.http.delete(url);
+    return this.csDiscussionService.deleteVotePost(pid);
   }
 
   bookmarkPost(pid: number) {
-    const url = urlConfig.bookmarkPost(pid);
-    return this.http.post(url, {});
+    // const url = urlConfig.bookmarkPost(pid);
+    // return this.http.post(url, {});
+    return this.csDiscussionService.bookmarkPost(pid);
   }
 
   deleteBookmarkPost(pid: number) {
-    const url = urlConfig.bookmarkPost(pid);
-    return this.http.delete(url);
+    // const url = urlConfig.bookmarkPost(pid);
+    // return this.http.delete(url);
+    return this.csDiscussionService.deleteBookmarkPost(pid);
   }
 
   replyPost(tid: number, data: any) {
-    const url = urlConfig.replyPost(tid);
-    return this.http.post(url, data);
+    // const url = urlConfig.replyPost(tid);
+    // return this.http.post(url, data);
+    return this.csDiscussionService.replyPost(tid, data);
   }
 
   fetchRecentD(page?: any) {
-    const url = this.appendPage(page, urlConfig.recentPost());
-    return this.http.get(url);
+    // const url = this.appendPage(page, urlConfig.recentPost());
+    // return this.http.get(url);
+    return this.csDiscussionService.fetchRecentD(page);
   }
   fetchPopularD(page?: any) {
-    const url = this.appendPage(page, urlConfig.popularPost());
-    return this.http.get(url);
+    // const url = this.appendPage(page, urlConfig.popularPost());
+    // return this.http.get(url);
+    return this.csDiscussionService.fetchPopularD(page);
   }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
-    let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
-    url = this.appendPage(page, url);
-    return this.http.get(url);
+    // let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
+    // url = this.appendPage(page, url);
+    // return this.http.get(url);
+    return this.csDiscussionService.fetchTopicById(topicId, slug, page);
   }
 
   fetchTopicByIdSort(topicId: number, sort: any, page?: any) {
-    let url = urlConfig.getTopic + topicId.toString();
-    url = this.appendPage(page, url);
-    return this.http.get(`${url}&sort=${sort}`);
+    // let url = urlConfig.getTopic + topicId.toString();
+    // url = this.appendPage(page, url);
+    // return this.http.get(`${url}&sort=${sort}`);
+    return this.csDiscussionService.fetchTopicById(topicId, sort, page);
   }
 
   fetchUnreadCOunt() {
-    return this.http.get<any>(urlConfig.unread());
+    // return this.http.get<any>(urlConfig.unread());
+    return this.csDiscussionService.fetchUnreadCOunt();
+
   }
   fetchProfile() {
-    return this.http.get(urlConfig.profile());
+    // return this.http.get(urlConfig.profile());
+    return this.csDiscussionService.fetchProfile();
   }
   fetchProfileInfo(slug: string) {
-    return this.http.get(urlConfig.fetchProfile(slug));
+    // return this.http.get(urlConfig.fetchProfile(slug));
+    return this.csDiscussionService.fetchProfileInfo(slug);
   }
   fetchUpvoted() {// 0
-    return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, 'username')));
+    // return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, 'username')));
+    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, 'username'));
   }
   fetchDownvoted() { // 0
-    return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, 'username')));
+    // return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, 'username')));
+    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, 'username'));
   }
   fetchSaved() { // 0 this.usr.userId
-    return this.http.get(urlConfig.listSaved(_.get(this._userDetails, 'username')));
+    // return this.http.get(urlConfig.listSaved(_.get(this._userDetails, 'username')));
+    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'));
   }
 
   fetchUserProfile(userName) {
-    return this.http.get<any>(urlConfig.userDetails(userName));
+    // return this.http.get<any>(urlConfig.userDetails(userName));
+    return this.csDiscussionService.getUserDetails(_.get(this._userDetails, 'username'));
   }
 
   getContextBasedTopic(slug: string) {
-    return this.http.get(urlConfig.getContextBasedTopics(slug));
+    // return this.http.get(urlConfig.getContextBasedTopics(slug));
+    return this.csDiscussionService.getContextBasedTopic(slug);
   }
 
   registerUser(data) {

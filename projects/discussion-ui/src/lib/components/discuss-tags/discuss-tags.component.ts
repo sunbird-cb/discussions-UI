@@ -28,7 +28,9 @@ export class DiscussTagsComponent implements OnInit {
   }
 
   fetchAllTags() {
+    console.log('in fetchAllTags')
     this.discussionService.fetchAllTag().subscribe(data => {
+      console.log('data ', data)
       this.filteredTags = _.get(data, 'tags');
     });
   }
