@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as CONSTANTS from '../../common/constants.json';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -44,7 +45,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`/discussions/category/${_.get(discussionData, 'slug')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY} ${_.get(discussionData, 'slug')}`]);
   }
 
   getDiscussionList(slug: string) {

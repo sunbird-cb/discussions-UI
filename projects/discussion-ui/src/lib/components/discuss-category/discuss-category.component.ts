@@ -5,6 +5,7 @@ import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 
+import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -88,7 +89,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
           this.categories.push(subCategoryData);
         });
       } else {
-        this.router.navigate([`/discussions/category/`, `${slug}`]);
+        this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}`, `${slug}`]);
       }
     }, error => {
       // TODO: Toast error

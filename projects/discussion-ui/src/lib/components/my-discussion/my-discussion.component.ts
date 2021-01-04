@@ -1,8 +1,9 @@
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { NSDiscussData } from './../../models/discuss.model';
+import { Router } from '@angular/router';
+import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 /* tslint:enable */
@@ -123,7 +124,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`/discussions/category/${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {

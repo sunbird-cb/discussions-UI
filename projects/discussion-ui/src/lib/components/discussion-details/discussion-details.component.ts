@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { Subscription } from 'rxjs';
@@ -222,7 +223,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`/discussions/category/${this.topicId}`], { queryParams: { page } });
+      this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY} ${this.topicId}`], { queryParams: { page } });
     }
   }
 
