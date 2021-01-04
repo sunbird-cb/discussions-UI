@@ -24,22 +24,23 @@ export class DiscussionService {
 
   // tslint:disable-next-line:variable-name
   private _forumIds: any;
-  private csDiscussionService: CsDiscussionService
+  private csDiscussionService: CsDiscussionService;
 
   usr: any;
 
-  constructor( 
+  constructor(
     private http: HttpClient,
-    @Inject('CsModule') private csModule: CsModule 
+    @Inject('CsModule') private csModule: CsModule
     ) {
     // TODO: Take from the logged in user data;
     // this.usr = this.configSvc.userProfile
     this.usr = { userId: '1234' };
-    console.log('CsModule init---', CsModule.instance)
+    console.log('CsModule init---', CsModule.instance);
     this.csDiscussionService = CsModule.instance.discussionService;
   }
 
   initializeUserDetails(userName) {
+    console.log('userName', userName);
     this.fetchUserProfile(userName).subscribe(response => {
       console.log('user', response);
       this.userDetails = response;
@@ -61,12 +62,12 @@ export class DiscussionService {
     //   .toPromise();
     // return tags;
     console.log('innn fetchAllTags');
-    return this.csDiscussionService.fetchAllTags()
+    return this.csDiscussionService.fetchAllTags();
   }
 
   createPost(data: any) {
     // return this.http.post(urlConfig.createPost(), data);
-    return this.csDiscussionService.createPost(data)
+    return this.csDiscussionService.createPost(data);
   }
   /**
    * @description To get all the categories
@@ -86,8 +87,7 @@ export class DiscussionService {
     console.log('in fetchall categories');
     return this.csDiscussionService.fetchAllCategories().pipe(
       map((data: any) => data.categories)
-    )
-    
+    );
   }
 
   fetchSingleCategoryDetails(cid: any) {
@@ -144,11 +144,11 @@ export class DiscussionService {
     // return this.http.get(url);
     return this.csDiscussionService.fetchRecentD(page);
   }
-  fetchPopularD(page?: any) {
-    // const url = this.appendPage(page, urlConfig.popularPost());
-    // return this.http.get(url);
-    return this.csDiscussionService.fetchPopularD(page);
-  }
+  // fetchPopularD(page?: any) {
+  //   // const url = this.appendPage(page, urlConfig.popularPost());
+  //   // return this.http.get(url);
+  //   return this.csDiscussionService.fetchPopularD(page);
+  // }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
     // let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
@@ -169,10 +169,10 @@ export class DiscussionService {
     return this.csDiscussionService.fetchUnreadCOunt();
 
   }
-  fetchProfile() {
-    // return this.http.get(urlConfig.profile());
-    return this.csDiscussionService.fetchProfile();
-  }
+  // fetchProfile() {
+  //   // return this.http.get(urlConfig.profile());
+  //   return this.csDiscussionService.fetchProfile();
+  // }
   fetchProfileInfo(slug: string) {
     // return this.http.get(urlConfig.fetchProfile(slug));
     return this.csDiscussionService.fetchProfileInfo(slug);
@@ -192,7 +192,7 @@ export class DiscussionService {
 
   fetchUserProfile(userName) {
     // return this.http.get<any>(urlConfig.userDetails(userName));
-    return this.csDiscussionService.getUserDetails(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.getUserDetails(this.userName);
   }
 
   getContextBasedTopic(slug: string) {
