@@ -4,6 +4,7 @@ import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import * as CONSTANTS from './../../common/constants.json';
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -57,7 +58,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`/discussions/${pageName}`], { queryParams: this.queryParams });
+    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`], { queryParams: this.queryParams });
   }
 
   ngOnDestroy() {
