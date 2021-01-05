@@ -2,7 +2,9 @@
 import { DiscussionEventsService } from './discussion-events.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as _ from 'lodash-es';
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
 interface ITelemetryObj {
   eid: string,
   edata: {},
