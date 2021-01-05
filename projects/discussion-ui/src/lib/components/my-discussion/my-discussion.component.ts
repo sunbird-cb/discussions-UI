@@ -31,7 +31,9 @@ export class MyDiscussionComponent implements OnInit {
     this.discussService.fetchUserProfile(userName).subscribe(response => {
       console.log(response);
       this.data = response;
-      this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
+      if (_.get(this.data, 'posts')) {
+        this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
+      }
       console.log('>>>>>>>', this.discussionList);
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
@@ -48,9 +50,11 @@ export class MyDiscussionComponent implements OnInit {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
-    // setting the user details;
-    this.data = this.discussService.userDetails;
-    this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
+      // setting the user details;
+      this.data = this.discussService.userDetails;
+      if (_.get(this.data, 'posts')) {
+        this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
+      }
     } else {
       // If fetch user details api failed previously.
       this.fetchUserProfile(this.discussService.userName);
