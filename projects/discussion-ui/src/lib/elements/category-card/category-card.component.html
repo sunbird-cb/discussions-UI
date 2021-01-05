@@ -1,11 +1,11 @@
-<div class="category-card">
+<div class="category-card p-24">
     <div class="category-card-header">
-      <div class="catergory-card-header-image">
+      <div class="catergory-card-header-image mr-16">
         <img src="./discussion-ui/assets/images/Buffer-512.webp" class="category-card-img">
       </div>
       <div>
-        <div class="category-card-header-label" [innerHTML]="category.name"></div>
-        <p class="category-card-header-text">{{category.description}}
+        <div class="category-card-header-label fs-1 font-weight-bold" [innerHTML]="category.name"></div>
+        <p class="category-card-header-text my-16 fnormal">{{category.description}}
           <!-- <span class="dot">{{category.user.username}}</span> -->
           <!-- <span class="margin-left-s">{{category.timestamp | date}}</span> -->
         </p>
@@ -17,17 +17,17 @@
           <span>{{category.upvotes}} viwes</span>
         </div> -->
         <div>
-          <span class="discussion-label">{{category.totalTopicCount}} discussions</span>
+          <span class="discussion-label fnormal font-weight-bold">{{category.totalTopicCount}} discussions</span>
         </div>
         <div>
-          <span class="post-label">{{category.totalPostCount}} posts</span>
+          <span class="post-label fnormal font-weight-bold ml-16">{{category.totalPostCount}} posts</span>
         </div>
       </div>
       <div class="flex flex-1" class="cursor-pointer text-right mobile2">
         <!-- <span class="noocoments ws-mat-default-text" (click)="getcategoryion()">{{(category.teaser.index || 1) -1 }}
           comments</span> 
         <mat-icon class="noocoments ws-mat-default-text">remove_red_eye</mat-icon> -->
-        <img src="./discussion-ui/assets/images/eye-icon.png" class="eye-icon">
+        <img src="./assets/images/eye-icon.png" class="eye-icon">
       </div>
     </div>
     <!-- <mat-card-footer class="flex flex-1 custom margin-0">

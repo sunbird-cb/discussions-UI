@@ -36,8 +36,9 @@
 .sb-search-box {
     display: flex;
     align-items: center;
-    margin: 16px;
+    border: 0px;
 }
+
 
 .sb-search-box .sb-search-input {
     width: 100%;
@@ -59,7 +60,7 @@
 }
 
 .sb-search-box .input-div {
-    border-radius: 4px;
+    border-radius: 24px;
     background: #ffff;
     display: flex;
     align-items: center;

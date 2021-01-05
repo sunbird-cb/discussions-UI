@@ -1,7 +1,9 @@
 .discussion-forum{
     background: #ddd;
     width: 100%;
-    min-height: 100vh
+    min-height: 100vh;
+    position: relative;
+    z-index: 999;
 }
 
 .row {
@@ -23,6 +25,9 @@
 }
 
 @media (max-width: 768px) {
+    .discussion-forum{
+        margin: 24px 0;
+    }
     .row {   
       flex-direction: column;
     }
