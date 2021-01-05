@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { DiscussionService } from '../../services/discussion.service';
+import { DiscussionService, CONTEXT_PROPS } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -89,7 +89,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
           this.categories.push(subCategoryData);
         });
       } else {
-        this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}`, `${slug}`]);
+        this.discussService.setContext(CONTEXT_PROPS.cid, this.categoryId);
+        this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
       }
     }, error => {
       // TODO: Toast error

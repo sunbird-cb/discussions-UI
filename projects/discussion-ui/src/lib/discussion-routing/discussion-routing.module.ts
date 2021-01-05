@@ -40,7 +40,7 @@ const routes: Routes = [
         component: DiscussHomeComponent
       },
       {
-        path: 'category/:topicId/:slug',
+        path: 'category/:topicId',
         pathMatch: 'full',
         component: DiscussionDetailsComponent
       }
