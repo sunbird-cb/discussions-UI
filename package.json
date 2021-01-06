@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "@project-sunbird/client-services": "3.6.7",
+    "@project-sunbird/client-services": "3.6.9",
     "copyfiles": "^2.4.1",
     "core-js": "^2.5.4",
     "lodash-es": "^4.17.15",

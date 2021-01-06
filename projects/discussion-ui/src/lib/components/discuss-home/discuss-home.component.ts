@@ -1,8 +1,9 @@
+import { CONTEXT_PROPS } from './../../services/discussion.service';
 import { Component, OnInit } from '@angular/core';
-import * as CONSTANTS from '../../common/constants.json';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
@@ -18,6 +19,7 @@ export class DiscussHomeComponent implements OnInit {
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
+  categoryId: string;
 
   constructor(
     public router: Router,
@@ -29,7 +31,10 @@ export class DiscussHomeComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.route.params.subscribe(params => {
       this.routeParams = params;
+      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+      console.log(this.discussionService.getContext(CONTEXT_PROPS.cid));
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
+      console.log(this.routeParams);
     });
   }
 
@@ -45,7 +50,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY} ${_.get(discussionData, 'slug')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC} ${_.get(discussionData, 'tid')}`]);
   }
 
   getDiscussionList(slug: string) {

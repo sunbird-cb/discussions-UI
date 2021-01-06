@@ -11,6 +11,12 @@ import { CsDiscussionService } from '@project-sunbird/client-services/services/d
 import { CsModule } from '@project-sunbird/client-services';
 /* tslint:enable */
 
+export const CONTEXT_PROPS = {
+  cid: 'cid',
+  tid: 'tid',
+  uid: 'uid'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,17 +32,21 @@ export class DiscussionService {
   private _forumIds: any;
   private csDiscussionService: CsDiscussionService;
 
+  // tslint:disable-next-line:variable-name
+  private _context: any = {};
+
   usr: any;
 
   constructor(
     private http: HttpClient,
     @Inject('CsModule') private csModule: CsModule
-    ) {
+  ) {
     // TODO: Take from the logged in user data;
     // this.usr = this.configSvc.userProfile
     this.usr = { userId: '1234' };
     console.log('CsModule init---', CsModule.instance);
     this.csDiscussionService = CsModule.instance.discussionService;
+
   }
 
   initializeUserDetails(userName) {
@@ -46,8 +56,8 @@ export class DiscussionService {
       this.userDetails = response;
     }, (error) => {
       // TODO: toaster error
-        console.log('error fetching user details');
-      });
+      console.log('error fetching user details');
+    });
   }
 
   appendPage(page: any, url: string) {
@@ -226,5 +236,17 @@ export class DiscussionService {
 
   get forumIds() {
     return this._forumIds;
+  }
+
+  setContext(key, value) {
+    if (CONTEXT_PROPS[key]) {
+      this._context[key] = value;
+    } else {
+      console.log('Context can not be set for this key: ', key);
+    }
+  }
+
+  getContext(key?: string) {
+    return key ? this._context[key] : this._context;
   }
 }
