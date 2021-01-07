@@ -585,6 +585,7 @@
     }
   ],
   "ROUTES": {
+    "TOPIC": "/discussion-forum/topic/",
     "DISCUSSION": "/discussion-forum/",
     "CATEGORY": "/discussion-forum/category/"
   }

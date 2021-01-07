@@ -76,8 +76,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
-          this.paginationData = data.pagination;
-          this.setPagination();
+          this.paginationData = _.get(data, 'pagination');
+          // this.setPagination();
         },
         (err: any) => {
           // toast message
@@ -88,8 +88,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
-          this.paginationData = data.pagination;
-          this.setPagination();
+          this.paginationData = _.get(data, 'pagination');
+          // this.setPagination();
         },
         (err: any) => {
           // toast message
