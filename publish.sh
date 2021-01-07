@@ -1,4 +1,5 @@
 nvm use 14
 npm install
 npm run build-lib
-npm publish ./dist/discussion-ui
+cd ./dist/discussion-ui
+npm publish 
