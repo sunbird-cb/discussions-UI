@@ -1,4 +1,4 @@
-<button (click)="startDiscussion();logTelemetry($event)" class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discusion</button>
+<button (click)="startDiscussion();logTelemetry($event)" class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
 
 <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" *ngFor="let discussionData of discussionList" id="topic-card">
     <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
