@@ -1,5 +1,5 @@
 {
-  "name": "sunbird-ed-discussions-ui",
+  "name": "sunbird-ed-discussions-ui-v8",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,11 +21,9 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
-    "@project-sunbird/client-services": "3.6.9",
     "copyfiles": "^2.4.1",
     "core-js": "^2.5.4",
-    "lodash-es": "^4.17.15",
-    "rxjs": "~6.3.3",
+    "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
@@ -35,6 +33,7 @@
     "@angular/cli": "^8.0.0",
     "@angular/compiler-cli": "^8.0.0",
     "@angular/language-service": "^8.0.0",
+    "@project-sunbird/client-services": "^3.6.9",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/lodash": "^4.14.161",
@@ -47,13 +46,14 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lodash-es": "^4.17.20",
     "ng-packagr": "^4.2.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.34.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.4.0"
   },
   "description": "Sunbird discussions ui library",
   "repository": {
