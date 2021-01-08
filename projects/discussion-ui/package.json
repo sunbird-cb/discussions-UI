@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@project-sunbird/client-services": "^3.6.10",
+    "@project-sunbird/client-services": "^3.6.11",
     "lodash-es": "^4.17.20"
   },
   "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.",
