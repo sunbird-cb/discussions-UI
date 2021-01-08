@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
@@ -36,8 +36,8 @@ export class DiscussStartComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
     this.startForm = this.formBuilder.group({
-      question: [],
-      description: [],
+      question: ['', Validators.required],
+      description: ['', Validators.required],
       tags: [],
     });
   }

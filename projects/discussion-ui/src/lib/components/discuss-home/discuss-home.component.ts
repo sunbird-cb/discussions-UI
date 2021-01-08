@@ -50,7 +50,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC} ${_.get(discussionData, 'tid')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
   }
 
   getDiscussionList(slug: string) {
