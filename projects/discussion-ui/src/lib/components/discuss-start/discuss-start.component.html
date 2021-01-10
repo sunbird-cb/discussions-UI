@@ -15,15 +15,6 @@
               Question is mandatory</small>
           </div>
 
-          <!-- <div appearance="outline" class="floating-label" [ngClass]="{ 'is-invalid': showError('subTitle') }">
-            <input placeholder="Ask a question or post an idea" class="floating-input" formControlName="question"
-              #question maxlength="1000" [required]="true" />
-            <small class="mandatory-label" *ngIf="showError('question')"
-              i18n="question Error|Explains question is required">
-              Question is mandatory
-            </small>
-          </div> -->
-
           <div class="sb-field-group mb-16">
             <label>Please elaborate your question or idea here</label>
             <div class="sb-field relative">
@@ -34,49 +25,24 @@
               i18n="description Error|Explains description is required"> Description is mandatory</small>
           </div>
 
-          <!-- <div appearance="outline" class="floating-label">
-              <textarea placeholder="Please elaborate your question or idea here"
-                class="floating-input floating-textarea" formControlName="description" #description cdkTextareaAutosize
-                cdkAutosizeMinRows="10" cdkAutosizeMaxRows="30" [required]="true"></textarea>
-              <small class="mandatory-label" *ngIf="showError('description')"
-                i18n="description Error|Explains description is required">
-                Description is mandatory
-              </small>
-            </div> -->
-
-          <div class="flex flex-1 flex-column">
-            <p class="margin-remove-bottom tag-label">
-              Tags
-            </p>
-            <!-- <div appearance="outline" class="margin-top-xs"
-                    [ngClass]="{ 'is-invalid': showError('tags') }">
-                    <input matInput formControlName="tags" #tags maxlength="1000" i18n-placeholder
-                      placeholder="Enter tags here between 3 to 24 characters each " [required]="false" />
-                  </mat-form-field> -->
-            <div appearance="outline" class="floating-label" [ngClass]="{ 'is-invalid': showError('tags') }">
-              <div #postTags>
+              <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
+                <label>Tags</label>
                 <div *ngFor="let tag of postTagsArray">
-                  <!--  come in line 61 [selectable]="true" [removable]="true"
-                        (removed)="removePersonalInterests(tag)" -->
                   {{ tag }}
-                  <!-- <mat-icon matChipRemove>cancel</mat-icon> -->
                 </div>
+                <tag-input [(ngModel)]="items" formControlName="tags"
+                (onSelect)="onSelect($event)"
+                [modelAsStrings]="true">
+                </tag-input>
               </div>
-              <input class="floating-input" placeholder="Enter tags here between 3 to 24 characters each"
-                formControlName="tags" maxlength="24" [required]="false" />
-
-                <!-- <tag-input [ngModel]="items"></tag-input> -->
-
-            </div>
-          </div>
-
+         
           <div *ngIf="showErrorMsg">
             <small class="mandatory-label">
               {{createErrorMsg}}
             </small>
           </div>
 
-          <div>
+          <div class="popup-buttons">
             <button (click)="closeModal();logTelemetry($event)" mat-raised-button type="button" class="discard-btn"
               id="discard-discussion-start-form">
               <span class="ws-mat-default-text" i18n>Discard</span>
