@@ -13,7 +13,11 @@ import * as _ from 'lodash'
   styleUrls: ['./discuss-start.component.css']
 })
 export class DiscussStartComponent implements OnInit {
-
+  items = ['tag 1', 'tag 2'];
+  
+  public onSelect(item) {
+    console.log('tag selected: value is ' + item);
+}
   @Input() categoryId: string;
   @Output() close = new EventEmitter();
 
