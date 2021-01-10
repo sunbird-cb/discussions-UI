@@ -11,6 +11,7 @@ import { MyDiscussionComponent } from './my-discussion/my-discussion.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DiscussStartComponent } from './discuss-start/discuss-start.component';
+import { TagInputModule } from 'ngx-chips';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DiscussStartComponent } from './discuss-start/discuss-start.component';
     HttpClientModule,
     ElementsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TagInputModule
   ],
   exports: [
     SidePannelComponent,
