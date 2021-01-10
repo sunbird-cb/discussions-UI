@@ -13,11 +13,6 @@ import * as _ from 'lodash'
   styleUrls: ['./discuss-start.component.css']
 })
 export class DiscussStartComponent implements OnInit {
-  items = ['tag 1', 'tag 2'];
-  
-  public onSelect(item) {
-    console.log('tag selected: value is ' + item);
-}
   @Input() categoryId: string;
   @Output() close = new EventEmitter();
 
@@ -48,7 +43,9 @@ export class DiscussStartComponent implements OnInit {
 
   initializeData() {
     this.discussService.fetchAllTag().subscribe(data => {
-      this.allTags = _.get(data, 'tags');
+      console.log('all tag from api', data);
+      const tags = _.get(data, 'tags');
+      this.allTags = _.map(tags, (tag) => tag.value);
     });
   }
   showError(meta: string) {
@@ -59,7 +56,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    form.value.tags = this.postTagsArray;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
