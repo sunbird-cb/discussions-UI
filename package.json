@@ -11,7 +11,6 @@
     "copy:assets": "cp -r ./projects/discussion-ui/assets dist/discussion-ui/",
     "build-lib": "ng build && npm run copy:assets"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
@@ -48,6 +47,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lodash-es": "^4.17.20",
     "ng-packagr": "^4.2.0",
+    "ngx-chips": "2.0.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.34.0",
