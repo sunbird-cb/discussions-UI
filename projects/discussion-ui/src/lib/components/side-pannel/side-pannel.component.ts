@@ -44,7 +44,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
       const rawCategories = JSON.parse(_.get(params, 'categories'));
       this.discussService.forumIds = _.get(rawCategories , 'result');
     });
-    // this.discussService.initializeUserDetails(_.get(this.queryParams, 'userName'));
+    this.discussService.initializeUserDetails(_.get(this.queryParams, 'userName'));
     if (this.discussService.forumIds) {
       this.navigate(this.defaultPage);
     } else {
