@@ -49,16 +49,15 @@ export class MyDiscussionComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if (this.discussService.userDetails) {
-      // setting the user details;
-      this.data = this.discussService.userDetails;
-      if (_.get(this.data, 'posts')) {
-        this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
-      }
-    } else {
-      // If fetch user details api failed previously.
-      this.fetchUserProfile(this.discussService.userName);
-    }
+    // if (this.discussService.userDetails) {
+    //   this.data = this.discussService.userDetails;
+    //   if (_.get(this.data, 'posts')) {
+    //     this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
+    //   }
+    // } else {
+    //   this.fetchUserProfile(this.discussService.userName);
+    // }
+    this.fetchUserProfile(this.discussService.userName);
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
