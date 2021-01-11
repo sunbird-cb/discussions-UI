@@ -18,6 +18,7 @@
       <span class="discuss-card-label">
         <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
       </span>
+      <span *ngIf="discussionData?.category?.name">{{discussionData.category.name}}</span>
       <span class="dot" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
       <span class="dot" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
       <span class="timing">{{discussionData.lastposttime | date}}</span>
