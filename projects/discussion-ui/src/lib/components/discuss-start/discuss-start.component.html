@@ -30,8 +30,7 @@
                 <div *ngFor="let tag of postTagsArray">
                   {{ tag }}
                 </div>
-                <tag-input [(ngModel)]="items" formControlName="tags"
-                (onSelect)="onSelect($event)"
+                <tag-input [(ngModel)]="allTags" formControlName="tags"
                 [modelAsStrings]="true">
                 </tag-input>
               </div>
