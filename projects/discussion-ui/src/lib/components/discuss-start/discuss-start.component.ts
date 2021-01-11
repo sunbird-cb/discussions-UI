@@ -25,6 +25,8 @@ export class DiscussStartComponent implements OnInit {
   createErrorMsg = '';
   defaultError = 'Something went wrong, Please try again after sometime!';
 
+  enableSubmitButton = false;
+
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
@@ -39,6 +41,18 @@ export class DiscussStartComponent implements OnInit {
       description: ['', Validators.required],
       tags: [],
     });
+
+    this.startForm.valueChanges.subscribe(val => {
+      this.validateForm();
+    });
+  }
+
+  validateForm() {
+    if (this.startForm.status === 'VALID') {
+      this.enableSubmitButton = true;
+    } else {
+      this.enableSubmitButton = false;
+    }
   }
 
   initializeData() {
@@ -66,7 +80,7 @@ export class DiscussStartComponent implements OnInit {
     };
     this.discussService.createPost(postCreateReq).subscribe(
       () => {
-        this.closeModal();
+        this.closeModal('success');
         form.reset();
         this.uploadSaveData = false;
         // success toast;
@@ -74,7 +88,7 @@ export class DiscussStartComponent implements OnInit {
         // close the modal
       },
       err => {
-        this.closeModal();
+        this.closeModal('discard');
         // error toast
         // .openSnackbar(this.toastError.nativeElement.value)
         this.uploadSaveData = false;
@@ -87,15 +101,12 @@ export class DiscussStartComponent implements OnInit {
       });
   }
 
-  closeModal() {
-    this.close.emit({message: 'close modal'});
+  closeModal(eventMessage: string) {
+    this.close.emit({message: eventMessage});
   }
 
   logTelemetry(event) {
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.START);
   }
-
-
-
 }
 

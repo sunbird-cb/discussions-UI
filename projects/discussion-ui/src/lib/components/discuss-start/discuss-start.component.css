@@ -65,3 +65,8 @@
   border:0px;
 }
 
+.sb-btn-disabled {
+  background-color: var(--gray-100);
+  border: solid var(--gray-100);
+}
+
