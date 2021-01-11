@@ -50,7 +50,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC} ${_.get(discussionData, 'tid')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
   }
 
   getDiscussionList(slug: string) {
@@ -69,7 +69,9 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   closeModal(event) {
-    console.log('event', event);
+    if (_.get(event, 'message') === 'success') {
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    }
     this.showStartDiscussionModal = false;
   }
 }

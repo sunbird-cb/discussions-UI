@@ -1,6 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import * as _ from 'lodash-es';
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
 @Injectable({
   providedIn: 'root'
 })

@@ -50,13 +50,11 @@ export class MyDiscussionComponent implements OnInit {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
-      // setting the user details;
       this.data = this.discussService.userDetails;
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
     } else {
-      // If fetch user details api failed previously.
       this.fetchUserProfile(this.discussService.userName);
     }
   }

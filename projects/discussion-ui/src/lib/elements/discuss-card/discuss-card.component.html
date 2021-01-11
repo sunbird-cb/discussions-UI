@@ -20,7 +20,7 @@
       </span>
       <span class="dot" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
       <span class="dot" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-      <span class="timing">2 months ago</span>
+      <span class="timing">{{discussionData.lastposttime | date}}</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
     <!-- /Card subtitle -->

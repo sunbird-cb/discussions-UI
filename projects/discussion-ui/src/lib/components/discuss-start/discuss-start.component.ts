@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
@@ -13,7 +13,6 @@ import * as _ from 'lodash'
   styleUrls: ['./discuss-start.component.css']
 })
 export class DiscussStartComponent implements OnInit {
-
   @Input() categoryId: string;
   @Output() close = new EventEmitter();
 
@@ -26,6 +25,8 @@ export class DiscussStartComponent implements OnInit {
   createErrorMsg = '';
   defaultError = 'Something went wrong, Please try again after sometime!';
 
+  enableSubmitButton = false;
+
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
@@ -36,15 +37,29 @@ export class DiscussStartComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
     this.startForm = this.formBuilder.group({
-      question: [],
-      description: [],
+      question: ['', Validators.required],
+      description: ['', Validators.required],
       tags: [],
     });
+
+    this.startForm.valueChanges.subscribe(val => {
+      this.validateForm();
+    });
+  }
+
+  validateForm() {
+    if (this.startForm.status === 'VALID') {
+      this.enableSubmitButton = true;
+    } else {
+      this.enableSubmitButton = false;
+    }
   }
 
   initializeData() {
     this.discussService.fetchAllTag().subscribe(data => {
-      this.allTags = _.get(data, 'tags');
+      console.log('all tag from api', data);
+      const tags = _.get(data, 'tags');
+      this.allTags = _.map(tags, (tag) => tag.value);
     });
   }
   showError(meta: string) {
@@ -55,7 +70,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    form.value.tags = this.postTagsArray;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
@@ -66,7 +80,7 @@ export class DiscussStartComponent implements OnInit {
     };
     this.discussService.createPost(postCreateReq).subscribe(
       () => {
-        this.closeModal();
+        this.closeModal('success');
         form.reset();
         this.uploadSaveData = false;
         // success toast;
@@ -74,7 +88,7 @@ export class DiscussStartComponent implements OnInit {
         // close the modal
       },
       err => {
-        this.closeModal();
+        this.closeModal('discard');
         // error toast
         // .openSnackbar(this.toastError.nativeElement.value)
         this.uploadSaveData = false;
@@ -87,15 +101,12 @@ export class DiscussStartComponent implements OnInit {
       });
   }
 
-  closeModal() {
-    this.close.emit({message: 'close modal'});
+  closeModal(eventMessage: string) {
+    this.close.emit({message: eventMessage});
   }
 
   logTelemetry(event) {
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.START);
   }
-
-
-
 }
 
