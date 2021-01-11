@@ -69,7 +69,9 @@ export class DiscussHomeComponent implements OnInit {
   }
 
   closeModal(event) {
-    console.log('event', event);
+    if (_.get(event, 'message') === 'success') {
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    }
     this.showStartDiscussionModal = false;
   }
 }
