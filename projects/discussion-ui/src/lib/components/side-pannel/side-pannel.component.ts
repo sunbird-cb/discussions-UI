@@ -26,6 +26,8 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   queryParams: any;
   hideSidePanel: boolean;
 
+  selectedTab: string;
+
   constructor(
     public router: Router,
     public discussService: DiscussionService,
@@ -54,6 +56,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   }
 
   navigate(pageName: string, event?) {
+    this.selectedTab = pageName;
     this.telemetryUtils.setContext([]);
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);

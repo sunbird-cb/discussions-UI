@@ -10,12 +10,16 @@
     cursor: pointer;
     border-left: 0.125rem solid transparent;
 }
-.sb-sidebar-menu li:hover,.sb-sidebar-menu li.active {
+.sb-sidebar-menu li.active {
     background-color: #eee;
     font-weight: 700;
     border-left: 3px solid #005391;
     color: #002e50;
     font-size: 16px;
+}
+
+.sb-sidebar-menu li:hover {
+    cursor: pointer;
 }
 
 @media (max-width: 700px) {
