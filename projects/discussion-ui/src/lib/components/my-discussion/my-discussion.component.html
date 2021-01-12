@@ -3,10 +3,7 @@
     <div class="profileCard">
       <div class="profilecard-content">
       <div class="profile-header-image">
-        <lib-avatar-photo *ngIf="profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'" size="xl-s">
-        </lib-avatar-photo>
-        <lib-avatar-photo *ngIf="!profilePhoto" [photoUrl]="profilePhoto" [name]="data.fullname || 'User'" size="xl-s">
-        </lib-avatar-photo>
+        <span class="circle-text"><span class="circle-label"></span>A</span>
       </div>
       <div class="flex-1">
         <div class="mobile-margin text-capitalize name-label" [innerHTML]="data.fullname"></div>
