@@ -126,7 +126,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {
