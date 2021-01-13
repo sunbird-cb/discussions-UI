@@ -12,10 +12,10 @@
     margin-right: auto !important;
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .discuss-left-panel{
-    width: 25%;
     padding: 24px;
 }
 

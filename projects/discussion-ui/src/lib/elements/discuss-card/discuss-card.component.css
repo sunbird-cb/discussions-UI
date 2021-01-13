@@ -16,20 +16,22 @@
     margin: 0px;
     color: #000;  
     cursor:pointer;
+    font-size: 16px;
+    font-weight: 700;
 }
 .discuss-card-label{
-    color: #0074b6;  
+    color: #0074b6;
 }
 .discuss-card-subtitle{
     margin: 16px 0;
-    font-size: 18px;
+    font-size: 14px;
     text-transform: capitalize;
 }
 .discuss-card-comments{
   display: flex;
   justify-content: space-between;
   margin: 16px 0;
-  font-size: 18px;
+  font-size: 14px;
 }
 .discuss-comments-area{
     display: flex;
@@ -49,12 +51,14 @@
     align-items: center;
     color: rgba(0,0,0,.6);
     font-weight: 700;
+    font-size: 14px;
 }
 .votes-content{
     display: flex;
     align-items: center;
     color: rgba(0,0,0,.6);
     font-weight: 700;
+    font-size: 14px;
 }
 .votes-content img{
     margin-right:8px;
@@ -75,4 +79,39 @@
     .discuss-card-content{
         width: auto;
     }
+}
+
+.tags{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+.tag {
+    display: flex;
+    width: auto;
+    min-width: max-content;
+    height: 32px;
+    justify-content: space-between;
+    margin: 16px 12px;
+    align-items: center;
+    text-transform: lowercase;
+    padding: 8px 16px;
+    border-radius: 24px 8px 8px 24px;
+}
+
+.count {
+    height: auto;
+    background: #fff;
+    border-radius: 4px;
+    padding: 1px 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 16px;
+    margin: 0 0 0 15px;
+    color: #0074b6;
+    font: 700 14px/21px Lato;
 }
