@@ -21,6 +21,7 @@
     height: 125px;
     border: 1px solid #ddd;
     margin-right: 24px;
+    background: green;
 }
 .name-label{
     color: rgba(0,0,0,.54);

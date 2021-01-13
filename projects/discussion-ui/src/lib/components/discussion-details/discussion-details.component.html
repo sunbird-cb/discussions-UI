@@ -81,7 +81,7 @@
                   </a>
                   <a href="javascript:void(0)" *ngIf="data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                     (click)="unBookMark(post);logTelemetry($event, post)" aria-label="unBookmark post" id="un-bookmark-vote">
-                     <!-- bookmark -->
+                    <!-- bookmark -->
                      <img src="./assets/discussion-ui/images/bookmarks.png" width="16px" height="16px">
                   </a>
                 </span>
@@ -208,10 +208,9 @@
                   <mat-icon>trending_up</mat-icon>
                   <span class="pad-4">{{post.viewcount}} views</span>
                 </span> -->
-                <span class="flex mobile">
+                <!-- <span class="flex mobile">
                   <img src="./assets/discussion-ui/images/bookmarks.png" width="16px" height="16px">
-                  <!-- <mat-icon [ngClass]="{'ws-mat-accent-text': !!post.bookmarked }">bookmark</mat-icon> -->
-                </span>
+                </span> -->
               </div>
               
                 <button mat-button (click)="post.toggle =! post.toggle; post.comment='';logTelemetry($event, post)" class="reply-btn" id="reply-comment">

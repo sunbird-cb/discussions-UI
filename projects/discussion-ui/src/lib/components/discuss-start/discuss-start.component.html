@@ -30,7 +30,8 @@
                 <div *ngFor="let tag of postTagsArray">
                   {{ tag }}
                 </div>
-                <tag-input formControlName="tags"
+                <!-- TODO: check the padding for placeholder -->
+                <tag-input secondaryPlaceholder="Add a tag and press Enter" formControlName="tags"
                 [modelAsStrings]="true">
                 </tag-input>
               </div>
