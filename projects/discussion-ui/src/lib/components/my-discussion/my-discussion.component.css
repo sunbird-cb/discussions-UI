@@ -24,12 +24,12 @@
 }
 .name-label{
     color: rgba(0,0,0,.54);
-    font-size: 21px;
+    font-size: 16px;
     margin: 16px 0; 
 }
 .email,.location,.department{
     color: rgba(0,0,0,.54);
-    font-size: 18px;
+    font-size: 14px;
     margin: 16px 0;  
 }
 .post-count-area{
@@ -38,12 +38,12 @@
 .labels{
     color: rgba(0,0,0,.87);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 }
 .number{
     color: #0074b6;
     margin-right: 16px;
-    font-size: 20px;   
+    font-size: 16px;   
 }
 .recent-tabs{
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
@@ -84,7 +84,7 @@
     line-height: 40px;
     padding: 0 16px;
     overflow: visible;
-    font-size: 18px;
+    font-size: 16px;
     color: #000;
 }
 .filter-option:first-child {

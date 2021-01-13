@@ -5,7 +5,7 @@
         <!-- header -->
         <div role="link" tabindex="0">
           <!-- title -->
-          <div class="margin-l-0 f-medium discussion-card-title" [innerHTML]="data?.title"></div>
+          <div class="discussion-card-title" [innerHTML]="data?.title"></div>
           <!-- <mat-card-subtitle>{{'General discussion'}}</mat-card-subtitle> -->
         </div>
         <!-- /header -->
@@ -100,14 +100,14 @@
             </div>
   
             <div class="flex flex-1 flex-column margin-top-xl">
-              <h3 class="f-medium"> Your answer here </h3>
+              <h3 class="fs-1"> Your answer here </h3>
               <form [formGroup]=" postAnswerForm">
                 <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
                   [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
                 </ws-widget-ck-editor> -->
                 <div appearance="outline" class="flex-1 w-full text-form-field">
-                  <textarea formControlName="answer" class="text-content"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
-                  <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required">
+                  <textarea formControlName="answer" class="text-content fnormal"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
+                  <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required" class="fsmall">
                     This is mandatory
                   </div>
                 </div>
@@ -160,9 +160,9 @@
             </ws-widget-avatar-photo> -->
             <div class="post-header-content">
               <span class="circle-text"><span class="circle-label">CF</span></span>
-              <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="post?.user?.fullname"
+              <span class="post-name" *ngIf="post?.user?.fullname"
                 [innerHTML]="post?.user?.fullname"></span>
-              <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="!post?.user?.fullname"
+              <span class="post-name" *ngIf="!post?.user?.fullname"
                 [innerHTML]="post?.user?.username"></span>
             </div>
             <span class="post-time">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>

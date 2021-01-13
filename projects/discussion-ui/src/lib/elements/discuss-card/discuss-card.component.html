@@ -29,9 +29,9 @@
   <!-- /Card header -->
 
   <!-- Card content -->
-  <div class="flex flex-1">
+  <div class="tags">
     <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
-      <span *ngFor="let tag of discussionData.tags" class="tag">
+      <span *ngFor="let tag of discussionData.tags" class="tag" [ngStyle]="getBgColor(tag.value)">
         {{tag.value}}
       </span>
     </ng-container>
