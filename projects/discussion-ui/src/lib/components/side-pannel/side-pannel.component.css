@@ -1,6 +1,7 @@
 .sb-sidebar-menu {
     list-style-type: none;
-    padding-left: 0;
+   margin-bottom: 0;
+   height: 100%;
 }
 .sb-sidebar-menu li {
     margin-bottom: 0px;
@@ -15,7 +16,6 @@
     font-weight: 700;
     border-left: 3px solid #005391;
     color: #002e50;
-    font-size: 16px;
 }
 
 .sb-sidebar-menu li:hover {
