@@ -222,49 +222,7 @@
               <ng-container [ngTemplateOutlet]="reply" [ngTemplateOutletContext]="{post:post}">
               </ng-container>
             </div>
-            <ng-container *ngIf="post?.replies?.count == 1">
-              <div class="flex flex-1 custom margin-0 margin-top-xl">
-                <div class="width-expand flex align-center">
-                  <!-- Disabled the user display of users avatars who replied -->
-                  <!-- <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
-                    <ng-container *ngFor="let user of post?.replies?.users">
-                      <ws-widget-avatar-photo [name]="user.fullname || user.username" size="s">
-                      </ws-widget-avatar-photo>
-                    </ng-container>
-                  </div> -->
-                  <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle;logTelemetry($event, post)">,
-                    <a href="javascript:void(0)" class="flex align-center" i18n-aria-label role="link"
-                      aria-label="reply toggle">
-                      <span class="cursor-pointer margin-gap-tb"> 1 reply </span>
-                      <span class="pl-2 pr-1 sm:pr-2 cursor-pointer ws-mat-accent-text" *ngIf="post?.replyCountToggle"
-                        aria-label="reply toggle upwards">
-                        <!-- up arrow -->
-                        <i class="fas fa-arrow-up"></i>
-                      </span>
-                    </a>
-                    <a href="javascript:void(0)" class="flex align-center" i18n-aria-label role="link"
-                      aria-label="reply toggle">
-                      <span class="pl-2 pr-1 sm:pr-2 cursor-pointer ws-mat-accent-text" *ngIf="!post?.replyCountToggle"
-                        aria-label="reply toggle downwards">
-                        <!-- down arrow -->
-                        <i class="fas fa-arrow-down"></i>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-                <div class="margin-gap-tb" role="link" tabindex="0">
-                  <span *ngIf="!post?.replyCountToggle">Last reply
-                    {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
-                </div>
-              </div>
-              <div class="w-full" *ngIf="post?.replyCountToggle">
-                <ng-container [ngTemplateOutlet]="replies"
-                  [ngTemplateOutletContext]="{posts:data?.posts, postId:post?.pid}">
-                </ng-container>
-              </div>
-            </ng-container>
-  
-            <ng-container *ngIf="post?.replies?.count > 1">
+            <ng-container *ngIf="post?.replies?.count > 0">
               <div class="flex flex-1 custom margin-0 margin-top-xl">
                 <div class="width-expand flex align-center">
                   <!-- Disabled the user display of users avatars who replied -->
@@ -275,13 +233,13 @@
                     </ng-container>
                   </div> -->
                   <div class="ml-2 flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
-                    <span class="cursor-pointer margin-gap-tb"> {{post?.replies?.count}} replies </span>
+                    <span class="cursor-pointer margin-gap-tb"> {{post?.replies?.count}} reply(s) </span>
                     <a href="javascript:void(0)" class="flex align-center" *ngIf="post?.replyCountToggle" i18n-aria-label
                       role="link" aria-label="reply toggle">
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer" *ngIf="post?.replyCountToggle"
                         aria-label="reply toggle upwards">
                         <!-- up arrow -->
-                        <i class="fas fa-arrow-up"></i>
+                        <img src="./assets/discussion-ui/images/up-arrow.png" width="12px" height="12px">
                       </span>
                     </a>
                     <a href="javascript:void(0)" *ngIf="!post.replyCountToggle" class="flex align-center" i18n-aria-label
@@ -289,7 +247,7 @@
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer" *ngIf="!post.replyCountToggle"
                         aria-label="reply toggle downwards">
                        <!-- down arrow -->
-                       <i class="fas fa-arrow-down"></i>
+                       <img src="./assets/discussion-ui/images/down-arrow.png" width="12px" height="12px">
                       </span>
                     </a>
                   </div>
@@ -353,7 +311,7 @@
   
   <ng-template #replies let-posts="posts" let-postId="postId">
     <div class="mt-2 flex flex-col">
-      <ng-container *ngFor="let post of posts">
+      <ng-container *ngFor="let post of posts | pipeFilter:'toPid': postId; index as index; last as last">
         <!-- card -->
         <div class="ml-4 post-card">
           <!-- card-header -->
@@ -378,13 +336,13 @@
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex margin-right-l mobile">
                   <!-- up arrow -->
-                  <i (click)="upvote(post);logTelemetry($event, post)" id="up-vote" class="cursor-pointer fas fa-arrow-up"></i>
-                  <i (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" class="cursor-pointer upvoted fas fa-arrow-down"></i>
+                  <img *ngIf="!post?.upvoted" class="cursor-pointer" (click)="upvote(post);logTelemetry($event, post)" src="./assets/discussion-ui/images/up-arrow.png" width="11px" height="11px">
+                  <img *ngIf="post?.upvoted" class="cursor-pointer" (click)="delteVote(post);logTelemetry($event, post)" src="./assets/discussion-ui/images/up-arrow.png" width="11px" height="11px">
                   <span class="pad-4">{{post.upvotes}}</span>
                 </span>
                 <span class="flex margin-right-l mobile">
-                  <i *ngIf="!post?.downvoted" (click)="upvote(post);logTelemetry($event, post)" id="up-vote" (click)="downvote(post)" class="cursor-pointer fas fa-arrow-down"></i>
-                  <i *ngIf="post?.downvoted" (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" class="cursor-pointer downvoted fas fa-arrow-down"></i>
+                  <img *ngIf="!post?.downvoted" class="cursor-pointer" (click)="upvote(post);logTelemetry($event, post)" id="up-vote" (click)="downvote(post)" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
+                  <img *ngIf="post?.downvoted" class="cursor-pointer" (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
                   <span class="pad-4">{{post?.downvotes}}</span>
                 </span>
               </div>

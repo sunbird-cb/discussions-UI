@@ -55,7 +55,9 @@ export class MyDiscussionComponent implements OnInit {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
     } else {
-      this.fetchUserProfile(this.discussService.userName);
+      if (localStorage.getItem('userName')) {
+        this.fetchUserProfile(localStorage.getItem('userName'));
+      }
     }
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
