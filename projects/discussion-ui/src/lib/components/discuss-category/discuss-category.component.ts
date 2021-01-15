@@ -51,7 +51,6 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     this.forumIds = this.discussService.forumIds;
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       if ( _.get(params, 'cid')) {
-        console.log('calling from this subscription');
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
         this.categories = [];
@@ -61,6 +60,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   }
 
   fetchAllAvailableCategories(ids) {
+
     ids.forEach(cid => {
       this.fetchCategory(cid).subscribe(data => {
         this.categories.push(data);
