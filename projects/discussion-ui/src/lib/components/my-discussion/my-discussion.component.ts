@@ -21,6 +21,7 @@ export class MyDiscussionComponent implements OnInit {
   department!: string | null;
   location!: string | null;
   profilePhoto!: string;
+  userInitial = '';
   constructor(
     private discussService: DiscussionService,
     public router: Router,
@@ -31,6 +32,7 @@ export class MyDiscussionComponent implements OnInit {
     this.discussService.fetchUserProfile(userName).subscribe(response => {
       console.log(response);
       this.data = response;
+      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -51,6 +53,7 @@ export class MyDiscussionComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
       this.data = this.discussService.userDetails;
+      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -59,6 +62,13 @@ export class MyDiscussionComponent implements OnInit {
         this.fetchUserProfile(localStorage.getItem('userName'));
       }
     }
+  }
+
+  setUserInitial(userData) {
+    const name = _.get(userData, 'username').split(' ');
+    name.forEach(element => {
+      this.userInitial = this.userInitial + element.charAt(0);
+    });
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
