@@ -32,6 +32,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   paramsSubscription: Subscription;
 
+  showLoader = false;
+
   constructor(
     public discussService: DiscussionService,
     public router: Router,
@@ -49,6 +51,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     this.forumIds = this.discussService.forumIds;
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       if ( _.get(params, 'cid')) {
+        console.log('calling from this subscription');
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
         this.categories = [];
@@ -77,8 +80,10 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
    * if there is no children available the it will redirect to the topic list page
    */
   navigateToDiscussionPage(cid, slug?) {
+    this.showLoader = true;
     this.telemetryUtils.uppendContext({id: cid, type: 'Category'});
-    this.fetchCategory(cid).subscribe(response => {
+    this.discussService.fetchSingleCategoryDetails(cid).subscribe(response => {
+      this.showLoader = false;
       this.categoryId  = _.get(response, 'cid') ;
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
@@ -93,6 +98,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
       }
     }, error => {
+      this.showLoader = false;
       // TODO: Toast error
       console.log('issue fetching category', error);
     });
