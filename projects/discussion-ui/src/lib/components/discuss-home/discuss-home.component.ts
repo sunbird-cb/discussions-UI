@@ -20,6 +20,7 @@ export class DiscussHomeComponent implements OnInit {
   routeParams: any;
   showStartDiscussionModal = false;
   categoryId: string;
+  isTopicCreator = false;
 
   constructor(
     public router: Router,
@@ -55,8 +56,9 @@ export class DiscussHomeComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.discussionService.getContextBasedTopic(slug).subscribe(data => {
-    this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
-    console.log('this.discussionList', this.discussionList);
+      this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
+      this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
+      console.log('this.discussionList', this.discussionList);
     });
   }
 
