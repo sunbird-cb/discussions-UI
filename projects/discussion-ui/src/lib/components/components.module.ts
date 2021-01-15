@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 import { DiscussionService } from './../services/discussion.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ElementsModule } from './../elements/elements.module';
@@ -30,7 +31,8 @@ import { TagInputModule } from 'ngx-chips';
     ElementsModule,
     FormsModule,
     ReactiveFormsModule,
-    TagInputModule
+    TagInputModule,
+    PipesModule
   ],
   exports: [
     SidePannelComponent,

@@ -8,6 +8,7 @@ import * as CONSTANTS from './../../common/constants.json';
 
 /* tslint:disable */
 import * as _ from 'lodash'
+import { first } from 'rxjs/operators';
 /* tslint:enable */
 
 @Component({
@@ -39,14 +40,15 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     // TODO: loader or spinner
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
+    this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
       console.log('params', params);
       this.queryParams = params;
       this.discussService.userName = _.get(params, 'userName');
       const rawCategories = JSON.parse(_.get(params, 'categories'));
       this.discussService.forumIds = _.get(rawCategories , 'result');
     });
-    this.discussService.initializeUserDetails(_.get(this.queryParams, 'userName'));
+    localStorage.setItem('userName', _.get(this.queryParams, 'userName'));
+    this.discussService.initializeUserDetails(localStorage.getItem('userName'));
     if (this.discussService.forumIds) {
       this.navigate(this.defaultPage);
     } else {
