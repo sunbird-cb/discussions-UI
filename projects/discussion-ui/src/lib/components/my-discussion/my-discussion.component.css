@@ -108,4 +108,5 @@
 .box-text{
     font-size: 4rem;
     color: white;
+    text-transform: uppercase;
 }

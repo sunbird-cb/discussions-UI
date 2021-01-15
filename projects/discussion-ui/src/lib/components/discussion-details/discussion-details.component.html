@@ -46,7 +46,7 @@
                     <!-- upward arrow -->
                     <img src="./assets/discussion-ui/images/up-arrow.png" width="16px" height="16px" class="icons">
                   </a>
-                  <a href="javascript:void(0)" i18n-aria-label *ngIf="post.upvoted" role="link" (click)="delteVote(post);logTelemetry($event, post)"
+                  <a href="javascript:void(0)" i18n-aria-label *ngIf="post.upvoted" role="link" (click)="deleteVote(post);logTelemetry($event, post)"
                     aria-label="remove upvote" id="delete-vote">
                     <!-- upward arrow -->
                     <img src="./assets/discussion-ui/images/up-arrow.png" width="16px" height="16px">
@@ -61,7 +61,7 @@
                     <img src="./assets/discussion-ui/images/down-arrow.png" width="16px" height="16px">
                   </a>
                   <a href="javascript:void(0)" *ngIf="post?.downvoted" i18n-aria-label role="link"
-                    (click)="delteVote(post);logTelemetry($event, post)" aria-label="remove down vote" id="delete-vote">
+                    (click)="deleteVote(post);logTelemetry($event, post)" aria-label="remove down vote" id="delete-vote">
                     <!-- downward arrow -->
                     <img src="./assets/discussion-ui/images/down-arrow.png" width="16px" height="16px">
                   </a>
@@ -175,20 +175,20 @@
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex mobile">
                    <!-- upward arrow -->
-                   <img src="./assets/discussion-ui/images/up-arrow.png" width="16px" height="16px">
                   <a href="javascript:void(0)" class="up-vote-text"  *ngIf="!post?.upvoted" i18n-aria-label role="link" (click)="upvote(post);logTelemetry($event, post)"
-                    aria-label="upvote comment" id="up-vote">    
+                    aria-label="upvote comment" id="up-vote"> 
+                    <img src="./assets/discussion-ui/images/up-arrow.png" width="16px" height="16px">   
                   </a>
                 </span>
                 <span class="flex margin-right-l mobile">
                   <!-- upward arrow -->
-                  
-                  <a href="javascript:void(0)" class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="delteVote(post);logTelemetry($event, post)"
+                  <a href="javascript:void(0)" class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" (click)="deleteVote(post);logTelemetry($event, post)"
                     aria-label="delete upvote on comment" id="delete-vote">
-                     
+                    <img src="./assets/discussion-ui/images/up-arrow.png" width="16px" height="16px">
                   </a>
                   <span class="pad-4">{{post?.upvotes}}</span>
                 </span>
+
                 <span class="flex mobile">
                   <a href="javascript:void(0)" id="down-vote" *ngIf="!post?.downvoted" i18n-aria-label role="link"
                     (click)="downvote(post);logTelemetry($event, post)" aria-label="downvote comment">
@@ -198,7 +198,7 @@
                 </span>
                 <span class="flex margin-right-l mobile">
                   <a href="javascript:void(0)" id="delete-vote" *ngIf="post?.downvoted" i18n-aria-label role="link"
-                    (click)="delteVote(post);logTelemetry($event, post)" aria-label="delete downvote on comment">
+                    (click)="deleteVote(post);logTelemetry($event, post)" aria-label="delete downvote on comment">
                      <!-- down arrow -->
                      <img src="./assets/discussion-ui/images/down-arrow.png" width="16px" height="16px">
                   </a>
@@ -337,12 +337,12 @@
                 <span class="flex margin-right-l mobile">
                   <!-- up arrow -->
                   <img *ngIf="!post?.upvoted" class="cursor-pointer" (click)="upvote(post);logTelemetry($event, post)" src="./assets/discussion-ui/images/up-arrow.png" width="11px" height="11px">
-                  <img *ngIf="post?.upvoted" class="cursor-pointer" (click)="delteVote(post);logTelemetry($event, post)" src="./assets/discussion-ui/images/up-arrow.png" width="11px" height="11px">
+                  <img *ngIf="post?.upvoted" class="cursor-pointer" (click)="deleteVote(post);logTelemetry($event, post)" src="./assets/discussion-ui/images/up-arrow.png" width="11px" height="11px">
                   <span class="pad-4">{{post.upvotes}}</span>
                 </span>
                 <span class="flex margin-right-l mobile">
-                  <img *ngIf="!post?.downvoted" class="cursor-pointer" (click)="upvote(post);logTelemetry($event, post)" id="up-vote" (click)="downvote(post)" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
-                  <img *ngIf="post?.downvoted" class="cursor-pointer" (click)="delteVote(post);logTelemetry($event, post)" id="delete-vote" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
+                  <img *ngIf="!post?.downvoted" class="cursor-pointer" (click)="downvote(post); logTelemetry($event, post)" id="up-vote" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
+                  <img *ngIf="post?.downvoted" class="cursor-pointer" (click)="deleteVote(post);logTelemetry($event, post)" id="delete-vote" src="./assets/discussion-ui/images/down-arrow.png" width="11px" height="11px">
                   <span class="pad-4">{{post?.downvotes}}</span>
                 </span>
               </div>

@@ -161,7 +161,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  delteVote(discuss: any) {
+  deleteVote(discuss: any) {
     this.discussionService.deleteVotePost(discuss.pid).subscribe( data => {
       // toast
         this.refreshPostData(this.currentActivePage);
