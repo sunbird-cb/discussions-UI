@@ -1,4 +1,4 @@
-.related-discussion {
+.discussion-details {
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     background: #fff;
     color: rgba(0,0,0,.87);
@@ -10,9 +10,12 @@
     padding: 24px;
     border-radius: 4px;
 }
+.discussion-details-content{
+    margin: 0 16px;
+}
 
 .pad-4{
-    margin-left: 16px;
+    margin-left:8px;
 }
 
 .icons{
@@ -23,18 +26,20 @@
  margin-right: 24px;
 }
 .discussion-card-title{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
+    text-transform: capitalize;
 }
 .discussion-heading{
-    margin:16px 0;
-    font-size: 14px;
+ font-weight: 400;
+ text-transform: capitalize;
 }
 .discussion-content{
     display: flex;
     align-items: center;
     margin-bottom: 16px;
     font-size: 14px;
+    color: rgba(0,0,0,.6);
 }
 .comment-section{
     display: flex;
@@ -70,9 +75,9 @@
 .comments-count{
     display: flex;
     justify-content: space-between;
-    margin: 32px 0; 
-    color:#948e8e;
-    font-size: 16px;
+    margin: 32px 0;
+    font-size: 14px;
+    font-weight: 700;
 }
 .text-form-field{
     display: flex;
@@ -83,7 +88,7 @@
     min-height: 108px;
     max-height: 540px;
     /* width: 97.6%;  */
-    border-color: #ddd;
+    border: 1.5px solid #ccc2c2;
     border-radius: 4px;
     margin: 16px 0;
     cursor: pointer;
@@ -96,11 +101,11 @@
   border: 1px solid #ff6979;
 }
 
-/* .text-content.is-valid,
+.text-content.is-valid,
 .text-content.is-valid:hover,
 .text-content.is-valid:focus {
   border: 1px solid #0074b6;
-} */
+}
 
 .post-btn{
     background-color: #0074b6!important;
@@ -154,7 +159,7 @@
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
     position: relative;
-    padding: 16px 0;
+    padding: 24px 12px;
     box-shadow: none!important;
     border-radius: unset;
     background: inherit!important; 
@@ -201,7 +206,7 @@
 }
 .post-card{
     border-bottom: 1px solid #ddd;
-    margin-bottom: 16px;
+    margin: 0 16px 16px 16px;
 }
 .comments-section{
     display: flex;
@@ -218,6 +223,10 @@
     color: rgba(0,0,0,.6);
     font-size: 16px;  
 }
+.post-labels{
+ text-transform: capitalize;
+ font-size: 16px;
+}
 .reply-area{
     display: flex;
     justify-content: space-between;
@@ -228,20 +237,22 @@
     display: flex;
     flex: 1;
     flex-direction: row;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .tag {
+    font-size: 12px;
     display: flex;
     width: auto;
     min-width: max-content;
     height: 32px;
     justify-content: space-between;
-    margin: 16px 12px;
+    margin-right: 16px;
     align-items: center;
     text-transform: lowercase;
     padding: 8px 16px;
     border-radius: 24px 8px 8px 24px;
+    margin-bottom: 16px;
 }
 
 .count {
@@ -261,4 +272,11 @@
 
 .margin-gap-tb{
     margin:16px 0;
+}
+
+@media (max-width: 768px) {
+ .post-btn{
+     width: 100%;
+     margin-top:8px;
+ }
 }
