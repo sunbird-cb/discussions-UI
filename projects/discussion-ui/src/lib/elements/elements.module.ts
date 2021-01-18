@@ -17,7 +17,8 @@ import { AppLoaderComponent } from './app-loader/app-loader.component';
   exports: [
     CategoryCardComponent,
     DiscussCardComponent,
-    AvatarPhotoComponent
+    AvatarPhotoComponent,
+    AppLoaderComponent
   ]
 })
 export class ElementsModule { }

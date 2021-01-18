@@ -1,12 +1,14 @@
+<lib-app-loader *ngIf="showLoader"></lib-app-loader>
+
 <div class="flex flex-1 flex-column my-discussion">
   <div class="flex-custom">
     <div class="profileCard">
       <div class="profilecard-content">
       <div class="profile-header-image">
-        <span class="circle-text"><span class="circle-label"></span>A</span>
+        <span class="box-text"><span class="circle-label"></span>{{userInitial}}</span>
       </div>
       <div class="flex-1">
-        <div class="mobile-margin text-capitalize name-label" [innerHTML]="data.fullname"></div>
+        <div class="mobile-margin text-capitalize name-label" [innerHTML]="data.username"></div>
         <div class="department">{{department}}</div>
         <div class="location">{{location}} </div>
         <div class='email'>{{data.email || data.username}}</div>

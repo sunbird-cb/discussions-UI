@@ -21,6 +21,8 @@ export class MyDiscussionComponent implements OnInit {
   department!: string | null;
   location!: string | null;
   profilePhoto!: string;
+  userInitial = '';
+  showLoader = false;
   constructor(
     private discussService: DiscussionService,
     public router: Router,
@@ -28,9 +30,12 @@ export class MyDiscussionComponent implements OnInit {
 
   /** To fetch user details */
   fetchUserProfile(userName) {
+    this.showLoader = true;
     this.discussService.fetchUserProfile(userName).subscribe(response => {
+      this.showLoader = false;
       console.log(response);
       this.data = response;
+      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -38,12 +43,11 @@ export class MyDiscussionComponent implements OnInit {
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
       // }
-    },
-      /* tslint:disable */
-      () => {
-        this.profilePhoto = ''
-      })
-    /* tslint:enable */
+    }, error => {
+      this.showLoader = false;
+      // TODO: Toaster
+      console.log('error fetching user details');
+    });
   }
 
   ngOnInit() {
@@ -51,6 +55,7 @@ export class MyDiscussionComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userDetails) {
       this.data = this.discussService.userDetails;
+      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -59,6 +64,13 @@ export class MyDiscussionComponent implements OnInit {
         this.fetchUserProfile(localStorage.getItem('userName'));
       }
     }
+  }
+
+  setUserInitial(userData) {
+    const name = _.get(userData, 'username').split(' ');
+    name.forEach(element => {
+      this.userInitial = this.userInitial + element.charAt(0);
+    });
   }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
