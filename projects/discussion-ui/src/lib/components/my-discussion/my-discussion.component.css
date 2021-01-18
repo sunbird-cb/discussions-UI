@@ -22,11 +22,14 @@
     border: 1px solid #ddd;
     margin-right: 24px;
     background: green;
+    text-align: center;
 }
 .name-label{
     color: rgba(0,0,0,.54);
     font-size: 16px;
-    margin: 16px 0; 
+    margin: 16px 0;
+    font-size: 16px;
+    font-weight: 700;
 }
 .email,.location,.department{
     color: rgba(0,0,0,.54);
@@ -100,4 +103,10 @@
     .profileCard{
         width: auto;
     }
+}
+
+.box-text{
+    font-size: 4rem;
+    color: white;
+    text-transform: uppercase;
 }

@@ -16,6 +16,7 @@ export class DiscussTagsComponent implements OnInit {
 
   query: string;
   filteredTags: NSDiscussData.ITag[];
+  showLoader = false;
   constructor(
     private discussionService: DiscussionService,
     private telemetryUtils: TelemetryUtilsService
@@ -28,10 +29,16 @@ export class DiscussTagsComponent implements OnInit {
   }
 
   fetchAllTags() {
-    console.log('in fetchAllTags')
+    this.showLoader = true;
+    console.log('in fetchAllTags');
     this.discussionService.fetchAllTag().subscribe(data => {
-      console.log('data ', data)
+      this.showLoader = false;
+      console.log('data ', data);
       this.filteredTags = _.get(data, 'tags');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
     });
   }
 

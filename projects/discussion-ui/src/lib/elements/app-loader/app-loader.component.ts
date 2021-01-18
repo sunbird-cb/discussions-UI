@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+/* tslint:disable */
+import * as _ from 'lodash'
+/* tslint:enable */
 
 @Component({
   selector: 'lib-app-loader',
@@ -6,18 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-loader.component.css']
 })
 export class AppLoaderComponent implements OnInit {
+
+  @Input() data;
   headerMessage: string;
   loaderMessage: string;
-  
+
   constructor() { }
 
   ngOnInit() {
-      // this.headerMessage = _.get(this.resourceService.messages.fmsg, 'm0087');
-      // this.loaderMessage = _.get(this.resourceService.messages.fmsg, 'm0088');
-      // if (this.data) {
-      //   this.headerMessage = this.data.headerMessage || this.headerMessage;
-      //   this.loaderMessage = this.data.loaderMessage || this.loaderMessage;
-      }
+    this.headerMessage = 'Please wait';
+    this.loaderMessage = 'We are fetching details';
+    if (this.data) {
+      this.headerMessage = _.get(this.data, 'headerMessage') || this.headerMessage;
+      this.loaderMessage = _.get(this.data, 'loaderMessage') || this.loaderMessage;
+    }
 
+  }
 }
 
