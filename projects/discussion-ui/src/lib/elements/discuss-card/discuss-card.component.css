@@ -12,64 +12,70 @@
     border-radius: 4px;
     width: 100%;
 }
+.discuss-card-header{
+    margin: 0px 16px;
+}
+.discuss-user-label{
+    text-transform: capitalize;
+}
 .discuss-card-title{
     margin: 0px;
     color: #000;  
     cursor:pointer;
     font-size: 16px;
     font-weight: 700;
+    text-transform: capitalize;
 }
 .discuss-card-label{
     color: #0074b6;
 }
+
+.dot{
+
+}
+
 .discuss-card-subtitle{
-    margin: 16px 0;
+    margin: 12px 0px 16px 0px;
     font-size: 14px;
     text-transform: capitalize;
 }
 .discuss-card-comments{
   display: flex;
   justify-content: space-between;
-  margin: 16px 0;
+  margin: 0 16px 16px 16px;
   font-size: 14px;
 }
 .discuss-comments-area{
     display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
 }
-.dot:before {
-    content: "•";
-    margin: 1rem;
-    color: rgba(0,0,0,.54);
+
+.dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 16px;
+    background: #858181;
 }
+
 .timing{
     margin-left:16px;
-    color: rgba(0,0,0,.54);  
+    color: #858181;  
 }
+
 .views-content{
-    margin-left:16px;
-    display: flex;
-    align-items: center;
-    color: rgba(0,0,0,.6);
-    font-weight: 700;
-    font-size: 14px;
+    margin-left:24px;
 }
-.votes-content{
-    display: flex;
-    align-items: center;
-    color: rgba(0,0,0,.6);
-    font-weight: 700;
-    font-size: 14px;
-}
-.votes-content img{
-    margin-right:8px;
+
+.votes-content img,.views-content img{
+    margin-right:4px;
     height: 20px;
     width: 20px;
 }
-.views-content img{
-    margin-right:8px;
-    height: 20px;
-    width: 20px;
-}
+
 .comments-count{
     color: #0074b6;
     font-weight: 700;
@@ -86,19 +92,22 @@
     flex: 1;
     flex-direction: row;
     flex-wrap: wrap; 
+    margin:0 16px;
 }
 
 .tag {
+    font-size: 12px;
     display: flex;
     width: auto;
     min-width: max-content;
     height: 32px;
     justify-content: space-between;
-    margin: 16px 12px;
+    margin-right: 16px;
     align-items: center;
     text-transform: lowercase;
     padding: 8px 16px;
     border-radius: 24px 8px 8px 24px;
+    margin-bottom: 16px;
 }
 
 .count {
@@ -115,3 +124,4 @@
     color: #0074b6;
     font: 700 14px/21px Lato;
 }
+

@@ -1,11 +1,11 @@
-<div class="flex flex-1 related-discussion margin-fix">
-    <div class="flex flex-3 flex-column pb-10">
+<div class="discussion-details">
+    <div>
       <!-- card -->
-      <div class="flex-1 remove-botton-radius">
+      <div class="discussion-details-content">
         <!-- header -->
         <div role="link" tabindex="0">
           <!-- title -->
-          <div class="discussion-card-title" [innerHTML]="data?.title"></div>
+          <div class="discussion-card-title mb-16" [innerHTML]="data?.title"></div>
           <!-- <mat-card-subtitle>{{'General discussion'}}</mat-card-subtitle> -->
         </div>
         <!-- /header -->
@@ -14,7 +14,7 @@
           <!-- card content -->
           <div class="margin-left-m mb-0-imp ">
             <!-- <div [innerHTML]="post.content | safeHtml"></div> -->
-            <p role="link" tabindex="0" class="discussion-heading" [innerHTML]="post?.content"></p>
+            <p role="link" tabindex="0" class="discussion-heading fnormal mb-16" [innerHTML]="post?.content"></p>
             <div class="discussion-content" role="link" tabindex="0">
               <!-- <span class="ws-mat-default-text">{{'Asked by'}}</span> -->
               <!-- TODO: avatar photo -->
@@ -100,14 +100,14 @@
             </div>
   
             <div class="flex flex-1 flex-column margin-top-xl">
-              <h3 class="fs-1"> Your answer here </h3>
+              <h3 class="fs-1 font-weight-bold"> Your answer here </h3>
               <form [formGroup]=" postAnswerForm">
                 <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
                   [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
                 </ws-widget-ck-editor> -->
                 <div appearance="outline" class="flex-1 w-full text-form-field">
                   <textarea formControlName="answer" class="text-content fnormal"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
-                  <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required" class="fsmall">
+                  <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required" class="fsmall sb-color-error font-weight-bold">
                     This is mandatory
                   </div>
                 </div>
@@ -154,7 +154,7 @@
         <!-- card content -->
         <div *ngIf="post?.index != 0" class="post-card">
           <!-- header -->
-          <div class="mb-5 comment-section align-center" role="link" tabindex="0">
+          <div class="mb-24 comment-section align-center" role="link" tabindex="0">
             <!-- TODO: Avatar photo -->
             <!-- <ws-widget-avatar-photo [name]="post?.user?.fullname || post?.user?.username" size="s">
             </ws-widget-avatar-photo> -->
@@ -165,13 +165,13 @@
               <span class="post-name" *ngIf="!post?.user?.fullname"
                 [innerHTML]="post?.user?.username"></span>
             </div>
-            <span class="post-time">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
+            <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
           </div>
           <!-- / header -->
           <div>
-            <p role="link" tabindex="0" [innerHTML]="post?.content"></p>
+            <p role="link" tabindex="0" [innerHTML]="post?.content" class="post-labels"></p>
   
-            <div class="reply-area">
+            <div class="reply-area my-24 font-weight-bold fnormal">
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex mobile">
                    <!-- upward arrow -->
