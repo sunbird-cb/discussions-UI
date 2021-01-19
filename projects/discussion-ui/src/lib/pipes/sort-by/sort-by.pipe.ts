@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-import { orderBy } from 'lodash';
+/* tslint:disable */
+import { orderBy } from 'lodash-es';
+/* tslint:enable */
 
 @Pipe({
   name: 'sortBy'
