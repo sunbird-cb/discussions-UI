@@ -85,7 +85,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'uid');
+          this.mainUid = _.get(data, 'loggedInUser.uid');
           // this.setPagination();
         },
         (err: any) => {
@@ -98,7 +98,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'uid');
+          this.mainUid = _.get(data, 'loggedInUser.uid');
           // this.setPagination();
         },
         (err: any) => {
