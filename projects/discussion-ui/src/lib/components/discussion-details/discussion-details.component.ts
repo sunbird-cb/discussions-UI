@@ -26,9 +26,15 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   pager = {};
   @Input() slug: string;
   postAnswerForm!: FormGroup;
+  UpdatePostAnswerForm: FormGroup;
   replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
   paramsSubscription: Subscription;
+  editMode = false;
+  updatedPost = false;
+  contentPost: any;
+  editContentIndex: any;
+  mainUid: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +70,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
     });
-
+    this.UpdatePostAnswerForm = this.formBuilder.group({
+      updatedAnswer: [],
+    });
     this.replyForm = this.formBuilder.group({
       reply: []
     });
@@ -77,6 +85,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
+          this.mainUid = _.get(data, 'uid');
           // this.setPagination();
         },
         (err: any) => {
@@ -89,6 +98,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
+          this.mainUid = _.get(data, 'uid');
           // this.setPagination();
         },
         (err: any) => {
@@ -258,12 +268,54 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   logTelemetry(event, data?) {
-    const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ? 
+    const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ?
     {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
 
+  onEditMode(UpdatePostStatus: boolean) {
+  if (UpdatePostStatus) {
+    this.editMode = true;
+  } else {
+    this.editMode = false;
+  }
+  }
+
+  getRealtimePost(postContent: any, index: any) {
+    this.editMode = true;
+    this.editContentIndex = index;
+    this.contentPost = postContent.replace(/<[^>]*>/g, '');
+  }
+
+  updatePost(updatedPostContent: any, pid: number) {
+    this.editMode = false;
+    const req = {
+      content: updatedPostContent,
+      title: '',
+      tags : [],
+      };
+    this.discussionService.editPost(pid, req).subscribe((data: any) => {
+      window.location.reload();
+      console.log('success data', data);
+    }, (error) => {
+      console.log('e', error);
+    });
+    console.log(pid);
+  }
+
+  deletePost(postId: number) {
+    const req = {
+        uid: this.mainUid,
+        pid: postId
+    };
+    this.discussionService.deletePost(postId, req).subscribe((data: any) => {
+      window.location.reload();
+      console.log('success data', data);
+    }, (error) => {
+      console.log('e', error);
+    });
+  }
   ngOnDestroy() {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();

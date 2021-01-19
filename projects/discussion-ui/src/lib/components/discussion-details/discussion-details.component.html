@@ -150,7 +150,7 @@
           </div>
         </div>
       </ng-container>
-      <ng-container *ngFor="let post of data?.posts | sortBy: 'timestampISO':'desc' ">
+      <ng-container *ngFor="let post of data?.posts | sortBy: 'timestampISO':'desc'; index as i">
         <!-- card content -->
         <div *ngIf="post?.index != 0" class="post-card">
           <!-- header -->
@@ -165,12 +165,40 @@
               <span class="post-name" *ngIf="!post?.user?.fullname"
                 [innerHTML]="post?.user?.username"></span>
             </div>
-            <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
-          </div>
+            <div class="custom-actions">
+                <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>                <ng-container *ngIf="mainUid === post?.uid">
+                  <button class="text-white post-btn edit-post" (click)="getRealtimePost(post?.content, i)" id="edit-post" mat-raised-button=""
+                  type="button">
+                  <span class="text-white">Edit</span>
+                    </button>
+                <button class="text-white post-btn delete-post" (click)="deletePost(post?.pid)" id="delete-post" mat-raised-button="" type="button">
+                  <span class="text-white">Delete</span>
+                </button>
+               </ng-container>
+              </div>
+            </div>
           <!-- / header -->
           <div>
-            <p role="link" tabindex="0" [innerHTML]="post?.content" class="post-labels"></p>
-  
+              <div *ngIf="!editMode || editContentIndex !== i">
+                  <p role="link" tabindex="0" [innerHTML]="post?.content" class="post-labels"></p>
+              </div>
+              <div *ngIf="editMode && editContentIndex === i">
+                  <form [formGroup]="UpdatePostAnswerForm">
+                      <div appearance="outline" class="flex-1 w-full text-form-field">
+                        <textarea formControlName="updatedAnswer" class="text-content fnormal edit-field"
+                          [ngClass]="{ 'is-valid': showError('answer') }" [ngModel]="contentPost" #updatedPost></textarea>
+                      </div>
+                    </form>
+                    <div class="updatePostActions">
+                         <button class="text-white post-btn cancel-update-post" (click)="onEditMode(false)" id="cancel-update-post" mat-raised-button="" type="button">
+                          <span class="text-white">Cancel</span>
+                        </button>
+                        <button class="text-white post-btn update-post" (click)="updatePost(updatedPost.value, post?.pid)" id="update-post" mat-raised-button=""
+                          type="button">
+                          <span class="text-white">Update</span>
+                        </button>
+                      </div>
+              </div>
             <div class="reply-area my-24 font-weight-bold fnormal">
               <div class="flex flex-1 flex-row margin-left-xs">
                 <span class="flex mobile">
