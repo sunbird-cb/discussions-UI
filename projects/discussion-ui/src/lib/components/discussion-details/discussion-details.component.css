@@ -13,7 +13,6 @@
 .discussion-details-content{
     margin: 0 16px;
 }
-
 .pad-4{
     margin-left:8px;
 }
@@ -72,10 +71,10 @@
     margin: 0 16px;
     text-transform: capitalize;
 }
-.comments-count{
+.comments-area{
     display: flex;
     justify-content: space-between;
-    margin: 32px 0;
+    margin: 16px 0 32px 0;
     font-size: 14px;
     font-weight: 700;
 }
@@ -152,7 +151,8 @@
     border-radius: 4px;
 }
 .cancel-btn:hover,.reply-btn:hover{
-    background: #ddd;
+    background: #878282;
+    color: #fff;
 }
 
 .recent-tabs{
@@ -270,8 +270,13 @@
     font: 700 14px/21px Lato;
 }
 
-.margin-gap-tb{
-    margin:16px 0;
+.border-0{
+ border-bottom: 0px;
+}
+
+.comments-count{
+    color: #0074b6;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {

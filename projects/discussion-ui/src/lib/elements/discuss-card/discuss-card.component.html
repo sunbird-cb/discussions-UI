@@ -17,11 +17,12 @@
     <div class="discuss-card-subtitle responsive">
      
       <span *ngIf="discussionData?.category?.name" class="discuss-card-label">
-        <img src="./assets/discussion-ui/images/card-icon.png" width="16px" class="mr-4">
-        {{discussionData.category.name}}</span>
+        <img src="./assets/discussion-ui/images/Buffer-512.webp" width="20px" class="mr-4">
+        {{discussionData.category.name}}
+      </span>
         <span class="dot mx-16"></span>
       <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-      <span class="discuss-user-label" ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+      <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
       <span class="timing">{{discussionData.lastposttime | date}}</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
