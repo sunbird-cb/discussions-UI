@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PipeFilterPipe } from './pipe-filter/pipe-filter.pipe';
+import { SortByPipe } from './sort-by/sort-by.pipe';
 
 
 
 @NgModule({
-  declarations: [ PipeFilterPipe ],
+  declarations: [ PipeFilterPipe, SortByPipe ],
   imports: [
     CommonModule
   ],
-  exports: [ PipeFilterPipe ]
+  exports: [ PipeFilterPipe, SortByPipe ]
 })
 export class PipesModule { }
