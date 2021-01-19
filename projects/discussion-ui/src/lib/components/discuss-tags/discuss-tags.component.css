@@ -2,20 +2,24 @@
     display: flex;
     flex: 1;
     flex-direction: row;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
+    margin: 0 16px; 
 }
 
 .tag {
+    font-size: 12px;
     display: flex;
     width: auto;
     min-width: max-content;
     height: 32px;
     justify-content: space-between;
-    margin: 16px 12px;
+    margin-right: 16px;
     align-items: center;
     text-transform: lowercase;
     padding: 8px 16px;
     border-radius: 24px 8px 8px 24px;
+    font-size: 12px;
+    margin-bottom: 16px;
 }
 
 .count {

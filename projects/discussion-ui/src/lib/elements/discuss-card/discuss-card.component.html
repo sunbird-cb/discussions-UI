@@ -2,7 +2,7 @@
 <div class="discuss-card-content cursor-pointer border">
 
   <!-- Card header -->
-  <div>
+  <div class="discuss-card-header">
     <!-- Card title-->
     <div>
       <a href="javascript:void(0)" i18n-aria-label role="link">
@@ -15,12 +15,14 @@
 
     <!-- Card subtitle -->
     <div class="discuss-card-subtitle responsive">
-      <span class="discuss-card-label">
-        <!-- <mat-icon svgIcon="category_xs"></mat-icon>{{discussionData.category.name}} -->
+     
+      <span *ngIf="discussionData?.category?.name" class="discuss-card-label">
+        <img src="./assets/discussion-ui/images/Buffer-512.webp" width="20px" class="mr-4">
+        {{discussionData.category.name}}
       </span>
-      <span *ngIf="discussionData?.category?.name">{{discussionData.category.name}}</span>
-      <span class="dot" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-      <span class="dot" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+        <span class="dot mx-16"></span>
+      <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
+      <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
       <span class="timing">{{discussionData.lastposttime | date}}</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>

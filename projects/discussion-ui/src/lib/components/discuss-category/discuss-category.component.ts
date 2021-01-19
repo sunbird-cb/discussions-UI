@@ -20,7 +20,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   categories: NSDiscussData.ICategorie[] = [];
 
   forumIds: any;
-  @Input() categoryIds = ['1', '2', '6'];
+  @Input() categoryIds;
 
   pageId = 0;
 

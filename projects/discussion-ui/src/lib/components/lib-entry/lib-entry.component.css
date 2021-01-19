@@ -1,9 +1,8 @@
 .discussion-forum{
-    background: #ddd;
     width: 100%;
     min-height: 100vh;
     position: relative;
-    z-index: 999;
+    z-index: 9;
 }
 
 .row {
@@ -26,10 +25,13 @@
 
 @media (max-width: 768px) {
     .discussion-forum{
-        margin: 24px 0;
+        padding: 24px 0;
+        height: 100%;
+        overflow: auto;
     }
     .row {   
       flex-direction: column;
+      width: 100%;
     }
     .discuss-left-panel{
         width: auto;
@@ -37,6 +39,6 @@
     }
     .discuss-main-panel{
         width: auto;
-        padding: 0;
+        padding: 0px;
     }
   }
