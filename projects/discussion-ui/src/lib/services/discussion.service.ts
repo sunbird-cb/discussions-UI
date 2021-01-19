@@ -110,12 +110,12 @@ export class DiscussionService {
   }
 
   fetchAllTag() {
-    return this.csDiscussionService.fetchAllTags()
+    return this.csDiscussionService.fetchAllTags();
     // return this.http.get(urlConfig.getAllTags());
   }
 
   fetchPostDetails() {
-    return this.csDiscussionService.fetchAllTags()
+    return this.csDiscussionService.fetchAllTags();
     // return this.http.get(urlConfig.getAllTags());
   }
 
@@ -249,4 +249,13 @@ export class DiscussionService {
   getContext(key?: string) {
     return key ? this._context[key] : this._context;
   }
+
+  editPost(pid: number, data: any) {
+    return this.csDiscussionService.editPost(pid, data);
+  }
+
+  deletePost(pid: number, req: any) {
+    return this.csDiscussionService.deletePost(pid, req);
+   }
+
 }

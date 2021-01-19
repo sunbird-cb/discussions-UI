@@ -216,7 +216,8 @@
 }
 .post-time{
     color: rgba(0,0,0,.6);
-    font-size: 16px;  
+    font-size: 16px; 
+    margin-right: 20px; 
 }
 .reply-area{
     display: flex;
@@ -243,7 +244,6 @@
     padding: 8px 16px;
     border-radius: 24px 8px 8px 24px;
 }
-
 .count {
     height: auto;
     background: #fff;
@@ -262,3 +262,27 @@
 .margin-gap-tb{
     margin:16px 0;
 }
+.custom-actions {
+    display: flex;
+    align-items: center;
+}
+.edit-post {
+    margin-right: 20px;
+}
+.updatePostActions {
+    display: flex;
+    justify-content: flex-end;
+}
+.cancel-update-post {
+    margin-right: 20px;
+}
+
+.edit-field {
+    min-height: 40px;
+}
+/* @media (max-width: 700px) {
+    .comments-section{ 
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+} */
