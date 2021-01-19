@@ -150,7 +150,7 @@
           </div>
         </div>
       </ng-container>
-      <ng-container *ngFor="let post of data?.posts">
+      <ng-container *ngFor="let post of data?.posts | sortBy: 'timestampISO':'desc' ">
         <!-- card content -->
         <div *ngIf="post?.index != 0" class="post-card">
           <!-- header -->
