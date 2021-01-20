@@ -85,7 +85,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'uid');
+          this.mainUid = _.get(data, 'loggedInUser.uid');
           // this.setPagination();
         },
         (err: any) => {
@@ -98,7 +98,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'uid');
+          this.mainUid = _.get(data, 'loggedInUser.uid');
           // this.setPagination();
         },
         (err: any) => {
@@ -294,25 +294,24 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       content: updatedPostContent,
       title: '',
       tags : [],
+      uid: this.mainUid
       };
     this.discussionService.editPost(pid, req).subscribe((data: any) => {
-      window.location.reload();
-      console.log('success data', data);
+      // TODO: Success toast
+      this.refreshPostData(this.currentActivePage);
     }, (error) => {
+      // TODO: error toast
       console.log('e', error);
     });
     console.log(pid);
   }
 
   deletePost(postId: number) {
-    const req = {
-        uid: this.mainUid,
-        pid: postId
-    };
-    this.discussionService.deletePost(postId, req).subscribe((data: any) => {
-      window.location.reload();
-      console.log('success data', data);
+    this.discussionService.deletePost(postId, this.mainUid).subscribe((data: any) => {
+      // TODO: Success toast
+      this.refreshPostData(this.currentActivePage);
     }, (error) => {
+      // TODO: error toast
       console.log('e', error);
     });
   }

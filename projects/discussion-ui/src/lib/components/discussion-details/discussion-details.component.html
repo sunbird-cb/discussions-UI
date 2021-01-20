@@ -166,7 +166,8 @@
                 [innerHTML]="post?.user?.username"></span>
             </div>
             <div class="custom-actions">
-                <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>                <ng-container *ngIf="mainUid === post?.uid">
+                <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>                
+                <ng-container *ngIf="mainUid === post?.uid">
                   <button class="text-white post-btn edit-post" (click)="getRealtimePost(post?.content, i)" id="edit-post" mat-raised-button=""
                   type="button">
                   <span class="text-white">Edit</span>

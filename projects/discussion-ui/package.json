@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@project-sunbird/client-services": "^3.6.14",
+    "@project-sunbird/client-services": "^3.6.16",
     "lodash-es": "^4.17.20",
     "ngx-chips": "2.0.2"
   },

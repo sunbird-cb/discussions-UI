@@ -254,8 +254,8 @@ export class DiscussionService {
     return this.csDiscussionService.editPost(pid, data);
   }
 
-  deletePost(pid: number, req: any) {
-    return this.csDiscussionService.deletePost(pid, req);
+  deletePost(pid: number, uid: number) {
+    return this.csDiscussionService.deletePost(pid, uid);
    }
 
 }
