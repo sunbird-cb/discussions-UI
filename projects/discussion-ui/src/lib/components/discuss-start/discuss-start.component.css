@@ -1,6 +1,6 @@
 
 .modal-dialog {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -17,11 +17,17 @@
 .modal-dialog > .modal-content {
   max-width: 800px;
   width: 90%;
-  position: relative;
+  /* position: relative; */
   margin: 10% auto;
   padding: 24px;
   border-radius: 3px;
   background: #fff;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    max-height: calc(100% - 56px);
 }
 
 .mandatory-label{
