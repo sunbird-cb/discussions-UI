@@ -60,13 +60,15 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   }
 
   fetchAllAvailableCategories(ids) {
-
-    ids.forEach(cid => {
+    this.showLoader = true;
+    ids.forEach((cid) => {
       this.fetchCategory(cid).subscribe(data => {
+        this.showLoader = false;
         this.categories.push(data);
       }, error => {
         // TODO: Toast error
         console.log('issue fetching category', error);
+        this.showLoader = false;
       });
     });
   }
