@@ -60,7 +60,6 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   }
 
   fetchAllAvailableCategories(ids) {
-    console.log('calling this method', ids);
     this.showLoader = true;
     ids.forEach((cid) => {
       this.fetchCategory(cid).subscribe(data => {
