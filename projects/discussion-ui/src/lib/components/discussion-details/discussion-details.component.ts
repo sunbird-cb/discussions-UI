@@ -225,7 +225,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   confirmDelete(pid) {
-    if (window.confirm('Are you sure you want to delete this post? This can not be undone.')) {
+    if (window.confirm(`Are you sure you want to delete this Post? This can't be undone.`)) {
       this.deletePost(pid);
     }
   }
