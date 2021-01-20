@@ -224,6 +224,12 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  confirmDelete(pid) {
+    if (window.confirm('Are you sure you want to delete this message? This cannot be undone.')) {
+      this.deletePost(pid);
+    }
+  }
+
   filter(key: string | 'timestamp' | 'upvotes') {
     if (key) {
       this.currentFilter = key;
