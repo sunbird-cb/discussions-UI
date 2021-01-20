@@ -85,6 +85,9 @@
     .discuss-card-content{
         width: auto;
     }
+    .discuss-card-comments,.tags,.discuss-card-header{
+        margin:0px;
+    }
 }
 
 .tags{

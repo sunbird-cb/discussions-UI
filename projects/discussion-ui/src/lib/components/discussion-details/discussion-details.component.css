@@ -106,7 +106,7 @@
   border: 1px solid #0074b6;
 }
 
-.post-btn{
+.post-btn,.post-reply-btn{
     background-color: #0074b6!important;
     color: #fff;
     border: 0;
@@ -221,8 +221,7 @@
 }
 .post-time{
     color: rgba(0,0,0,.6);
-    font-size: 16px; 
-    margin-right: 20px; 
+    margin-left: 16px; 
 }
 .post-labels{
  text-transform: capitalize;

@@ -77,12 +77,12 @@
                   <a href="javascript:void(0)" *ngIf="!data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                     (click)="bookmark(post);logTelemetry($event, post)" aria-label="Bookmark post" id="bookmark">
                     <!-- bookmark -->
-                    <img src="./assets/discussion-ui/images/bookmarks.png" width="16px" height="16px">
+                    <img src="./assets/discussion-ui/images/bookmarks.png" width="20px" height="20px">
                   </a>
                   <a href="javascript:void(0)" *ngIf="data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                     (click)="unBookMark(post);logTelemetry($event, post)" aria-label="unBookmark post" id="un-bookmark-vote">
                     <!-- bookmark -->
-                     <img src="./assets/discussion-ui/images/select-bookmarks.png" width="16px" height="16px">
+                     <img src="./assets/discussion-ui/images/select-bookmarks.png" width="20px" height="20px">
                   </a>
                 </span>
               </div>
@@ -331,7 +331,7 @@
         <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment='';logTelemetry($event, post)" id="cancel-comment-reply">
           <span class="noocoments"> Cancel</span>
         </button>
-        <button mat-raised-button type="button" (click)="postCommentsReply(post);logTelemetry($event, post)" class="text-white ws-mat-primary-background flex-auto-display post-btn">
+        <button mat-raised-button type="button" (click)="postCommentsReply(post);logTelemetry($event, post)" class="text-white ws-mat-primary-background flex-auto-display post-reply-btn">
           <span class="text-white" i18n>Post reply</span>
         </button>
       </div>

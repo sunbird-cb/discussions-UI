@@ -25,7 +25,7 @@
 
 @media (max-width: 768px) {
     .discussion-forum{
-        padding: 24px 0;
+        padding: 24px 16px;
         height: 100%;
         overflow: auto;
     }
