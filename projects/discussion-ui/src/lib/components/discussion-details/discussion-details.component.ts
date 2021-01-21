@@ -3,7 +3,7 @@ import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -18,13 +18,14 @@ import { Subscription } from 'rxjs';
 })
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
+  @Input() slug: string;
+
   routeParams: any;
   currentActivePage = 1;
   currentFilter = 'timestamp'; // 'recent
   data: any;
   paginationData!: any;
   pager = {};
-  @Input() slug: string;
   postAnswerForm!: FormGroup;
   UpdatePostAnswerForm: FormGroup;
   replyForm: FormGroup;
@@ -35,6 +36,16 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   contentPost: any;
   editContentIndex: any;
   mainUid: number;
+
+  /** Action buttons */
+    // Reply to main post
+    isPostReplyEnabled = false;
+
+    // Edit reply
+    isEditReplyEnabled = false;
+
+    // Reply to a reply
+    isReplyEnabled = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,15 +78,44 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
   initializeFormFiled() {
+    /** Posting reply on the main post */
     this.postAnswerForm = this.formBuilder.group({
-      answer: [],
+      answer: ['', Validators.required],
     });
+
+    this.postAnswerForm.valueChanges.subscribe(val => {
+      this.isPostReplyEnabled = this.validateForm(this.postAnswerForm);
+    });
+
+    /** Editing reply for an existing post */
     this.UpdatePostAnswerForm = this.formBuilder.group({
-      updatedAnswer: [],
+      updatedAnswer: ['', Validators.required],
     });
+
+    this.UpdatePostAnswerForm.valueChanges.subscribe(val => {
+      this.isEditReplyEnabled = this.validateForm(this.UpdatePostAnswerForm);
+    });
+
+    /** Replying to a reply */
     this.replyForm = this.formBuilder.group({
-      reply: []
+      reply: ['', Validators.required]
     });
+
+    this.replyForm.valueChanges.subscribe(val => {
+      this.isReplyEnabled = this.validateForm(this.replyForm);
+    });
+  }
+
+  validateForm(formType) {
+    if (_.get(formType, 'status') === 'VALID') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  resetForm() {
+    this.replyForm.reset();
   }
 
   refreshPostData(page: any) {
@@ -216,6 +256,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           // toast
           // this.openSnackbar('Your reply was saved succesfuly!');
           this.refreshPostData(this.currentActivePage);
+          this.resetForm();
         },
         (err: any) => {
           // toast
@@ -281,11 +322,12 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   onEditMode(UpdatePostStatus: boolean) {
-  if (UpdatePostStatus) {
-    this.editMode = true;
-  } else {
-    this.editMode = false;
-  }
+    if (UpdatePostStatus) {
+      this.editMode = true;
+    } else {
+      this.editMode = false;
+    }
+    this.UpdatePostAnswerForm.reset();
   }
 
   getRealtimePost(postContent: any, index: any) {
