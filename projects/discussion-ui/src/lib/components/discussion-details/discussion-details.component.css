@@ -221,7 +221,7 @@
 }
 .post-time{
     color: rgba(0,0,0,.6);
-    margin-left: 16px; 
+    margin-right: 10px; 
 }
 .post-labels{
  text-transform: capitalize;

@@ -26,9 +26,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   data: any;
   paginationData!: any;
   pager = {};
-  postAnswerForm!: FormGroup;
-  UpdatePostAnswerForm: FormGroup;
-  replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
   paramsSubscription: Subscription;
   editMode = false;
@@ -36,16 +33,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   contentPost: any;
   editContentIndex: any;
   mainUid: number;
-
-  /** Action buttons */
-    // Reply to main post
-    isPostReplyEnabled = false;
-
-    // Edit reply
-    isEditReplyEnabled = false;
-
-    // Reply to a reply
-    isReplyEnabled = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +43,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;
@@ -77,46 +63,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
-  initializeFormFiled() {
-    /** Posting reply on the main post */
-    this.postAnswerForm = this.formBuilder.group({
-      answer: ['', Validators.required],
-    });
 
-    this.postAnswerForm.valueChanges.subscribe(val => {
-      this.isPostReplyEnabled = this.validateForm(this.postAnswerForm);
-    });
-
-    /** Editing reply for an existing post */
-    this.UpdatePostAnswerForm = this.formBuilder.group({
-      updatedAnswer: ['', Validators.required],
-    });
-
-    this.UpdatePostAnswerForm.valueChanges.subscribe(val => {
-      this.isEditReplyEnabled = this.validateForm(this.UpdatePostAnswerForm);
-    });
-
-    /** Replying to a reply */
-    this.replyForm = this.formBuilder.group({
-      reply: ['', Validators.required]
-    });
-
-    this.replyForm.valueChanges.subscribe(val => {
-      this.isReplyEnabled = this.validateForm(this.replyForm);
-    });
-  }
-
-  validateForm(formType) {
-    if (_.get(formType, 'status') === 'VALID') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  resetForm() {
-    this.replyForm.reset();
-  }
 
   refreshPostData(page: any) {
     if (this.currentFilter === 'timestamp') {
@@ -178,7 +125,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         () => {
           // toast
           // this.openSnackbar(this.toastSuccess.nativeElement.value);
-          this.postAnswerForm.reset();
           this.refreshPostData(this.currentActivePage);
         },
         (err: any) => {
@@ -222,13 +168,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  postReply(post: NSDiscussData.IDiscussionData) {
+  postReply(replyContent: string, post: NSDiscussData.IDiscussionData) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.postAnswerForm.controls['answer'].value,
+      content: replyContent,
     };
-    // tslint:disable-next-line:no-string-literal
-    this.postAnswerForm.controls['answer'].setValue('');
     if (post && post.tid) {
       this.discussionService.replyPost(post.tid, req).subscribe(
         () => {
@@ -244,10 +187,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts) {
+  postCommentsReply(replyContent: string, post: NSDiscussData.IPosts) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.replyForm.controls['reply'].value,
+      content: replyContent,
       toPid: post.pid,
     };
     if (post && post.tid) {
@@ -256,7 +198,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           // toast
           // this.openSnackbar('Your reply was saved succesfuly!');
           this.refreshPostData(this.currentActivePage);
-          this.resetForm();
         },
         (err: any) => {
           // toast
@@ -327,13 +268,13 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.editMode = false;
     }
-    this.UpdatePostAnswerForm.reset();
   }
 
-  getRealtimePost(postContent: any, index: any) {
+  getRealtimePost(post: any, index: any) {
     this.editMode = true;
     this.editContentIndex = index;
-    this.contentPost = postContent.replace(/<[^>]*>/g, '');
+    this.contentPost = _.get(post, 'content').replace(/<[^>]*>/g, '');
+    post.toggle = false;
   }
 
   updatePost(updatedPostContent: any, pid: number) {
@@ -362,6 +303,36 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: error toast
       console.log('e', error);
     });
+  }
+
+  editReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.onEditMode(false);
+    } else if (_.get(event, 'action') === 'edit') {
+      this.updatePost(_.get(event, 'content'), _.get(post, 'pid'));
+      this.logTelemetry(event, post);
+    }
+  }
+
+  commentReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.togglePost(post);
+    } else if (_.get(event, 'action') === 'reply') {
+      this.postCommentsReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  postReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'reply') {
+      this.postReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  togglePost(post) {
+    post.toggle = !post.toggle;
+    this.onEditMode(false);
   }
   ngOnDestroy() {
     if (this.paramsSubscription) {

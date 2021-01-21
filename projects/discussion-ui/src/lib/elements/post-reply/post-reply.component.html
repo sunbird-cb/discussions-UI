@@ -1,0 +1,37 @@
+<form [formGroup]="replyForm">
+    <div appearance="outline" class="flex-1 w-full text-form-field">
+      <textarea placeholder="Type your message here (minimum 10 characters)" 
+        minlength="10" 
+        formControlName="replyContent" 
+        class="text-content fnormal edit-field"
+        [ngModel]="content">
+    </textarea>
+    </div>
+  </form>
+  <div class="updatePostActions">
+       <button class="text-white post-btn cancel-update-post"
+        *ngIf="showCancel"
+        (click)="onCancelClick()" 
+        id="cancel-update-post" 
+        type="button">
+        <span class="text-white">Cancel</span>
+      </button>
+      <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+        *ngIf="mode === 'edit'"
+        [disabled]="!isButtonEnabled" 
+        class="text-white post-btn update-post" 
+        (click)="onReplyClick('edit')" 
+        id="update-post"
+        type="button">
+        <span class="text-white">Update</span>
+      </button>
+      <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+        *ngIf="mode !== 'edit'"
+        [disabled]="!isButtonEnabled" 
+        class="text-white post-btn update-post" 
+        (click)="onReplyClick('reply')" 
+        id="update-post"
+        type="button">
+        <span class="text-white">Post Reply</span>
+      </button>
+  </div>

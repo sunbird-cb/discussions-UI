@@ -101,31 +101,12 @@
   
             <div class="flex flex-1 flex-column margin-top-xl">
               <h3 class="fs-1 font-weight-bold"> Your answer here </h3>
-              <form [formGroup]=" postAnswerForm">
-                <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
-                  [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
-                </ws-widget-ck-editor> -->
-                <div appearance="outline" class="flex-1 w-full text-form-field">
-                  <textarea minlength="10" placeholder="Type your message here (minimum 10 characters)" formControlName="answer" class="text-content fnormal"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
-                </div>
-              </form>
             </div>
   
           </div>
           <!-- /card content -->
           <!-- post reply -->
-          <div align="end">
-            <!-- TODO: Add check below:  [disabled]="answer.value.length < 3 -->
-            <button [ngClass]="{'sb-btn-disabled': !isPostReplyEnabled }" [disabled]="!isPostReplyEnabled" mat-raised-button type="button" (click)="postReply(post);logTelemetry($event, post)"
-              class="text-white ws-mat-primary-background flex-auto-display margin-right-xs post-btn" id="post-reply">
-              <span class="text-white" i18n>Post reply</span>
-            </button>
-            <!-- <button mat-raised-button type="button" [mat-dialog-close]="true"
-                      class="ws-mat-accent-border flex-auto-display">
-                      <span class="ws-mat-default-text" i18n>Discard</span>
-                    </button> -->
-                  </div>
-          <!-- /post reply -->
+          <lib-post-reply (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'" [showCancel]="false"></lib-post-reply>
         </div>
         </ng-container>
       </div>
@@ -165,7 +146,7 @@
             <div class="custom-actions">
                 <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>                
                 <ng-container *ngIf="mainUid === post?.uid">
-                  <button class="text-white post-btn edit-post" (click)="getRealtimePost(post?.content, i)" id="edit-post" mat-raised-button=""
+                  <button class="text-white post-btn edit-post" (click)="getRealtimePost(post, i)" id="edit-post" mat-raised-button=""
                   type="button">
                   <span class="text-white">Edit</span>
                   </button>
@@ -181,21 +162,7 @@
                   <p role="link" tabindex="0" [innerHTML]="post?.content" class="post-labels"></p><div class="edited-text" *ngIf="post?.edited">(edited)</div>
               </div>
               <div *ngIf="editMode && editContentIndex === i">
-                  <form [formGroup]="UpdatePostAnswerForm">
-                      <div appearance="outline" class="flex-1 w-full text-form-field">
-                        <textarea placeholder="Type your message here (minimum 10 characters)" minlength="10" formControlName="updatedAnswer" class="text-content fnormal edit-field"
-                          [ngClass]="{ 'is-valid': showError('answer') }" [ngModel]="contentPost" #updatedPost></textarea>
-                      </div>
-                    </form>
-                    <div class="updatePostActions">
-                         <button class="text-white post-btn cancel-update-post" (click)="onEditMode(false)" id="cancel-update-post" mat-raised-button="" type="button">
-                          <span class="text-white">Cancel</span>
-                        </button>
-                        <button [ngClass]="{'sb-btn-disabled': !isEditReplyEnabled }" [disabled]="!isEditReplyEnabled" class="text-white post-btn update-post" (click)="updatePost(updatedPost.value, post?.pid)" id="update-post" mat-raised-button=""
-                          type="button">
-                          <span class="text-white">Update</span>
-                        </button>
-                      </div>
+                <lib-post-reply (actionEvent)="editReplyHandler($event, post)" [mode]="'edit'" [showCancel]="true" [content]="contentPost"></lib-post-reply>
               </div>
             <div class="reply-area my-24 font-weight-bold fnormal">
               <div class="flex flex-1 flex-row margin-left-xs">
@@ -239,7 +206,7 @@
                 </span> -->
               </div>
               
-                <button mat-button (click)="post.toggle =! post.toggle; post.comment='';logTelemetry($event, post)" class="reply-btn" id="reply-comment">
+                <button mat-button (click)="togglePost(post); logTelemetry($event, post)" class="reply-btn" id="reply-comment">
                   <span class="noocoments"> Reply</span>
                 </button>
            
@@ -314,25 +281,8 @@
   
   <ng-template #reply let-post="post">
     <div class="mt-2 flex flex-col">
-      <div class="flex-1">
-        <form [formGroup]="replyForm">
-          <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
-            [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
-          </ws-widget-ck-editor> -->
-          <div appearance="outline" class="flex-1 w-full text-form-field">
-            <textarea minlength="10" placeholder="Type your message here (minimum 10 characters)" formControlName="reply" class="text-content"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="comment-btns">
-        <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; resetForm();logTelemetry($event, post)" id="cancel-comment-reply">
-          <span class="noocoments"> Cancel</span>
-        </button>
-        <button [ngClass]="{'sb-btn-disabled': !isReplyEnabled }" [disabled]="!isReplyEnabled" mat-raised-button type="button" (click)="postCommentsReply(post);logTelemetry($event, post)" class="text-white ws-mat-primary-background flex-auto-display post-reply-btn">
-          <span class="text-white" i18n>Post reply</span>
-        </button>
-      </div>
-    </div>
+      <lib-post-reply (actionEvent)="commentReplyHandler($event, post)" [mode]="'reply'" [showCancel]="true"></lib-post-reply>
+    </div> 
   </ng-template>
   
   <ng-template #replies let-posts="posts" let-postId="postId">
