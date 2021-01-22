@@ -10,10 +10,9 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 @Component({
   selector: 'lib-discuss-tags',
   templateUrl: './discuss-tags.component.html',
-  styleUrls: ['./discuss-tags.component.css']
+  styleUrls: ['./discuss-tags.component.scss']
 })
 export class DiscussTagsComponent implements OnInit {
-
   query: string;
   filteredTags: NSDiscussData.ITag[];
   showLoader = false;

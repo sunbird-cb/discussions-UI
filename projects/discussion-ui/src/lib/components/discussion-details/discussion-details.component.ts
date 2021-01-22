@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'lib-discussion-details',
   templateUrl: './discussion-details.component.html',
-  styleUrls: ['./discussion-details.component.css']
+  styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;

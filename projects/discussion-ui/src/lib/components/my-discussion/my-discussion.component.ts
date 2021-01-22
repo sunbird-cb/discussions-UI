@@ -11,7 +11,7 @@ import * as _ from 'lodash'
 @Component({
   selector: 'lib-my-discussion',
   templateUrl: './my-discussion.component.html',
-  styleUrls: ['./my-discussion.component.css']
+  styleUrls: ['./my-discussion.component.scss']
 })
 export class MyDiscussionComponent implements OnInit {
 

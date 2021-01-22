@@ -25,7 +25,7 @@
 
 @media (max-width: 768px) {
     .discussion-forum{
-        padding: 24px 16px;
+        padding: 16px 24px;
         height: 100%;
         overflow: auto;
     }
@@ -35,10 +35,10 @@
     }
     .discuss-left-panel{
         width: auto;
-        padding: 0px;
+        padding: 0 0 16px 0;
     }
     .discuss-main-panel{
         width: auto;
-        padding: 0px;
+        padding: 16px 0px;
     }
   }

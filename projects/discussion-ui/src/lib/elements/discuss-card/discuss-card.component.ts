@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'lib-discuss-card',
   templateUrl: './discuss-card.component.html',
-  styleUrls: ['./discuss-card.component.css']
+  styleUrls: ['./discuss-card.component.scss']
 })
 export class DiscussCardComponent implements OnInit {
 
