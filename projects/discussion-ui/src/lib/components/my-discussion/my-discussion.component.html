@@ -8,20 +8,20 @@
         <span class="box-text"><span class="circle-label"></span>{{userInitial}}</span>
       </div>
       <div class="flex-1">
-        <div class="mobile-margin text-capitalize name-label" [innerHTML]="data.username"></div>
-        <div class="department">{{department}}</div>
-        <div class="location">{{location}} </div>
-        <div class='email'>{{data.email || data.username}}</div>
+        <div class="profile-label fs-1 name mb-4" [innerHTML]="data.username"></div>
+        <div class="profile-label fnormal department mb-4">{{department}}</div>
+        <div class="profile-label fnormal location mb-4">{{location}} </div>
+        <div class='profile-label fnormal email mb-4'>{{data.email || data.username}}</div>
         <ng-container>
-          <div class="fnormal">
+          <div class="fnormal mt-16">
             <div class="flex flex-1 flex-custom-m">
               <span class="flex mobile ">
-                <span class="ws-mat-default-text number">{{data.topiccount || 0 }}</span>
-                <span class="pad-4 labels">Discussions</span>
+                <span class="fnormal number">{{data.topiccount || 0 }}</span>
+                <span class="fnormal ml-4">Discussions</span>
               </span>
               <span class="flex post-count-area mobile">
-                <span class="ws-mat-default-text number">{{data.postcount || 0 }}</span>
-                <span class="pad-4 labels">Posts</span>
+                <span class="fnormal number">{{data.postcount || 0 }}</span>
+                <span class="fnormal ml-4">Posts</span>
               </span>
             </div>
             <div class="flex flex-1" class="text-right mobile2">
@@ -36,7 +36,7 @@
   </div>
 
   <ng-container>
-    <div class="recent-tabs">
+    <div class="recent-tabs pb-8">
       <div class="tabs-content">
         <div class="tabs-filter">
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'timestamp',
@@ -74,7 +74,7 @@
     </ng-container>
   </ng-container>
   <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
-    <div class="discuss-card-content">
+    <div class="discuss-card-content cursor-pointer">
         <div class="no-data-label">No Data</div>
       <div>
         <span>&nbsp;</span>

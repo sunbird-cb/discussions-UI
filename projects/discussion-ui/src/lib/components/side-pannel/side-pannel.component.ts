@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'lib-side-pannel',
   templateUrl: './side-pannel.component.html',
-  styleUrls: ['./side-pannel.component.css']
+  styleUrls: ['./side-pannel.component.scss']
 })
 export class SidePannelComponent implements OnInit, OnDestroy {
 
@@ -28,6 +28,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   hideSidePanel: boolean;
 
   selectedTab: string;
+  showSideMenu: Boolean = true;
 
   constructor(
     public router: Router,
@@ -71,4 +72,13 @@ export class SidePannelComponent implements OnInit, OnDestroy {
       this.paramsSubscription.unsubscribe();
     }
   }
+
+  showMenuButton() {
+    this.showSideMenu = this.showSideMenu ? false : true;
+ }
+
+ closeNav(){
+  this.showSideMenu = this.showSideMenu ? false : true;
+ }
+ 
 }
