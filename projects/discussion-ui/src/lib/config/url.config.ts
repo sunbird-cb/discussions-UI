@@ -1,6 +1,6 @@
 export const urlConfig = {
     // endpoint configs...!
-    host: 'https://dev.sunbirded.org',
+    host: 'http://localhost:3002',
     apiSlug: '/discussion',
     apiBasePath: () => `${urlConfig.host}${urlConfig.apiSlug}`,
 
@@ -12,8 +12,8 @@ export const urlConfig = {
     votePost: (pid: number) => `${urlConfig.apiBasePath()}/v2/posts/${pid}/vote`,
     replyPost: (tid: number) => `${urlConfig.apiBasePath()}/v2/topics/${tid}`,
     bookmarkPost: (pid: number) => `${urlConfig.apiBasePath()}/v2/posts/${pid}/bookmark`,
-    recentPost: () => `${urlConfig.apiBasePath()}/topics/recent`,
-    popularPost: () => `${urlConfig.apiBasePath()}/topics/popular`,
+    recentPost: () => `${urlConfig.apiBasePath()}/recent`,
+    popularPost: () => `${urlConfig.apiBasePath()}/popular`,
     unread: () => `${urlConfig.apiBasePath()}/topics/unread/total`,
     getTopic: () => `${urlConfig.apiBasePath()}/topic`,
     profile: () => `${urlConfig.apiBasePath()}/users/me`,

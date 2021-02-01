@@ -150,15 +150,16 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    // const url = this.appendPage(page, urlConfig.recentPost());
-    // return this.http.get(url);
-    return this.csDiscussionService.fetchRecentD(page);
+    const url = this.appendPage(page, urlConfig.recentPost());
+    return this.http.get(url);
+    // return this.csDiscussionService.fetchRecentD(page);
   }
-  // fetchPopularD(page?: any) {
-  //   // const url = this.appendPage(page, urlConfig.popularPost());
-  //   // return this.http.get(url);
-  //   return this.csDiscussionService.fetchPopularD(page);
-  // }
+
+  fetchPopularD(page?: any) {
+    const url = this.appendPage(page, urlConfig.popularPost());
+    return this.http.get(url);
+    // return this.csDiscussionService.fetchPopularD(page);
+  }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
     // let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
