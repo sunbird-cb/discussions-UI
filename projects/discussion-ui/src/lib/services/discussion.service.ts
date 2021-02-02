@@ -79,6 +79,10 @@ export class DiscussionService {
     // return this.http.post(urlConfig.createPost(), data);
     return this.csDiscussionService.createPost(data);
   }
+
+  getMenuOptions(){
+    return this.http.get(urlConfig.getMenuOptions());
+  }
   /**
    * @description To get all the categories
    */

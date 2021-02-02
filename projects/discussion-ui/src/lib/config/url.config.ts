@@ -24,5 +24,6 @@ export const urlConfig = {
     fetchNetworkProfile: `user/profileDetails/getUserRegistry`,
     userDetails: (username: string) => `${urlConfig.apiBasePath()}/user/${username}`,
     getContextBasedTopics: (slug: string) => `${urlConfig.apiBasePath()}/category/${slug}`,
-    registerUser: () => `${urlConfig.apiBasePath()}/user/v1/create`
+    registerUser: () => `${urlConfig.apiBasePath()}/user/v1/create`,
+    getMenuOptions:  () => `${urlConfig.apiBasePath()}/admin/settings/navigation`
 };
