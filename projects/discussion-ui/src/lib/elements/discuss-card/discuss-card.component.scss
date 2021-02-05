@@ -1,0 +1,70 @@
+
+.discuss-user-label{
+    text-transform: capitalize;
+}
+.discuss-card-title{
+    margin: 0px;
+    color: #000;  
+    cursor:pointer;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.discuss-card-label{
+    color: #0074b6;
+}
+
+.discuss-card-subtitle{
+    margin:8px 0px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+.discuss-card-comments{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.discuss-comments-area{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #858181;
+}
+
+.timing{
+    margin-left:16px;
+    color: #858181;  
+}
+
+.views-content{
+    margin-left:24px;
+}
+
+.votes-content img,.views-content img{
+    margin-right:4px;
+    height: 20px;
+    width: 20px;
+}
+
+.comments-count{
+    color: #0074b6;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .timing{
+        display: block;
+         margin: 4px 8px;
+    }
+}
+
+
+

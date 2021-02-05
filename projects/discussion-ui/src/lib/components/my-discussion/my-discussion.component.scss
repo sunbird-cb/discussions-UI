@@ -1,0 +1,60 @@
+.profileCard{
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    background: #fff;
+    color: rgba(0,0,0,.87);
+    flex: 1;
+    height: auto;
+    margin-bottom: 0px;
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    width: 100%;
+}
+.profilecard-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile-header-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 4px;
+    max-width: 152px;
+    height: 135px;
+    border: 1px solid #ddd;
+    margin-right: 24px;
+    background: green;
+    text-align: center;
+}
+.profile-label{
+    color: rgba(0,0,0,.54);
+    font-weight: 700;
+}
+
+.post-count-area{
+    margin-left:32px;
+}
+.number{
+    color: #0074b6;   
+}
+
+
+.no-data-label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .profileCard{
+        width: auto;
+    }
+}
+
+.box-text{
+    font-size: 4rem;
+    color: white;
+    text-transform: uppercase;
+}

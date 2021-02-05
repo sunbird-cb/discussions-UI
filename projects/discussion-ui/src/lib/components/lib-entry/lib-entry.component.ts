@@ -9,7 +9,7 @@ import * as _ from 'lodash'
 @Component({
   selector: 'lib-lib-entry',
   templateUrl: './lib-entry.component.html',
-  styleUrls: ['./lib-entry.component.css']
+  styleUrls: ['./lib-entry.component.scss']
 })
 export class LibEntryComponent implements OnInit {
 

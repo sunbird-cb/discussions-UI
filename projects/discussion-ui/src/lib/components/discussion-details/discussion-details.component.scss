@@ -7,18 +7,12 @@
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
     position: relative;
-    padding: 24px;
+    padding: 1.4rem;
     border-radius: 4px;
 }
-.discussion-details-content{
-    margin: 0 16px;
-}
+
 .pad-4{
     margin-left:8px;
-}
-
-.icons{
-    margin-left:16px;
 }
 
 .margin-right-l{
@@ -39,12 +33,14 @@
     margin-bottom: 16px;
     font-size: 14px;
     color: rgba(0,0,0,.6);
+    flex-wrap: wrap;
 }
 .comment-section{
     display: flex;
     align-items: center;
     justify-content: space-between; 
     margin-bottom: 16px;
+    flex-direction: row;
 }
 .post-header-content{
     display: flex;
@@ -66,17 +62,14 @@
     letter-spacing: .2625px;
 }
 .discussion-labels {
-    font-size: 16px;
-    color: #948e8e;;
-    margin: 0 16px;
+    color: #948e8e;
     text-transform: capitalize;
 }
 .comments-area{
     display: flex;
     justify-content: space-between;
-    margin: 16px 0 32px 0;
-    font-size: 14px;
     font-weight: 700;
+    flex-direction: row;
 }
 .text-form-field{
     display: flex;
@@ -89,7 +82,6 @@
     /* width: 97.6%;  */
     border: 1.5px solid #ccc2c2;
     border-radius: 4px;
-    margin: 16px 0;
     cursor: pointer;
     padding: 16px;
 }
@@ -128,7 +120,7 @@
 .comment-btns{
     display: flex;
     justify-content: flex-end;
-    margin: 16px 0 24px;
+    margin: 16px 0px;
 }
 .cancel-btn,.reply-btn{
     cursor: pointer;
@@ -145,7 +137,6 @@
     overflow: visible;
     color: #000;
     font-weight: 700;
-    margin-right: 16px;
     font-size: 14px;
     background: none;
     border-radius: 4px;
@@ -155,55 +146,6 @@
     color: #fff;
 }
 
-.recent-tabs{
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
-    display: block;
-    position: relative;
-    padding: 24px 12px;
-    box-shadow: none!important;
-    border-radius: unset;
-    background: inherit!important; 
-}
-.tabs-content{
-    display: flex;
-    flex: 1 1 0%;
-    flex-direction: column;
-}
-.tabs-filter{
-    display: flex;
-    flex: 1 1 0%;
-    flex-wrap: wrap;
-}
-.filter-option{
-    margin: 12px;
-    border: 1px solid #ddd;
-    border-width: 0 0 2px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    outline: 0;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    white-space: nowrap;
-    text-decoration: none;
-    vertical-align: baseline;
-    text-align: center;
-    min-width: 64px;
-    line-height: 40px;
-    padding: 0 16px;
-    overflow: visible;
-    font-size: 18px;
-    color: #000;
-}
-.filter-option:first-child {
-    margin-left: 0;
-}
-.filter-option:hover,.active {
-    border-bottom: 3px solid #0074b6;
-    font-weight: 700;
-}
 .post-card{
     border-bottom: 1px solid #ddd;
     margin: 0 16px 16px 16px;
@@ -214,7 +156,6 @@
     justify-content: space-between;
 }
 .post-name{
-    text-transform: capitalize;
     font-size: 16px;
     font-weight: 700;
     margin-left: 16px;
@@ -224,50 +165,13 @@
     margin-left: 16px; 
 }
 .post-labels{
- text-transform: capitalize;
- font-size: 16px;
+    font-size: 12px;
 }
 .reply-area{
     display: flex;
     justify-content: space-between;
     margin: 16px 0;
     align-items: center;
-}
-
-.tags{
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.tag {
-    font-size: 12px;
-    display: flex;
-    width: auto;
-    min-width: max-content;
-    height: 32px;
-    justify-content: space-between;
-    margin-right: 16px;
-    align-items: center;
-    text-transform: lowercase;
-    padding: 8px 16px;
-    border-radius: 24px 8px 8px 24px;
-    margin-bottom: 16px;
-}
-.count {
-    height: auto;
-    background: #fff;
-    border-radius: 4px;
-    padding: 1px 3px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    min-width: 16px;
-    margin: 0 0 0 15px;
-    color: #0074b6;
-    font: 700 14px/21px Lato;
 }
 
 .margin-gap-tb{
@@ -305,5 +209,19 @@
  .post-btn{
      width: 100%;
      margin-top:8px;
+ }
+ .comments-area{
+     flex-direction: column;
+ }
+ .comments-count{
+     margin-top: 8px;
+ }
+ .post-time{
+    margin-top: 8px;
+    margin-left: 0px;
+ }
+ .comment-section{
+    flex-direction: column;
+    align-items: start;
  }
 }
