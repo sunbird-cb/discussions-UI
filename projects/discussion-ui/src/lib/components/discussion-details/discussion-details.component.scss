@@ -99,7 +99,7 @@
 }
 
 .post-btn,.post-reply-btn{
-    background-color: #0074b6!important;
+    background-color: #0074b6;
     color: #fff;
     border: 0;
     vertical-align: baseline;
@@ -162,7 +162,7 @@
 }
 .post-time{
     color: rgba(0,0,0,.6);
-    margin-left: 16px; 
+    margin-right: 10px; 
 }
 .post-labels{
     font-size: 12px;
@@ -224,4 +224,20 @@
     flex-direction: column;
     align-items: start;
  }
+}
+
+.sb-btn-disabled {
+    background-color: var(--gray-100);
+    border: solid var(--gray-100);
+}
+
+.edited-text {
+    padding-left: 8px;
+    margin-top: 3px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+
+.delete-icon, .edit-icon {
+    cursor: pointer;
 }
