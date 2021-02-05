@@ -8,20 +8,20 @@
         <span class="box-text"><span class="circle-label"></span>{{userInitial}}</span>
       </div>
       <div class="flex-1">
-        <div class="mobile-margin text-capitalize name-label" [innerHTML]="data.username"></div>
-        <div class="department">{{department}}</div>
-        <div class="location">{{location}} </div>
-        <div class='email'>{{data.email || data.username}}</div>
+        <div class="profile-label fs-1 name mb-4" [innerHTML]="data.username"></div>
+        <div class="profile-label fnormal department mb-4">{{department}}</div>
+        <div class="profile-label fnormal location mb-4">{{location}} </div>
+        <div class='profile-label fnormal email mb-4'>{{data.email || data.username}}</div>
         <ng-container>
-          <div class="fnormal">
+          <div class="fnormal mt-16">
             <div class="flex flex-1 flex-custom-m">
               <span class="flex mobile ">
-                <span class="ws-mat-default-text number">{{data.topiccount || 0 }}</span>
-                <span class="pad-4 labels">Discussions</span>
+                <span class="fnormal number">{{data.topiccount || 0 }}</span>
+                <span class="fnormal ml-4">Discussions</span>
               </span>
               <span class="flex post-count-area mobile">
-                <span class="ws-mat-default-text number">{{data.postcount || 0 }}</span>
-                <span class="pad-4 labels">Posts</span>
+                <span class="fnormal number">{{data.postcount || 0 }}</span>
+                <span class="fnormal ml-4">Posts</span>
               </span>
             </div>
             <div class="flex flex-1" class="text-right mobile2">
@@ -36,17 +36,17 @@
   </div>
 
   <ng-container>
-    <div class="recent-tabs">
+    <div class="recent-tabs pb-8">
       <div class="tabs-content">
         <div class="tabs-filter">
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'timestamp',
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
             (click)="filter('timestamp');logTelemetry($event)" id="recent-post">
             Recent posts </a>
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'best',
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'best',
                               'ws-mat-accent-border font-medium':currentFilter !== 'best'}" (click)="filter('best');logTelemetry($event)" id="best-post">
             Best posts </a>
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'saved',
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'saved',
                                           'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
             (click)="filter('saved');logTelemetry($event)" id="saved-post">
             Saved posts </a>
@@ -54,11 +54,11 @@
                                             'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
             (click)="filter('watched')">
             Watched </a> -->
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'upvoted',
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'upvoted',
                                               'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
             (click)="filter('upvoted');logTelemetry($event)" id="upvoted-post">
             Upvoted </a>
-          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active active' : currentFilter === 'downvoted',
+          <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'downvoted',
                                                 'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
             (click)="filter('downvoted');logTelemetry($event)" id="downvoted-post">
             Downvoted </a>
@@ -74,7 +74,7 @@
     </ng-container>
   </ng-container>
   <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
-    <div class="discuss-card-content">
+    <div class="discuss-card-content cursor-pointer">
         <div class="no-data-label">No Data</div>
       <div>
         <span>&nbsp;</span>

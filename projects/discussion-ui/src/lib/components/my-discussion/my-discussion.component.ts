@@ -11,7 +11,7 @@ import * as _ from 'lodash'
 @Component({
   selector: 'lib-my-discussion',
   templateUrl: './my-discussion.component.html',
-  styleUrls: ['./my-discussion.component.css']
+  styleUrls: ['./my-discussion.component.scss']
 })
 export class MyDiscussionComponent implements OnInit {
 
@@ -53,16 +53,8 @@ export class MyDiscussionComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if (this.discussService.userDetails) {
-      this.data = this.discussService.userDetails;
-      this.setUserInitial(this.data);
-      if (_.get(this.data, 'posts')) {
-        this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
-      }
-    } else {
-      if (localStorage.getItem('userName')) {
-        this.fetchUserProfile(localStorage.getItem('userName'));
-      }
+    if (localStorage.getItem('userName')) {
+      this.fetchUserProfile(localStorage.getItem('userName'));
     }
   }
 
