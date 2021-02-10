@@ -19,7 +19,7 @@ import { IMenuOptions, IdiscussionConfig } from '../../models/discussion.model';
 })
 export class SidePannelComponent implements OnInit, OnDestroy {
 
-  @Input() discussionConfig: IdiscussionConfig
+  // @Input() discussionConfig: any
 
   paramsSubscription: Subscription;
 
@@ -33,7 +33,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   selectedTab: string;
   showSideMenu: Boolean = true;
   menu: any
-  // discussionConfig: any
+  discussionConfig: any
   defaultMenuOPtions: Array<IMenuOptions>
   state: any
   constructor(
@@ -49,9 +49,10 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     // TODO: loader or spinner
 
     console.log(this.menu)
-    // this.activatedRoute.data.subscribe((data) => {
+    this.activatedRoute.data.subscribe((data) => {
       debugger
-      // this.discussionConfig = data
+      this.discussionConfig = data
+    });
 
       console.log('sidepanel config', this.discussService.discussionConfig)
       this.menu = this.discussionConfig.menuOptions
@@ -67,7 +68,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
         this.discussService.forumIds = _.get(rawCategories, 'result');
         localStorage.setItem('userName', this.discussionConfig.userName);
       })
-    // });
+   
 
     this.discussService.initializeUserDetails(localStorage.getItem('userName'));
     // for (let i = 0; i < this.menu.length; i++) {
