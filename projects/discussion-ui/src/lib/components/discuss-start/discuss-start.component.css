@@ -17,8 +17,8 @@
 .modal-dialog > .modal-content {
   max-width: 800px;
   width: 90%;
-  /* position: relative; */
-  margin: 10% auto;
+  position: relative;
+  margin: 0 auto;
   padding: 24px;
   border-radius: 3px;
   background: #fff;
