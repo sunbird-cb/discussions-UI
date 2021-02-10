@@ -10,10 +10,10 @@ import { DiscussHomeComponent } from './../components/discuss-home/discuss-home.
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DiscussionLibraryComponent,
-    children: [
+  // {
+    // path: '',
+    // component: DiscussionLibraryComponent,
+    // children: [
       {
         path: 'home',
         pathMatch: 'full',
@@ -44,8 +44,8 @@ const routes: Routes = [
         pathMatch: 'full',
         component: DiscussionDetailsComponent
       }
-    ]
-  },
+  //   ]
+  // },
 ];
 
 @NgModule({
