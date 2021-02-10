@@ -35,6 +35,8 @@ export class DiscussionService {
   // tslint:disable-next-line:variable-name
   private _context: any = {};
 
+  private _discssionConfig: any;
+
   usr: any;
 
   constructor(
@@ -80,7 +82,7 @@ export class DiscussionService {
     return this.csDiscussionService.createPost(data);
   }
 
-  getMenuOptions(){
+  getMenuOptions() {
     return this.http.get(urlConfig.getMenuOptions());
   }
   /**
@@ -234,6 +236,15 @@ export class DiscussionService {
     return this._userName;
   }
 
+  set discussionConfig(discussionConfig) {
+    console.log('config', discussionConfig)
+    this._discssionConfig = discussionConfig;
+  }
+
+  get discussionConfig() {
+    return this._discssionConfig;
+  }
+
   set forumIds(ids) {
     this._forumIds = ids;
   }
@@ -260,6 +271,6 @@ export class DiscussionService {
 
   deletePost(pid: number, uid: number) {
     return this.csDiscussionService.deletePost(pid, uid);
-   }
+  }
 
 }

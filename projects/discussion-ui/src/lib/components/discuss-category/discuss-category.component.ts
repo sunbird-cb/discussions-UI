@@ -33,6 +33,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
 
   showLoader = false;
+  discussionConfig: any;
 
   constructor(
     public discussService: DiscussionService,
@@ -46,8 +47,14 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
      * the queryParams will change and it will fetch the categories
      * if there is no queryParams available, then it will fetch the default categories of the forumIds
      */
+    debugger
+    this.activatedRoute.data.subscribe((data) => {
+      debugger
+      this.discussionConfig = data
+    })
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
+    console.log('discussion categorie',this.discussService.discussionConfig)
     this.forumIds = this.discussService.forumIds;
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       if ( _.get(params, 'cid')) {

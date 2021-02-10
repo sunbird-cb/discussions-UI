@@ -1,6 +1,6 @@
 import { TelemetryUtilsService } from './telemetry-utils.service';
 import { ElementsModule } from './elements/elements.module';
-import { LibEntryComponent } from './components/lib-entry/lib-entry.component';
+import { DiscussionLibraryComponent } from './components/lib-entry/discussion-library.component';
 import { ComponentsModule } from './components/components.module';
 import { DiscussionRoutingModule } from './discussion-routing/discussion-routing.module';
 
@@ -12,13 +12,13 @@ export function provideCsModule(){
   return window['CsModule'];
 }
 @NgModule({
-  declarations: [ LibEntryComponent],
+  declarations: [ DiscussionLibraryComponent],
   imports: [
     ComponentsModule,
     DiscussionRoutingModule,
     ElementsModule
   ],
-  exports: [ ComponentsModule ],
+  exports: [ ComponentsModule, DiscussionLibraryComponent ],
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
 export class DiscussionUiModule { }

@@ -2,7 +2,7 @@ import { DiscussionDetailsComponent } from './../components/discussion-details/d
 import { MyDiscussionComponent } from './../components/my-discussion/my-discussion.component';
 import { DiscussTagsComponent } from './../components/discuss-tags/discuss-tags.component';
 import { DiscussCategoryComponent } from './../components/discuss-category/discuss-category.component';
-import { LibEntryComponent } from './../components/lib-entry/lib-entry.component';
+import { DiscussionLibraryComponent } from '../components/lib-entry/discussion-library.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,7 +12,7 @@ import { DiscussHomeComponent } from './../components/discuss-home/discuss-home.
 const routes: Routes = [
   {
     path: '',
-    component: LibEntryComponent,
+    component: DiscussionLibraryComponent,
     children: [
       {
         path: 'home',
