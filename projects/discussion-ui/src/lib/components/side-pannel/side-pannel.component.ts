@@ -50,35 +50,30 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
     console.log(this.menu)
     this.activatedRoute.data.subscribe((data) => {
-      debugger
       this.discussionConfig = data
     });
 
-      console.log('sidepanel config', this.discussService.discussionConfig)
-      this.menu = this.discussionConfig.menuOptions
-      debugger
-      this.hideSidePanel = document.body.classList.contains('widget');
-      this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-      this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
-        console.log('params', params);
-        this.queryParams = params;
+    this.menu = this.discussionConfig.menuOptions
+    this.hideSidePanel = document.body.classList.contains('widget');
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
+    this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
+      this.queryParams = params;
+      this.discussService.userName = this.discussionConfig.userName
+      const rawCategories = this.discussionConfig.categories
+      this.discussService.forumIds = _.get(rawCategories, 'result');
+      localStorage.setItem('userName', this.discussionConfig.userName);
+    })
 
-        this.discussService.userName = this.discussionConfig.userName
-        const rawCategories = this.discussionConfig.categories
-        this.discussService.forumIds = _.get(rawCategories, 'result');
-        localStorage.setItem('userName', this.discussionConfig.userName);
-      })
-   
 
     this.discussService.initializeUserDetails(localStorage.getItem('userName'));
-    // for (let i = 0; i < this.menu.length; i++) {
-    //   let item = this.menu
-    //   if (!item[i].enable) {
-    //     this.menu.splice(i, 1)
-    //   }
-    // }
+    for (let i = 0; i < this.menu.length; i++) {
+      let item = this.menu
+      if (!item[i].enable) {
+        this.menu.splice(i, 1)
+      }
+    }
     if (this.discussService.forumIds) {
-      // this.navigate(this.defaultPage);
+      this.navigate(this.defaultPage);
     } else {
       // TODO: Error toast
       console.log('forum ids not found');
