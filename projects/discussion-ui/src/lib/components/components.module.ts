@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DiscussStartComponent } from './discuss-start/discuss-start.component';
 import { TagInputModule } from 'ngx-chips';
 import { DiscussAllComponent } from './discuss-all/discuss-all.component';
+import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DiscussAllComponent } from './discuss-all/discuss-all.component';
     DiscussionDetailsComponent,
     DiscussStartComponent,
     DiscussAllComponent,
+    TagAllDiscussionComponent,
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,7 @@ import { DiscussAllComponent } from './discuss-all/discuss-all.component';
     DiscussTagsComponent,
     MyDiscussionComponent,
     DiscussionDetailsComponent,
-    DiscussStartComponent, DiscussAllComponent
+    DiscussStartComponent, DiscussAllComponent, TagAllDiscussionComponent
   ],
   providers: [
     DiscussionService, ConfigService
