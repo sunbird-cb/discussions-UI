@@ -2,8 +2,7 @@
 
 :root {
     font-size: 16px;
-  
-    // base colors
+   // base colors
     --blue: #024f9d;
     --green: #008840;
     --orange: #e55a28;
@@ -57,21 +56,21 @@
     line-height: 40px;
     padding: 0 4px;
     overflow: visible;
-    font-size: 14px;
-    color: #000;
+    font-size: 12px;
+    color: var(--black);
 }
 .filter-option:first-child {
     margin-left: 0;
 }
 .filter-option:hover,.tabs-active {
-    border-bottom: 3px solid #0074b6;
+    border-bottom: 3px solid var(--blue);
     font-weight: 700;
     text-decoration: none;
 }
 
 .discuss-card-content{
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-    background: #fff;
+    background: var(--white);
     color: rgba(0,0,0,.87);
     flex: 1;
     height: auto;
@@ -111,7 +110,7 @@
 
 .count {
     height: auto;
-    background: #fff;
+    background: var(--white);
     border-radius: 4px;
     padding: 1px 3px;
     display: inline-flex;
@@ -120,7 +119,7 @@
     width: auto;
     min-width: 16px;
     margin: 0 0 0 15px;
-    color: #0074b6;
+    color: var(--blue);
     font: 700 14px/21px Lato;
 }
 
