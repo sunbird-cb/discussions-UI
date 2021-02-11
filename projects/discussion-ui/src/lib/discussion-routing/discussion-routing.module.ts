@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LibEntryComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'categories'
+    },
+      {
         path: 'home',
         pathMatch: 'full',
         component: DiscussHomeComponent

@@ -1,13 +1,14 @@
-<ul  class="sb-sidebar-menu pl-0" *ngIf="!hideSidePanel">
-    <li *ngIf="true" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
-    <li *ngFor='let d of data.enabled' [ngClass]="{'active': selectedTab === d.route}" (click)="navigate(d.route, $event)" id="discussion-categories"><a>{{d.route}}</a></li>
+<ul class="sb-sidebar-menu pl-0" *ngIf="!hideSidePanel">
+  <!-- <li *ngIf="true" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
+  <li *ngFor='let d of menu' [ngClass]="{'active': isActive(d.route)}" (click)="navigate(d.route, $event)" id='d.route'>
+    <a>{{d.route}}</a></li>
 
 </ul>
 
 
 <!-- for mobile-view -->
 
-  <!-- <button type="button" class="openbtn" (click)="showMenuButton()">☰</button> 
+<!-- <button type="button" class="openbtn" (click)="showMenuButton()">☰</button> 
 
   <div class="overlay-sidebar" *ngIf="!showSideMenu">
     <div class="overlay-sidebar__menu">
