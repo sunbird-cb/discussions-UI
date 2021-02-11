@@ -1,14 +1,16 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
+import { ConfigService } from '../../services/config.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
 import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { Subscription } from 'rxjs';
+// import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 /* tslint:enable */
 
@@ -28,26 +30,44 @@ export class DiscussAllComponent implements OnInit {
   currentFilter = 'recent'
   currentActivePage: any;
   fetchNewData: false;
-  bsModalRef: BsModalRef;
+  // modalRef: BsModalRef;
+  paramsSubscription: Subscription;
+  getParams: any;
+  cIds: any;
+
 
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private discussionService: DiscussionService, private modalService: BsModalService,
-    private telemetryUtils: TelemetryUtilsService) { }
+    private discussionService: DiscussionService,
+    private configService: ConfigService,
+    public activatedRoute: ActivatedRoute,
+    private telemetryUtils: TelemetryUtilsService,
+    // private modalService: BsModalService
+    ) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
 
-    this.route.params.subscribe(x => {
-      console.log('-------------xxxxxxxxxx------------')
-      this.currentActivePage = x.page || 1
-      this.refreshData(this.currentActivePage)
+
+    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
+      this.configService.setConfig(params)
     })
+
+    this.getParams = this.configService.getConfig()
+    this.cIds = JSON.parse(_.get(this.getParams, 'categories'))
+
+
+    if (this.cIds.result.length) {
+      this.getContextBasedDiscussion(this.cIds.result)
+    } else {
+      this.currentActivePage = 1
+      this.refreshData(this.currentActivePage)
+    }
+
   }
 
   navigateToDiscussionDetails(discussionData) {
-    console.log('discussionData', discussionData);
 
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
     if (matchedTopic) {
@@ -63,12 +83,10 @@ export class DiscussAllComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    console.log('---------slug-----------', slug)
     this.discussionService.getContextBasedTopic(slug).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
-      console.log('this.discussionList', this.discussionList);
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
@@ -104,14 +122,12 @@ export class DiscussAllComponent implements OnInit {
     })
   }
 
+  getContextBasedDiscussion(cid: any) {
+    this.currentFilter === 'recent' ? this.getContextData(cid) : this.getContextData(cid)
+  }
+
   refreshData(page: any) {
-    // if (this.fetchNewData) {
-    if (this.currentFilter === 'recent') {
-      this.getRecentData(page)
-    } else {
-      this.fillPopular(page)
-    }
-    // }
+    this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page)
   }
 
   getRecentData(page: any) {
@@ -123,14 +139,28 @@ export class DiscussAllComponent implements OnInit {
       })
   }
 
-    startDiscussion() {
-      // this.showStartDiscussionModal = true;
-      this.bsModalRef = this.modalService.show(DiscussStartComponent);
+  getContextData(cid: any) {
+    const req = {
+      request: {
+        cids: cid
+      }
+    };
+    return this.discussionService.getContextBasedDiscussion(req).subscribe(
+      (data: any) => {
+        this.discussionList = _.get(data, 'topics')
+      })
+  }
 
-      this.bsModalRef.content.onClose().subscribe(
-        console.log('completed')
-      );
-    }
+  // startDiscussion(template: TemplateRef<any>) {
+  //   this.modalRef = this.modalService.show(template);
+
+    // this.showStartDiscussionModal = true;
+    // this.bsModalRef = this.modalService.show(DiscussStartComponent);
+
+    // this.bsModalRef.content.onClose().subscribe(
+    //   console.log('completed')
+    // );
+  // }
 
   // startDiscussion() {
   //   const dialogRef = this.dialog.open(DiscussStartComponent, {

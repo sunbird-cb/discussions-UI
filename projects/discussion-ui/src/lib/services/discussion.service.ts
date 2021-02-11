@@ -155,6 +155,19 @@ export class DiscussionService {
     // return this.csDiscussionService.fetchRecentD(page);
   }
 
+  getTagBasedDiscussion(tag?: string, page?: any) {
+    const url = this.appendPage(page, urlConfig.getTagBasedDiscussion(tag));
+    return this.http.get(url);
+  }
+
+  getContextBasedDiscussion(data) {
+    return this.http.post(urlConfig.getContextBasedDiscussion(), data);
+  }
+
+  getContextBasedTagDiscussion(data) {
+    return this.http.post(urlConfig.getContextBasedTagDiscussion(), data);
+  }
+
   fetchPopularD(page?: any) {
     const url = this.appendPage(page, urlConfig.popularPost());
     return this.http.get(url);
@@ -257,6 +270,6 @@ export class DiscussionService {
 
   deletePost(pid: number, uid: number) {
     return this.csDiscussionService.deletePost(pid, uid);
-   }
+  }
 
 }

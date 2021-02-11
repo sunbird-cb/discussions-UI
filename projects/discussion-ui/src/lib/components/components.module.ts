@@ -1,5 +1,6 @@
 import { PipesModule } from './../pipes/pipes.module';
 import { DiscussionService } from './../services/discussion.service';
+import { ConfigService } from './../services/config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ElementsModule } from './../elements/elements.module';
 import { NgModule } from '@angular/core';
@@ -46,7 +47,7 @@ import { DiscussAllComponent } from './discuss-all/discuss-all.component';
     DiscussStartComponent, DiscussAllComponent
   ],
   providers: [
-    DiscussionService
+    DiscussionService, ConfigService
   ]
 })
 export class ComponentsModule { }
