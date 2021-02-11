@@ -15,10 +15,11 @@
   color: #333;
   cursor: pointer;
   border-left: 0.125rem solid transparent;
+  cursor: pointer;
 }
 
-.sb-sidebar-menu li.active {
-  background-color: #eee;
+.sb-sidebar-menu li.menu-active{
+  background-color: var(--white);
   font-weight: 700;
   border-left: 3px solid #005391;
   color: #002e50;
@@ -26,8 +27,7 @@
 }
 
 .sb-sidebar-menu li:hover {
-  cursor: pointer;
-  background: rgba(0,0,0,.04);
+  background-color: var(--white);
 }
 
 .openbtn,.overlay-sidebar{
