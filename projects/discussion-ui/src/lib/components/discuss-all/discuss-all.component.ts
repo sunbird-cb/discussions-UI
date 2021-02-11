@@ -99,10 +99,10 @@ export class DiscussAllComponent implements OnInit {
       this.currentFilter = key;
       switch (key) {
         case 'recent':
-          this.fillrecent(this.currentActivePage)
+          this.fillrecent()
           break;
         case 'popular':
-          this.fillPopular(this.currentActivePage)
+          this.fillPopular()
           break;
         default:
           break;
@@ -110,11 +110,11 @@ export class DiscussAllComponent implements OnInit {
     }
   }
 
-  fillrecent(_page: any) {
-    this.getRecentData(this.currentActivePage)
+  fillrecent(_page?: any) {
+    this.getRecentData(_page)
   }
 
-  fillPopular(page: any) {
+  fillPopular(page?: any) {
     return this.discussionService.fetchPopularD(page).subscribe((response: any) => {
       // this.paginationData = response.pagination
       // this.setPagination()
