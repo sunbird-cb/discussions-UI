@@ -1,28 +1,22 @@
-.background-blue{
-    background-color: blueviolet;
-}
+@import "theme.scss";
 
 :root {
     font-size: 16px;
+   // base colors
+    --blue: #024f9d;
+    --green: #008840;
+    --orange: #e55a28;
+    --red: #ff4558;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --yellow: #ffc107;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --black: #000000;
+    --white: #ffffff;
 }
 
-//rem calculator
-@function calculateRem($size) {
-    $remSize: $size / 16px;
-    @return #{$remSize}rem;
-  }
-  
-  @function calculateEm($size) {
-    $emSize: $size / 16px;
-    @return #{$emSize}em;
-  }
-  
-  @mixin fontSize($size) {
-    font-size: $size; //Fallback in px
-    font-size: calculateRem($size);
-  }
-
-  
 .recent-tabs{
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
@@ -30,6 +24,7 @@
     box-shadow: none!important;
     border-radius: unset;
     background: inherit!important; 
+    z-index: 2;
 }
 .tabs-content{
     display: flex;
@@ -52,7 +47,6 @@
     user-select: none;
     cursor: pointer;
     outline: 0;
-    -webkit-tap-highlight-color: transparent;
     display: inline-block;
     white-space: nowrap;
     text-decoration: none;
@@ -62,20 +56,21 @@
     line-height: 40px;
     padding: 0 4px;
     overflow: visible;
-    font-size: 14px;
-    color: #000;
+    font-size: 0.875rem;
+    color: var(--black);
 }
 .filter-option:first-child {
     margin-left: 0;
 }
 .filter-option:hover,.tabs-active {
-    border-bottom: 3px solid #0074b6;
+    border-bottom: 3px solid var(--blue);
     font-weight: 700;
+    text-decoration: none;
 }
 
 .discuss-card-content{
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-    background: #fff;
+    background: var(--white);
     color: rgba(0,0,0,.87);
     flex: 1;
     height: auto;
@@ -86,6 +81,7 @@
     padding: 1.4rem;
     border-radius: 4px;
     width: 100%;
+    z-index: 2;
 }
 
 .tags{
@@ -93,6 +89,8 @@
     flex: 1;
     flex-direction: row;
     flex-wrap: wrap; 
+    position: relative;
+    z-index: 2;
 }
 
 .tag {
@@ -112,7 +110,7 @@
 
 .count {
     height: auto;
-    background: #fff;
+    background: var(--white);
     border-radius: 4px;
     padding: 1px 3px;
     display: inline-flex;
@@ -121,7 +119,7 @@
     width: auto;
     min-width: 16px;
     margin: 0 0 0 15px;
-    color: #0074b6;
+    color: var(--blue);
     font: 700 14px/21px Lato;
 }
 

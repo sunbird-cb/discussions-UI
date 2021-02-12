@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryCardComponent } from './category-card/category-card.component';
@@ -7,8 +8,10 @@ import { AppLoaderComponent } from './app-loader/app-loader.component';
 import { RelatedDiscussionComponent } from './related-discussion/related-discussion.component';
 import { PipesModule } from './../pipes/pipes.module';
 
+import { PostReplyComponent } from './post-reply/post-reply.component';
 @NgModule({
   declarations: [
+    PostReplyComponent,
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
@@ -16,13 +19,17 @@ import { PipesModule } from './../pipes/pipes.module';
     RelatedDiscussionComponent
   ],
   imports: [
-    CommonModule, PipesModule
+    CommonModule, PipesModule,
+     FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
-    AppLoaderComponent, RelatedDiscussionComponent
+    AppLoaderComponent, RelatedDiscussionComponent,
+    AppLoaderComponent,
+    PostReplyComponent
   ]
 })
 export class ElementsModule { }
