@@ -150,15 +150,29 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    // const url = this.appendPage(page, urlConfig.recentPost());
-    // return this.http.get(url);
-    return this.csDiscussionService.fetchRecentD(page);
+    const url = this.appendPage(page, urlConfig.recentPost());
+    return this.http.get(url);
+    // return this.csDiscussionService.fetchRecentD(page);
   }
-  // fetchPopularD(page?: any) {
-  //   // const url = this.appendPage(page, urlConfig.popularPost());
-  //   // return this.http.get(url);
-  //   return this.csDiscussionService.fetchPopularD(page);
-  // }
+
+  getTagBasedDiscussion(tag?: string, page?: any) {
+    const url = this.appendPage(page, urlConfig.getTagBasedDiscussion(tag));
+    return this.http.get(url);
+  }
+
+  getContextBasedDiscussion(data) {
+    return this.http.post(urlConfig.getContextBasedDiscussion(), data);
+  }
+
+  getContextBasedTagDiscussion(data) {
+    return this.http.post(urlConfig.getContextBasedTagDiscussion(), data);
+  }
+
+  fetchPopularD(page?: any) {
+    const url = this.appendPage(page, urlConfig.popularPost());
+    return this.http.get(url);
+    // return this.csDiscussionService.fetchPopularD(page);
+  }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
     // let url = urlConfig.getTopic() + '/' + topicId.toString() + '/' + slug;
@@ -256,6 +270,6 @@ export class DiscussionService {
 
   deletePost(pid: number, uid: number) {
     return this.csDiscussionService.deletePost(pid, uid);
-   }
+  }
 
 }

@@ -5,24 +5,29 @@ import { CategoryCardComponent } from './category-card/category-card.component';
 import { DiscussCardComponent } from './discuss-card/discuss-card.component';
 import { AvatarPhotoComponent } from './avatar-photo/avatar-photo.component';
 import { AppLoaderComponent } from './app-loader/app-loader.component';
+import { RelatedDiscussionComponent } from './related-discussion/related-discussion.component';
+import { PipesModule } from './../pipes/pipes.module';
+
 import { PostReplyComponent } from './post-reply/post-reply.component';
 @NgModule({
   declarations: [
+    PostReplyComponent,
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
     AppLoaderComponent,
-    PostReplyComponent
+    RelatedDiscussionComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
+    CommonModule, PipesModule,
+     FormsModule,
     ReactiveFormsModule
   ],
   exports: [
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
+    AppLoaderComponent, RelatedDiscussionComponent,
     AppLoaderComponent,
     PostReplyComponent
   ]

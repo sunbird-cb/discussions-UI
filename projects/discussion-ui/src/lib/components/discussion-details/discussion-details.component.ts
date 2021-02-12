@@ -26,6 +26,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   data: any;
   paginationData!: any;
   pager = {};
+  postAnswerForm!: FormGroup;
+  UpdatePostAnswerForm: FormGroup;
+  replyForm: FormGroup;
   fetchSingleCategoryLoader = false;
   paramsSubscription: Subscription;
   editMode = false;
@@ -33,6 +36,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   contentPost: any;
   editContentIndex: any;
   mainUid: number;
+  similarPosts: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -43,10 +47,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;
-        console.log('discuss params', params);
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.refreshPostData(this.currentActivePage);
@@ -64,15 +68,40 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
 
+  fetchSingleCategoryDetails(cid: number) {
+    this.fetchSingleCategoryLoader = true
+    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
+      (data: NSDiscussData.ICategoryData) => {
+        this.similarPosts = data.topics
+        this.fetchSingleCategoryLoader = false
+      },
+      (err: any) => {
+        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
+        this.fetchSingleCategoryLoader = false
+      })
+  }
+
+  initializeFormFiled() {
+    this.postAnswerForm = this.formBuilder.group({
+      answer: [],
+    });
+    this.UpdatePostAnswerForm = this.formBuilder.group({
+      updatedAnswer: [],
+    });
+    this.replyForm = this.formBuilder.group({
+      reply: []
+    });
+  }
 
   refreshPostData(page: any) {
     if (this.currentFilter === 'timestamp') {
-      console.log('from component refreshPostData method', this.slug);
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
@@ -80,12 +109,13 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
-      console.log('from component refreshPostData method else', this.slug);
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
@@ -125,6 +155,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         () => {
           // toast
           // this.openSnackbar(this.toastSuccess.nativeElement.value);
+          this.postAnswerForm.reset();
           this.refreshPostData(this.currentActivePage);
         },
         (err: any) => {
@@ -172,6 +203,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const req = {
       content: replyContent,
     };
+    this.postAnswerForm.controls['answer'].setValue('');
     if (post && post.tid) {
       this.discussionService.replyPost(post.tid, req).subscribe(
         () => {
