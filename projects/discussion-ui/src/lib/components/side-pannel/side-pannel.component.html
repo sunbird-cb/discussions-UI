@@ -1,5 +1,5 @@
 <ul class="sb-sidebar-menu pl-0" *ngIf="!hideSidePanel">
-    <li [ngClass]="{'active': selectedTab === 'home'}" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
+    <!-- <li [ngClass]="{'active': selectedTab === 'home'}" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
     <li [ngClass]="{'active': selectedTab === 'categories'}" (click)="navigate('categories', $event)" id="discussion-categories"><a>Categories</a></li>
     <li [ngClass]="{'active': selectedTab === 'tags'}" (click)="navigate('tags', $event)" id="discussion-tags"><a>Tags</a></li>
     <li [ngClass]="{'active': selectedTab === 'my-discussion'}" (click)="navigate('my-discussion', $event)" id="my-discussion"><a>My discussions</a></li>

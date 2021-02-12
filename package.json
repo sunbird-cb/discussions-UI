@@ -46,6 +46,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lodash-es": "^4.17.20",
+    "moment": "^2.29.1",
     "ng-packagr": "^4.2.0",
     "ngx-chips": "2.0.2",
     "protractor": "~5.4.0",

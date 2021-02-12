@@ -34,15 +34,11 @@ export class DiscussHomeComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.routeParams = params;
       this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-      console.log(this.discussionService.getContext(CONTEXT_PROPS.cid));
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
-      console.log(this.routeParams);
     });
   }
 
   navigateToDiscussionDetails(discussionData) {
-    console.log('discussionData', discussionData);
-
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
     if (matchedTopic) {
       this.telemetryUtils.deleteContext(matchedTopic);
@@ -61,7 +57,6 @@ export class DiscussHomeComponent implements OnInit {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
-      console.log('this.discussionList', this.discussionList);
     }, error => {
       this.showLoader = false;
       // TODO: Toaster

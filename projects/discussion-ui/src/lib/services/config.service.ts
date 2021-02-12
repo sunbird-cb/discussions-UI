@@ -21,23 +21,16 @@ export class ConfigService {
 
   }
 
-  setConfig(value) {
-    if (!this._config) {
-      this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
-        console.log('params---------------------------', params)
-        this._config = params;
-      })
-    } else {
-      this._config = value;
-    }
+  setConfig() {
+    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
+      this._config = params;
+    })
+
   }
 
   public getConfig() {
     if (!this._config) {
-      this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
-        console.log('params---------------------------', params)
-        this.setConfig(params)
-      })
+      this.setConfig()
     } else {
       return this._config;
     }

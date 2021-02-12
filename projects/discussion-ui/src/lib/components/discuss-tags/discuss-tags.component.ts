@@ -33,12 +33,7 @@ export class DiscussTagsComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
-
-    this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
-      console.log('params---------------------------', params)
-      this.configService.setConfig(params)
-    })
-
+    this.configService.setConfig()
     this.getParams = this.configService.getConfig()
     this.cIds = JSON.parse(_.get(this.getParams, 'categories'))
     console.log(this.getParams, this.cIds)
@@ -85,7 +80,6 @@ export class DiscussTagsComponent implements OnInit {
 
   getAllDiscussions(tag: { value: any }) {
     this.queryParam = tag.value
-    console.log('------queryParam 1------', this.queryParam)
     const tagdata = {
       tagname: '',
       categories: '',
@@ -93,8 +87,7 @@ export class DiscussTagsComponent implements OnInit {
     tagdata.categories = JSON.stringify(this.cIds)
     tagdata.tagname = tag.value
     this.queryParam = tagdata
-    console.log('------queryParam 2------', this.queryParam)
-    this.router.navigate([`/app/discussion-forum/tags/tag-discussions`], { queryParams: this.queryParam })
+    // this.router.navigate([`/app/discussion-forum/tags/tag-discussions`], { queryParams: this.queryParam })
   }
 
 }

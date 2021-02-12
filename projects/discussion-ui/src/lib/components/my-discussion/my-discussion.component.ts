@@ -39,7 +39,6 @@ export class MyDiscussionComponent implements OnInit {
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
-      console.log('>>>>>>>', this.discussionList);
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
       // }
