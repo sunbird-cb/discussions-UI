@@ -44,7 +44,6 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
-      console.log('params', params);
       this.queryParams = params;
       this.discussService.userName = _.get(params, 'userName');
       const rawCategories = JSON.parse(_.get(params, 'categories'));
@@ -54,7 +53,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     localStorage.setItem('userName', _.get(this.queryParams, 'userName'));
     this.discussService.initializeUserDetails(localStorage.getItem('userName'));
     this.activatedRoute.data.subscribe((data) => {
-      this.menu = data.menuOptions
+      this.menu = data.menuOptions.length > 0 ? data.menuOptions: CONSTANTS.MENUOPTIONS
     })
     for (let i = 0; i < this.menu.length; i++) {
       let item = this.menu

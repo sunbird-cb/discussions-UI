@@ -588,5 +588,24 @@
     "TOPIC": "/app/discussion-forum/topic/",
     "DISCUSSION": "/app/discussion-forum/",
     "CATEGORY": "/app/discussion-forum/category/"
-  }
+  },
+  "MENUOPTIONS":[
+    {
+      "route": "All discussions",
+      "enable": true
+    },
+    {
+      "route": "categories",
+      "enable": true
+    },
+    {
+      "route": "tags",
+      "enable": true
+    },
+    {
+      "route": "my-discussion",
+      "enable": true
+    }
+    
+  ]
 }
