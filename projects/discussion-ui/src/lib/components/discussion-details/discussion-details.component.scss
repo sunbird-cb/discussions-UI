@@ -9,6 +9,7 @@
     position: relative;
     padding: 1.4rem;
     border-radius: 4px;
+    z-index: 2;
 }
 
 .pad-4{
@@ -166,6 +167,11 @@
 }
 .post-labels{
     font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .reply-area{
     display: flex;
