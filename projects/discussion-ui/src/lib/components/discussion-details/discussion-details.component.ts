@@ -3,7 +3,7 @@ import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -18,13 +18,14 @@ import { Subscription } from 'rxjs';
 })
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
+  @Input() slug: string;
+
   routeParams: any;
   currentActivePage = 1;
   currentFilter = 'timestamp'; // 'recent
   data: any;
   paginationData!: any;
   pager = {};
-  @Input() slug: string;
   postAnswerForm!: FormGroup;
   UpdatePostAnswerForm: FormGroup;
   replyForm: FormGroup;
@@ -53,7 +54,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.refreshPostData(this.currentActivePage);
-
       });
     } else {
       this.refreshPostData(this.currentActivePage);
@@ -65,12 +65,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.refreshPostData(this.currentActivePage);
       }
     });
-
-
-
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
-
-
   }
 
   fetchSingleCategoryDetails(cid: number) {
@@ -111,7 +106,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         },
         (err: any) => {
           // toast message
-          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
@@ -171,22 +166,22 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   bookmark(discuss: any) {
-    this.discussionService.bookmarkPost(discuss.pid).subscribe(data => {
-      // toast
-      // this.openSnackbar('Bookmark added successfully!');
-      this.refreshPostData(this.currentActivePage);
-    },
+    this.discussionService.bookmarkPost(discuss.pid).subscribe( data => {
+        // toast
+        // this.openSnackbar('Bookmark added successfully!');
+        this.refreshPostData(this.currentActivePage);
+      },
       (err: any) => {
         // toast
-        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+       // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
   }
 
   unBookMark(discuss: any) {
-    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe(data => {
-      // toast
-      this.refreshPostData(this.currentActivePage);
-    },
+    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe( data => {
+       // toast
+        this.refreshPostData(this.currentActivePage);
+      },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -194,22 +189,20 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteVote(discuss: any) {
-    this.discussionService.deleteVotePost(discuss.pid).subscribe(data => {
+    this.discussionService.deleteVotePost(discuss.pid).subscribe( data => {
       // toast
-      this.refreshPostData(this.currentActivePage);
-    },
+        this.refreshPostData(this.currentActivePage);
+      },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
   }
 
-  postReply(post: NSDiscussData.IDiscussionData) {
+  postReply(replyContent: string, post: NSDiscussData.IDiscussionData) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.postAnswerForm.controls['answer'].value,
+      content: replyContent,
     };
-    // tslint:disable-next-line:no-string-literal
     this.postAnswerForm.controls['answer'].setValue('');
     if (post && post.tid) {
       this.discussionService.replyPost(post.tid, req).subscribe(
@@ -226,10 +219,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts) {
+  postCommentsReply(replyContent: string, post: NSDiscussData.IPosts) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.replyForm.controls['reply'].value,
+      content: replyContent,
       toPid: post.pid,
     };
     if (post && post.tid) {
@@ -297,7 +289,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   logTelemetry(event, data?) {
     const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ?
-      { id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post' } : {};
+    {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
@@ -310,10 +302,11 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  getRealtimePost(postContent: any, index: any) {
+  getRealtimePost(post: any, index: any) {
     this.editMode = true;
     this.editContentIndex = index;
-    this.contentPost = postContent.replace(/<[^>]*>/g, '');
+    this.contentPost = _.get(post, 'content').replace(/<[^>]*>/g, '');
+    post.toggle = false;
   }
 
   updatePost(updatedPostContent: any, pid: number) {
@@ -321,9 +314,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const req = {
       content: updatedPostContent,
       title: '',
-      tags: [],
+      tags : [],
       uid: this.mainUid
-    };
+      };
     this.discussionService.editPost(pid, req).subscribe((data: any) => {
       // TODO: Success toast
       this.refreshPostData(this.currentActivePage);
@@ -331,6 +324,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: error toast
       console.log('e', error);
     });
+    console.log(pid);
   }
 
   deletePost(postId: number) {
@@ -341,6 +335,36 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: error toast
       console.log('e', error);
     });
+  }
+
+  editReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.onEditMode(false);
+    } else if (_.get(event, 'action') === 'edit') {
+      this.updatePost(_.get(event, 'content'), _.get(post, 'pid'));
+      this.logTelemetry(event, post);
+    }
+  }
+
+  commentReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.togglePost(post);
+    } else if (_.get(event, 'action') === 'reply') {
+      this.postCommentsReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  postReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'reply') {
+      this.postReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  togglePost(post) {
+    post.toggle = !post.toggle;
+    this.onEditMode(false);
   }
   ngOnDestroy() {
     if (this.paramsSubscription) {
