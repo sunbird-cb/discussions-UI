@@ -35,6 +35,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   contentPost: any;
   editContentIndex: any;
   mainUid: number;
+  similarPosts: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -49,10 +50,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;
-        console.log('discuss params', params);
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.refreshPostData(this.currentActivePage);
+
       });
     } else {
       this.refreshPostData(this.currentActivePage);
@@ -64,8 +65,27 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.refreshPostData(this.currentActivePage);
       }
     });
+
+
+
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
+
+
   }
+
+  fetchSingleCategoryDetails(cid: number) {
+    this.fetchSingleCategoryLoader = true
+    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
+      (data: NSDiscussData.ICategoryData) => {
+        this.similarPosts = data.topics
+        this.fetchSingleCategoryLoader = false
+      },
+      (err: any) => {
+        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
+        this.fetchSingleCategoryLoader = false
+      })
+  }
+
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
@@ -80,25 +100,27 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   refreshPostData(page: any) {
     if (this.currentFilter === 'timestamp') {
-      console.log('from component refreshPostData method', this.slug);
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
           // toast message
-         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
-      console.log('from component refreshPostData method else', this.slug);
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
@@ -149,22 +171,22 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   bookmark(discuss: any) {
-    this.discussionService.bookmarkPost(discuss.pid).subscribe( data => {
-        // toast
-        // this.openSnackbar('Bookmark added successfully!');
-        this.refreshPostData(this.currentActivePage);
-      },
+    this.discussionService.bookmarkPost(discuss.pid).subscribe(data => {
+      // toast
+      // this.openSnackbar('Bookmark added successfully!');
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
-       // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
   }
 
   unBookMark(discuss: any) {
-    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe( data => {
-       // toast
-        this.refreshPostData(this.currentActivePage);
-      },
+    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe(data => {
+      // toast
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -172,10 +194,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteVote(discuss: any) {
-    this.discussionService.deleteVotePost(discuss.pid).subscribe( data => {
+    this.discussionService.deleteVotePost(discuss.pid).subscribe(data => {
       // toast
-        this.refreshPostData(this.currentActivePage);
-      },
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -275,17 +297,17 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   logTelemetry(event, data?) {
     const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ?
-    {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
+      { id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post' } : {};
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
 
   onEditMode(UpdatePostStatus: boolean) {
-  if (UpdatePostStatus) {
-    this.editMode = true;
-  } else {
-    this.editMode = false;
-  }
+    if (UpdatePostStatus) {
+      this.editMode = true;
+    } else {
+      this.editMode = false;
+    }
   }
 
   getRealtimePost(postContent: any, index: any) {
@@ -299,9 +321,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const req = {
       content: updatedPostContent,
       title: '',
-      tags : [],
+      tags: [],
       uid: this.mainUid
-      };
+    };
     this.discussionService.editPost(pid, req).subscribe((data: any) => {
       // TODO: Success toast
       this.refreshPostData(this.currentActivePage);
@@ -309,7 +331,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: error toast
       console.log('e', error);
     });
-    console.log(pid);
   }
 
   deletePost(postId: number) {
