@@ -8,25 +8,25 @@
         <span class="box-text"><span class="circle-label"></span>{{userInitial}}</span>
       </div>
       <div class="flex-1">
-        <div class="profile-label fs-1 name mb-4" [innerHTML]="data.username"></div>
+        <div class="profile-label fs-1 name mb-4" [innerHTML]="data?.username"></div>
         <div class="profile-label fnormal department mb-4">{{department}}</div>
         <div class="profile-label fnormal location mb-4">{{location}} </div>
-        <div class='profile-label fnormal email mb-4'>{{data.email || data.username}}</div>
+        <div class='profile-label fnormal email mb-4'>{{data?.email || data?.username}}</div>
         <ng-container>
           <div class="fnormal mt-16">
             <div class="flex flex-1 flex-custom-m">
               <span class="flex mobile ">
-                <span class="fnormal number">{{data.topiccount || 0 }}</span>
+                <span class="fnormal number">{{data?.topiccount || 0 }}</span>
                 <span class="fnormal ml-4">Discussions</span>
               </span>
               <span class="flex post-count-area mobile">
-                <span class="fnormal number">{{data.postcount || 0 }}</span>
+                <span class="fnormal number">{{data?.postcount || 0 }}</span>
                 <span class="fnormal ml-4">Posts</span>
               </span>
             </div>
             <div class="flex flex-1" class="text-right mobile2">
               <!-- Enable lated when other user can visit your profile -->
-              <!-- <span class="noocoments" mat-card-subtitle>Last online {{data.lastonline | pipeRelativeTime}}</span> -->
+              <!-- <span class="noocoments" mat-card-subtitle>Last online {{data?.lastonline | pipeRelativeTime}}</span> -->
             </div>
           </div>
         </ng-container>

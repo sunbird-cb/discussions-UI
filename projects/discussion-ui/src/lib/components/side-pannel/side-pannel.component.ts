@@ -24,7 +24,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   defaultPage = 'categories';
 
-  queryParams: any;
+  data: any;
   hideSidePanel: boolean;
 
   selectedTab: string;
@@ -43,17 +43,17 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     // TODO: loader or spinner
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-    this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
-      this.queryParams = params;
-      this.discussService.userName = _.get(params, 'userName');
-      const rawCategories = JSON.parse(_.get(params, 'categories'));
-      this.discussService.forumIds = _.get(rawCategories, 'result');
-    });
-
-    localStorage.setItem('userName', _.get(this.queryParams, 'userName'));
-    this.discussService.initializeUserDetails(localStorage.getItem('userName'));
     this.activatedRoute.data.subscribe((data) => {
-      this.menu = data.menuOptions.length > 0 ? data.menuOptions: CONSTANTS.MENUOPTIONS
+      this.data = data;
+      this.discussService.userName = _.get(data, 'userName');
+      const rawCategories = _.get(data, 'categories');
+      this.discussService.forumIds = _.get(rawCategories, 'result');
+
+
+      localStorage.setItem('userName', _.get(this.data, 'userName'));
+      this.discussService.initializeUserDetails(this.discussService.userName);
+
+      this.menu = data.menuOptions.length > 0 ? data.menuOptions : CONSTANTS.MENUOPTIONS
     })
     for (let i = 0; i < this.menu.length; i++) {
       let item = this.menu
@@ -71,7 +71,12 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   isActive(selectedItem) {
     debugger
-    if(this.router.url.indexOf(`/${selectedItem}`) > -1 || this.selectedTab === selectedItem){
+    if (this.router.url.indexOf(`/${selectedItem}`) > -1 || this.selectedTab === selectedItem) {
+      if(!this.selectedTab){
+        this.selectedTab = selectedItem
+      }
+      return true
+    } else if (selectedItem === 'categories' && !this.selectedTab ) {
       return true
     }
     return false
@@ -83,7 +88,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`], { queryParams: this.queryParams });
+    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
   }
 
   ngOnDestroy() {
