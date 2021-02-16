@@ -88,7 +88,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
+    this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
   }
 
   ngOnDestroy() {
