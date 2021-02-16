@@ -10,7 +10,7 @@ import * as _ from 'lodash'
 @Component({
   selector: 'lib-discuss-start',
   templateUrl: './discuss-start.component.html',
-  styleUrls: ['./discuss-start.component.css']
+  styleUrls: ['./discuss-start.component.scss']
 })
 export class DiscussStartComponent implements OnInit {
   @Input() categoryId: string;

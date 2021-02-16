@@ -1,68 +1,65 @@
 <!--modals-->
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div>
-        <form [formGroup]="startForm">
-
-          <div class="sb-field-group mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
-            <label>Ask a question or post an idea</label>
-            <div class="sb-field">
-              <input class="sb-form-control py-8" placeholder="Ask a question or post an idea"
-                formControlName="question" #question maxlength="1000" [required]="true" />
-            </div>
-            <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
-              Question is mandatory</small>
+  <div class="discussion-start-modal">
+    <div class="discussion-start-modal-content">
+      <form [formGroup]="startForm" class="discussion-start-form">
+        <div class="mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
+          <label class="start-form-label">Ask a question or post an idea</label>
+          <div class="start-form-field">
+            <input class="start-form-field-control py-8" placeholder="Ask a question or post an idea"
+              formControlName="question" #question maxlength="1000" [required]="true" />
           </div>
+          <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
+            Question is mandatory</small>
+        </div>
 
-          <div class="sb-field-group mb-16">
-            <label>Please elaborate your question or idea here</label>
-            <div class="sb-field relative">
-              <textarea minlength="8" class="sb-form-control py-8" rows="8" formControlName="description" #description name="moretext"
-                placeholder="Type here..."></textarea>
-            </div>
-            <small class="text-error" *ngIf="showError('description')"
-              i18n="description Error|Explains description is required"> Description is mandatory. It should be minimum of 8 characters </small>
+        <div class="mb-16">
+          <label class="start-form-label">Please elaborate your question or idea here</label>
+          <div class="start-form-field">
+            <textarea minlength="8" class="start-form-field-control py-8" rows="8" formControlName="description"
+              #description name="moretext" placeholder="Type here..."></textarea>
           </div>
+          <small class="text-error" *ngIf="showError('description')"
+            i18n="description Error|Explains description is required"> Description is mandatory. It should be minimum of
+            8 characters </small>
+        </div>
 
-              <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
-                <label>Tags</label>
-                <div *ngFor="let tag of postTagsArray">
-                  {{ tag }}
-                </div>
-                <!-- TODO: check the padding for placeholder -->
-                <tag-input secondaryPlaceholder="Add a tag and press Enter" formControlName="tags"
-                [modelAsStrings]="true">
-                </tag-input>
-              </div>
-         
-          <div *ngIf="showErrorMsg">
-            <small class="mandatory-label">
-              {{createErrorMsg}}
-            </small>
+        <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
+          <label class="start-form-label">Tags</label>
+          <div *ngFor="let tag of postTagsArray">
+            {{ tag }}
           </div>
+          <!-- TODO: check the padding for placeholder -->
+          <tag-input secondaryPlaceholder="Add a tag and press Enter" formControlName="tags" [modelAsStrings]="true">
+          </tag-input>
+        </div>
 
-          <div class="popup-buttons">
-            <button (click)="closeModal('discard');logTelemetry($event)" mat-raised-button type="button" class="discard-btn"
-              id="discard-discussion-start-form">
-              <span class="ws-mat-default-text" i18n>Discard</span>
-            </button>
-            <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
-              <!-- <span [diameter]="30"></span> -->
-            </span>
-            <button type="submit" class="submit-post-btn" [ngClass]="{'sb-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
-              (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
-              <span class="text-white" i18n>Submit</span>
-            </button>
-          </div>
-          ​
-        </form>
+        <div *ngIf="showErrorMsg">
+          <small class="mandatory-label">
+            {{createErrorMsg}}
+          </small>
+        </div>
+
+        <div class="start-modal-buttons">
+          <button (click)="closeModal('discard');logTelemetry($event)" mat-raised-button type="button"
+            class="discard-btn start-common-btn" id="discard-discussion-start-form">Discard
+          </button>
+          <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
+            <!-- <span [diameter]="30"></span> -->
+          </span>
+          <button type="submit" class="submit-post-btn start-common-btn"
+            [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
+            (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
+            <span class="text-white">Submit</span>
+          </button>
+        </div>
         ​
-        <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
-          value="Post created successfully!" #toastSuccess />
-        <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
-          value="Error in creating new post!" #toastError />
-      </div>
+      </form>
+      ​
+      <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
+        value="Post created successfully!" #toastSuccess />
+      <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
+        value="Error in creating new post!" #toastError />
     </div>
   </div>
 </div>
