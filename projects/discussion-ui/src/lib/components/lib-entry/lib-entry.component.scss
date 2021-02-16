@@ -6,9 +6,6 @@
 }
 
 .row {
-    width: 90%;
-    margin-left: auto !important;
-    margin-right: auto !important;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,6 +13,8 @@
 
 .discuss-left-panel{
     padding: 24px;
+    position: relative;
+    z-index: 2;
 }
 
 .discuss-main-panel{
@@ -31,7 +30,6 @@
     }
     .row {   
       flex-direction: column;
-      width: 100%;
     }
     .discuss-left-panel{
         width: auto;

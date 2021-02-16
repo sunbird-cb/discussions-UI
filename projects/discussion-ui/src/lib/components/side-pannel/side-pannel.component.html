@@ -1,8 +1,7 @@
 <ul class="sb-sidebar-menu pl-0" *ngIf="!hideSidePanel">
-  <!-- <li *ngIf="true" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
-  <li *ngFor='let d of menu' [ngClass]="{'active': isActive(d.route)}" (click)="navigate(d.route, $event)" id='d.route'>
-    <a>{{d.route}}</a></li>
-
+  <!-- <li class="df-sidebar-menu-list" *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
+  <li *ngFor='let d of menu' class="df-sidebar-menu-list" [ngClass]="{'menu-active': isActive(d.route)}"
+    (click)="navigate(d.route, $event)" id="d.route"><a>{{d.route}}</a></li>
 </ul>
 
 

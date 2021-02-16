@@ -57,7 +57,6 @@ export class DiscussStartComponent implements OnInit {
 
   initializeData() {
     this.discussService.fetchAllTag().subscribe(data => {
-      console.log('all tag from api', data);
       const tags = _.get(data, 'tags');
       this.allTags = _.map(tags, (tag) => tag.value);
     });

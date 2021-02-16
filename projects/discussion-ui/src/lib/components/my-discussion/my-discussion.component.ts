@@ -39,7 +39,6 @@ export class MyDiscussionComponent implements OnInit {
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
-      console.log('>>>>>>>', this.discussionList);
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
       // }
@@ -53,8 +52,8 @@ export class MyDiscussionComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if (localStorage.getItem('userName')) {
-      this.fetchUserProfile(localStorage.getItem('userName'));
+    if ( this.discussService.userName) {
+      this.fetchUserProfile( this.discussService.userName);
     }
   }
 

@@ -5,6 +5,9 @@ import * as _ from 'lodash'
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from '../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
@@ -16,14 +19,25 @@ export class DiscussTagsComponent implements OnInit {
   query: string;
   filteredTags: NSDiscussData.ITag[];
   showLoader = false;
+  queryParam: any;
+  paramsSubscription: Subscription;
+  getParams: any;
+  cIds: any;
   constructor(
     private discussionService: DiscussionService,
-    private telemetryUtils: TelemetryUtilsService
+    private telemetryUtils: TelemetryUtilsService, private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private configService: ConfigService,
   ) { }
 
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
+    // this.configService.setConfig(this.activatedRoute)
+    this.getParams = this.configService.getConfig()
+    this.cIds = _.get(this.getParams, 'categories')
+    console.log(this.getParams, this.cIds)
+
     this.fetchAllTags();
   }
 
@@ -63,4 +77,17 @@ export class DiscussTagsComponent implements OnInit {
   getContrast() {
     return 'rgba(255, 255, 255, 80%)';
   }
+
+  getAllDiscussions(tag: { value: any }) {
+    this.queryParam = tag.value
+    const tagdata = {
+      tagname: '',
+      categories: '',
+    }
+    tagdata.categories = JSON.stringify(this.cIds)
+    tagdata.tagname = tag.value
+    this.queryParam = tagdata
+    // this.router.navigate([`/app/discussion-forum/tags/tag-discussions`], { queryParams: this.queryParam })
+  }
+
 }

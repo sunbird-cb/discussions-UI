@@ -1,5 +1,6 @@
 import { PipesModule } from './../pipes/pipes.module';
 import { DiscussionService } from './../services/discussion.service';
+import { ConfigService } from './../services/config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ElementsModule } from './../elements/elements.module';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,9 @@ import { DiscussionDetailsComponent } from './discussion-details/discussion-deta
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DiscussStartComponent } from './discuss-start/discuss-start.component';
 import { TagInputModule } from 'ngx-chips';
+// TODO: Add this components
+// import { DiscussAllComponent } from './discuss-all/discuss-all.component';
+// import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
 
 
 @NgModule({
@@ -24,6 +28,9 @@ import { TagInputModule } from 'ngx-chips';
     MyDiscussionComponent,
     DiscussionDetailsComponent,
     DiscussStartComponent,
+    // TODO: Add this components
+    // DiscussAllComponent,
+    // TagAllDiscussionComponent,
   ],
   imports: [
     CommonModule,
@@ -42,9 +49,11 @@ import { TagInputModule } from 'ngx-chips';
     MyDiscussionComponent,
     DiscussionDetailsComponent,
     DiscussStartComponent
+    // TODO: Add this components
+    //  DiscussAllComponent, TagAllDiscussionComponent
   ],
   providers: [
-    DiscussionService
+    DiscussionService, ConfigService
   ]
 })
 export class ComponentsModule { }

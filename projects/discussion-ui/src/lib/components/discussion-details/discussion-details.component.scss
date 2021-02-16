@@ -2,13 +2,15 @@
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     background: #fff;
     color: rgba(0,0,0,.87);
-    flex: 1;
+    flex: 3;
     height: auto;
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
     position: relative;
     padding: 1.4rem;
     border-radius: 4px;
+    justify-content: space-between;
+    z-index: 2;
 }
 
 .pad-4{
@@ -99,7 +101,7 @@
 }
 
 .post-btn,.post-reply-btn{
-    background-color: #0074b6!important;
+    background-color: #0074b6;
     color: #fff;
     border: 0;
     vertical-align: baseline;
@@ -162,10 +164,15 @@
 }
 .post-time{
     color: rgba(0,0,0,.6);
-    margin-left: 16px; 
+    margin-right: 10px; 
 }
 .post-labels{
     font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .reply-area{
     display: flex;
@@ -224,4 +231,20 @@
     flex-direction: column;
     align-items: start;
  }
+}
+
+.sb-btn-disabled {
+    background-color: var(--gray-100);
+    border: solid var(--gray-100);
+}
+
+.edited-text {
+    padding-left: 8px;
+    margin-top: 3px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+
+.delete-icon, .edit-icon {
+    cursor: pointer;
 }

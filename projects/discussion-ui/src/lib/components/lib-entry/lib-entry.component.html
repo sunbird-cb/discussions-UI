@@ -1,22 +1,22 @@
-<div class="relative position">
-    <div class="ui container">
-      <div (click)="goBack()" class="py-8 d-flex flex-ai-center">
-        <!-- /* Back button */ -->
-       <button type="button" class="sb-btn sb-btn-normal sb-btn-link sb-btn-link-primary sb-left-icon-btn mr-auto">
-       <img src="./assets/discussion-ui/images/back-img.png" class="mr-16" width="16px" height="16px">
-          Back
-        </button>
-      </div>
+<div class="ui container">
+    <div class="relative position df-back-btn-container mx-24">
+        <div (click)="goBack()" class="py-8 d-flex flex-ai-center">
+            <!-- /* Back button */ -->
+            <button type="button"
+                class="sb-btn sb-btn-normal sb-btn-link sb-btn-link-primary sb-left-icon-btn mr-auto df-back-btn">
+                <img src="./assets/discussion-ui/images/back-img.png" class="mr-4" width="16px" height="16px">
+                Back
+            </button>
+        </div>
     </div>
-  </div>
-<div class="discussion-forum">
-    <div class="row">
-        <div class="discuss-left-panel">
-            <lib-side-pannel></lib-side-pannel>
-        </div> 
-        <div class="discuss-main-panel">
-            <router-outlet></router-outlet>
-        </div> 
+    <div class="discussion-forum">
+        <div class="row">
+            <div class="discuss-left-panel df-side-content">
+                <lib-side-pannel></lib-side-pannel>
+            </div>
+            <div class="discuss-main-panel df-main-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 </div>
-

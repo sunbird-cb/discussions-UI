@@ -39,7 +39,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService
-    ) { }
+  ) { }
 
   ngOnInit() {
     /** It will look for the queryParams, if back button is clicked,
@@ -50,7 +50,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
     this.forumIds = this.discussService.forumIds;
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
-      if ( _.get(params, 'cid')) {
+      if (_.get(params, 'cid')) {
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
         this.categories = [];
@@ -83,14 +83,14 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
    */
   navigateToDiscussionPage(cid, slug?) {
     this.showLoader = true;
-    this.telemetryUtils.uppendContext({id: cid, type: 'Category'});
+    this.telemetryUtils.uppendContext({ id: cid, type: 'Category' });
     this.discussService.fetchSingleCategoryDetails(cid).subscribe(response => {
       this.showLoader = false;
-      this.categoryId  = _.get(response, 'cid') ;
+      this.categoryId = _.get(response, 'cid');
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
       if (_.get(response, 'children').length > 0) {
-        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId }});
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId } });
         this.categories = [];
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
@@ -111,7 +111,6 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   }
 
   closeModal(event) {
-    console.log('event', event);
     this.showStartDiscussionModal = false;
   }
 

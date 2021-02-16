@@ -3,7 +3,7 @@ import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -18,13 +18,14 @@ import { Subscription } from 'rxjs';
 })
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
+  @Input() slug: string;
+
   routeParams: any;
   currentActivePage = 1;
   currentFilter = 'timestamp'; // 'recent
   data: any;
   paginationData!: any;
   pager = {};
-  @Input() slug: string;
   postAnswerForm!: FormGroup;
   UpdatePostAnswerForm: FormGroup;
   replyForm: FormGroup;
@@ -35,6 +36,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   contentPost: any;
   editContentIndex: any;
   mainUid: number;
+  similarPosts: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +51,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;
-        console.log('discuss params', params);
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.refreshPostData(this.currentActivePage);
@@ -66,6 +67,20 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
+
+  fetchSingleCategoryDetails(cid: number) {
+    this.fetchSingleCategoryLoader = true
+    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
+      (data: NSDiscussData.ICategoryData) => {
+        this.similarPosts = data.topics
+        this.fetchSingleCategoryLoader = false
+      },
+      (err: any) => {
+        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
+        this.fetchSingleCategoryLoader = false
+      })
+  }
+
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
       answer: [],
@@ -80,12 +95,13 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   refreshPostData(page: any) {
     if (this.currentFilter === 'timestamp') {
-      console.log('from component refreshPostData method', this.slug);
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
@@ -93,12 +109,13 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
-      console.log('from component refreshPostData method else', this.slug);
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
+          this.fetchSingleCategoryDetails(this.data.cid)
+
           // this.setPagination();
         },
         (err: any) => {
@@ -182,12 +199,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  postReply(post: NSDiscussData.IDiscussionData) {
+  postReply(replyContent: string, post: NSDiscussData.IDiscussionData) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.postAnswerForm.controls['answer'].value,
+      content: replyContent,
     };
-    // tslint:disable-next-line:no-string-literal
     this.postAnswerForm.controls['answer'].setValue('');
     if (post && post.tid) {
       this.discussionService.replyPost(post.tid, req).subscribe(
@@ -204,10 +219,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  postCommentsReply(post: NSDiscussData.IPosts) {
+  postCommentsReply(replyContent: string, post: NSDiscussData.IPosts) {
     const req = {
-      // tslint:disable-next-line:no-string-literal
-      content: this.replyForm.controls['reply'].value,
+      content: replyContent,
       toPid: post.pid,
     };
     if (post && post.tid) {
@@ -281,17 +295,18 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   onEditMode(UpdatePostStatus: boolean) {
-  if (UpdatePostStatus) {
-    this.editMode = true;
-  } else {
-    this.editMode = false;
-  }
+    if (UpdatePostStatus) {
+      this.editMode = true;
+    } else {
+      this.editMode = false;
+    }
   }
 
-  getRealtimePost(postContent: any, index: any) {
+  getRealtimePost(post: any, index: any) {
     this.editMode = true;
     this.editContentIndex = index;
-    this.contentPost = postContent.replace(/<[^>]*>/g, '');
+    this.contentPost = _.get(post, 'content').replace(/<[^>]*>/g, '');
+    post.toggle = false;
   }
 
   updatePost(updatedPostContent: any, pid: number) {
@@ -320,6 +335,36 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: error toast
       console.log('e', error);
     });
+  }
+
+  editReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.onEditMode(false);
+    } else if (_.get(event, 'action') === 'edit') {
+      this.updatePost(_.get(event, 'content'), _.get(post, 'pid'));
+      this.logTelemetry(event, post);
+    }
+  }
+
+  commentReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'cancel') {
+      this.togglePost(post);
+    } else if (_.get(event, 'action') === 'reply') {
+      this.postCommentsReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  postReplyHandler(event, post) {
+    if (_.get(event, 'action') === 'reply') {
+      this.postReply(_.get(event, 'content'), post);
+      this.logTelemetry(event, post);
+    }
+  }
+
+  togglePost(post) {
+    post.toggle = !post.toggle;
+    this.onEditMode(false);
   }
   ngOnDestroy() {
     if (this.paramsSubscription) {
