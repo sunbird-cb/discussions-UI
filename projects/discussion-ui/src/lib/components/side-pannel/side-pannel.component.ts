@@ -94,10 +94,10 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   showMenuButton() {
     this.showSideMenu = this.showSideMenu ? false : true;
-  }
+ }
 
-  closeNav() {
-    this.showSideMenu = this.showSideMenu ? false : true;
-  }
-
+ closeNav(){
+  this.showSideMenu = this.showSideMenu ? false : true;
+ }
+ 
 }
