@@ -23,7 +23,6 @@ export class ConfigService {
 
   setConfig(activatedRoute) {
     activatedRoute.data.subscribe((data) => {
-      debugger
       this._config = data;
     })
 
