@@ -10,6 +10,7 @@ import * as CONSTANTS from './../../common/constants.json';
 import * as _ from 'lodash'
 import { first } from 'rxjs/operators';
 import { ConfigService } from '../../services/config.service';
+import { IdiscussionConfig, IMenuOptions } from '../../models/discussion-config.model';
 /* tslint:enable */
 
 @Component({
@@ -25,9 +26,9 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   defaultPage = 'categories';
 
-  data: any;
+  data: IdiscussionConfig;
   hideSidePanel: boolean;
-  menu: any;
+  menu: Array<IMenuOptions>;
   selectedTab: string;
   showSideMenu: Boolean = true;
 
@@ -65,7 +66,6 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   }
 
   isActive(selectedItem) {
-    debugger
     if (this.router.url.indexOf(`/${selectedItem}`) > -1 || this.selectedTab === selectedItem) {
       if (!this.selectedTab) {
         this.selectedTab = selectedItem
@@ -94,10 +94,10 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   showMenuButton() {
     this.showSideMenu = this.showSideMenu ? false : true;
- }
+  }
 
- closeNav(){
-  this.showSideMenu = this.showSideMenu ? false : true;
- }
- 
+  closeNav() {
+    this.showSideMenu = this.showSideMenu ? false : true;
+  }
+
 }
