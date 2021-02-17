@@ -22,8 +22,8 @@ export class ConfigService {
   }
 
   setConfig(activatedRoute) {
-    activatedRoute.data.subscribe((data) => {
-      this._config = data;
+    activatedRoute.data.subscribe((config) => {
+      this._config = config.data;
     })
 
   }
