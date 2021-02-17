@@ -28,7 +28,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   data: IdiscussionConfig;
   hideSidePanel: boolean;
-  menu: Array<IMenuOptions>;
+  menu: Array<IMenuOptions> = [];
   selectedTab: string;
   showSideMenu: Boolean = true;
 
@@ -54,12 +54,11 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
     this.discussService.initializeUserDetails(this.discussService.userName);
 
-    this.menu = this.data.menuOptions.length > 0 ? this.data.menuOptions : CONSTANTS.MENUOPTIONS
+    let menuArr = this.data.menuOptions.length > 0 ? this.data.menuOptions : CONSTANTS.MENUOPTIONS
     // })
-    for (let i = 0; i < this.menu.length; i++) {
-      let item = this.menu
-      if (!item[i].enable) {
-        this.menu.splice(i, 1)
+    for (let i = 0; i < menuArr.length; i++) {
+      if (menuArr[i].enable) {
+        this.menu.push(menuArr[i])
       }
     }
 

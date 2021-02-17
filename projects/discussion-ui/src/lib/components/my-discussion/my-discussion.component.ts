@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
@@ -25,6 +26,7 @@ export class MyDiscussionComponent implements OnInit {
   showLoader = false;
   constructor(
     private discussService: DiscussionService,
+    private configService: ConfigService,
     public router: Router,
     private telemetryUtils: TelemetryUtilsService) {}
 
@@ -131,7 +133,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {

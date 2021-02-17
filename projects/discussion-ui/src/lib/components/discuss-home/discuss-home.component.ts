@@ -7,6 +7,7 @@ import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
@@ -27,6 +28,7 @@ export class DiscussHomeComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
+    private configService: ConfigService,
     private telemetryUtils: TelemetryUtilsService) {}
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
   }
 
   getDiscussionList(slug: string) {
