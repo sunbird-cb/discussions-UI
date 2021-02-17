@@ -9,6 +9,8 @@ import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { first } from 'rxjs/operators';
+import { ConfigService } from '../../services/config.service';
+import { IdiscussionConfig, IMenuOptions } from '../../models/discussion-config.model';
 /* tslint:enable */
 
 @Component({
@@ -24,9 +26,9 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   defaultPage = 'categories';
 
-  queryParams: any;
+  data: IdiscussionConfig;
   hideSidePanel: boolean;
-
+  menu: Array<IMenuOptions>;
   selectedTab: string;
   showSideMenu: Boolean = true;
 
@@ -35,27 +37,44 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     public discussService: DiscussionService,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService,
+    private configService: ConfigService
   ) { }
 
   ngOnInit() {
     // TODO: loader or spinner
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-    this.paramsSubscription = this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
-      console.log('params', params);
-      this.queryParams = params;
-      this.discussService.userName = _.get(params, 'userName');
-      const rawCategories = JSON.parse(_.get(params, 'categories'));
-      this.discussService.forumIds = _.get(rawCategories , 'result');
-    });
-    localStorage.setItem('userName', _.get(this.queryParams, 'userName'));
-    this.discussService.initializeUserDetails(localStorage.getItem('userName'));
-    if (this.discussService.forumIds) {
-      this.navigate(this.defaultPage);
-    } else {
-      // TODO: Error toast
-      console.log('forum ids not found');
+    this.configService.setConfig(this.activatedRoute)
+    // this.activatedRoute.data.subscribe((data) => {
+    this.data = this.configService.getConfig();
+    this.discussService.userName = _.get(this.data, 'userName');
+    const rawCategories = _.get(this.data, 'categories');
+    this.discussService.forumIds = _.get(rawCategories, 'result');
+
+
+    this.discussService.initializeUserDetails(this.discussService.userName);
+
+    this.menu = this.data.menuOptions.length > 0 ? this.data.menuOptions : CONSTANTS.MENUOPTIONS
+    // })
+    for (let i = 0; i < this.menu.length; i++) {
+      let item = this.menu
+      if (!item[i].enable) {
+        this.menu.splice(i, 1)
+      }
     }
+
+  }
+
+  isActive(selectedItem) {
+    if (this.router.url.indexOf(`/${selectedItem}`) > -1 || this.selectedTab === selectedItem) {
+      if (!this.selectedTab) {
+        this.selectedTab = selectedItem
+      }
+      return true
+    } else if (selectedItem === 'categories' && !this.selectedTab) {
+      return true
+    }
+    return false
   }
 
   navigate(pageName: string, event?) {
@@ -64,7 +83,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`], { queryParams: this.queryParams });
+    this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
   }
 
   ngOnDestroy() {
@@ -75,10 +94,10 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   showMenuButton() {
     this.showSideMenu = this.showSideMenu ? false : true;
- }
+  }
 
- closeNav(){
-  this.showSideMenu = this.showSideMenu ? false : true;
- }
- 
+  closeNav() {
+    this.showSideMenu = this.showSideMenu ? false : true;
+  }
+
 }

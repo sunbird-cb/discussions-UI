@@ -52,8 +52,8 @@ export class MyDiscussionComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if (localStorage.getItem('userName')) {
-      this.fetchUserProfile(localStorage.getItem('userName'));
+    if ( this.discussService.userName) {
+      this.fetchUserProfile( this.discussService.userName);
     }
   }
 

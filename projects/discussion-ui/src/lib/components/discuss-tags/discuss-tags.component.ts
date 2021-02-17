@@ -33,9 +33,9 @@ export class DiscussTagsComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
-    this.configService.setConfig()
+    // this.configService.setConfig(this.activatedRoute)
     this.getParams = this.configService.getConfig()
-    this.cIds = JSON.parse(_.get(this.getParams, 'categories'))
+    this.cIds = _.get(this.getParams, 'categories')
     console.log(this.getParams, this.cIds)
 
     this.fetchAllTags();
