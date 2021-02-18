@@ -68,5 +68,11 @@ html[layout='joy'] {
   .menu-active {
     background: var(--df-gray-bg) !important;
   }
-
+  
+  .discussion-start-modal .discussion-start-modal-content{
+    .discussion-start-form .start-form-field .start-form-field-control {
+      border-radius: var(--sbt-bradius-sm) !important;
+      padding-left: 1rem;
+    }
+  }
 }
