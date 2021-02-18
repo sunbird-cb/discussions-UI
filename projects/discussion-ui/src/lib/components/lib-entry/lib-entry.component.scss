@@ -38,5 +38,7 @@
     .discuss-main-panel{
         width: auto;
         padding: 16px 0px;
+        position: relative;
+        z-index: 1;
     }
   }
