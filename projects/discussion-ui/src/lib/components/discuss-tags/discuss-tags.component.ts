@@ -82,8 +82,7 @@ export class DiscussTagsComponent implements OnInit {
   getAllDiscussions(tag: { value: any }) {
     this.queryParam = tag.value
     const tagdata = {
-      tagname: '',
-      categories: '',
+      tagname: ''
     }
     tagdata.tagname = tag.value
     this.queryParam = tagdata
