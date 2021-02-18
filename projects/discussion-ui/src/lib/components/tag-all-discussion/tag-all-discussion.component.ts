@@ -6,6 +6,8 @@ import { DiscussionService } from '../../services/discussion.service';
 import _ from 'lodash'
 import { Subscriber, Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
+import * as CONSTANTS from './../../common/constants.json';
+
 @Component({
   selector: 'lib-tag-all-discussion',
   templateUrl: './tag-all-discussion.component.html',
@@ -35,14 +37,12 @@ export class TagAllDiscussionComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
-    this.configService.setConfig()
-    // })
-
     this.getParams = this.configService.getConfig()
-    this.cIds = JSON.parse(_.get(this.getParams, 'categories'))
-    this.tagName = _.get(this.getParams, 'tagname')
+    this.cIds = _.get(this.getParams, 'categories')
 
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.tagName = params.tagname
+    })
     if (this.cIds.result.length) {
       this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
@@ -118,7 +118,9 @@ export class TagAllDiscussionComponent implements OnInit {
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
       this.fetchNewData = true
-      this.router.navigate([`/app/discuss/tags/tag-discussions`], { queryParams: { page, tagname: this.queryParam } })
+
+      let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+      this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam } });
     }
   }
 
