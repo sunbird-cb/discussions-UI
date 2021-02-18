@@ -99,7 +99,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         });
       } else {
         this.discussService.setContext(CONTEXT_PROPS.cid, this.categoryId);
-        this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
+        let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+        this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
       }
     }, error => {
       this.showLoader = false;

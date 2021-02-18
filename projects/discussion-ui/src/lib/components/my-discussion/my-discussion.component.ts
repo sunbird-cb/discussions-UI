@@ -28,7 +28,7 @@ export class MyDiscussionComponent implements OnInit {
     private discussService: DiscussionService,
     private configService: ConfigService,
     public router: Router,
-    private telemetryUtils: TelemetryUtilsService) {}
+    private telemetryUtils: TelemetryUtilsService) { }
 
   /** To fetch user details */
   fetchUserProfile(userName) {
@@ -54,8 +54,8 @@ export class MyDiscussionComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if ( this.discussService.userName) {
-      this.fetchUserProfile( this.discussService.userName);
+    if (this.discussService.userName) {
+      this.fetchUserProfile(this.discussService.userName);
     }
   }
 
@@ -133,7 +133,8 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {

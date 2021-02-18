@@ -29,7 +29,7 @@ export class DiscussHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
     private configService: ConfigService,
-    private telemetryUtils: TelemetryUtilsService) {}
+    private telemetryUtils: TelemetryUtilsService) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
@@ -50,7 +50,8 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
   }
 
   getDiscussionList(slug: string) {

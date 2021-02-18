@@ -44,16 +44,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     // TODO: loader or spinner
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-    this.configService.setConfig(this.activatedRoute)
-    // this.activatedRoute.data.subscribe((data) => {
-    this.data = this.configService.getConfig();
-    this.discussService.userName = _.get(this.data, 'userName');
-    const rawCategories = _.get(this.data, 'categories');
-    this.discussService.forumIds = _.get(rawCategories, 'result');
-
-
-    this.discussService.initializeUserDetails(this.discussService.userName);
-
+    this.data = this.configService.getConfig()
     let menuArr = this.data.menuOptions.length > 0 ? this.data.menuOptions : CONSTANTS.MENUOPTIONS
     // })
     for (let i = 0; i < menuArr.length; i++) {

@@ -15,13 +15,14 @@ export class RelatedDiscussionComponent implements OnInit {
 
   constructor(private router: Router,
     private configService: ConfigService
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
 
   getDiscussion(discuss) {
-    this.router.navigate([`${this.configService.getConfig().routerSlug}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`]);
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`]);
   }
 
 }
