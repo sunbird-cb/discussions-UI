@@ -2,7 +2,7 @@ export interface IdiscussionConfig {
     menuOptions?: Array<IMenuOptions>
     userName: string
     context: Object
-    categories: Array<string>
+    categories: Object
     path: string
     routerSlug: string
   }
