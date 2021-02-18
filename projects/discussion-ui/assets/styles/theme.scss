@@ -16,7 +16,7 @@ html[layout='joy'] {
   }
 
   .df-back-btn {
-    margin-left: 1rem;
+    margin-left: 4px;
   }
 
   .df-main-content {
@@ -36,7 +36,7 @@ html[layout='joy'] {
 
     @media (max-width: 768px) {
       margin-right: 0;
-      padding: 1.5rem;
+      padding: 1rem;
     }
   }
 
@@ -67,8 +67,18 @@ html[layout='joy'] {
   .df-sidebar-menu-list:hover,
   .menu-active {
     background: var(--df-gray-bg) !important;
+    font-weight: 700;
+    border-left: 3px solid #005391;
+    color: #002e50;
   }
-  
+
+  .df-sidebar-menu-list:hover {
+    background: var(--df-gray-bg) !important;
+    font-weight: 700;
+    color: #002e50;
+  }
+
+  /* start discussion modal */
   .discussion-start-modal .discussion-start-modal-content{
     .discussion-start-form .start-form-field .start-form-field-control {
       border-radius: var(--sbt-bradius-sm) !important;
