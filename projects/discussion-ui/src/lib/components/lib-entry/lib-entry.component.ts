@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 
 /* tslint:disable */
 import * as _ from 'lodash'
+import { IdiscussionConfig } from '../../models/discussion-config.model';
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 @Component({
   selector: 'lib-lib-entry',
@@ -13,13 +15,24 @@ import * as _ from 'lodash'
 })
 export class LibEntryComponent implements OnInit {
 
+  data: IdiscussionConfig;
+
   constructor(
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
+    private configService: ConfigService,
     private location: Location
   ) { }
 
-  ngOnInit() {  }
+  ngOnInit() { 
+    this.configService.setConfig(this.activatedRoute)
+    // this.activatedRoute.data.subscribe((data) => {
+    this.data = this.configService.getConfig();
+    this.discussionService.userName = _.get(this.discussionService, 'userName');
+    const rawCategories = _.get(this.data, 'categories');
+    this.discussionService.forumIds = _.get(rawCategories, 'result');
+    this.discussionService.initializeUserDetails(this.discussionService.userName);
+   }
 
   goBack() {
     this.location.back();

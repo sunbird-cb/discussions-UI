@@ -8,6 +8,7 @@ import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { Subscription } from 'rxjs';
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 
@@ -41,6 +42,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
+    private configService: ConfigService,
     private formBuilder: FormBuilder,
     public router: Router,
     private telemetryUtils: TelemetryUtilsService,
@@ -253,7 +255,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY} ${this.topicId}`], { queryParams: { page } });
+      let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+      this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY} ${this.topicId}`], { queryParams: { page } });
     }
   }
 
