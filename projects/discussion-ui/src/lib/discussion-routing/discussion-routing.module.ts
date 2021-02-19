@@ -18,6 +18,11 @@ const routes: Routes = [
     component: LibEntryComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        component: DiscussCategoryComponent
+      },
+      {
         path: 'home',
         pathMatch: 'full',
         // component: DiscussAllComponent

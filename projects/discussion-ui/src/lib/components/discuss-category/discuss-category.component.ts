@@ -8,6 +8,7 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
@@ -36,6 +37,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   constructor(
     public discussService: DiscussionService,
+    public configService: ConfigService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService
@@ -97,7 +99,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         });
       } else {
         this.discussService.setContext(CONTEXT_PROPS.cid, this.categoryId);
-        this.router.navigate([`${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
+        let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+        this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
       }
     }, error => {
       this.showLoader = false;
