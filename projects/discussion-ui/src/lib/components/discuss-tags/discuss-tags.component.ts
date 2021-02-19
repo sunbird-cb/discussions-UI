@@ -87,8 +87,8 @@ export class DiscussTagsComponent implements OnInit {
     tagdata.tagname = tag.value
     this.queryParam = tagdata
 
-    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
+    // let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    // this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
 
 
   }

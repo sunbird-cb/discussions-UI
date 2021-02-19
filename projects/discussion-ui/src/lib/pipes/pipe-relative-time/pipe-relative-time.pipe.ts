@@ -4,7 +4,6 @@
 
 import { Pipe, PipeTransform } from '@angular/core'
 import dayjs from 'dayjs'
-// import moment from 'moment'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
