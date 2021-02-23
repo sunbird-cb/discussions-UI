@@ -25,7 +25,8 @@
     "ngx-chips": "2.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "dayjs": "^1.10.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",
@@ -46,7 +47,6 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lodash-es": "^4.17.20",
-    "moment": "^2.29.1",
     "ng-packagr": "^4.2.0",
     "ngx-chips": "2.0.2",
     "protractor": "~5.4.0",
