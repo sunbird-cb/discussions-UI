@@ -24,10 +24,15 @@ export class LibEntryComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit() { 
-    this.configService.setConfig(this.activatedRoute)
+  ngOnInit() {
+    this.configService.setConfig(this.activatedRoute);
     // this.activatedRoute.data.subscribe((data) => {
     this.data = this.configService.getConfig();
+    if (!this.data) {
+      // fallback for query params
+      this.configService.setConfigFromParams(this.activatedRoute);
+      this.data = this.configService.getConfig();
+    }
     this.discussionService.userName = _.get(this.data, 'userName');
     const rawCategories = _.get(this.data, 'categories');
     this.discussionService.forumIds = _.get(rawCategories, 'result');

@@ -592,7 +592,7 @@
   "MENUOPTIONS":[
     {
       "route": "All discussions",
-      "enable": true
+      "enable": false
     },
     {   
       "route": "categories",
