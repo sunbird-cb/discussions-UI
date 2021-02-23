@@ -28,7 +28,7 @@ export class LibEntryComponent implements OnInit {
     this.configService.setConfig(this.activatedRoute)
     // this.activatedRoute.data.subscribe((data) => {
     this.data = this.configService.getConfig();
-    this.discussionService.userName = _.get(this.discussionService, 'userName');
+    this.discussionService.userName = _.get(this.data, 'userName');
     const rawCategories = _.get(this.data, 'categories');
     this.discussionService.forumIds = _.get(rawCategories, 'result');
     this.discussionService.initializeUserDetails(this.discussionService.userName);
