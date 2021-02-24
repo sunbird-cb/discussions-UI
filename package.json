@@ -22,11 +22,11 @@
     "@angular/router": "^8.0.0",
     "copyfiles": "^2.4.1",
     "core-js": "^2.5.4",
-    "dayjs": "^1.10.4",
     "ngx-chips": "2.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "dayjs": "^1.10.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",

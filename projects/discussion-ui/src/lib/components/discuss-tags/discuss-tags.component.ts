@@ -8,7 +8,6 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
-import * as CONSTANTS from './../../common/constants.json';
 /* tslint:enable */
 
 @Component({
@@ -82,14 +81,13 @@ export class DiscussTagsComponent implements OnInit {
   getAllDiscussions(tag: { value: any }) {
     this.queryParam = tag.value
     const tagdata = {
-      tagname: ''
+      tagname: '',
+      categories: '',
     }
+    tagdata.categories = JSON.stringify(this.cIds)
     tagdata.tagname = tag.value
     this.queryParam = tagdata
-
-    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
-
-
+    // this.router.navigate([`/app/discussion-forum/tags/tag-discussions`], { queryParams: this.queryParam })
   }
+
 }
