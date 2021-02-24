@@ -7,6 +7,7 @@ import _ from 'lodash'
 import { Subscriber, Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
+import { DiscussUtilsService } from '../../services/discuss-utils.service';
 
 @Component({
   selector: 'lib-tag-all-discussion',
@@ -33,6 +34,7 @@ export class TagAllDiscussionComponent implements OnInit {
     private router: Router,
     private discussService: DiscussionService, public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
+    private discussUtils: DiscussUtilsService
   ) { }
 
   ngOnInit() {
@@ -89,13 +91,8 @@ export class TagAllDiscussionComponent implements OnInit {
       })
   }
 
-  // private openSnackbar(primaryMsg: string, duration: number = 5000) {
-  //   this.snackBar.open(primaryMsg, 'X', {
-  //     duration,
-  //   })
-  // }
 
-  // for pagination
+  // TODO : for pagination
   // getNextData(tagname: string, page: any) {
   //   return this.discussService.fetchNextTagD(tagname, page).subscribe(
   //     (data: any) => {
@@ -124,34 +121,18 @@ export class TagAllDiscussionComponent implements OnInit {
     }
   }
 
-  refreshData(tagname: string, page: any) {
-    if (this.fetchNewData) {
-      // this.getNextData(tagname, page)
-    }
-  }
+  // TODO: add refershdata function
+  // refreshData(tagname: string, page: any) {
+  //   if (this.fetchNewData) {
+  //     // this.getNextData(tagname, page)
+  //   }
+  // }
 
   // for tag color
   public getBgColor(tagTitle: any) {
-    const bgColor = this.stringToColor(tagTitle.toLowerCase());
-    const color = this.getContrast();
+    const bgColor = this.discussUtils.stringToColor(tagTitle.toLowerCase());
+    const color = this.discussUtils.getContrast();
     return { color, 'background-color': bgColor };
-  }
-
-  stringToColor(title) {
-    let hash = 0;
-
-    for (let i = 0; i < title.length; i++) {
-      // tslint:disable-next-line: no-bitwise
-      hash = title.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash % 360);
-    // tslint:disable-next-line: prefer-template
-    const colour = 'hsl(' + hue + ',100%,30%)';
-    return colour;
-  }
-
-  getContrast() {
-    return 'rgba(255, 255, 255, 80%)';
   }
 
 }
