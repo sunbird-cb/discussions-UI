@@ -8,6 +8,8 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
+import * as CONSTANTS from './../../common/constants.json';
+import { DiscussUtilsService } from '../../services/discuss-utils.service';
 /* tslint:enable */
 
 @Component({
@@ -25,9 +27,11 @@ export class DiscussTagsComponent implements OnInit {
   cIds: any;
   constructor(
     private discussionService: DiscussionService,
-    private telemetryUtils: TelemetryUtilsService, private router: Router,
+    private telemetryUtils: TelemetryUtilsService,
+    private router: Router,
     public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
+    private discussUtils: DiscussUtilsService
   ) { }
 
   ngOnInit() {
@@ -56,38 +60,21 @@ export class DiscussTagsComponent implements OnInit {
   }
 
   public getBgColor(tagTitle: any) {
-    const bgColor = this.stringToColor(tagTitle.toLowerCase());
-    const color = this.getContrast();
+    const bgColor = this.discussUtils.stringToColor(tagTitle.toLowerCase());
+    const color = this.discussUtils.getContrast();
     return { color, 'background-color': bgColor };
-  }
-
-  stringToColor(title) {
-    let hash = 0;
-
-    for (let i = 0; i < title.length; i++) {
-      // tslint:disable-next-line: no-bitwise
-      hash = title.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash % 360);
-    // tslint:disable-next-line: prefer-template
-    const colour = 'hsl(' + hue + ',100%,30%)';
-    return colour;
-  }
-
-  getContrast() {
-    return 'rgba(255, 255, 255, 80%)';
   }
 
   getAllDiscussions(tag: { value: any }) {
     this.queryParam = tag.value
     const tagdata = {
-      tagname: '',
-      categories: '',
+      tagname: ''
     }
-    tagdata.categories = JSON.stringify(this.cIds)
     tagdata.tagname = tag.value
     this.queryParam = tagdata
-    // this.router.navigate([`/app/discussion-forum/tags/tag-discussions`], { queryParams: this.queryParam })
+
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
   }
 
 }
