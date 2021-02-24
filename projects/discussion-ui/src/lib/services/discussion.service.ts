@@ -216,7 +216,7 @@ export class DiscussionService {
 
   fetchUserProfile(userName) {
     // return this.http.get<any>(urlConfig.userDetails(userName));
-    return this.csDiscussionService.getUserDetails(this.userName);
+    return this.csDiscussionService.getUserDetails(userName);
   }
 
   getContextBasedTopic(slug: string) {

@@ -92,7 +92,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
       if (_.get(response, 'children').length > 0) {
-        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId } });
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId }, queryParamsHandling: "merge" });
         this.categories = [];
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
@@ -100,7 +100,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       } else {
         this.discussService.setContext(CONTEXT_PROPS.cid, this.categoryId);
         let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-        this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
+        this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`], {queryParamsHandling: "merge"});
       }
     }, error => {
       this.showLoader = false;

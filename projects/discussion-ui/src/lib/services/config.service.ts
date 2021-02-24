@@ -22,11 +22,19 @@ export class ConfigService {
 
   }
 
-  setConfig(activatedRoute) {
-    activatedRoute.data.subscribe((config) => {
-      this._config = config.data;
-    })
+  setConfig(config) {
+    // activatedRoute.data.subscribe((config) => {
+    this._config = config;
+    // })
 
+  }
+
+  setDiscussionConfig(key, config) {
+    localStorage.setItem(key, config)
+  }
+
+  getDiscussionConfig(key) {
+    return localStorage.getItem(key)
   }
 
   public getConfig() {

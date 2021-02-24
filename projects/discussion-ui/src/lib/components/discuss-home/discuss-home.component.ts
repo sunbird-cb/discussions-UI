@@ -51,7 +51,7 @@ export class DiscussHomeComponent implements OnInit {
       type: 'Topic'
     });
     let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], {queryParamsHandling: "merge"});
   }
 
   getDiscussionList(slug: string) {

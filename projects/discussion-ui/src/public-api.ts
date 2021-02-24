@@ -5,3 +5,4 @@
 export * from './lib/discussion-ui.module';
 export * from './lib/discussion-events.service';
 export *  from './lib/models/discussion-config.model';
+export * from './lib/services/config.service'
