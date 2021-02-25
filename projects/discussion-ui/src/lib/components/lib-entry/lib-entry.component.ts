@@ -7,16 +7,18 @@ import { Location } from '@angular/common';
 import * as _ from 'lodash'
 import { IdiscussionConfig } from '../../models/discussion-config.model';
 import { ConfigService } from '../../services/config.service';
+import { OnDestroy } from '@angular/core';
 /* tslint:enable */
 @Component({
   selector: 'lib-lib-entry',
   templateUrl: './lib-entry.component.html',
   styleUrls: ['./lib-entry.component.scss']
 })
-export class LibEntryComponent implements OnInit {
+export class LibEntryComponent implements OnInit, OnDestroy {
 
   data: IdiscussionConfig;
-
+  config: any;
+  pageKey: string;
   constructor(
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
@@ -27,9 +29,9 @@ export class LibEntryComponent implements OnInit {
   ngOnInit() {
 
     this.activatedRoute.queryParams.subscribe((params) => {
-      let config = localStorage.getItem(_.get(params, 'page'))
-      debugger
-      this.configService.setConfig(JSON.parse(config))
+      this.pageKey = _.get(params, 'page')
+      this.config = localStorage.getItem(_.get(params, 'page'))
+      this.configService.setConfig(JSON.parse(this.config))
 
       this.data = this.configService.getConfig();
       this.discussionService.userName = _.get(this.data, 'userName');
@@ -37,6 +39,10 @@ export class LibEntryComponent implements OnInit {
       this.discussionService.forumIds = _.get(rawCategories, 'result');
       this.discussionService.initializeUserDetails(this.data.userName);
     });
+  }
+
+  ngOnDestroy() { 
+    localStorage.removeItem(this.pageKey)
   }
 
   goBack() {
