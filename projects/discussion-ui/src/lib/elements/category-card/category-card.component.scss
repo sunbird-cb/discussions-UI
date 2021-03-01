@@ -41,6 +41,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: rgba(0,0,0,.87);
+    word-break: break-all;
 }
 
 .category-card-header-text {
@@ -52,7 +53,7 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .category-card-main {
