@@ -14,7 +14,7 @@
 }
 
 .discuss-left-panel{
-    padding: 0 1.5rem;
+    padding: 1.5rem;
     position: relative;
     z-index: 2;
 }
@@ -45,7 +45,7 @@
     }
   }
 
-  @media (max-width:375px){
+  @media screen and (min-width: 320px) and (max-width:375px){
     .discussion-forum-content {
         grid-template-columns: repeat(auto-fill,minmax(292px,1fr));
         margin:0px;
