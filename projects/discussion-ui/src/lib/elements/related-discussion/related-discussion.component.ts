@@ -21,8 +21,7 @@ export class RelatedDiscussionComponent implements OnInit {
   }
 
   getDiscussion(discuss) {
-    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`]);
   }
 
 }

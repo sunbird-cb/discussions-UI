@@ -39,22 +39,20 @@ export class TagAllDiscussionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getParams = this.configService.getConfig()
-    this.cIds = _.get(this.getParams, 'categories')
-
+    this.cIds = this.configService.getCategories()
     this.activatedRoute.queryParams.subscribe((params) => {
       this.tagName = params.tagname
     })
-    if (this.cIds.result.length) {
-      this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
+    if (this.configService.hasContext()) {
+      this.fetchContextBasedTagDetails(this.tagName, this.cIds)
     } else {
       this.currentActivePage = 1
-      this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
+      this.fetchSingleTagDetails(this.tagName)
     }
 
   }
 
-  fetchSingleTagDetails(tagname: string, page: any) {
+  fetchSingleTagDetails(tagname: string, page?: any) {
     this.fetchSingleCategoryLoader = true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
@@ -64,12 +62,13 @@ export class TagAllDiscussionComponent implements OnInit {
         this.setPagination()
       },
       (err: any) => {
+        console.log('Error in fetching single tag details', err)
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
         this.fetchSingleCategoryLoader = false
       })
   }
 
-  fetchContextBasedTagDetails(tagname: string, cid: any, page: any) {
+  fetchContextBasedTagDetails(tagname: string, cid: any, page?: any) {
     this.fetchSingleCategoryLoader = true
     const req = {
       request: {
@@ -86,6 +85,7 @@ export class TagAllDiscussionComponent implements OnInit {
         this.setPagination()
       },
       (err: any) => {
+        console.log('Error in fetching context based tag details', err)
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
         this.fetchSingleCategoryLoader = false
       })
@@ -115,9 +115,7 @@ export class TagAllDiscussionComponent implements OnInit {
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
       this.fetchNewData = true
-
-      let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-      this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam } });
+      this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam } });
     }
   }
 
