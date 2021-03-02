@@ -62,7 +62,7 @@ export class TagAllDiscussionComponent implements OnInit {
         this.setPagination()
       },
       (err: any) => {
-        console.log('Error in fetching single tag details', err)
+        console.error('Error in fetching single tag details', err)
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
         this.fetchSingleCategoryLoader = false
       })
@@ -85,7 +85,7 @@ export class TagAllDiscussionComponent implements OnInit {
         this.setPagination()
       },
       (err: any) => {
-        console.log('Error in fetching context based tag details', err)
+        console.error('Error in fetching context based tag details', err)
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
         this.fetchSingleCategoryLoader = false
       })

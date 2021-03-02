@@ -50,7 +50,6 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    // let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
     this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
   }
 
