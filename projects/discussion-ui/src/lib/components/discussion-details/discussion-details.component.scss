@@ -1,54 +1,71 @@
+.discuss-details-content {
+    display: flex;
+    flex-direction: row;
+}
+
 .discussion-details {
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: #fff;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     flex: 3;
     height: auto;
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
     padding: 1.4rem;
     border-radius: 4px;
     justify-content: space-between;
-    z-index: 2;
+    z-index: unset;
+    margin-bottom: 1rem;
 }
 
-.pad-4{
-    margin-left:8px;
+.related-discuss-part {
+    padding:  0 1.5rem 1.5rem;
 }
 
-.margin-right-l{
- margin-right: 24px;
+.pad-4 {
+    margin-left: 8px;
 }
-.discussion-card-title{
+
+.margin-right-l {
+    margin-right: 24px;
+}
+
+.discussion-card-title {
     font-size: 20px;
     font-weight: 700;
     text-transform: capitalize;
 }
-.discussion-heading{
- font-weight: 400;
- text-transform: capitalize;
+
+.discussion-heading {
+    font-weight: 400;
+    text-transform: capitalize;
 }
-.discussion-content{
+
+.discussion-content {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
     font-size: 14px;
-    color: rgba(0,0,0,.6);
+    color: rgba(0, 0, 0, .6);
     flex-wrap: wrap;
 }
-.comment-section{
+
+.comment-section {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     margin-bottom: 16px;
     flex-direction: row;
+    flex-wrap: wrap;
 }
-.post-header-content{
+
+.post-header-content {
     display: flex;
     align-items: center;
 }
-.circle-text{
+
+.circle-text {
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -57,28 +74,33 @@
     align-items: center;
     background-color: rgb(48, 105, 51);
 }
-.circle-label{
+
+.circle-label {
     color: #fff;
     font-size: 10px;
     line-height: 12px;
     letter-spacing: .2625px;
 }
+
 .discussion-labels {
     color: #948e8e;
     text-transform: capitalize;
 }
-.comments-area{
+
+.comments-area {
     display: flex;
     justify-content: space-between;
     font-weight: 700;
     flex-direction: row;
 }
-.text-form-field{
+
+.text-form-field {
     display: flex;
     flex-direction: column;
     /* width: 97.6%;   */
 }
-.text-content{
+
+.text-content {
     min-height: 108px;
     max-height: 540px;
     /* width: 97.6%;  */
@@ -91,16 +113,17 @@
 .text-content.is-invalid,
 .text-content.is-invalid:hover,
 .text-content.is-invalid:focus {
-  border: 1px solid #ff6979;
+    border: 1px solid #ff6979;
 }
 
 .text-content.is-valid,
 .text-content.is-valid:hover,
 .text-content.is-valid:focus {
-  border: 1px solid #0074b6;
+    border: 1px solid #0074b6;
 }
 
-.post-btn,.post-reply-btn{
+.post-btn,
+.post-reply-btn {
     background-color: #0074b6;
     color: #fff;
     border: 0;
@@ -108,23 +131,27 @@
     text-align: center;
     margin: 0;
     min-width: 64px;
-    line-height: 36px;
     padding: 0 16px;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
 }
-.up-vote-text,.down-vote-text{
+
+.up-vote-text,
+.down-vote-text {
     font-size: 16px;
-    color: rgba(0,0,0,.6);
+    color: rgba(0, 0, 0, .6);
 }
-.comment-btns{
+
+.comment-btns {
     display: flex;
     justify-content: flex-end;
     margin: 16px 0px;
 }
-.cancel-btn,.reply-btn{
+
+.cancel-btn,
+.reply-btn {
     cursor: pointer;
     position: relative;
     cursor: pointer;
@@ -143,30 +170,36 @@
     background: none;
     border-radius: 4px;
 }
-.cancel-btn:hover,.reply-btn:hover{
+
+.cancel-btn:hover,
+.reply-btn:hover {
     background: #878282;
     color: #fff;
 }
 
-.post-card{
+.post-card {
     border-bottom: 1px solid #ddd;
     margin: 0 16px 16px 16px;
 }
-.comments-section{
+
+.comments-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.post-name{
+
+.post-name {
     font-size: 16px;
     font-weight: 700;
     margin-left: 16px;
 }
-.post-time{
-    color: rgba(0,0,0,.6);
-    margin-right: 10px; 
+
+.post-time {
+    color: rgba(0, 0, 0, .6);
+    margin: 0 1rem;
 }
-.post-labels{
+
+.post-labels {
     font-size: 12px;
     display: -webkit-box;
     -webkit-line-clamp: 6;
@@ -174,27 +207,32 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.reply-area{
+
+.reply-area {
     display: flex;
     justify-content: space-between;
     margin: 16px 0;
     align-items: center;
 }
 
-.margin-gap-tb{
-    margin:16px 0;
+.margin-gap-tb {
+    margin: 16px 0;
 }
+
 .custom-actions {
     display: flex;
     align-items: center;
 }
+
 .edit-post {
     margin-right: 20px;
 }
+
 .updatePostActions {
     display: flex;
     justify-content: flex-end;
 }
+
 .cancel-update-post {
     margin-right: 20px;
 }
@@ -203,34 +241,46 @@
     min-height: 40px;
 }
 
-.border-0{
- border-bottom: 0px;
+.border-0 {
+    border-bottom: 0px;
 }
 
-.comments-count{
+.comments-count {
     color: #0074b6;
     font-weight: 700;
 }
 
 @media (max-width: 768px) {
- .post-btn{
-     width: 100%;
-     margin-top:8px;
- }
- .comments-area{
-     flex-direction: column;
- }
- .comments-count{
-     margin-top: 8px;
- }
- .post-time{
-    margin-top: 8px;
-    margin-left: 0px;
- }
- .comment-section{
-    flex-direction: column;
-    align-items: start;
- }
+    .discuss-details-content {
+        flex-direction: column;
+    }
+
+    .related-discuss-part {
+        padding: 0px;
+    }
+
+    .post-btn {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .comments-area {
+        flex-direction: column;
+    }
+
+    .comments-count {
+        margin-top: 8px;
+    }
+
+    .post-time {
+        margin-top: 8px;
+        margin-left: 0px;
+    }
+
+    .comment-section {
+        flex-direction: column;
+        align-items: start;
+    }
 }
 
 .sb-btn-disabled {
@@ -242,9 +292,10 @@
     padding-left: 8px;
     margin-top: 3px;
     font-size: 12px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
 }
 
-.delete-icon, .edit-icon {
+.delete-icon,
+.edit-icon {
     cursor: pointer;
 }
