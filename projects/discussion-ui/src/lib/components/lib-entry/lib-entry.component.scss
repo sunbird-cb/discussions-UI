@@ -30,14 +30,24 @@
         height: 100%;
         overflow: auto;
     }
+    .discuss-left-panel{
+        padding: 1rem;
+    }
+    .discuss-right-panel{
+     padding: 0px;
+    }
+  }
+
+  @media screen and (min-width: 376px) and (max-width: 768px){
     .discussion-forum-content {
         grid-template-columns: 1fr;  
         margin:0px;
     }
-    .discuss-left-panel{
-        padding: 0 1rem;
-    }
-    .discuss-right-panel{
-     padding: 0px;
+  }
+
+  @media (max-width:375px){
+    .discussion-forum-content {
+        grid-template-columns: repeat(auto-fill,minmax(292px,1fr));
+        margin:0px;
     }
   }
