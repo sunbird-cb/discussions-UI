@@ -76,6 +76,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     }
     this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
     // this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
+    this.closeNav();
   }
 
   ngOnDestroy() {
