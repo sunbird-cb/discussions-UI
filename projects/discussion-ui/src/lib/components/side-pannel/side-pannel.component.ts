@@ -42,6 +42,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // TODO: loader or spinner
+    this.telemetryUtils.setContext([]);
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.data = this.configService.getConfig();
