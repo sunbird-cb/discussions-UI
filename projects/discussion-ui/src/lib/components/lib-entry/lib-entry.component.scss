@@ -27,14 +27,14 @@
 @media (max-width: 768px) {
     .discussion-forum{
         padding: 0 1.5rem;
-        height: 100%;
+        height: 100vh;
         overflow: auto;
     }
     .discuss-left-panel{
         padding: 1rem;
     }
     .discuss-right-panel{
-     padding: 0px;
+     padding: 0px 0px 48px 0px;
     }
   }
 
