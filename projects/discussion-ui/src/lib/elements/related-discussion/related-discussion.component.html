@@ -1,25 +1,12 @@
-<div class="margin-right-s">
-    <h3 i18n-aria-label aria-label="Related discussions">Related discussions</h3>
+<h5 aria-label="Related discussions" class="related-discuss-label mb-16">Related discussions</h5>
     <ng-container *ngIf="relatedDiscussions && relatedDiscussions.length > 0">
-        <div *ngFor="let discussion of relatedDiscussions | slice:0:5;"
-            class="tag ws-mat-primary-lite-background-important">
-
-            <div class="discuss-card-header">
-                <div class="discuss-card-subtitle responsive" (click)="getDiscussion(discussion)">
-                    <a href="javascript:void(0)" i18n-aria-label role="link" aria-label="related discussion post">
-                        <span class="discuss-user-label">{{discussion?.title}}</span>
-                    </a>
-                </div>
-                <div>
-                    <div class="flex items-center justify-start">
-                        <div class="mr-2 truncate category-name ws-mat-default-text"
-                            [innerHTML]="discussion.category.name">
-                        </div>
-                        <div class="mr-2 separator-dot"> </div>
-                        <div class=" truncate time">{{ discussion.timestamp | pipeRelativeTime }}</div>
+        <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card">
+                    <a href="javascript:void(0)" role="link" aria-label="related discussion post df-text-color"  class="related-discuss-card-content" 
+                    (click)="getDiscussion(discussion)">{{discussion?.title}}</a>
+                    <div class="related-discuss-card-description mt-8">
+                        <div class="category-name"[innerHTML]="discussion.category.name"></div>
+                        <div class="separator-dot mx-8"></div>
+                        <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
                     </div>
-                </div>
-            </div>
         </div>
     </ng-container>
-</div>

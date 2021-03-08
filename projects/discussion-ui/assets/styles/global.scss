@@ -24,7 +24,7 @@
     box-shadow: none!important;
     border-radius: unset;
     background: inherit!important; 
-    z-index: 2;
+    z-index: unset;
 }
 .tabs-content{
     display: flex;
@@ -81,7 +81,7 @@
     padding: 1.4rem;
     border-radius: 4px;
     width: 100%;
-    z-index: 2;
+    z-index: unset;
 }
 
 .tags{
@@ -90,7 +90,7 @@
     flex-direction: row;
     flex-wrap: wrap; 
     position: relative;
-    z-index: 2;
+    z-index: unset;
 }
 
 .tag {

@@ -59,17 +59,21 @@ export class TelemetryUtilsService {
       }
     }
     if (this.currentObj) {
-      impressionEvent.context = { cdata: [this.currentObj]};
+      impressionEvent.context = { cdata: [{
+        id: _.get(this.currentObj, 'id').toString(),
+        type: _.get(this.currentObj, 'type') }
+      ]};
     }
     this.discussionEvents.emitTelemetry(impressionEvent);
   }
 
   logInteract(event, pageId) {
-    const target = _.get(event, 'currentTarget.attributes.id') || _.get(event, 'target.attributes.id') || _.get(event, 'srcElement.attributes.id')
+    const target = _.get(event, 'currentTarget.attributes.id') ||  _.get(event, 'target.attributes.id') ||
+     _.get(event, 'srcElement.attributes.id');
     const interactEvent: ITelemetryObj = {
       eid: 'INTERACT',
       edata: {
-        id: _.get(target, 'value'),
+        id: _.get(target, 'value') || _.get(event, 'action'),
         type: 'CLICK',
         pageid: pageId
       }
@@ -77,12 +81,17 @@ export class TelemetryUtilsService {
 
     if (this.currentObj) {
       const object = {
-        id: _.get(this.currentObj, 'id'),
+        id: _.get(this.currentObj, 'id').toString(),
         type: _.get(this.currentObj, 'type'),
         ver: '1'
-      }
+      };
       object['rollup'] = this._context.length > 1 ?  this.getRollUp() : {};
-      interactEvent.context = { cdata: [this.currentObj], object };
+      interactEvent.context = {
+        cdata: [{
+          id: _.get(this.currentObj, 'id').toString(),
+          type: _.get(this.currentObj, 'type')
+        }], object
+      };
     }
 
     this.discussionEvents.emitTelemetry(interactEvent);
@@ -96,7 +105,7 @@ export class TelemetryUtilsService {
       if (this._context.length > 1) {
         data.forEach((element, index) => {
           console.log('rollup', element);
-          rollUp['l' + (index + 1)] = element
+          rollUp['l' + (index + 1)] = element.toString();
         });
       }
 
