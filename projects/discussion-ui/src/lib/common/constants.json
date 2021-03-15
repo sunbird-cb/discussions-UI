@@ -595,15 +595,15 @@
       "enable": false
     },
     {   
-      "route": "categories",
+      "route": "Categories",
       "enable": true
     },
     {
-      "route": "tags",
+      "route": "Tags",
       "enable": true
     },
     {
-      "route": "my-discussion",
+      "route": "My discussion",
       "enable": true
     }
     
