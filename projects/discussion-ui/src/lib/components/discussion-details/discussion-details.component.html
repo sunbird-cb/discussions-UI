@@ -19,7 +19,7 @@
             <!-- <span class="ws-mat-default-text">{{'Asked by'}}</span> -->
             <!-- TODO: avatar photo -->
             <!-- <ws-widget-avatar-photo [name]="post.user.fullname || 'Anonymous'" size="s"></ws-widget-avatar-photo> -->
-            <span class="circle-text"><span class="circle-label">{{post.userInitial}}</span></span>
+            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
             <span class=" fnormal ml-16 discussion-labels">{{'Asked by '}}</span>
             <span class="fnormal ml-16 discussion-labels" *ngIf="post.user.fullname"
               [innerHTML]="post.user.fullname"></span>
@@ -137,7 +137,7 @@
           <!-- <ws-widget-avatar-photo [name]="post?.user?.fullname || post?.user?.username" size="s">
           </ws-widget-avatar-photo> -->
           <div class="post-header-content">
-            <span class="circle-text"><span class="circle-label">{{post.userInitial}}</span></span>
+            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
             <span class="post-name" *ngIf="post?.user?.fullname"
               [innerHTML]="post?.user?.fullname"></span>
             <span class="post-name" *ngIf="!post?.user?.fullname"
@@ -291,7 +291,7 @@
           </ws-widget-avatar-photo> -->
 
           <div class="post-header-content">
-            <span class="circle-text"><span class="circle-label">{{post.userInitial}}</span></span>
+            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
             <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="post?.user?.fullname"
             [innerHTML]="post?.user?.fullname"></span>
           <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="!post?.user?.fullname"

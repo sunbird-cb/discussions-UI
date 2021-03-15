@@ -100,7 +100,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
-          this.setUserInitial(_.get(this.data, 'posts'));
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
           this.fetchSingleCategoryDetails(this.data.cid);
@@ -115,7 +114,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.data = data;
-          this.setUserInitial(_.get(this.data, 'posts'));
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
           this.fetchSingleCategoryDetails(this.data.cid);
@@ -129,20 +127,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  setUserInitial(posts) {
-    posts.forEach(post => {
-      post.userInitial = this.splitName(_.get(post, 'user.username'));
-    });
-  }
-
-  splitName(userName) {
-    let userInitial = '';
-    const name = userName.split(' ');
-    name.forEach(element => {
-      userInitial = userInitial + element.charAt(0);
-    });
-    return userInitial;
-  }
 
   setPagination() {
     this.pager = {

@@ -5,7 +5,7 @@
     <div class="profileCard">
       <div class="profilecard-content">
       <div class="profile-header-image">
-        <span class="box-text"><span class="circle-label"></span>{{userInitial}}</span>
+        <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
       </div>
       <div class="flex-1">
         <div class="profile-label fs-1 name mb-4" [innerHTML]="data?.username"></div>

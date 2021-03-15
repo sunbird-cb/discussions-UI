@@ -592,18 +592,22 @@
   "MENUOPTIONS":[
     {
       "route": "All discussions",
+      "label": "All discussions",
       "enable": false
     },
     {   
-      "route": "Categories",
+      "route": "categories",
+      "label": "Categories",
       "enable": true
     },
     {
-      "route": "Tags",
+      "route": "tags",
+      "label": "Tags",
       "enable": true
     },
     {
-      "route": "My discussion",
+      "route": "my-discussion",
+      "label": "My discussion",
       "enable": true
     }
     
