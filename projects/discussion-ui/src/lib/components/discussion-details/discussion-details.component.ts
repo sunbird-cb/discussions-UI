@@ -55,6 +55,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     private telemetryUtils: TelemetryUtilsService,
     private renderer: Renderer2
   ) {
+    /**
+     * @description - It will check for the outside click while kebab menu is in open mode.
+     */
     this.renderer.listen('window', 'click', (e: Event) => {
       // tslint:disable-next-line:no-string-literal
       if (e.target['id'] !== 'group-actions') {
@@ -123,7 +126,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         },
         (err: any) => {
           // toast message
-         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
@@ -184,22 +187,22 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   bookmark(discuss: any) {
-    this.discussionService.bookmarkPost(discuss.pid).subscribe( data => {
-        // toast
-        // this.openSnackbar('Bookmark added successfully!');
-        this.refreshPostData(this.currentActivePage);
-      },
+    this.discussionService.bookmarkPost(discuss.pid).subscribe(data => {
+      // toast
+      // this.openSnackbar('Bookmark added successfully!');
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
-       // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
   }
 
   unBookMark(discuss: any) {
-    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe( data => {
-       // toast
-        this.refreshPostData(this.currentActivePage);
-      },
+    this.discussionService.deleteBookmarkPost(discuss.pid).subscribe(data => {
+      // toast
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -207,10 +210,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteVote(discuss: any) {
-    this.discussionService.deleteVotePost(discuss.pid).subscribe( data => {
+    this.discussionService.deleteVotePost(discuss.pid).subscribe(data => {
       // toast
-        this.refreshPostData(this.currentActivePage);
-      },
+      this.refreshPostData(this.currentActivePage);
+    },
       (err: any) => {
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -308,7 +311,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   logTelemetry(event, data?) {
     const pid = _.get(data, 'pid') || _.get(data, 'mainPid') ?
-    {id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post'} : {};
+      { id: _.get(data, 'pid') || _.get(data, 'mainPid'), type: 'Post' } : {};
     this.telemetryUtils.uppendContext(pid);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.DETAILS);
   }
@@ -333,9 +336,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const req = {
       content: updatedPostContent,
       title: '',
-      tags : [],
+      tags: [],
       uid: this.mainUid
-      };
+    };
     this.discussionService.editPost(pid, req).subscribe((data: any) => {
       // TODO: Success toast
       this.refreshPostData(this.currentActivePage);
@@ -386,7 +389,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.onEditMode(false);
   }
 
-  closeModal(event) {
+  /**
+   * @description - It will trigger the event handlers and close the update thread popup.
+   */
+  closeModal(event: any) {
     console.log('close event', event);
     if (_.get(event, 'action') === 'update') {
       this.editTopicHandler(_.get(event, 'request'));
@@ -394,10 +400,16 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.showEditTopicModal = false;
   }
 
+  /**
+   * @description - It will open update thread popup.
+   */
   editTopic() {
     this.showEditTopicModal = true;
   }
 
+  /**
+   * @description - It will all the update topic api. If success, then will refresh the data.
+   */
   editTopicHandler(editTopicRequest) {
     const tid = _.get(editTopicRequest, 'cid');
     this.discussionService.editTopic(tid, editTopicRequest).subscribe(data => {
@@ -408,6 +420,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @description - It will open the confirmation popup before deleting the topic,
+   *                If clicked yes, then will call the delete topic handler.
+   */
   deleteTopic(topicData) {
     console.log('topicData', topicData);
     if (window.confirm(MSGS.deleteTopic)) {
@@ -415,6 +431,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * @description - It will all the delete topic api. If success, then will navigate back to the previous page.
+   */
   deleteTopicHandler(topicId) {
     console.log('topic to be deleted', topicId);
     this.discussionService.deleteTopic(topicId).subscribe(data => {
@@ -424,7 +443,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       console.log('error while deleting', error);
     });
   }
-
+  /**
+   * @description - It will toggle the kebab menu click
+   */
   onMenuClick() {
     this.dropdownContent = !this.dropdownContent;
   }

@@ -47,6 +47,11 @@ export class DiscussStartComponent implements OnInit {
       description: ['', Validators.required],
       tags: [],
     });
+    this.startForm.valueChanges.subscribe(val => {
+      this.validateForm();
+    });
+
+    /** If popup is in edit mode */
     if (topicData) {
       const tags = _.map(_.get(topicData, 'tags') , (element) => {
         return _.get(element, 'value');
@@ -56,9 +61,6 @@ export class DiscussStartComponent implements OnInit {
       this.startForm.controls['tags'].setValue(tags);
       this.validateForm();
     }
-    this.startForm.valueChanges.subscribe(val => {
-      this.validateForm();
-    });
   }
 
   validateForm() {
@@ -114,6 +116,11 @@ export class DiscussStartComponent implements OnInit {
       });
   }
 
+
+  /**
+   * @param  {any} form
+   * @description - It will emit an event when popup is opened in edit topic/thread mode
+   */
   updatePost(form: any) {
     const updateTopicRequest = {
       cid: _.get(this.topicData, 'tid'),
