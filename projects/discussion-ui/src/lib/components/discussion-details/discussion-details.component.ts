@@ -1,7 +1,7 @@
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Renderer2 } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as CONSTANTS from '../../common/constants.json';
@@ -11,6 +11,10 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
+const MSGS = {
+  deletePost: `Are you sure you want to delete this Post? This can't be undone.`,
+  deleteTopic: `Are you sure you want to delete this Topic? This can't be undone.`
+};
 
 @Component({
   selector: 'lib-discussion-details',
@@ -38,6 +42,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   editContentIndex: any;
   mainUid: number;
   similarPosts: any[];
+  showEditTopicModal = false;
+  editableTopicDetails: any;
+  dropdownContent = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +53,15 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     public router: Router,
     private telemetryUtils: TelemetryUtilsService,
-  ) { }
+    private renderer: Renderer2
+  ) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      // tslint:disable-next-line:no-string-literal
+      if (e.target['id'] !== 'group-actions') {
+        this.dropdownContent = true;
+      }
+    });
+  }
 
   ngOnInit() {
     this.initializeFormFiled();
@@ -242,7 +257,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   confirmDelete(pid) {
-    if (window.confirm(`Are you sure you want to delete this Post? This can't be undone.`)) {
+    if (window.confirm(MSGS.deletePost)) {
       this.deletePost(pid);
     }
   }
@@ -370,6 +385,50 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     post.toggle = !post.toggle;
     this.onEditMode(false);
   }
+
+  closeModal(event) {
+    console.log('close event', event);
+    if (_.get(event, 'action') === 'update') {
+      this.editTopicHandler(_.get(event, 'request'));
+    }
+    this.showEditTopicModal = false;
+  }
+
+  editTopic() {
+    this.showEditTopicModal = true;
+  }
+
+  editTopicHandler(editTopicRequest) {
+    const tid = _.get(editTopicRequest, 'cid');
+    this.discussionService.editTopic(tid, editTopicRequest).subscribe(data => {
+      console.log('update success', data);
+      // TODO: Call refresh post data
+    }, error => {
+      console.log('error while updating', error);
+    });
+  }
+
+  deleteTopic(topicData) {
+    console.log('topicData', topicData);
+    if (window.confirm(MSGS.deleteTopic)) {
+      this.deleteTopicHandler(_.get(topicData, 'tid'));
+    }
+  }
+
+  deleteTopicHandler(topicId) {
+    console.log('topic to be deleted', topicId);
+    this.discussionService.deleteTopic(topicId).subscribe(data => {
+      console.log('delete success', data);
+      // TODO: Navigate back
+    }, error => {
+      console.log('error while deleting', error);
+    });
+  }
+
+  onMenuClick() {
+    this.dropdownContent = !this.dropdownContent;
+  }
+
   ngOnDestroy() {
     if (this.paramsSubscription) {
       this.paramsSubscription.unsubscribe();
