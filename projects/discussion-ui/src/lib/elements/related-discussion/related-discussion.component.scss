@@ -12,6 +12,12 @@
     font-weight: bold;
 }
 
+.discuss-card-subtitle {
+	margin: 0px;
+	color: #000;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 700;
 .related-discuss-card-content {
 	margin: 0;
     color: #000;
@@ -40,4 +46,5 @@
 
 .time {
 	color: rgba(0, 0, 0, 0.4);
+}
 }

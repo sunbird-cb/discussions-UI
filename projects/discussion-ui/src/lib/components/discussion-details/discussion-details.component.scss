@@ -33,13 +33,10 @@
 
 .discussion-card-title {
     font-size: 20px;
-    font-weight: 700;
-    text-transform: capitalize;
+    font-weight: 700;   
 }
-
-.discussion-heading {
-    font-weight: 400;
-    text-transform: capitalize;
+.discussion-heading{
+ font-weight: 400;
 }
 
 .discussion-content {
@@ -67,8 +64,8 @@
 
 .circle-text {
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,14 +74,14 @@
 
 .circle-label {
     color: #fff;
-    font-size: 10px;
+    font-size: 17px;
     line-height: 12px;
     letter-spacing: .2625px;
+    text-transform: uppercase;
 }
 
 .discussion-labels {
-    color: #948e8e;
-    text-transform: capitalize;
+    color: #948e8e;  
 }
 
 .comments-area {

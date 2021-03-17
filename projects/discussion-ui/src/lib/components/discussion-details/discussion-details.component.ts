@@ -102,7 +102,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid)
+          this.fetchSingleCategoryDetails(this.data.cid);
 
           // this.setPagination();
         },
@@ -116,7 +116,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           this.data = data;
           this.paginationData = _.get(data, 'pagination');
           this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid)
+          this.fetchSingleCategoryDetails(this.data.cid);
 
           // this.setPagination();
         },
@@ -126,6 +126,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         });
     }
   }
+
 
   setPagination() {
     this.pager = {
