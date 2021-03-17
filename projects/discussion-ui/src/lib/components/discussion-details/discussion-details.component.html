@@ -7,7 +7,7 @@
         <!-- title -->
         <div class="discussion-card-title mb-8 df-label-color" [innerHTML]="data?.title"></div>
         <!-- <mat-card-subtitle>{{'General discussion'}}</mat-card-subtitle> -->
-        <div>
+        <div *ngIf="data?.uid === mainUid">
           <div class="kabab-menu" id="group-actions" (click)="onMenuClick()"></div>
           <div class="kabab-menu-dropdown-content" [hidden]="dropdownContent">
             <div>
