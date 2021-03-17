@@ -1,23 +1,25 @@
 .related-discuss-card {
-	padding: 1rem;
+	padding: 0 0 1rem 1rem;
     display: flex;
     border-radius: 4px;
 	box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     background: var(--white);
     margin-bottom: 16px;
     flex-direction: column;
+	max-width: 300px;
+	@media (max-width: 768px) {
+     max-width: 100%;
+	}
 }
 
 .related-discuss-label{
     font-weight: bold;
+	margin: 0 0 1rem 0;
+	@media (max-width: 768px) {
+		margin: 1rem 0;
+	   }
 }
 
-.discuss-card-subtitle {
-	margin: 0px;
-	color: #000;
-	cursor: pointer;
-	font-size: 15px;
-	font-weight: 700;
 .related-discuss-card-content {
 	margin: 0;
     color: #000;
@@ -47,4 +49,4 @@
 .time {
 	color: rgba(0, 0, 0, 0.4);
 }
-}
+
