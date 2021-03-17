@@ -42,6 +42,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // TODO: loader or spinner
+    this.telemetryUtils.setContext([]);
     this.hideSidePanel = document.body.classList.contains('widget');
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.data = this.configService.getConfig();
@@ -74,7 +75,9 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
+    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
+    // this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
+    this.closeNav();
   }
 
   ngOnDestroy() {

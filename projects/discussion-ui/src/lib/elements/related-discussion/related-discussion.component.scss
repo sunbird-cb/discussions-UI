@@ -1,35 +1,15 @@
-// @import 'ws-common';
-// @import 'ws-vars';
-// @import 'ws-mixins';
-
-.tag {
-	display: flex;
-    min-width: 276px;
-    height: 100px;
-
-	// height: 32px;
-	border-radius: 4px;
-	// justify-content: space-between;
-	//   margin: $size-m 0;
-	// background-color: red;
-	// align-items: center;
-
-	//   @include breakpoint-xs {
-	//     width: auto;
-	//   }
-
-	//   @include breakpoint-s {
-	//     width: auto;
-
-	//   }
+.related-discuss-card {
+	padding: 1rem;
+    display: flex;
+    border-radius: 4px;
+	box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    background: var(--white);
+    margin-bottom: 16px;
+    flex-direction: column;
 }
 
-// .f-medium {
-//   // font-family: "Poppins-Medium";
-// }
-
-.example-header-image {
-	background-size: cover;
+.related-discuss-label{
+    font-weight: bold;
 }
 
 .discuss-card-subtitle {
@@ -38,22 +18,33 @@
 	cursor: pointer;
 	font-size: 15px;
 	font-weight: 700;
+.related-discuss-card-content {
+	margin: 0;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    word-break: break-all;
 }
 
-
+.related-discuss-card-description {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 0.875rem;
+	flex-wrap: wrap;
+}
 
 .separator-dot {
 	display: inline-block;
-	height: 5px;
-	width: 5px;
-	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.title {
-	color: #000 !important;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.4);
 }
 
 .time {
 	color: rgba(0, 0, 0, 0.4);
+}
 }

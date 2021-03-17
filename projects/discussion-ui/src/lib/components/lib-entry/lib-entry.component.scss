@@ -1,3 +1,4 @@
+
 .discussion-forum{
     width: 100%;
     min-height: 100vh;
@@ -5,40 +6,47 @@
     z-index: unset;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.discussion-forum-content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 0 1.5rem;
 }
 
 .discuss-left-panel{
-    padding: 24px;
+    padding: 1.5rem;
     position: relative;
     z-index: 2;
 }
 
-.discuss-main-panel{
-    width: 75%;
-    padding: 24px;
+.discuss-right-panel{
+    padding: 1.5rem;
 }
+
 
 @media (max-width: 768px) {
     .discussion-forum{
-        padding: 16px 24px;
-        height: 100%;
+        padding: 0 1.5rem;
+        height: 100vh;
         overflow: auto;
     }
-    .row {   
-      flex-direction: column;
-    }
     .discuss-left-panel{
-        width: auto;
-        padding: 0 0 16px 0;
+        padding: 1rem;
     }
-    .discuss-main-panel{
-        width: auto;
-        padding: 16px 0px;
-        position: relative;
-        z-index: 1;
+    .discuss-right-panel{
+     padding: 0px 0px 48px 0px;
+    }
+  }
+
+  @media screen and (min-width: 376px) and (max-width: 768px){
+    .discussion-forum-content {
+        grid-template-columns: 1fr;  
+        margin:0px;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width:375px){
+    .discussion-forum-content {
+        grid-template-columns: repeat(auto-fill,minmax(292px,1fr));
+        margin:0px;
     }
   }
