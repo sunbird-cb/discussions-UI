@@ -1,6 +1,6 @@
 {
   "name": "@project-sunbird/discussions-ui-v8",
-  "version": "2.0.20",
+  "version": "2.0.22",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sunbird-Ed/discussions-UI.git"
@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@project-sunbird/client-services": "^3.6.16",
+    "@project-sunbird/client-services": "^3.8.5",
     "lodash-es": "^4.17.20",
     "ngx-chips": "2.0.2"
   },
