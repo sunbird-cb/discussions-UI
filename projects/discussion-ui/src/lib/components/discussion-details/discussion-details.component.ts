@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 
 const MSGS = {
   deletePost: `Are you sure you want to delete this Post? This can't be undone.`,
-  deleteTopic: `Are you sure you want to delete this Topic? This can't be undone.`
+  deleteTopic: `This will remove the post permanently, are you sure you want to delete?`
 };
 
 @Component({
