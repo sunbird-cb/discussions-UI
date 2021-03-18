@@ -126,8 +126,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {

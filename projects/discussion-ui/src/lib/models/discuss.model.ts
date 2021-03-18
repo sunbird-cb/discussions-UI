@@ -68,6 +68,7 @@ export namespace NSDiscussData {
     pagination?: IPagination
     posts?: IPosts[]
     topics?: any[]
+    result?: any[]
   }
 
   export interface ICategoryData {

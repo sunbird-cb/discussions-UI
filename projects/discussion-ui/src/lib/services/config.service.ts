@@ -14,6 +14,9 @@ export class ConfigService implements OnInit {
   private _config: IdiscussionConfig;
   public checkContext: boolean;
   public queryParams;
+  getContextData: any;
+  hasContextData: any;
+  getParams: IdiscussionConfig;
 
 
   constructor(
@@ -45,12 +48,26 @@ export class ConfigService implements OnInit {
     return this._config;
   }
 
+  public getCategories() {
+    this.getParams = this.getConfig()
+    return _.get(this.getParams, 'categories')
+  }
 
+  public hasContext() {
+    this.hasContextData = this.getCategories() ?
+      (this.getCategories().result ? this.getCategories().result.length : null)
+      : null
+    return this.hasContextData
+  }
 
+  public getContext() {
+    this.getContextData = this.getCategories() ?
+      (this.getCategories().result ? this.getCategories().result : null)
+      : null
+    return this.getContextData
+  }
 
-  // if (_.get(this._config, 'cid')) {
-  //   // this.checkContext = true
-  // } else {
-  //   // this.checkContext = false;
-  // }
+  public getRouterSlug() {
+    return this._config.routerSlug ? this._config.routerSlug : '';
+  }
 }
