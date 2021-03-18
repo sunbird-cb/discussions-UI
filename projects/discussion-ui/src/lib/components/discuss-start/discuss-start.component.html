@@ -47,10 +47,15 @@
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
             <!-- <span [diameter]="30"></span> -->
           </span>
-          <button type="submit" class="submit-post-btn start-common-btn"
+          <button *ngIf="mode !== 'edit'" type="submit" class="submit-post-btn start-common-btn"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
             (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
             <span class="text-white">Submit</span>
+          </button>
+          <button *ngIf="mode === 'edit'" type="submit" class="submit-post-btn start-common-btn"
+            [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
+            (click)="updatePost(startForm);logTelemetry($event)" id="update-topic-popup">
+            <span class="text-white">Update</span>
           </button>
         </div>
         ​
