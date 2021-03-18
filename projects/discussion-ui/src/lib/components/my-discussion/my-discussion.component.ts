@@ -37,7 +37,6 @@ export class MyDiscussionComponent implements OnInit {
       this.showLoader = false;
       console.log(response);
       this.data = response;
-      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -59,12 +58,6 @@ export class MyDiscussionComponent implements OnInit {
     }
   }
 
-  setUserInitial(userData) {
-    const name = _.get(userData, 'username').split(' ');
-    name.forEach(element => {
-      this.userInitial = this.userInitial + element.charAt(0);
-    });
-  }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
       this.currentFilter = key;
