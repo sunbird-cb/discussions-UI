@@ -10,6 +10,7 @@ import * as _ from 'lodash'
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
+import { Location } from '@angular/common';
 
 const MSGS = {
   deletePost: `Are you sure you want to delete this Post? This can't be undone.`,
@@ -53,7 +54,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     public router: Router,
     private telemetryUtils: TelemetryUtilsService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private location: Location
   ) {
     /**
      * @description - It will check for the outside click while kebab menu is in open mode.
@@ -435,10 +437,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
    * @description - It will all the delete topic api. If success, then will navigate back to the previous page.
    */
   deleteTopicHandler(topicId) {
-    console.log('topic to be deleted', topicId);
     this.discussionService.deleteTopic(topicId).subscribe(data => {
-      console.log('delete success', data);
-      // TODO: Navigate back
+      this.location.back();
     }, error => {
       console.log('error while deleting', error);
     });
