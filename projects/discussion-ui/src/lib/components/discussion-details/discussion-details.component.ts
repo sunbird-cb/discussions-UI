@@ -413,7 +413,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
    * @description - It will all the update topic api. If success, then will refresh the data.
    */
   editTopicHandler(editTopicRequest) {
-    const tid = _.get(editTopicRequest, 'cid');
+    const tid = _.get(editTopicRequest, 'pid');
     this.discussionService.editTopic(tid, editTopicRequest).subscribe(data => {
       console.log('update success', data);
       // TODO: Call refresh post data

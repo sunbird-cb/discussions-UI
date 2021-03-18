@@ -123,7 +123,7 @@ export class DiscussStartComponent implements OnInit {
    */
   updatePost(form: any) {
     const updateTopicRequest = {
-      cid: _.get(this.topicData, 'tid'),
+      pid: _.get(this.topicData, 'tid'),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,
