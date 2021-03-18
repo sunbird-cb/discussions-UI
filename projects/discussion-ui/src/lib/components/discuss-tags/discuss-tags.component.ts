@@ -37,12 +37,14 @@ export class DiscussTagsComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
-    // this.configService.setConfig(this.activatedRoute)
-    this.getParams = this.configService.getConfig()
-    this.cIds = _.get(this.getParams, 'categories')
-    console.log(this.getParams, this.cIds)
 
-    this.fetchAllTags();
+    this.cIds = this.configService.getCategories()
+    if (this.configService.hasContext()) {
+      this.getContextBasedTags(this.cIds.result)
+    } else {
+      this.fetchAllTags();
+    }
+
   }
 
   fetchAllTags() {
@@ -50,8 +52,23 @@ export class DiscussTagsComponent implements OnInit {
     console.log('in fetchAllTags');
     this.discussionService.fetchAllTag().subscribe(data => {
       this.showLoader = false;
-      console.log('data ', data);
       this.filteredTags = _.get(data, 'tags');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
+  }
+
+  getContextBasedTags(cid: any) {
+    const req = {
+      cids: cid
+    }
+    this.showLoader = true;
+    console.log('in getContextBasedTags');
+    this.discussionService.contextBasedTags(req).subscribe(data => {
+      this.showLoader = false;
+      this.filteredTags = _.get(data, 'result');
     }, error => {
       this.showLoader = false;
       // TODO: toaster

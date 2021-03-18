@@ -17,10 +17,10 @@ import { DiscussUtilsService } from '../../services/discuss-utils.service';
 export class TagAllDiscussionComponent implements OnInit {
 
   tagName!: any
-  similarPosts!: any
+  similarPosts = []
   queryParam: any
   fetchSingleCategoryLoader = false
-  currentActivePage!: any
+  currentActivePage: 1
   defaultError = 'Something went wrong, Please try again after sometime!'
   pager = {}
   paginationData!: any
@@ -44,15 +44,14 @@ export class TagAllDiscussionComponent implements OnInit {
       this.tagName = params.tagname
     })
     if (this.configService.hasContext()) {
-      this.fetchContextBasedTagDetails(this.tagName, this.cIds)
+      this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
-      this.currentActivePage = 1
-      this.fetchSingleTagDetails(this.tagName)
+      this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
     }
 
   }
 
-  fetchSingleTagDetails(tagname: string, page?: any) {
+  fetchSingleTagDetails(tagname: string, page: any) {
     this.fetchSingleCategoryLoader = true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
@@ -68,13 +67,11 @@ export class TagAllDiscussionComponent implements OnInit {
       })
   }
 
-  fetchContextBasedTagDetails(tagname: string, cid: any, page?: any) {
+  fetchContextBasedTagDetails(tagname: string, cid: any, page: any) {
     this.fetchSingleCategoryLoader = true
     const req = {
-      request: {
-        cid: cid.result,
-        tag: tagname
-      }
+      cid: cid.result,
+      tag: tagname
     };
 
     this.discussService.getContextBasedTagDiscussion(req).subscribe(
