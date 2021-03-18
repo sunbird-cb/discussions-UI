@@ -1,3 +1,15 @@
+.df-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.df-btn-close{
+    color: #000;
+    font-weight: bold;
+    background: #ef64af;
+}
 
 .discussion-forum{
     width: 100%;
