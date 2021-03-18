@@ -122,22 +122,18 @@ export class DiscussAllComponent implements OnInit {
   }
 
   getContextBasedDiscussion(cid: any) {
-    console.log('-------------cid-----------', cid)
     this.currentFilter === 'recent' ? this.getContextData(cid) : this.getContextData(cid)
   }
 
   refreshData(page?: any) {
-    console.log('--------------', this.currentFilter)
     this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page)
   }
 
   getRecentData(page: any) {
-    console.log('------------- recent api call ----------------', page)
     this.showLoader = true;
     return this.discussionService.fetchRecentD(page).subscribe(
       (data: any) => {
         this.showLoader = false;
-        console.log('--------------data-------------')
         this.discussionList = _.get(data, 'topics')
       }, error => {
         this.showLoader = false;
@@ -148,7 +144,6 @@ export class DiscussAllComponent implements OnInit {
 
   getContextData(cid: any) {
     this.showLoader = true;
-    console.log('-----------hit api req----------------')
     const req = {
       // request: {
       cids: cid
@@ -157,7 +152,6 @@ export class DiscussAllComponent implements OnInit {
     return this.discussionService.getContextBasedDiscussion(req).subscribe(
       (data: any) => {
         this.showLoader = false;
-        console.log('------------response--------------', data)
         this.allTopics = _.map(data.result, (topic) => topic.topics);
         this.discussionList = _.flatten(this.allTopics)
       }, error => {
@@ -179,9 +173,7 @@ export class DiscussAllComponent implements OnInit {
   // }
 
   startDiscussion() {
-    console.log("this.showStartDiscussionModal", this.showStartDiscussionModal)
     this.showStartDiscussionModal = true;
-    console.log("this.showStartDiscussionModal", this.showStartDiscussionModal)
   }
 
   logTelemetry(event) {
@@ -191,7 +183,6 @@ export class DiscussAllComponent implements OnInit {
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
       this.getContextBasedDiscussion(this.cIds.result)
-      // console.log(_.get(this.routeParams, 'slug'), '------------close modal-----------------')
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
