@@ -49,7 +49,6 @@ export class DiscussTagsComponent implements OnInit {
 
   fetchAllTags() {
     this.showLoader = true;
-    console.log('in fetchAllTags');
     this.discussionService.fetchAllTag().subscribe(data => {
       this.showLoader = false;
       this.filteredTags = _.get(data, 'tags');
@@ -65,7 +64,6 @@ export class DiscussTagsComponent implements OnInit {
       cids: cid
     }
     this.showLoader = true;
-    console.log('in getContextBasedTags');
     this.discussionService.contextBasedTags(req).subscribe(data => {
       this.showLoader = false;
       this.filteredTags = _.get(data, 'result');

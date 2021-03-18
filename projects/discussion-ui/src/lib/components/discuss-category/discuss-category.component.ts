@@ -55,11 +55,10 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       if (_.get(params, 'cid')) {
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
+        this.categories = [];
         if (this.forumIds.length) {
-          this.categories = [];
           this.fetchAllAvailableCategories(this.forumIds);
         } else {
-          this.categories = [];
           this.fetchAllCategories();
         }
       }

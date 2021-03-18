@@ -51,7 +51,7 @@ export class TagAllDiscussionComponent implements OnInit {
 
   }
 
-  fetchSingleTagDetails(tagname: string, page: any) {
+  fetchSingleTagDetails(tagname: string, page?: any) {
     this.fetchSingleCategoryLoader = true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
@@ -67,7 +67,7 @@ export class TagAllDiscussionComponent implements OnInit {
       })
   }
 
-  fetchContextBasedTagDetails(tagname: string, cid: any, page: any) {
+  fetchContextBasedTagDetails(tagname: string, cid: any, page?: any) {
     this.fetchSingleCategoryLoader = true
     const req = {
       cid: cid.result,
