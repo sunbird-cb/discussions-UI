@@ -396,8 +396,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   closeModal(event: any) {
     console.log('close event', event);
     if (_.get(event, 'action') === 'update') {
-      // TODO: To enable this once api is ready.
-      // this.editTopicHandler(_.get(event, 'request'));
+      this.editTopicHandler(event, _.get(event, 'tid'), _.get(event, 'request'));
     }
     this.showEditTopicModal = false;
   }
@@ -412,11 +411,11 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   /**
    * @description - It will all the update topic api. If success, then will refresh the data.
    */
-  editTopicHandler(editTopicRequest) {
-    const tid = _.get(editTopicRequest, 'pid');
-    this.discussionService.editTopic(tid, editTopicRequest).subscribe(data => {
+  editTopicHandler(event, tid, updateTopicRequest) {
+    this.logTelemetry(event, this.editableTopicDetails);
+    this.discussionService.editPost(tid, updateTopicRequest).subscribe(data => {
       console.log('update success', data);
-      // TODO: Call refresh post data
+      this.refreshPostData(this.currentActivePage);
     }, error => {
       console.log('error while updating', error);
     });
@@ -426,9 +425,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
    * @description - It will open the confirmation popup before deleting the topic,
    *                If clicked yes, then will call the delete topic handler.
    */
-  deleteTopic(topicData) {
-    console.log('topicData', topicData);
+  deleteTopic(event, topicData) {
     if (window.confirm(MSGS.deleteTopic)) {
+      this.logTelemetry(event, topicData);
       this.deleteTopicHandler(_.get(topicData, 'tid'));
     }
   }
