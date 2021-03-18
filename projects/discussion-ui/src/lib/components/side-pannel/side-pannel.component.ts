@@ -47,7 +47,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.data = this.configService.getConfig();
     const menuArr = _.get(this.data, 'menuOptions') && _.get(this.data, 'menuOptions').length > 0
-        ? this.data.menuOptions : CONSTANTS.MENUOPTIONS;
+      ? this.data.menuOptions : CONSTANTS.MENUOPTIONS;
     // })
     for (let i = 0; i < menuArr.length; i++) {
       if (menuArr[i].enable) {
@@ -75,8 +75,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
-    // this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}${pageName}`], { queryParamsHandling: "merge" });    // this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
     this.closeNav();
   }
 
