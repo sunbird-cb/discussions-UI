@@ -592,9 +592,9 @@
   },
   "MENUOPTIONS":[
     {
-      "route": "All discussions",
+      "route": "all-discussions",
       "label": "All discussions",
-      "enable": false
+      "enable": true
     },
     {   
       "route": "categories",
