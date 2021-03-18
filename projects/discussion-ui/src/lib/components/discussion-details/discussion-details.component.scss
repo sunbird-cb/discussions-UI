@@ -296,3 +296,60 @@
 .edit-icon {
     cursor: pointer;
 }
+
+.discuss-card-kabab-menu{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.kabab-menu{
+    color: var(--primary-400);
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    padding-left: 6px;
+    &:hover{
+      background: var(--gray-0);
+      cursor: pointer;
+    }
+    &::after {
+      content: '\2807';
+      font-size: 24px;
+    }
+  }
+  .kabab-menu-dropdown-content {
+    position: absolute;
+    border-radius: 2px;
+    background-color: var(--white);
+    box-shadow: 0 3px 5px 4px rgba(var(--rc-rgba-black), 0.05);
+    padding: 8px;
+    z-index: 1;
+    text-align: left;
+    right:0;
+    top: 0;
+    min-width: 210px;
+    .list{
+      cursor: pointer;
+      font-size: 14px;
+      padding: 8px;
+      &:hover,&:active{
+        background-color: var(--primary-100);
+      }
+      &:last-child{
+        .sb-btn-normal{
+          color: var(--red-400);
+        }
+      }
+      .sb-btn-normal{
+        font-size: 14px;
+      }
+    }
+  }
+  ::ng-deep {
+    html[dir='rtl'] .kabab-menu-dropdown-content {
+      right:auto;
+      left:0;
+    }
+  }

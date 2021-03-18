@@ -272,4 +272,12 @@ export class DiscussionService {
     return this.csDiscussionService.deletePost(pid, uid);
   }
 
+  editTopic(tid: number, data: any) {
+    return this.csDiscussionService.editTopic(tid, data);
+  }
+
+  deleteTopic(tid: number) {
+    return this.csDiscussionService.deleteTopic(tid);
+  }
+
 }
