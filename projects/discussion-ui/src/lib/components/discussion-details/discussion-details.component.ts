@@ -396,7 +396,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   closeModal(event: any) {
     console.log('close event', event);
     if (_.get(event, 'action') === 'update') {
-      this.editTopicHandler(_.get(event, 'request'));
+      // TODO: To enable this once api is ready.
+      // this.editTopicHandler(_.get(event, 'request'));
     }
     this.showEditTopicModal = false;
   }
