@@ -14,6 +14,8 @@ import * as _ from 'lodash'
 })
 export class DiscussStartComponent implements OnInit {
   @Input() categoryId: string;
+  @Input() topicData: any;
+  @Input() mode: string;
   @Output() close = new EventEmitter();
 
   startForm!: FormGroup;
@@ -36,15 +38,29 @@ export class DiscussStartComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.initializeData();
+    this.initializeFormFields(this.topicData);
+  }
+
+  initializeFormFields(topicData) {
     this.startForm = this.formBuilder.group({
       question: ['', Validators.required],
       description: ['', Validators.required],
       tags: [],
     });
-
     this.startForm.valueChanges.subscribe(val => {
       this.validateForm();
     });
+
+    /** If popup is in edit mode */
+    if (topicData) {
+      const tags = _.map(_.get(topicData, 'tags') , (element) => {
+        return _.get(element, 'value');
+      });
+      this.startForm.controls['question'].setValue(_.get(topicData, 'title'));
+      this.startForm.controls['description'].setValue(_.get(topicData, 'posts[0].content').replace(/<[^>]+>/g, ''));
+      this.startForm.controls['tags'].setValue(tags);
+      this.validateForm();
+    }
   }
 
   validateForm() {
@@ -98,6 +114,26 @@ export class DiscussStartComponent implements OnInit {
           }
         }
       });
+  }
+
+
+  /**
+   * @param  {any} form
+   * @description - It will emit an event when popup is opened in edit topic/thread mode
+   *                Here, as 'tid', we are passing the main topic pid from the post array
+   */
+  updatePost(form: any) {
+    const updateTopicRequest = {
+      title: form.value.question,
+      content: form.value.description,
+      tags: form.value.tags,
+      uid: _.get(this.topicData, 'uid')
+    };
+    this.close.emit({
+      action: 'update',
+      tid: _.get(this.topicData, 'posts[0].pid'),
+      request: updateTopicRequest
+    });
   }
 
   closeModal(eventMessage: string) {
