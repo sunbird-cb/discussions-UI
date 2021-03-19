@@ -46,6 +46,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   showEditTopicModal = false;
   editableTopicDetails: any;
   dropdownContent = true;
+  cid: any;
+  catId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,18 +70,18 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
-      this.route.params.subscribe(params => {
+      this.route.params.subscribe(async params => {
         this.routeParams = params;
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
-        this.refreshPostData(this.currentActivePage);
       });
-    } else {
-      this.refreshPostData(this.currentActivePage);
     }
+
+    this.cid = await this.refreshPostData(this.currentActivePage);
+    this.getRealtedDiscussion(this.cid)
 
     this.paramsSubscription = this.route.queryParams.subscribe(x => {
       if (x.page) {
@@ -94,13 +96,21 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.fetchSingleCategoryLoader = true
     this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
       (data: NSDiscussData.ICategoryData) => {
-        this.similarPosts = data.topics
+        _.filter(data.topics, (topic) => {
+          if (this.topicId != topic.tid) {
+            this.similarPosts.push(topic)
+          }
+        })
         this.fetchSingleCategoryLoader = false
       },
       (err: any) => {
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
         this.fetchSingleCategoryLoader = false
       })
+  }
+
+  getRealtedDiscussion(catId, page?: any) {
+    this.fetchSingleCategoryDetails(catId)
   }
 
   initializeFormFiled() {
@@ -115,35 +125,47 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  refreshPostData(page: any) {
+  async refreshPostData(page?: any): Promise<any> {
     if (this.currentFilter === 'timestamp') {
-      this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
-        (data: NSDiscussData.IDiscussionData) => {
-          this.data = data;
-          this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
-        },
-        (err: any) => {
-          // toast message
-          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+      try {
+        return new Promise(async (resolve, reject) => {
+          this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
+            (data: NSDiscussData.IDiscussionData) => {
+              this.data = data;
+              this.paginationData = _.get(data, 'pagination');
+              this.mainUid = _.get(data, 'loggedInUser.uid');
+              this.catId = _.get(data, 'cid');
+              resolve(this.catId);
+            },
+            (err: any) => {
+              console.log('Error in fetching topics')
+              reject(err)
+              // toast message
+              // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+            });
         });
+      } catch (err) {
+        return err
+      }
     } else {
-      this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
-        (data: NSDiscussData.IDiscussionData) => {
-          this.data = data;
-          this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
-        },
-        (err: any) => {
-          // toast message
-          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+      try {
+        return new Promise(async (resolve, reject) => {
+          this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
+            (data: NSDiscussData.IDiscussionData) => {
+              this.data = data;
+              this.paginationData = _.get(data, 'pagination');
+              this.mainUid = _.get(data, 'loggedInUser.uid');
+              this.catId = _.get(data, 'cid');
+              resolve(this.catId);
+            },
+            (err: any) => {
+              console.log('Error in fetching topics')
+              reject(err)
+            });
         });
+      } catch (err) {
+        return err
+      }
     }
   }
 
