@@ -51,7 +51,7 @@ export class LibEntryComponent implements OnInit {
 
   close(event) {
     const eventAction = {
-      action: 'close'
+      action: 'DF_CLOSE'
     };
     this.discussionEventService.emitTelemetry(eventAction);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.LIB_ENTRY);
