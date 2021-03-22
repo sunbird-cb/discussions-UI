@@ -133,9 +133,9 @@ if (!CsModule.instance.isInitialised) { // Singleton initialised or not
 | [LibEntryComponent] | entry point for the library in routing mode| sb-lib-entry|
 | [SidePannelComponent] | used for loading the menu items and switching between them |sb-side-pannel|
 | [ DiscussCategoryComponent ] |used to load the list of categories available |sb-discuss-category|
-| [DiscussHomeComponent] | home component for categories | lib-discuss-home| [DiscussionDetailsComponent] | loads the category details  |sb-discussion-details|
+| [DiscussHomeComponent] | home component for categories | sb-discuss-home| [DiscussionDetailsComponent] | loads the category details  |sb-discussion-details|
 | [DiscussTagsComponent] | displays all the tags available |sb-discuss-tags|
-| [MyDiscussionComponent] | displays the user data |lib-my-discussion|
+| [MyDiscussionComponent] | displays the user data |sb-my-discussion|
 | [DiscussStartComponent] | used to start the discussion |sb-discuss-start|
 
 
