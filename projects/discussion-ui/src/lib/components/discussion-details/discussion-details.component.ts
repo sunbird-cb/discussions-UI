@@ -77,11 +77,15 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.routeParams = params;
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
+        this.cid = await this.refreshPostData(this.currentActivePage);
+        this.getRealtedDiscussion(this.cid)
       });
+    } else {
+      this.cid = await this.refreshPostData(this.currentActivePage);
+      this.getRealtedDiscussion(this.cid)
     }
 
-    this.cid = await this.refreshPostData(this.currentActivePage);
-    this.getRealtedDiscussion(this.cid)
+
 
     this.paramsSubscription = this.route.queryParams.subscribe(x => {
       if (x.page) {
