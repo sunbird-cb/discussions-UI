@@ -10,49 +10,37 @@
 
 ```
 
-## Step 3: initiate the CsModule in the root component
-```
- constructor( ) {
-     CsModule.instance.init({
-      core: {
-        httpAdapter: 'HttpClientBrowserAdapter',
-        global: {
-          channelId: '', // required
-          producerId: '', // required
-          deviceId: '', // required
-        },
-        api: {
-          host: 'https://igot-sunbird.idc.tarento.com/apis/proxies/v8', // default host
-          authentication: {
-            // userToken: string; // optional
-            bearerToken: "bearerToken"
-          },
-        },
-      },
-      services: {
-        groupServiceConfig: {
-          apiPath: '/learner/group/v1',
-          dataApiPath: '/learner/data/v1/group',
-          updateGroupGuidelinesApiPath: '/learner/group/membership/v1',
-        },
-        userServiceConfig: {
-          apiPath: '/learner/user/v2',
-        },
-        formServiceConfig: {
-          apiPath: '/learner/data/v1/form',
-        },
-        courseServiceConfig: {
-          apiPath: '/learner/course/v1',
-          certRegistrationApiPath: '/learner/certreg/v2/certs',
-        },
-        discussionServiceConfig: {
-          apiPath: '/discussion',
-        },
-      },
-    })
- }
+## Step 3: install and configure the common service library
+ 
+ Refer the common service library documentation https://github.com/Sunbird-Ed/sunbird-client-services
 
  ```
+if (!CsModule.instance.isInitialised) { // Singleton initialised or not
+    await CsModule.instance.init({
+        core: {
+            ...
+            global: {
+               ...
+            },
+            api: {
+                host: 'https://domain.com', // default host
+                authentication: {
+                    // userToken: string; // optional
+                    // bearerToken: string; // optional
+                }
+            }
+        },
+        services: {
+             ...
+             ...
+             discussionServiceConfig: {
+                apiPath: '/discussion',
+             },
+        }
+    );
+}
+
+```
  ## Step 4: import  DiscussionUiModule  from project-sunbird in app.module.ts
 
 ```
@@ -142,13 +130,13 @@
   ## Available components
 |Feature| Notes| Selector|
 |--|--|--|
-| [LibEntryComponent] | entry point for the library in routing mode| lib-lib-entry|
-| [SidePannelComponent] | used for loading the menu items and switching between them |
-| [ DiscussCategoryComponent ] |used to load the list of categories available |lib-discuss-category|
-| [DiscussHomeComponent] | home component for categories | lib-discuss-home| [DiscussionDetailsComponent] | loads the category details  |ib-discussion-details|
-| [DiscussTagsComponent] | displays all the tags available |lib-discuss-tags|
+| [LibEntryComponent] | entry point for the library in routing mode| sb-lib-entry|
+| [SidePannelComponent] | used for loading the menu items and switching between them |sb-side-pannel|
+| [ DiscussCategoryComponent ] |used to load the list of categories available |sb-discuss-category|
+| [DiscussHomeComponent] | home component for categories | lib-discuss-home| [DiscussionDetailsComponent] | loads the category details  |sb-discussion-details|
+| [DiscussTagsComponent] | displays all the tags available |sb-discuss-tags|
 | [MyDiscussionComponent] | displays the user data |lib-my-discussion|
-| [DiscussStartComponent] | used to start the discussion |lib-discuss-start|
+| [DiscussStartComponent] | used to start the discussion |sb-discuss-start|
 
 
 
