@@ -1,12 +1,17 @@
 ## Step 1: Install the package
-
+```
    npm install
+
+```
    
 ## Step 2: import  CsModule  from project-sunbird in root component
-   
+```
    import { CsModule } from '@project-sunbird/client-services'
 
+```
+
 ## Step 3: initiate the CsModule in the root component
+```
  constructor( ) {
      CsModule.instance.init({
       core: {
@@ -47,8 +52,10 @@
     })
  }
 
+ ```
  ## Step 4: import  DiscussionUiModule  from project-sunbird in app.module.ts
 
+```
  import { DiscussionUiModule } from '@project-sunbird/discussions-ui-v8'
  import { ConfigService } from '/services/config.service'
 
@@ -62,7 +69,11 @@
     exports: [DiscussionUiModule],
 })
 
+```
+
  ## Step 5: Define the config service implementation which is used in above step
+
+ ```
 
  import { Injectable } from '@angular/core'
  import { AbstractConfigService, IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
@@ -82,14 +93,21 @@
 
  }
 
+```
  ## Step 6: Add the below route in router module for loading the library in routing mode
+
+ ```
 
   {
     path: 'discussion-forum',
     loadChildren: () => import('@project-sunbird/discussions-ui-v8').then(u => u.DiscussionUiModule),
   }
 
+ ```
+
  ## Step 7: Use the route to redirect to discussion-forum after  setting the config in local storage
+
+ ```
 
  import { IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
 
@@ -103,14 +121,23 @@
   this.router.navigate(['/discussion-forum'], { queryParams: { page: 'home' }, queryParamsHandling: "merge" })
   }
 
+  ```
+
  ## Step 8: Use the selector of the widget as below  to use the  widgets in desired components with input
+
+ ```
 
    <sb-category-widget [config]="discussionConfig"></sb-category-widget>
 
+ ```
+
   Import the IdiscussionConfig interface from the library to know which data to pass.
+
+  ```
 
   import { IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
 
+  ```
 
   ## Available components
 |Feature| Notes| Selector|
