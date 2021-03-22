@@ -2,6 +2,9 @@ import { DiscussionService } from './../../services/discussion.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { DiscussionEventsService } from './../../discussion-events.service';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { NSDiscussData } from './../../models/discuss.model';
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -21,7 +24,10 @@ export class LibEntryComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
     private configService: ConfigService,
-    private location: Location
+    private location: Location,
+    private discussionEventService: DiscussionEventsService,
+    private telemetryUtils: TelemetryUtilsService
+
   ) { }
 
   ngOnInit() {
@@ -43,4 +49,11 @@ export class LibEntryComponent implements OnInit {
     this.location.back();
   }
 
+  close(event) {
+    const eventAction = {
+      action: 'close'
+    };
+    this.discussionEventService.emitTelemetry(eventAction);
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.LIB_ENTRY);
+  }
 }
