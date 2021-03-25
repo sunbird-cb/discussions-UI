@@ -20,7 +20,9 @@
 }
 
 .related-discuss-part {
-    padding:  0 1.5rem 1.5rem;
+    padding: 0 0 1rem 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .pad-4 {
@@ -34,12 +36,10 @@
 .discussion-card-title {
     font-size: 20px;
     font-weight: 700;
-    text-transform: capitalize;
+    margin-right: 16px;   
 }
-
-.discussion-heading {
-    font-weight: 400;
-    text-transform: capitalize;
+.discussion-heading{
+ font-weight: 400;
 }
 
 .discussion-content {
@@ -67,8 +67,8 @@
 
 .circle-text {
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,14 +77,14 @@
 
 .circle-label {
     color: #fff;
-    font-size: 10px;
+    font-size: 17px;
     line-height: 12px;
     letter-spacing: .2625px;
+    text-transform: uppercase;
 }
 
 .discussion-labels {
-    color: #948e8e;
-    text-transform: capitalize;
+    color: #948e8e;  
 }
 
 .comments-area {
@@ -299,3 +299,63 @@
 .edit-icon {
     cursor: pointer;
 }
+
+.discuss-card-kabab-menu{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.kabab-menu{
+    color: var(--primary-400);
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    padding-left: 6px;
+    position: absolute;
+    right: 8px;
+    top: 22px;
+    &:hover{
+      background: var(--gray-0);
+      cursor: pointer;
+    }
+    &::after {
+      content: '\2807';
+      font-size: 24px;
+    }
+  }
+  .kabab-menu-dropdown-content {
+    position: absolute;
+    border-radius: 2px;
+    background-color: var(--white);
+    box-shadow: 0 3px 5px 4px rgba(var(--rc-rgba-black), 0.05);
+    padding: 8px;
+    z-index: 1;
+    text-align: left;
+    right:0;
+    top: 0;
+    min-width: 210px;
+    .list{
+      cursor: pointer;
+      font-size: 14px;
+      padding: 8px;
+      &:hover,&:active{
+        background-color: var(--primary-100);
+      }
+      &:last-child{
+        .sb-btn-normal{
+          color: var(--red-400);
+        }
+      }
+      .sb-btn-normal{
+        font-size: 14px;
+      }
+    }
+  }
+  ::ng-deep {
+    html[dir='rtl'] .kabab-menu-dropdown-content {
+      right:auto;
+      left:0;
+    }
+  }

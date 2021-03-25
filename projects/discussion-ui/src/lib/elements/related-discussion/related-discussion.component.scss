@@ -6,10 +6,18 @@
     background: var(--white);
     margin-bottom: 16px;
     flex-direction: column;
+	max-width: 300px;
+	@media (max-width: 768px) {
+     max-width: 100%;
+	}
 }
 
 .related-discuss-label{
     font-weight: bold;
+	margin: 0 0 1rem 0;
+	@media (max-width: 768px) {
+		margin: 1rem 0;
+	   }
 }
 
 .related-discuss-card-content {
@@ -18,7 +26,6 @@
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 700;
-    text-transform: capitalize;
     word-break: break-all;
 }
 
@@ -41,3 +48,4 @@
 .time {
 	color: rgba(0, 0, 0, 0.4);
 }
+

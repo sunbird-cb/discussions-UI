@@ -37,7 +37,6 @@ export class MyDiscussionComponent implements OnInit {
       this.showLoader = false;
       console.log(response);
       this.data = response;
-      this.setUserInitial(this.data);
       if (_.get(this.data, 'posts')) {
         this.discussionList = _.get(this.data, 'posts').filter(p => (p.isMainPost === true));
       }
@@ -59,12 +58,6 @@ export class MyDiscussionComponent implements OnInit {
     }
   }
 
-  setUserInitial(userData) {
-    const name = _.get(userData, 'username').split(' ');
-    name.forEach(element => {
-      this.userInitial = this.userInitial + element.charAt(0);
-    });
-  }
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
     if (key) {
       this.currentFilter = key;
@@ -133,8 +126,7 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
   }
 
   logTelemetry(event) {

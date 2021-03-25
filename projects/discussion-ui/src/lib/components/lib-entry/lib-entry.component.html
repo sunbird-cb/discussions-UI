@@ -1,12 +1,13 @@
 <div class="ui container">
-    <div class="relative position df-back-btn-container mx-24">
-        <div (click)="goBack()" class="py-8 d-flex flex-ai-center">
+    <div class="relative position">
+        <div class="py-8 df-btn-container df-back-btn-container">
             <!-- /* Back button */ -->
-            <button type="button"
-                class="sb-btn sb-btn-normal sb-btn-link sb-btn-link-primary sb-left-icon-btn mr-auto df-back-btn">
-                <img src="./assets/discussion-ui/images/back-img.png" class="mr-4" width="16px" height="16px">
+            <button (click)="goBack()" type="button" class="sb-btn sb-btn-normal sb-left-icon mx-8">
+             <img src="./assets/discussion-ui/images/back-img.png" class="ml-4" width="16px" height="16px">
                 Back
             </button>
+            <button (click)="close($event)" class="sb-btn sb-btn-normal df-btn-close sb-left-icon-btn mx-8" id="close-discussion-forum" type="button"> Close 
+            <img class="ml-4" height="8px" src="./assets/discussion-ui/images/close.png" width="8px"></button>
         </div>
     </div>
     <div class="discussion-forum">
