@@ -7,18 +7,33 @@ import { DiscussionRoutingModule } from './discussion-routing/discussion-routing
 import { NgModule } from '@angular/core';
 
 import { DiscussionEventsService } from './discussion-events.service';
+import { ModuleWithProviders } from '@angular/core';
+import { CategoryWidgetComponent } from './wrapper/category-widget/category-widget.component';
+import { CommonModule } from '@angular/common';
+import { BaseWrapperComponent } from './wrapper/base-wrapper/base-wrapper.component';
+// import { TagsWidgetComponent } from './wrapper/tags-widget/tags-widget/tags-widget.component';
 
 export function provideCsModule(){
   return window['CsModule'];
 }
 @NgModule({
-  declarations: [ LibEntryComponent],
+  declarations: [ LibEntryComponent, CategoryWidgetComponent, BaseWrapperComponent],
   imports: [
     ComponentsModule,
     DiscussionRoutingModule,
-    ElementsModule
+    ElementsModule,
+    CommonModule,
   ],
-  exports: [ ComponentsModule ],
+  exports: [ ComponentsModule, CategoryWidgetComponent, BaseWrapperComponent ],
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
-export class DiscussionUiModule { }
+export class DiscussionUiModule { 
+  static forRoot(configService): ModuleWithProviders {
+    return {
+      ngModule: ComponentsModule,
+      providers: [
+        {provide: 'configService', useClass: configService}
+      ]
+    };
+  }
+}

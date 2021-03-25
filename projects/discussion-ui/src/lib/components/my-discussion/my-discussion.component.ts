@@ -10,7 +10,7 @@ import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-my-discussion',
+  selector: 'sb-my-discussion',
   templateUrl: './my-discussion.component.html',
   styleUrls: ['./my-discussion.component.scss']
 })

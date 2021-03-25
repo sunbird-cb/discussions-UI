@@ -607,5 +607,8 @@
       "enable": true
     }
     
-  ]
+  ],
+  "CATEGORY": "category",
+  "CATEGORY_DETAILS": "categoryDetails",
+  "CATEGORY_HOME":"categoryHome"
 }

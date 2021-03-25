@@ -1,0 +1,5 @@
+<div >
+    <sb-discuss-category *ngIf='state === category'></sb-discuss-category>
+    <sb-discuss-home *ngIf='state === homePage'></sb-discuss-home>
+    <sb-discussion-details *ngIf='state === detailsPage' [topicId]='tid' [slug]='slug'></sb-discussion-details>
+</div>

@@ -8,7 +8,7 @@ import * as _ from 'lodash'
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-discuss-start',
+  selector: 'sb-discuss-start',
   templateUrl: './discuss-start.component.html',
   styleUrls: ['./discuss-start.component.scss']
 })

@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { DiscussionService, CONTEXT_PROPS } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,10 +9,11 @@ import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { ConfigService } from '../../services/config.service';
+import { NavigationServiceService } from '../../navigation-service.service'
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-discuss-category',
+  selector: 'sb-discuss-category',
   templateUrl: './discuss-category.component.html',
   styleUrls: ['./discuss-category.component.css']
 })
@@ -22,6 +23,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   forumIds: any;
   @Input() categoryIds;
+  @Output() categoryClick: EventEmitter<any> = new EventEmitter();
+  // @Input() userName;
 
   pageId = 0;
 
@@ -40,7 +43,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     public configService: ConfigService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    private telemetryUtils: TelemetryUtilsService
+    private telemetryUtils: TelemetryUtilsService,
+    private navigationService: NavigationServiceService
   ) { }
 
   ngOnInit() {
@@ -50,7 +54,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
      */
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
-    this.forumIds = this.discussService.forumIds;
+    this.forumIds = this.categoryIds ? this.categoryIds : this.discussService.forumIds;
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       if (_.get(params, 'cid')) {
         this.navigateToDiscussionPage(_.get(params, 'cid'));
@@ -83,7 +87,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
    * It will fetch the children for each category click.
    * if there is no children available the it will redirect to the topic list page
    */
-  navigateToDiscussionPage(cid, slug?) {
+  navigateToDiscussionPage(cid, event?) {
     this.showLoader = true;
     this.telemetryUtils.uppendContext({ id: cid, type: 'Category' });
     this.discussService.fetchSingleCategoryDetails(cid).subscribe(response => {
@@ -91,17 +95,31 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       this.categoryId = _.get(response, 'cid');
       this.isTopicCreator = _.get(response, 'privileges.topics:create') === true ? true : false;
       this.showStartDiscussionModal = false;
+      let input
       if (_.get(response, 'children').length > 0) {
-        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId } });
+        input = { data: { url: '', queryParams: { cid: this.categoryId } }, action: CONSTANTS.CATEGORY_HOME }
+        this.navigationService.navigate(input)
+
+        // this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId }, queryParamsHandling: "merge" });
         this.categories = [];
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
         });
       } else {
         this.discussService.setContext(CONTEXT_PROPS.cid, this.categoryId);
-        let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-        this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
+        this.configService.setCategoryid(this.categoryId)
+        // if (!this.categoryIds) {
+          console.log(this.configService.getConfig())
+          let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+          input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.CATEGORY}${this.categoryId}`, queryParams: {} }, action: CONSTANTS.CATEGORY_HOME,  }
+          this.navigationService.navigate(input)
+        
+        // } else {
+        //   this.categoryClick.emit({ event: event, data: this.categoryId });
+        // }
+        // this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`], {queryParamsHandling: "merge"});
       }
+
     }, error => {
       this.showLoader = false;
       // TODO: Toast error

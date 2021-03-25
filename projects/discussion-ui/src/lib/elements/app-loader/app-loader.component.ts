@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-app-loader',
+  selector: 'sb-app-loader',
   templateUrl: './app-loader.component.html',
   styleUrls: ['./app-loader.component.css']
 })

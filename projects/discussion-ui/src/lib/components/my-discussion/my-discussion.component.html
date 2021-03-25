@@ -1,4 +1,4 @@
-<lib-app-loader *ngIf="showLoader"></lib-app-loader>
+<sb-app-loader *ngIf="showLoader"></sb-app-loader>
 
 <div class="flex flex-1 flex-column my-discussion">
   <div class="flex-custom">
@@ -69,7 +69,7 @@
   <ng-container *ngIf="discussionList && discussionList.length > 0">
     <ng-container *ngFor="let data of discussionList">
       <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" id="discuss-card">
-        <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+        <sb-discuss-card [discussionData]="data"></sb-discuss-card>
       </div>
     </ng-container>
   </ng-container>

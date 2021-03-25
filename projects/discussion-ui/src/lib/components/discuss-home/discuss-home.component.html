@@ -1,8 +1,8 @@
-<lib-app-loader *ngIf="showLoader"></lib-app-loader>
+<sb-app-loader *ngIf="showLoader"></sb-app-loader>
 <button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
 
 <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" *ngFor="let discussionData of discussionList" id="topic-card">
-    <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+    <sb-discuss-card [discussionData]="discussionData"></sb-discuss-card>
 </div>
 
-<lib-discuss-start [categoryId]="categoryId" (close)="closeModal($event)" *ngIf="showStartDiscussionModal"></lib-discuss-start>
+<sb-discuss-start [categoryId]="categoryId" (close)="closeModal($event)" *ngIf="showStartDiscussionModal"></sb-discuss-start>

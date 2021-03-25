@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { of as observableOf, throwError as observableThrowError, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { urlConfig } from './../config/url.config';
 import { NSDiscussData } from '../models/discuss.model';
 
@@ -120,7 +120,14 @@ export class DiscussionService {
   }
 
   votePost(pid: number, data: any) {
-    return this.csDiscussionService.votePost(pid, data);
+    // return this.csDiscussionService.votePost(pid, data);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer 61c08e17-25b2-46b8-b99c-27accb94b3d5"
+    });
+    let options = { headers: headers };
+
+    return this.http.post(urlConfig.votePost(pid), data, options);
     // const url = urlConfig.votePost(pid);
     // return this.http.post(url, data);
   }

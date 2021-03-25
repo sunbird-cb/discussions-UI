@@ -11,7 +11,7 @@ import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-discuss-tags',
+  selector: 'sb-discuss-tags',
   templateUrl: './discuss-tags.component.html',
   styleUrls: ['./discuss-tags.component.scss']
 })

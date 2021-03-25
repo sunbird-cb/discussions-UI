@@ -106,7 +106,7 @@
         </div>
         <!-- /card content -->
         <!-- post reply -->
-        <lib-post-reply (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'" [showCancel]="false"></lib-post-reply>
+        <sb-post-reply (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'" [showCancel]="false"></sb-post-reply>
       </div>
       </ng-container>
     </div>
@@ -158,7 +158,7 @@
                 <div class="edited-text" *ngIf="post?.edited">(edited)</div>
             </div>
             <div *ngIf="editMode && editContentIndex === i">
-              <lib-post-reply (actionEvent)="editReplyHandler($event, post)" [mode]="'edit'" [showCancel]="true" [content]="contentPost"></lib-post-reply>
+              <sb-post-reply (actionEvent)="editReplyHandler($event, post)" [mode]="'edit'" [showCancel]="true" [content]="contentPost"></sb-post-reply>
             </div>
           <div class="reply-area my-8 font-weight-bold fnormal">
             <div class="flex flex-1 flex-row margin-left-xs">
@@ -269,14 +269,14 @@
       <!-- TODO: loader -->
       <!-- <mat-spinner [diameter]="30"></mat-spinner> -->
     </div>
-    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [relatedDiscussions]="similarPosts">
-    </lib-related-discussion>
+    <sb-related-discussion *ngIf="!fetchSingleCategoryLoader" [relatedDiscussions]="similarPosts">
+    </sb-related-discussion>
   </div>
 </div>
 
 <ng-template #reply let-post="post">
   <div class="mt-2 flex flex-col">
-    <lib-post-reply (actionEvent)="commentReplyHandler($event, post)" [mode]="'reply'" [showCancel]="true"></lib-post-reply>
+    <sb-post-reply (actionEvent)="commentReplyHandler($event, post)" [mode]="'reply'" [showCancel]="true"></sb-post-reply>
   </div> 
 </ng-template>
 

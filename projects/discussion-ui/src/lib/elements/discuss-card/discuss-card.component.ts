@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'lib-discuss-card',
+  selector: 'sb-discuss-card',
   templateUrl: './discuss-card.component.html',
   styleUrls: ['./discuss-card.component.scss']
 })

@@ -1,7 +1,7 @@
 import { DiscussionService } from './discussion.service';
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import * as _ from 'lodash'
 import { IdiscussionConfig } from '../models/discussion-config.model';
 
@@ -12,8 +12,10 @@ export class ConfigService implements OnInit {
 
   paramsSubscription: Subscription;
   private _config: IdiscussionConfig;
-  public checkContext: boolean;
   public queryParams;
+  public checkContext: boolean
+  categoryId: string
+  changedSubject = new ReplaySubject(1)
 
 
   constructor(
@@ -25,10 +27,10 @@ export class ConfigService implements OnInit {
 
   }
 
-  setConfig(activatedRoute) {
-    activatedRoute.data.subscribe((config) => {
-      this._config = config.data;
-    });
+  setConfig(config) {
+    // activatedRoute.data.subscribe((config) => {
+      this._config = config;
+    // });
   }
 
   setConfigFromParams(activatedRoute) {
@@ -45,6 +47,14 @@ export class ConfigService implements OnInit {
     return this._config;
   }
 
+  setCategoryid(id) {
+    this.categoryId = id
+    this.changedSubject.next(id)
+  }
+
+  public getCategoryid() {
+    return this.categoryId
+  }
 
 
 

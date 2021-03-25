@@ -14,7 +14,7 @@ import { IdiscussionConfig, IMenuOptions } from '../../models/discussion-config.
 /* tslint:enable */
 
 @Component({
-  selector: 'lib-side-pannel',
+  selector: 'sb-side-pannel',
   templateUrl: './side-pannel.component.html',
   styleUrls: ['./side-pannel.component.scss']
 })
@@ -75,7 +75,8 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([`${CONSTANTS.ROUTES.DISCUSSION}${pageName}`]);
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    this.router.navigate([`${routerSlug}${CONSTANTS.ROUTES.DISCUSSION}${pageName}`],{queryParamsHandling: "merge"});
     // this.router.navigate([`${pageName}`], { relativeTo: this.activatedRoute });
     this.closeNav();
   }

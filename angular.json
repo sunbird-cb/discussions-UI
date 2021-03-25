@@ -7,7 +7,7 @@
       "root": "projects/discussion-ui",
       "sourceRoot": "projects/discussion-ui/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "sb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

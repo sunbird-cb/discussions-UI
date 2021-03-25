@@ -1,11 +1,13 @@
-<lib-app-loader *ngIf="showLoader"></lib-app-loader>
- <!-- <button (click)="startDiscussion();logTelemetry($event)" *ngIf="isTopicCreator" class="sb-btn sb-btn-primary sb-btn-normal mb-16" id="start-discussion">Start Discussion</button> -->
-  <div class="discuss-category-cards">
-    <ng-container  *ngFor="let data of categories">
-      <div (click)="navigateToDiscussionPage(data?.cid, data?.slug);logTelemetry($event)" class="categories-card-content" id="category-card">
-      <lib-category-card [category]="data" ></lib-category-card>
-      </div>
-    </ng-container>
-  </div>
+<sb-app-loader *ngIf="showLoader"></sb-app-loader>
+<!-- <button (click)="startDiscussion();logTelemetry($event)" *ngIf="isTopicCreator" class="sb-btn sb-btn-primary sb-btn-normal mb-16" id="start-discussion">Start Discussion</button> -->
+<div class="discuss-category-cards">
+  <ng-container *ngFor="let data of categories">
+    <div (click)="navigateToDiscussionPage( data?.cid, $event);logTelemetry($event)"
+      class="categories-card-content" id="category-card">
+      <sb-category-card [category]="data"></sb-category-card>
+    </div>
+  </ng-container>
+</div>
 
-  <lib-discuss-start (close)="closeModal($event)" [categoryId]="categoryId" *ngIf="showStartDiscussionModal" ></lib-discuss-start>
+<sb-discuss-start (close)="closeModal($event)" [categoryId]="categoryId" *ngIf="showStartDiscussionModal">
+</sb-discuss-start>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'lib-avatar-photo',
+  selector: 'sb-avatar-photo',
   templateUrl: './avatar-photo.component.html',
   styleUrls: ['./avatar-photo.component.css']
 })

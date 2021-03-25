@@ -13,7 +13,7 @@ import { ConfigService } from '../../services/config.service';
 
 
 @Component({
-  selector: 'lib-discussion-details',
+  selector: 'sb-discussion-details',
   templateUrl: './discussion-details.component.html',
   styleUrls: ['./discussion-details.component.scss']
 })
@@ -140,6 +140,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   upvote(discuss: NSDiscussData.IDiscussionData) {
     const req = {
       delta: 1,
+      _uid: 2
     };
     this.processVote(discuss, req);
   }
@@ -147,6 +148,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   downvote(discuss: NSDiscussData.IDiscussionData) {
     const req = {
       delta: -1,
+      _uid: 2
     };
     this.processVote(discuss, req);
   }
