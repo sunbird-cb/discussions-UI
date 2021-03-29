@@ -1,7 +1,7 @@
 <form [formGroup]="replyForm">
     <div appearance="outline" class="flex-1 w-full text-form-field">
       <textarea placeholder="Type your message here (minimum 10 characters)" 
-        minlength="10" 
+        minlength="10" aria-label="Type your message here"
         formControlName="replyContent" 
         class="text-content fnormal edit-field"
         [ngModel]="content">
