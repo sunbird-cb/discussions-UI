@@ -48,6 +48,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   dropdownContent = true;
   cid: any;
   catId: any;
+  categoryId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -78,13 +79,12 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.cid = await this.refreshPostData(this.currentActivePage);
-        this.getRealtedDiscussion(this.cid)
+        // this.getRealtedDiscussion(this.cid)
       });
     } else {
       this.cid = await this.refreshPostData(this.currentActivePage);
-      this.getRealtedDiscussion(this.cid)
+      // this.getRealtedDiscussion(this.cid)
     }
-
 
 
     this.paramsSubscription = this.route.queryParams.subscribe(x => {
@@ -138,7 +138,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
               this.data = data;
               this.paginationData = _.get(data, 'pagination');
               this.mainUid = _.get(data, 'loggedInUser.uid');
-              this.catId = _.get(data, 'cid');
+              this.categoryId = _.get(data, 'cid');
+              this.topicId = _.get(data, 'tid');
               resolve(this.catId);
             },
             (err: any) => {
