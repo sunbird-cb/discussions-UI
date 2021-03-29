@@ -151,8 +151,8 @@
           <!-- <ws-widget-avatar-photo [name]="post?.user?.fullname || post?.user?.username" size="s">
           </ws-widget-avatar-photo> -->
           <div class="post-header-content">
-            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials
-                }}</span></span>
+            <span class="circle-text"><span class="circle-label">
+                {{ post?.user?.username | splitInitials }}</span></span>
             <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
             <span class="post-name df-label-color" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
@@ -288,8 +288,7 @@
       <!-- TODO: loader -->
       <!-- <mat-spinner [diameter]="30"></mat-spinner> -->
     </div>
-    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId"
-      [topicId]="topicId">
+    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId" [topicId]="topicId">
     </lib-related-discussion>
   </div>
 </div>
