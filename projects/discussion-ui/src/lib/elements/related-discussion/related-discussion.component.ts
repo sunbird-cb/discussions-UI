@@ -15,9 +15,7 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
   @Input() catId: any
   @Input() topicId: any
   relatedDiscussions = []
-  categoryId!: number
   fetchSingleCategoryLoader = false;
-  // topicId: any;
   similarPosts: any;
 
   constructor(private router: Router,
@@ -31,14 +29,15 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.catId) {
-      this.fetchSingleCategoryDetails(this.catId)
+      this.fetchRelatedDiscussionData(this.catId)
     }
   }
 
-  fetchSingleCategoryDetails(cid: number) {
+  fetchRelatedDiscussionData(cid: number) {
     this.fetchSingleCategoryLoader = true
     this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
       (data: NSDiscussData.ICategoryData) => {
+        this.relatedDiscussions = [];
         _.filter(data.topics, (topic) => {
           if (this.topicId != topic.tid) {
             this.relatedDiscussions.push(topic)

@@ -46,8 +46,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   showEditTopicModal = false;
   editableTopicDetails: any;
   dropdownContent = true;
-  cid: any;
-  catId: any;
   categoryId: any;
 
   constructor(
@@ -71,51 +69,26 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
-      this.route.params.subscribe(async params => {
+      this.route.params.subscribe(params => {
         this.routeParams = params;
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
-        this.cid = await this.refreshPostData(this.currentActivePage);
+        this.refreshPostData(this.currentActivePage);
         // this.getRealtedDiscussion(this.cid)
       });
     } else {
-      this.cid = await this.refreshPostData(this.currentActivePage);
+      this.refreshPostData(this.currentActivePage);
       // this.getRealtedDiscussion(this.cid)
     }
 
 
-    this.paramsSubscription = this.route.queryParams.subscribe(x => {
-      if (x.page) {
-        this.currentActivePage = x.page || 1;
-        this.refreshPostData(this.currentActivePage);
-      }
-    });
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
 
-  fetchSingleCategoryDetails(cid: number) {
-    this.fetchSingleCategoryLoader = true
-    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
-      (data: NSDiscussData.ICategoryData) => {
-        _.filter(data.topics, (topic) => {
-          if (this.topicId != topic.tid) {
-            this.similarPosts.push(topic)
-          }
-        })
-        this.fetchSingleCategoryLoader = false
-      },
-      (err: any) => {
-        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
-        this.fetchSingleCategoryLoader = false
-      })
-  }
 
-  getRealtedDiscussion(catId, page?: any) {
-    this.fetchSingleCategoryDetails(catId)
-  }
 
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
@@ -140,7 +113,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
               this.mainUid = _.get(data, 'loggedInUser.uid');
               this.categoryId = _.get(data, 'cid');
               this.topicId = _.get(data, 'tid');
-              resolve(this.catId);
+              resolve(this.categoryId);
             },
             (err: any) => {
               console.log('Error in fetching topics')
@@ -160,8 +133,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
               this.data = data;
               this.paginationData = _.get(data, 'pagination');
               this.mainUid = _.get(data, 'loggedInUser.uid');
-              this.catId = _.get(data, 'cid');
-              resolve(this.catId);
+              this.categoryId = _.get(data, 'cid');
+              this.topicId = _.get(data, 'tid');
+              resolve(this.categoryId);
             },
             (err: any) => {
               console.log('Error in fetching topics')
