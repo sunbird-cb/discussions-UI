@@ -86,7 +86,7 @@
                 <a href="javascript:void(0)" *ngIf="!data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                   (click)="bookmark(post);logTelemetry($event, post)" aria-label="Bookmark post" id="bookmark">
                   <!-- bookmark -->
-                  <img src="./assets/discussion-ui/images/bookmarks.png" width="20px" height="20px" alt="bookmarks">
+                  <img src="./assets/discussion-ui/images/bookmarks.png" alt="bookmarks" width="20px" height="20px">
                 </a>
                 <a href="javascript:void(0)" *ngIf="data?.posts[0]?.bookmarked" i18n-aria-label role="link"
                   (click)="unBookMark(post);logTelemetry($event, post)" aria-label="unBookmark post" id="un-bookmark-vote">
@@ -278,7 +278,7 @@
       <!-- TODO: loader -->
       <!-- <mat-spinner [diameter]="30"></mat-spinner> -->
     </div>
-    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [relatedDiscussions]="similarPosts">
+    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId" [topicId]="topicId">
     </lib-related-discussion>
   </div>
 </div>
