@@ -102,50 +102,35 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  async refreshPostData(page?: any): Promise<any> {
+  async refreshPostData(page?: any) {
     if (this.currentFilter === 'timestamp') {
-      try {
-        return new Promise(async (resolve, reject) => {
-          this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
-            (data: NSDiscussData.IDiscussionData) => {
-              this.data = data;
-              this.paginationData = _.get(data, 'pagination');
-              this.mainUid = _.get(data, 'loggedInUser.uid');
-              this.categoryId = _.get(data, 'cid');
-              this.topicId = _.get(data, 'tid');
-              resolve(this.categoryId);
-            },
-            (err: any) => {
-              console.log('Error in fetching topics')
-              reject(err)
-              // toast message
-              // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
-            });
+
+      this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
+        (data: NSDiscussData.IDiscussionData) => {
+          this.appendResponse(data)
+        },
+        (err: any) => {
+          console.log('Error in fetching topics')
+          // toast message
+          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
-      } catch (err) {
-        return err
-      }
     } else {
-      try {
-        return new Promise(async (resolve, reject) => {
-          this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
-            (data: NSDiscussData.IDiscussionData) => {
-              this.data = data;
-              this.paginationData = _.get(data, 'pagination');
-              this.mainUid = _.get(data, 'loggedInUser.uid');
-              this.categoryId = _.get(data, 'cid');
-              this.topicId = _.get(data, 'tid');
-              resolve(this.categoryId);
-            },
-            (err: any) => {
-              console.log('Error in fetching topics')
-              reject(err)
-            });
+      this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
+        (data: NSDiscussData.IDiscussionData) => {
+          this.appendResponse(data)
+        },
+        (err: any) => {
+          console.log('Error in fetching topics')
         });
-      } catch (err) {
-        return err
-      }
     }
+  }
+
+  appendResponse(data) {
+    this.data = data;
+    this.paginationData = _.get(data, 'pagination');
+    this.mainUid = _.get(data, 'loggedInUser.uid');
+    this.categoryId = _.get(data, 'cid');
+    this.topicId = _.get(data, 'tid');
   }
 
 
