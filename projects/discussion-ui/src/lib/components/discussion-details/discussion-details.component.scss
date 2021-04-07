@@ -12,8 +12,8 @@
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
-    padding: 1.4rem;
-    border-radius: 4px;
+    padding: 0.875rem 1rem;
+    border-radius: 1rem;
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
@@ -23,14 +23,6 @@
     padding: 0 0 1rem 1rem;
     position: relative;
     z-index: 2;
-}
-
-.pad-4 {
-    margin-left: 8px;
-}
-
-.margin-right-l {
-    margin-right: 24px;
 }
 
 .discussion-card-title {
@@ -105,9 +97,10 @@
     max-height: 540px;
     /* width: 97.6%;  */
     border: 1.5px solid #ccc2c2;
-    border-radius: 4px;
+    border-radius: 16px;
     cursor: pointer;
     padding: 16px;
+    outline: none;
 }
 
 .text-content.is-invalid,
@@ -171,15 +164,14 @@
     border-radius: 4px;
 }
 
-.cancel-btn:hover,
-.reply-btn:hover {
-    background: #878282;
-    color: #fff;
+
+.post-card ,.post-reply-card{
+    border-bottom: 1px solid #ddd;
+    margin:1rem 0;
 }
 
-.post-card {
-    border-bottom: 1px solid #ddd;
-    margin: 0 16px 16px 16px;
+.post-sub-card{
+  margin: 0 8px 8px;
 }
 
 .comments-section {
@@ -192,6 +184,7 @@
     font-size: 16px;
     font-weight: 700;
     margin-left: 16px;
+    word-break: break-all;
 }
 
 .post-time {
@@ -200,12 +193,7 @@
 }
 
 .post-labels {
-    font-size: 14px;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 12px;
 }
 
 .reply-area {
@@ -226,19 +214,6 @@
 
 .edit-post {
     margin-right: 20px;
-}
-
-.updatePostActions {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.cancel-update-post {
-    margin-right: 20px;
-}
-
-.edit-field {
-    min-height: 40px;
 }
 
 .border-0 {

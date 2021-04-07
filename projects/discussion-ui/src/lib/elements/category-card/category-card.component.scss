@@ -8,12 +8,13 @@
     border-radius: 4px;
     height: 12.8rem;
     width: auto;
-    padding: 1.4rem;
+    padding: 1rem;
 }
 
 .category-card-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .catergory-card-header-image {
     border: 1px solid  #fed7d7;;

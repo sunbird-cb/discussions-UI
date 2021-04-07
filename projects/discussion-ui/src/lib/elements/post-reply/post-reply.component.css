@@ -9,20 +9,15 @@
     max-height: 540px;
     /* width: 97.6%;  */
     border: 1.5px solid #ccc2c2;
-    border-radius: 4px;
-    margin: 16px 0;
+    border-radius: 16px;
     cursor: pointer;
     padding: 16px;
-}
-
-.edit-field {
-    min-height: 40px;
+    outline: none;
 }
 
 .updatePostActions {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 15px
 }
 
 .post-btn,.post-reply-btn{

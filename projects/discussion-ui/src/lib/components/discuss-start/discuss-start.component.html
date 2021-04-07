@@ -30,7 +30,7 @@
             {{ tag }}
           </div>
           <!-- TODO: check the padding for placeholder -->
-          <tag-input secondaryPlaceholder="Add a tag and press Enter" formControlName="tags" [modelAsStrings]="true">
+          <tag-input class="py-8" secondaryPlaceholder="Add a tag and press Enter" formControlName="tags" [modelAsStrings]="true">
           </tag-input>
         </div>
 
@@ -42,17 +42,17 @@
 
         <div class="start-modal-buttons">
           <button (click)="closeModal('discard');logTelemetry($event)" mat-raised-button type="button"
-            class="discard-btn start-common-btn" id="discard-discussion-start-form">Discard
+            class="sb-btn sb-btn-normal sb-btn-outline-primary" id="discard-discussion-start-form">Discard
           </button>
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
             <!-- <span [diameter]="30"></span> -->
           </span>
-          <button *ngIf="mode !== 'edit'" type="submit" class="submit-post-btn start-common-btn"
+          <button *ngIf="mode !== 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
             (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
             <span class="text-white">Submit</span>
           </button>
-          <button *ngIf="mode === 'edit'" type="submit" class="submit-post-btn start-common-btn"
+          <button *ngIf="mode === 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
             (click)="updatePost(startForm);logTelemetry($event)" id="update-topic-popup">
             <span class="text-white">Update</span>

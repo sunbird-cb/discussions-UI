@@ -47,9 +47,7 @@
 					color: var(--gray-800);
 					display: block;
 					font-size: 0.8125rem;
-					line-height: 1.3125rem;
 					max-width: 100%;
-					padding: 0.25rem 0.5rem;
 					position: relative;
 					width: 100%;
 					min-height: 2rem;
@@ -112,4 +110,16 @@
 #myModal {
 	display: block;
 	opacity: 2 !important;
+}
+
+.ng2-tag-input{
+	border: .0625rem solid var(--gray-200) !important;
+    border-radius: .1875rem; 
+    color: var(--gray-800) !important;
+    display: block;
+    font-size: .8125rem !important;
+    max-width: 100%;
+}
+.ng2-tag-input__text-input{
+	padding: 0 !important;
 }
