@@ -1,5 +1,3 @@
-<lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
-
 <div class="main-div">
     <div class="flex flex-1 margin-top-xl">
         <h2 class="margin-remove-bottom tagtitle" [ngStyle]="getBgColor(tagName)">{{tagName}}</h2>
@@ -9,12 +7,14 @@
     </div>
     <div class="flex flex-1 custom">
         <div class="flex flex-1 flex-column margin-fix">
+            <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
+
             <ng-container *ngIf="similarPosts && similarPosts.length > 0">
                 <ng-container *ngFor="let data of similarPosts">
                     <lib-discuss-card [discussionData]="data"></lib-discuss-card>
                 </ng-container>
             </ng-container>
-            <ng-container *ngIf="!(similarPosts && similarPosts.length > 0)">
+            <ng-container *ngIf="!similarPosts && similarPosts.length == 0">
                 <div class="discuss-card-content cursor-pointer">
                     <div class="no-data-label">No Data</div>
                     <div>
