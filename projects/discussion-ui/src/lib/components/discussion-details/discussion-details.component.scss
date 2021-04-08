@@ -20,7 +20,9 @@
 }
 
 .related-discuss-part {
-    padding:  0 1.5rem 1.5rem;
+    padding: 0 0 1rem 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .pad-4 {
@@ -33,7 +35,8 @@
 
 .discussion-card-title {
     font-size: 20px;
-    font-weight: 700;   
+    font-weight: 700;
+    margin-right: 16px;   
 }
 .discussion-heading{
  font-weight: 400;
@@ -310,6 +313,9 @@
     text-align: center;
     border-radius: 50%;
     padding-left: 6px;
+    position: absolute;
+    right: 8px;
+    top: 22px;
     &:hover{
       background: var(--gray-0);
       cursor: pointer;

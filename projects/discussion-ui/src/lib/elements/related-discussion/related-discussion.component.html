@@ -1,12 +1,14 @@
 <h5 aria-label="Related discussions" class="related-discuss-label mb-16">Related discussions</h5>
-    <ng-container *ngIf="relatedDiscussions && relatedDiscussions.length > 0">
-        <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card">
-                    <a href="javascript:void(0)" role="link" aria-label="related discussion post df-text-color"  class="related-discuss-card-content" 
-                    (click)="getDiscussion(discussion)">{{discussion?.title}}</a>
-                    <div class="related-discuss-card-description mt-8">
-                        <div class="category-name"[innerHTML]="discussion.category.name"></div>
-                        <div class="separator-dot mx-8"></div>
-                        <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
-                    </div>
+<ng-container *ngIf="relatedDiscussions && relatedDiscussions.length > 0">
+    <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card">
+        <a href="javascript:void(0)" role="link" aria-label="related discussion post df-text-color"
+            class="related-discuss-card-content" (click)="getDiscussion(discussion)">
+            <span class="discuss-user-label" [innerHTML]="discussion?.title"></span>
+        </a>
+        <div class="related-discuss-card-description mt-8">
+            <div class="category-name" [innerHTML]="discussion.category.name"></div>
+            <div class="separator-dot mx-8"></div>
+            <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
         </div>
-    </ng-container>
+    </div>
+</ng-container>
