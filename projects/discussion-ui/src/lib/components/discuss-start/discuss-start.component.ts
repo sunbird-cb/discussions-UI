@@ -150,16 +150,18 @@ export class DiscussStartComponent implements OnInit {
   /**
    * @param  {any} form
    * @description - It will emit an event when popup is opened in edit topic/thread mode
+   *                Here, as 'tid', we are passing the main topic pid from the post array
    */
   updatePost(form: any) {
     const updateTopicRequest = {
-      pid: _.get(this.topicData, 'tid'),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,
+      uid: _.get(this.topicData, 'uid')
     };
     this.close.emit({
       action: 'update',
+      tid: _.get(this.topicData, 'posts[0].pid'),
       request: updateTopicRequest
     });
   }
