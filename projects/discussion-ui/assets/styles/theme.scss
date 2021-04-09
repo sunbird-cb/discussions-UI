@@ -2,10 +2,14 @@ html[layout='joy'] {
   --df-primary-bg: #FFD954;
   --df-gray-bg: #E9E8D9;
   --sbt-bradius: 0.125rem;
-  --sbt-bradius-xs: calc(var(--sbt-bradius) * 4);  /* 8 value */
-  --sbt-bradius-sm: calc(var(--sbt-bradius) * 8);  /* 16 value */
-  --sbt-bradius-md: calc(var(--sbt-bradius) * 12);  /* 24 value */
-  --sbt-bradius-lg: calc(var(--sbt-bradius) * 16);  /* 32 value */
+  --sbt-bradius-xs: calc(var(--sbt-bradius) * 4);
+  /* 8 value */
+  --sbt-bradius-sm: calc(var(--sbt-bradius) * 8);
+  /* 16 value */
+  --sbt-bradius-md: calc(var(--sbt-bradius) * 12);
+  /* 24 value */
+  --sbt-bradius-lg: calc(var(--sbt-bradius) * 16);
+  /* 32 value */
 
   .df-back-btn-container {
     background: var(--df-gray-bg) !important;
@@ -40,29 +44,6 @@ html[layout='joy'] {
     }
   }
 
-  // .df-filter-option {
-  //   background: var(--white);
-  //   padding: 0.5rem 1rem;
-  //   border-radius: 0.375rem;
-  //   box-shadow: var(--sbt-box-shadow-6px);
-  //   display: flex;
-  //   align-items: center;
-  //   cursor: pointer;
-  //   white-space: nowrap;
-  //   font-weight: bold;
-  //   transition: all ease 0.3s;
-  //   font-size: 0.75rem;
-  //   margin: 1rem 1.5rem 1rem 0;
-  //   height: 2.2rem;
-  // }
-
-  // .df-filter-option:hover,
-  // .tabs-active {
-  //   color: var(--white) !important;
-  //   text-decoration: none;
-  //   background-color: var(--primary-color);
-  // }
-
   .df-sidebar-menu-list:hover,
   .menu-active {
     background: var(--df-gray-bg) !important;
@@ -78,18 +59,20 @@ html[layout='joy'] {
   }
 
   /* start discussion modal */
-  .discussion-start-modal .discussion-start-modal-content{
+  .discussion-start-modal .discussion-start-modal-content {
     .discussion-start-form .start-form-field .start-form-field-control {
       border-radius: var(--sbt-bradius-md) !important;
       padding-left: 1rem;
     }
   }
+
   .ng2-tag-input {
     border-radius: var(--sbt-bradius-md) !important;
     padding: 0.25rem 1rem 0 1rem;
     font-size: 0.875rem;
     border: .0625rem solid var(--gray-200);
   }
+
   .ng2-tag-input.ng2-tag-input--focused {
     border-color: var(--primary-400) !important;
     border-bottom: 0.0625rem solid !important;

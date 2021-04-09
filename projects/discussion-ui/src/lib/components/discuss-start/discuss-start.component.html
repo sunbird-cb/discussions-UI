@@ -15,7 +15,7 @@
           <small class="text-error" *ngIf="showError('question')" i18n="category Error|Explains category is required">
             category is mandatory</small>
         </div>
-        
+
         <div class="mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
           <label class="start-form-label">Ask a question or post an idea</label>
           <div class="start-form-field">
@@ -43,7 +43,8 @@
             {{ tag }}
           </div>
           <!-- TODO: check the padding for placeholder -->
-          <tag-input class="py-8" secondaryPlaceholder="Add a tag and press Enter" formControlName="tags" [modelAsStrings]="true">
+          <tag-input class="py-8" secondaryPlaceholder="Add a tag and press Enter" formControlName="tags"
+            [modelAsStrings]="true">
           </tag-input>
         </div>
 
@@ -58,7 +59,6 @@
             class="sb-btn sb-btn-normal sb-btn-outline-primary" id="discard-discussion-start-form">Discard
           </button>
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
-            <!-- <span [diameter]="30"></span> -->
           </span>
           <button *ngIf="mode !== 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
@@ -81,12 +81,3 @@
     </div>
   </div>
 </div>
-
-<!-- TODO:  !!!! Important  -->
-<!-- Success toast -->
-<!-- <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
-    value="Post created successfully!" #toastSuccess /> -->
-
-<!-- Error toast -->
-<!-- <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
-    value="Error in creating new post!" #toastError /> -->
