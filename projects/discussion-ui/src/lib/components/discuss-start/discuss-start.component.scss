@@ -41,7 +41,6 @@
 
 				.start-form-field-control {
 					background-color: var(--white);
-					background-clip: padding-box;
 					border: 0.0625rem solid var(--gray-200);
 					border-radius: 0.1875rem;
 					color: var(--gray-800);
@@ -53,8 +52,9 @@
 					min-height: 2rem;
 					cursor: pointer;
 					outline:none;
+					padding: 0 0.875rem;
 					&:focus,.active{
-						border-color: #2196f3!important;
+						border-color: var(--primary-400) !important;
 					}
 				}
 			}
@@ -103,6 +103,7 @@
 					background-color: var(--gray-100);
 				}
 			}
+
 		}
 	}
 }
@@ -112,14 +113,18 @@
 	opacity: 2 !important;
 }
 
-.ng2-tag-input{
+::ng-deep.ng2-tag-input{
 	border: .0625rem solid var(--gray-200) !important;
-    border-radius: .1875rem; 
-    color: var(--gray-800) !important;
-    display: block;
-    font-size: .8125rem !important;
-    max-width: 100%;
+	border-radius: .1875rem; 
+	color: var(--gray-800) !important;
+	display: block;
+	font-size: .8125rem !important;
+	max-width: 100%;
 }
-.ng2-tag-input__text-input{
-	padding: 0 !important;
+
+::ng-deep.ng2-tag-input--focused {
+		border-color: var(--primary-400) !important;
+}
+.ng2-tag-input.active {
+	border-color: var(--primary-400) !important;
 }

@@ -273,6 +273,8 @@
 .delete-icon,
 .edit-icon {
     cursor: pointer;
+    width: 1rem;
+    height: 1rem;
 }
 
 .discuss-card-kabab-menu{
@@ -333,4 +335,9 @@
       right:auto;
       left:0;
     }
+  }
+
+  .icons{
+      width: 1rem;
+      height: 1rem;
   }

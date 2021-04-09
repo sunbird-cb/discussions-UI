@@ -25,7 +25,7 @@
         </div>
 
         <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
-          <label class="start-form-label">Tags</label>
+          <label class="mb-0">Tags</label>
           <div *ngFor="let tag of postTagsArray">
             {{ tag }}
           </div>

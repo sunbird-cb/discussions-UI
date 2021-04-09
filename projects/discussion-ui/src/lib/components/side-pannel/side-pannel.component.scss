@@ -41,11 +41,15 @@
 
   .openbtn {
     display: inline;
-    background: var(--black);
-    color: var(--white);
     border: none;
-    margin-left: 8px;
     cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 16px;
+    font-size: 22px;
+    background-color: #FFFFFF;
+    box-shadow: 3px 3px 2px 0 rgba(0,0,0,0.1);
+    color:#0245fd;
   }
 
   .overlay-sidebar {

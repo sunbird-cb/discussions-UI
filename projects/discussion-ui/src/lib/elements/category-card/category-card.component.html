@@ -5,15 +5,9 @@
       </div>
         <div class="category-card-header-label fs-1 font-weight-bold" [innerHTML]="category.name"></div>
     </div>
-    <p class="category-card-header-text my-8 fnormal">{{category.description}}
-      <!-- <span class="dot">{{category.user.username}}</span> -->
-      <!-- <span class="margin-left-s">{{category.timestamp | date}}</span> -->
-    </p>
+    <p class="category-card-header-text my-8 fnormal">{{category.description}}</p>
     <div class="category-card-main">
       <div class="category-card-main-content">
-        <!-- <div>
-          <span>{{category.upvotes}} viwes</span>
-        </div> -->
         <div>
           <span class="discussion-label fnormal font-weight-bold">{{category.totalTopicCount}} discussions</span>
         </div>
@@ -22,13 +16,7 @@
         </div>
       </div>
       <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-        <!-- <span class="noocoments ws-mat-default-text" (click)="getcategoryion()">{{(category.teaser.index || 1) -1 }}
-          comments</span> 
-        <mat-icon class="noocoments ws-mat-default-text">remove_red_eye</mat-icon> -->
         <img src="./assets/discussion-ui/images/eye-icon.png" class="eye-icon" alt="eye-icon">
       </div>
     </div>
-    <!-- <mat-card-footer class="flex flex-1 custom margin-0">
-  
-    </mat-card-footer> -->
   </div>

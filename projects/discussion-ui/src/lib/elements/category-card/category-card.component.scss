@@ -9,6 +9,11 @@
     height: 12.8rem;
     width: auto;
     padding: 1rem;
+    z-index: 2;
+    
+    @media (max-width: 768px) {
+        z-index: 1;
+    }
 }
 
 .category-card-header {
