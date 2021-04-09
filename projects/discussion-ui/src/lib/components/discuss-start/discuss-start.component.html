@@ -3,6 +3,19 @@
   <div class="discussion-start-modal">
     <div class="discussion-start-modal-content">
       <form [formGroup]="startForm" class="discussion-start-form">
+
+        <div class="mb-16" *ngIf="showSelectCategory" [ngClass]="{ 'is-invalid': showError('subTitle') }">
+          <label class="start-form-label">Select Category</label>
+          <div class="start-form-field">
+            <label>Select list</label>
+            <select formControlName="category" #category [required]="true" id="myList">
+              <option [value]="c.cid" *ngFor="let c of allCategories" [innerHTML]="c.name"></option>
+            </select>
+          </div>
+          <small class="text-error" *ngIf="showError('question')" i18n="category Error|Explains category is required">
+            category is mandatory</small>
+        </div>
+        
         <div class="mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
           <label class="start-form-label">Ask a question or post an idea</label>
           <div class="start-form-field">
