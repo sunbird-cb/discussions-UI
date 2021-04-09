@@ -7,8 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DiscussHomeComponent } from './../components/discuss-home/discuss-home.component';
-// TODO: ADD LATER
-// import { DiscussAllComponent } from './../components/discuss-all/discuss-all.component';
+import { DiscussAllComponent } from './../components/discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './../components/tag-all-discussion/tag-all-discussion.component';
 
 
@@ -23,9 +22,9 @@ const routes: Routes = [
         component: DiscussCategoryComponent
       },
       {
-        path: 'home',
+        path: 'all-discussions',
         pathMatch: 'full',
-        // component: DiscussAllComponent
+        component: DiscussAllComponent
       },
       {
         path: 'categories',
