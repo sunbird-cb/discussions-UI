@@ -1,25 +1,36 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DiscussHomeComponent } from './discuss-home.component';
+import { ActivatedRoute, Router } from "@angular/router";
+import { of, throwError } from "rxjs";
+import { NSDiscussData } from "../../models/discuss.model";
+import { ConfigService } from "../../services/config.service";
+import { DiscussionService } from "../../services/discussion.service";
+import { TelemetryUtilsService } from "../../telemetry-utils.service";
+import { DiscussHomeComponent } from "./discuss-home.component"
 
 describe('DiscussHomeComponent', () => {
-  let component: DiscussHomeComponent;
-  let fixture: ComponentFixture<DiscussHomeComponent>;
+  let discussHomeComponent: DiscussHomeComponent
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DiscussHomeComponent ]
-    })
-    .compileComponents();
-  }));
+  const mockDiscussionService: Partial<DiscussionService> = {};
+  const mockConfigService: Partial<ConfigService> = {};
+  const mockRouter: Partial<Router> = {};
+  const mockActivatedRoute: Partial<ActivatedRoute> = {};
+  const mockTelemetryUtilsService: Partial<TelemetryUtilsService> = {};
+
+  beforeAll(() => {
+    discussHomeComponent = new DiscussHomeComponent(
+      mockRouter as Router,
+      mockActivatedRoute as ActivatedRoute,
+      mockDiscussionService as DiscussionService,
+      mockConfigService as ConfigService,
+      mockTelemetryUtilsService as TelemetryUtilsService,
+    );
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiscussHomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    jest.clearAllMocks();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create an instance of DiscussHomeComponent', () => {
+    expect(discussHomeComponent).toBeTruthy();
   });
-});
+
+})
