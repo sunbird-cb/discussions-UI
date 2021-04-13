@@ -1,5 +1,3 @@
-<lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
-
 <div class="main-div">
     <div class="flex flex-1 margin-top-xl">
         <h2 class="margin-remove-bottom tagtitle" [ngStyle]="getBgColor(tagName)">{{tagName}}</h2>
@@ -9,10 +7,13 @@
     </div>
     <div class="flex flex-1 custom">
         <div class="flex flex-1 flex-column margin-fix">
+            <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
+
             <ng-container *ngIf="similarPosts && similarPosts.length > 0">
-                <ng-container *ngFor="let data of similarPosts">
+                <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)"
+                    *ngFor="let data of similarPosts" id="discuss-card">
                     <lib-discuss-card [discussionData]="data"></lib-discuss-card>
-                </ng-container>
+                </div>
             </ng-container>
             <ng-container *ngIf="!(similarPosts && similarPosts.length > 0)">
                 <div class="discuss-card-content cursor-pointer">
