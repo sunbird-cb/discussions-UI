@@ -1,6 +1,3 @@
-
-.discuss-user-label{
-}
 .discuss-card-title{
     margin: 0px;
     color: #000;  
@@ -16,7 +13,10 @@
 .discuss-card-subtitle{
     margin:8px 0px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
+
 .discuss-card-comments{
   display: flex;
   justify-content: space-between;
@@ -39,7 +39,6 @@
 }
 
 .timing{
-    margin-left:16px;
     color: #858181;  
 }
 
@@ -48,7 +47,6 @@
 }
 
 .votes-content img,.views-content img{
-    margin-right:4px;
     height: 20px;
     width: 20px;
 }

@@ -23,7 +23,7 @@
         <span class="dot mx-8"></span>
       <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
       <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-      <span class="timing">{{discussionData.lastposttime | date}}</span>
+      <span class="timing ml-8">{{discussionData.lastposttime | date}}</span>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
     <!-- /Card subtitle -->
@@ -43,19 +43,19 @@
   <!-- Card footer -->
   <div class="discuss-card-comments">
     <div class="discuss-comments-area">
-      <span class="flex margin-right-l mobile votes-content">
+      <span class="mobile votes-content">
         <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
-        <img src="./assets/discussion-ui/images/import-export-arrows.png" alt="import-export-arrows-image">
-        <span class="pad-4">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
+        <img src="./assets/discussion-ui/images/votes.svg" alt="votes-image">
+        <span class="ml-8">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
       </span>
-      <span class="flex mobile views-content">
+      <span class="mobile views-content">
         <!-- <mat-icon>trending_up</mat-icon> -->
-        <img src="./assets/discussion-ui/images/profits.png" alt="profits-image">
-        <span class="pad-4">{{discussionData.viewcount || 0}} Views</span>
+        <img src="./assets/discussion-ui/images/views.svg" alt="views-image">
+        <span class="ml-8">{{discussionData.viewcount || 0}} Views</span>
       </span>
     </div>
-    <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-      <span class="comments-count ws-mat-default-text">{{((discussionData.postcount || 1) -1) }}
+    <div class="cursor-pointer">
+      <span class="comments-count">{{((discussionData.postcount || 1) -1) }}
         comments</span>
     </div>
   </div>
