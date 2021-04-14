@@ -14,7 +14,8 @@ import { NSDiscussData } from './../../models/discuss.model';
 export class RelatedDiscussionComponent implements OnInit, OnChanges {
   @Input() catId: any
   @Input() topicId: any
-  relatedDiscussions = []
+
+  relatedDiscussions: any[]
   fetchSingleCategoryLoader = false;
   similarPosts: any;
 
