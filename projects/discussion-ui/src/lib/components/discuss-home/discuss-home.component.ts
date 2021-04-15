@@ -17,7 +17,7 @@ import { ConfigService } from '../../services/config.service';
 })
 export class DiscussHomeComponent implements OnInit {
 
-  discussionList = [];
+  discussionList: any[];
   routeParams: any;
   showStartDiscussionModal = false;
   categoryId: string;

@@ -29,7 +29,7 @@
                 </div>
             </ng-container>
 
-            <ng-container *ngIf=" !discussionList && discussionList.length > 0">
+            <ng-container *ngIf=" !(discussionList && discussionList.length > 0)">
                 <div class="discuss-card-content cursor-pointer">
                     <div class="no-data-label">No Data</div>
                     <div>

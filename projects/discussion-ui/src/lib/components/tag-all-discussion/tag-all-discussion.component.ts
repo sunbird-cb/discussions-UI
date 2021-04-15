@@ -18,7 +18,7 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 export class TagAllDiscussionComponent implements OnInit {
 
   tagName!: any
-  similarPosts = []
+  similarPosts :any[]
   queryParam: any
   fetchSingleCategoryLoader = false
   currentActivePage: 1
