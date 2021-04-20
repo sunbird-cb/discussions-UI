@@ -67,11 +67,16 @@ export class DiscussStartComponent implements OnInit {
       const tags = _.map(_.get(topicData, 'tags'), (element) => {
         return _.get(element, 'value');
       });
-      this.startForm.controls['question'].setValue(_.get(topicData, 'title'));
+      this.startForm.controls['question'].setValue(this.htmlDecode(_.get(topicData, 'title')));
       this.startForm.controls['description'].setValue(_.get(topicData, 'posts[0].content').replace(/<[^>]+>/g, ''));
       this.startForm.controls['tags'].setValue(tags);
       this.validateForm();
     }
+  }
+
+  htmlDecode(str) {
+    const doc = new DOMParser().parseFromString(str, "text/html");
+    return doc.documentElement.textContent;
   }
 
   validateForm() {
@@ -83,7 +88,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
-
     if (this.configService.hasContext() && !this.categoryId) {
       const req = {
         cids: this.cIds.result
