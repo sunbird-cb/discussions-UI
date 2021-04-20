@@ -74,6 +74,7 @@ export class DiscussStartComponent implements OnInit {
     }
   }
 
+  /** The htmlDecode() method parses a string containing either HTML or XML */
   htmlDecode(str) {
     const doc = new DOMParser().parseFromString(str, "text/html");
     return doc.documentElement.textContent;
