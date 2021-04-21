@@ -21,17 +21,15 @@
             </ng-container>
             <lib-app-loader *ngIf="showLoader"></lib-app-loader>
 
+
             <ng-container *ngIf="discussionList  && discussionList.length > 0">
-                <!-- <ng-container *ngFor="let data of discussionList"> -->
                 <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)"
                     *ngFor="let data of discussionList" id="discuss-card">
                     <lib-discuss-card [discussionData]="data"></lib-discuss-card>
                 </div>
-                <!-- </ng-container> -->
             </ng-container>
 
-
-            <ng-container *ngIf=" !discussionList && discussionList.length > 0">
+            <ng-container *ngIf=" !(discussionList && discussionList.length > 0)">
                 <div class="discuss-card-content cursor-pointer">
                     <div class="no-data-label">No Data</div>
                     <div>

@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 })
 export class DiscussAllComponent implements OnInit {
 
-  discussionList = [];
+  discussionList: any[];
   routeParams: any;
   showStartDiscussionModal = false;
   categoryId: string;
