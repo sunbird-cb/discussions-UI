@@ -24,4 +24,10 @@ export class DiscussUtilsService {
     return 'rgba(255, 255, 255, 80%)';
   }
 
+  /** The htmlDecode() method parses a string containing either HTML or XML */
+  htmlDecode(str) {
+    const doc = new DOMParser().parseFromString(str, "text/html");
+    return doc.documentElement.textContent;
+  }
+
 }
