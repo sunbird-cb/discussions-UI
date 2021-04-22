@@ -10,6 +10,9 @@ import { NSDiscussData } from './../../models/discuss.model';
 import * as _ from 'lodash'
 import { IdiscussionConfig } from '../../models/discussion-config.model';
 import { ConfigService } from '../../services/config.service';
+import { Inject } from '@angular/core';
+import { NavigationServiceService } from '../../navigation-service.service';
+import { AbstractConfigService } from '../../services/abstract-config.service';
 /* tslint:enable */
 @Component({
   selector: 'lib-lib-entry',
@@ -19,30 +22,34 @@ import { ConfigService } from '../../services/config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
-
+  pageKey: any;
+  config: any;
+  
   constructor(
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
-    private configService: ConfigService,
+    private configSvc: ConfigService,
     private location: Location,
+    private navigationServiceService: NavigationServiceService,
     private discussionEventService: DiscussionEventsService,
-    private telemetryUtils: TelemetryUtilsService
+    private telemetryUtils: TelemetryUtilsService,
+    @Inject('configService') protected configService: AbstractConfigService
 
   ) { }
 
   ngOnInit() {
-    this.configService.setConfig(this.activatedRoute);
-    // this.activatedRoute.data.subscribe((data) => {
-    this.data = this.configService.getConfig();
-    if (!this.data) {
-      // fallback for query params
-      this.configService.setConfigFromParams(this.activatedRoute);
-      this.data = this.configService.getConfig();
-    }
-    this.discussionService.userName = _.get(this.data, 'userName');
-    const rawCategories = _.get(this.data, 'categories');
-    this.discussionService.forumIds = _.get(rawCategories, 'result');
-    this.discussionService.initializeUserDetails(this.discussionService.userName);
+    this.navigationServiceService.initService('routerService')
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.pageKey = _.get(params, 'page')
+      this.config = this.configService.getConfig(_.get(params, 'page'))
+      this.configSvc.setConfig(JSON.parse(this.config))
+
+      this.data = this.configSvc.getConfig();
+      this.discussionService.userName = _.get(this.data, 'userName');
+      const rawCategories = _.get(this.data, 'categories');
+      this.discussionService.forumIds = _.get(rawCategories, 'result');
+      this.discussionService.initializeUserDetails(this.data.userName);
+    });
    }
 
   goBack() {

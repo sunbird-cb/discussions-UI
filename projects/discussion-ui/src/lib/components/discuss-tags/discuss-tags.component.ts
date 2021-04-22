@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
+import { NavigationServiceService } from '../../navigation-service.service';
 /* tslint:enable */
 
 @Component({
@@ -31,7 +32,8 @@ export class DiscussTagsComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
-    private discussUtils: DiscussUtilsService
+    private discussUtils: DiscussUtilsService,
+    private navigationService: NavigationServiceService
   ) { }
 
   ngOnInit() {
@@ -72,8 +74,10 @@ export class DiscussTagsComponent implements OnInit {
     }
     tagdata.tagname = tag.value
     this.queryParam = tagdata
-
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    let input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`, queryParams: this.queryParam, tagName:this.queryParam.tagName  }, action: 'tagsAll' }
+    this.navigationService.navigate(input)
+    // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
   }
 
 }

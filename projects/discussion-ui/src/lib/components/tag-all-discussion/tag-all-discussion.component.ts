@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { NSDiscussData } from '../../models/discuss.model'
 import { Router, ActivatedRoute } from '@angular/router'
 import { DiscussionService } from '../../services/discussion.service';
@@ -16,7 +16,9 @@ import { DiscussUtilsService } from '../../services/discuss-utils.service';
 })
 export class TagAllDiscussionComponent implements OnInit {
 
-  tagName!: any
+  @Input()  tagName!: any
+
+ 
   similarPosts!: any
   queryParam: any
   fetchSingleCategoryLoader = false
@@ -41,7 +43,7 @@ export class TagAllDiscussionComponent implements OnInit {
 
     this.cIds = this.configService.getCategories()
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.tagName = params.tagname
+      this.tagName = params.tagname ? params.tagName: this.tagName
     })
     if (this.configService.hasContext()) {
       this.fetchContextBasedTagDetails(this.tagName, this.cIds)
