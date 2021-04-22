@@ -1,10 +1,10 @@
 <button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
     class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal"
     id="start-discussion">Start Discussion</button>
-
-<lib-app-loader *ngIf="showLoader"></lib-app-loader>
-
-<ng-container *ngIf="discussionList && discussionList.length > 0">
+<ng-container *ngIf="discussionList && discussionList.length > 0" infinite-scroll
+    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
+    [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()"
+    class="infinite-scroll">
     <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)"
         *ngFor="let discussionData of discussionList" id="topic-card">
         <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
@@ -19,6 +19,6 @@
         </div>
     </div>
 </ng-container>
-
+<lib-app-loader *ngIf="showLoader"></lib-app-loader>
 <lib-discuss-start [categoryId]="categoryId" (close)="closeModal($event)" *ngIf="showStartDiscussionModal">
 </lib-discuss-start>

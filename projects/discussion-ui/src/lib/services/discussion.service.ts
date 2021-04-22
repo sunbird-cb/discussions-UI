@@ -218,9 +218,9 @@ export class DiscussionService {
     return this.csDiscussionService.getUserDetails(this.userName);
   }
 
-  getContextBasedTopic(slug: string) {
+  getContextBasedTopic(slug: string, pageId: number) {
     // return this.http.get(urlConfig.getContextBasedTopics(slug));
-    return this.csDiscussionService.getContextBasedTopic(slug);
+    return this.csDiscussionService.getContextBasedTopic(slug, pageId);
   }
 
   registerUser(data) {
