@@ -23,11 +23,12 @@
     "@angular/router": "^8.0.0",
     "copyfiles": "^2.4.1",
     "core-js": "^2.5.4",
+    "dayjs": "^1.10.4",
     "ngx-chips": "2.0.2",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "dayjs": "^1.10.4"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",
@@ -35,7 +36,7 @@
     "@angular/cli": "^8.0.0",
     "@angular/compiler-cli": "^8.0.0",
     "@angular/language-service": "^8.0.0",
-    "@project-sunbird/client-services": "^3.9.1",
+    "@project-sunbird/client-services": "^3.9.5",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

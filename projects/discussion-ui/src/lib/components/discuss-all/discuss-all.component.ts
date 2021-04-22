@@ -78,7 +78,7 @@ export class DiscussAllComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    this.discussionService.getContextBasedTopic(slug).subscribe(data => {
+    this.discussionService.getContextBasedTopic(slug, 1).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
