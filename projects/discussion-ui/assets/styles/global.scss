@@ -90,7 +90,7 @@
     flex-direction: row;
     flex-wrap: wrap; 
     position: relative;
-    z-index: unset;
+    z-index: 2;
 }
 
 .tag {
@@ -98,7 +98,7 @@
     display: flex;
     width: auto;
     min-width: max-content;
-    height: 32px;
+    max-height: 32px;
     justify-content: space-between;
     margin-right: 16px;
     align-items: center;

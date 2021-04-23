@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 
 const MSGS = {
   deletePost: `Are you sure you want to delete this Post? This can't be undone.`,
-  deleteTopic: `This will remove the post permanently, are you sure you want to delete?`
+  deleteTopic: `Are you sure you want to delete this topic? Your action cannot be undone.`
 };
 
 @Component({
@@ -46,6 +46,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   showEditTopicModal = false;
   editableTopicDetails: any;
   dropdownContent = true;
+  categoryId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -76,32 +77,18 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.slug = _.get(this.routeParams, 'slug');
         this.topicId = _.get(this.routeParams, 'topicId');
         this.refreshPostData(this.currentActivePage);
+        // this.getRealtedDiscussion(this.cid)
       });
     } else {
       this.refreshPostData(this.currentActivePage);
+      // this.getRealtedDiscussion(this.cid)
     }
 
-    this.paramsSubscription = this.route.queryParams.subscribe(x => {
-      if (x.page) {
-        this.currentActivePage = x.page || 1;
-        this.refreshPostData(this.currentActivePage);
-      }
-    });
+
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
 
-  fetchSingleCategoryDetails(cid: number) {
-    this.fetchSingleCategoryLoader = true
-    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
-      (data: NSDiscussData.ICategoryData) => {
-        this.similarPosts = data.topics
-        this.fetchSingleCategoryLoader = false
-      },
-      (err: any) => {
-        // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError)
-        this.fetchSingleCategoryLoader = false
-      })
-  }
+
 
   initializeFormFiled() {
     this.postAnswerForm = this.formBuilder.group({
@@ -115,36 +102,35 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  refreshPostData(page: any) {
+  async refreshPostData(page?: any) {
     if (this.currentFilter === 'timestamp') {
+
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
-          this.data = data;
-          this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
+          this.appendResponse(data)
         },
         (err: any) => {
+          console.log('Error in fetching topics')
           // toast message
           // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
     } else {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
-          this.data = data;
-          this.paginationData = _.get(data, 'pagination');
-          this.mainUid = _.get(data, 'loggedInUser.uid');
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
+          this.appendResponse(data)
         },
         (err: any) => {
-          // toast message
-          // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
+          console.log('Error in fetching topics')
         });
     }
+  }
+
+  appendResponse(data) {
+    this.data = data;
+    this.paginationData = _.get(data, 'pagination');
+    this.mainUid = _.get(data, 'loggedInUser.uid');
+    this.categoryId = _.get(data, 'cid');
+    this.topicId = _.get(data, 'tid');
   }
 
 

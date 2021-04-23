@@ -53,6 +53,11 @@
 					position: relative;
 					width: 100%;
 					min-height: 2rem;
+					cursor: pointer;
+					outline:none;
+					&:focus,.active{
+						border-color: #2196f3!important;
+					}
 				}
 			}
 
@@ -80,17 +85,20 @@
 					font-weight: 700;
 					font-size: 14px;
 					border: 0px;
+					cursor: pointer;
 				}
 
 				.discard-btn {
 					color: #0074b6;
 					background: #fff;
+					cursor: pointer;
 				}
 
 				.submit-post-btn {
 					color: #fff;
 					margin-left: 1rem;
 					background-color: #0074b6;
+					cursor: pointer;
 				}
 
 				.df-btn-disabled {

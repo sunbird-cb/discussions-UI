@@ -17,12 +17,13 @@ import { ConfigService } from '../../services/config.service';
 })
 export class DiscussHomeComponent implements OnInit {
 
-  discussionList = [];
+  discussionList: any[];
   routeParams: any;
   showStartDiscussionModal = false;
   categoryId: string;
   isTopicCreator = false;
   showLoader = false;
+  currentActivePage: number = 1;
 
   constructor(
     public router: Router,
@@ -55,7 +56,8 @@ export class DiscussHomeComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    this.discussionService.getContextBasedTopic(slug).subscribe(data => {
+    // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
+    this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));
