@@ -13,7 +13,7 @@ import { ConfigService } from '../../services/config.service';
 @Component({
   selector: 'lib-discuss-home',
   templateUrl: './discuss-home.component.html',
-  styleUrls: ['./discuss-home.component.css']
+  styleUrls: ['./discuss-home.component.scss']
 })
 export class DiscussHomeComponent implements OnInit {
 
