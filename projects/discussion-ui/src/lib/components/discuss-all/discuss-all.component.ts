@@ -78,6 +78,7 @@ export class DiscussAllComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.showLoader = true;
+    // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
     this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
