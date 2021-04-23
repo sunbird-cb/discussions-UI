@@ -8,6 +8,7 @@ import { Subscriber, Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
+import { TelemetryUtilsService } from './../../telemetry-utils.service';
 
 @Component({
   selector: 'lib-tag-all-discussion',
@@ -16,13 +17,14 @@ import { DiscussUtilsService } from '../../services/discuss-utils.service';
 })
 export class TagAllDiscussionComponent implements OnInit {
 
-  @Input()  tagName!: any
+  // @Input()  tagName!: any
 
  
   similarPosts!: any
+  tagName!: any
   queryParam: any
   fetchSingleCategoryLoader = false
-  currentActivePage!: any
+  currentActivePage: 1
   defaultError = 'Something went wrong, Please try again after sometime!'
   pager = {}
   paginationData!: any
@@ -34,8 +36,10 @@ export class TagAllDiscussionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private discussService: DiscussionService, public activatedRoute: ActivatedRoute,
+    private discussService: DiscussionService, 
+    public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
+    private telemetryUtils: TelemetryUtilsService,
     private discussUtils: DiscussUtilsService
   ) { }
 
@@ -45,15 +49,16 @@ export class TagAllDiscussionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.tagName = params.tagname ? params.tagName: this.tagName
     })
+    // To check wheather any contexts are there or not from the config service
     if (this.configService.hasContext()) {
-      this.fetchContextBasedTagDetails(this.tagName, this.cIds)
+      this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
-      this.currentActivePage = 1
-      this.fetchSingleTagDetails(this.tagName)
+      this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
     }
 
   }
 
+  /**Method to fetch the tag based discussion */
   fetchSingleTagDetails(tagname: string, page?: any) {
     this.fetchSingleCategoryLoader = true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
@@ -70,13 +75,12 @@ export class TagAllDiscussionComponent implements OnInit {
       })
   }
 
+  /** Method to fetch the context based discussions */
   fetchContextBasedTagDetails(tagname: string, cid: any, page?: any) {
     this.fetchSingleCategoryLoader = true
     const req = {
-      request: {
-        cid: cid.result,
-        tag: tagname
-      }
+      cid: cid.result,
+      tag: tagname
     };
 
     this.discussService.getContextBasedTagDiscussion(req).subscribe(
@@ -119,6 +123,26 @@ export class TagAllDiscussionComponent implements OnInit {
       this.fetchNewData = true
       this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam } });
     }
+  }
+
+  /** Method to navigate to the dicussion detail page on click of tag related discussion */
+  navigateToDiscussionDetails(discussionData) {
+
+    const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
+    if (matchedTopic) {
+      this.telemetryUtils.deleteContext(matchedTopic);
+    }
+
+    this.telemetryUtils.uppendContext({
+      id: _.get(discussionData, 'tid'),
+      type: 'Topic'
+    });
+
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+  }
+
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
   }
 
   // TODO: add refershdata function

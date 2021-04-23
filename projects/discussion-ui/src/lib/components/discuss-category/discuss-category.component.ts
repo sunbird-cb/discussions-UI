@@ -60,7 +60,11 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.navigateToDiscussionPage(_.get(params, 'cid'));
       } else {
         this.categories = [];
-        this.fetchAllAvailableCategories(this.forumIds);
+        if (this.forumIds.length) {
+          this.fetchAllAvailableCategories(this.forumIds);
+        } else {
+          this.fetchAllCategories();
+        }
       }
     });
   }
@@ -76,6 +80,18 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         console.log('issue fetching category', error);
         this.showLoader = false;
       });
+    });
+  }
+
+  fetchAllCategories() {
+    this.showLoader = true;
+    this.discussService.fetchAllCategories().subscribe(data => {
+      this.showLoader = false;
+      this.categories = data
+    }, error => {
+      // TODO: Toast error
+      console.log('issue fetching category', error);
+      this.showLoader = false;
     });
   }
 

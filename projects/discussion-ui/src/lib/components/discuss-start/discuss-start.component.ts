@@ -3,8 +3,10 @@ import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { DiscussUtilsService } from '../../services/discuss-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
 
 @Component({
@@ -24,19 +26,29 @@ export class DiscussStartComponent implements OnInit {
   postTagsArray: string[] = [];
   uploadSaveData = false;
   showErrorMsg = false;
+  showSelectCategory = false;
   createErrorMsg = '';
   defaultError = 'Something went wrong, Please try again after sometime!';
 
   enableSubmitButton = false;
+  cIds: any;
 
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
-    private telemetryUtils: TelemetryUtilsService
+    private telemetryUtils: TelemetryUtilsService,
+    private configService: ConfigService,
+    private discussUtils: DiscussUtilsService
   ) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
+    this.cIds = this.configService.getCategories()
+    if (this.categoryId) {
+      this.showSelectCategory = false;
+    } else {
+      this.showSelectCategory = true;
+    }
     this.initializeData();
     this.initializeFormFields(this.topicData);
   }
@@ -46,6 +58,7 @@ export class DiscussStartComponent implements OnInit {
       question: ['', Validators.required],
       description: ['', Validators.required],
       tags: [],
+      category: []
     });
     this.startForm.valueChanges.subscribe(val => {
       this.validateForm();
@@ -53,10 +66,12 @@ export class DiscussStartComponent implements OnInit {
 
     /** If popup is in edit mode */
     if (topicData) {
-      const tags = _.map(_.get(topicData, 'tags') , (element) => {
+      const tags = _.map(_.get(topicData, 'tags'), (element) => {
         return _.get(element, 'value');
       });
-      this.startForm.controls['question'].setValue(_.get(topicData, 'title'));
+
+      /** calling htmlDecode method to get the parsed string */
+      this.startForm.controls['question'].setValue(this.discussUtils.htmlDecode(_.get(topicData, 'title')));
       this.startForm.controls['description'].setValue(_.get(topicData, 'posts[0].content').replace(/<[^>]+>/g, ''));
       this.startForm.controls['tags'].setValue(tags);
       this.validateForm();
@@ -72,6 +87,24 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
+    if (this.configService.hasContext() && !this.categoryId) {
+      const req = {
+        cids: this.cIds.result
+      };
+
+      this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
+        this.allCategories = data.result
+        if (this.startForm.get('category')) { }
+        this.startForm.controls['category'].setValue(this.allCategories[0].cid)
+      })
+    } else {
+      this.discussService.fetchAllCategories().subscribe((data: any) => {
+        this.allCategories = data
+        if (this.startForm.get('category')) { }
+        this.startForm.controls['category'].setValue(this.allCategories[1].cid)
+      })
+    }
+
     this.discussService.fetchAllTag().subscribe(data => {
       const tags = _.get(data, 'tags');
       this.allTags = _.map(tags, (tag) => tag.value);
@@ -88,7 +121,7 @@ export class DiscussStartComponent implements OnInit {
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
-      cid: this.categoryId,
+      cid: this.categoryId ? this.categoryId : parseInt(form.value.category),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,
@@ -137,7 +170,7 @@ export class DiscussStartComponent implements OnInit {
   }
 
   closeModal(eventMessage: string) {
-    this.close.emit({message: eventMessage});
+    this.close.emit({ message: eventMessage });
   }
 
   logTelemetry(event) {

@@ -21,7 +21,7 @@ export class DiscussHomeComponent implements OnInit {
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
-  discussionList = [];
+  discussionList: any[];
   routeParams: any;
   showStartDiscussionModal = false;
   // categoryId: string;
