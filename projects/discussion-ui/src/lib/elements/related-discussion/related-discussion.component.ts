@@ -54,7 +54,7 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
   }
 
   getDiscussion(discuss) {
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`], { queryParamsHandling: "merge" });
   }
 
 
