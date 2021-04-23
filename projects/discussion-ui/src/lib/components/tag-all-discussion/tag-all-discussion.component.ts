@@ -17,11 +17,8 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 })
 export class TagAllDiscussionComponent implements OnInit {
 
-  // @Input()  tagName!: any
-
- 
-  similarPosts!: any
   tagName!: any
+  similarPosts :any[]
   queryParam: any
   fetchSingleCategoryLoader = false
   currentActivePage: 1
