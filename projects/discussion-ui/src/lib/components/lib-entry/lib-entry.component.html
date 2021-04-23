@@ -1,23 +1,23 @@
-<div class="ui container">
-    <div class="relative position">
-        <div class="py-8 df-btn-container df-back-btn-container">
-            <!-- /* Back button */ -->
-            <button (click)="goBack()" type="button" class="sb-btn sb-btn-normal sb-btn-outline-primary sb-left-icon mx-8">
-             <img src="./assets/discussion-ui/images/back-img.png" alt="back-image" class="ml-4" width="16px" height="16px">
-                Back
-            </button>
-            <button (click)="close($event)" class="sb-btn sb-btn-normal df-btn-close sb-left-icon-btn mx-8" id="close-discussion-forum" type="button"> Close 
-            <img class="ml-4" height="8px" src="./assets/discussion-ui/images/close.png" width="8px"></button>
-        </div>
-    </div>
-    <div class="discussion-forum">
-        <div class="discussion-forum-content">
-            <div class="discuss-left-panel df-side-content">
-                <lib-side-pannel></lib-side-pannel>
-            </div>
-                <div class="discuss-right-panel df-main-content">
-                    <router-outlet></router-outlet>
-                </div>
-        </div>
-    </div>
-</div>
+       <div class="df-back-header">
+           <div class="df-btn-container">
+               <!-- /* Back button */ -->
+               <button (click)="goBack()" type="button" class="df-btn df-back-btn">
+                   <img src="./assets/discussion-ui/images/back-img.png" alt="back-image">
+                   Back
+               </button>
+               <button (click)="close($event)" class="df-btn df-close-btn" id="close-discussion-forum" type="button">
+                   Close
+                   <img src="./assets/discussion-ui/images/close.png"></button>
+           </div>
+       </div>
+
+       <div class="ui container discussion-forum">
+           <div class="discussion-forum-content">
+               <div class="discuss-left-panel">
+                   <lib-side-pannel></lib-side-pannel>
+               </div>
+               <div class="discuss-right-panel">
+                   <router-outlet></router-outlet>
+               </div>
+           </div>
+       </div>

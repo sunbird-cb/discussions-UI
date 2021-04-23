@@ -21,8 +21,8 @@
 }
 
 .post-btn,.post-reply-btn{
-    background-color: #0074b6;
-    color: #fff;
+    background-color: var(--blue);
+    color:var(--white);
     border: 0;
     vertical-align: baseline;
     text-align: center;

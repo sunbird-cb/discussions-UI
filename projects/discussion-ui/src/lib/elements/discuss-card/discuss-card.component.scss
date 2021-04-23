@@ -8,6 +8,10 @@
 }
 .discuss-card-label{
     color: #0074b6;
+    img{
+        width:20px;
+        margin-right: 0.25rem;
+    }
 }
 
 .discuss-card-subtitle{
@@ -22,13 +26,31 @@
   justify-content: space-between;
   font-size: 14px;
   flex-wrap:wrap;
-}
 
-.discuss-comments-area{
+  .discuss-comments-area{
     display: -webkit-box;
     font-weight: 700;
     font-size: 14px;
+    .views-content{
+        margin-left:24px;
+    }
+    
+    .votes-content img,.views-content img{
+        height: 20px;
+        width: 20px;
+    }
+    
+    .votes-content span,.views-content span{
+     margin-left: 0.5rem;
+    }
 }
+  .comments-count{
+    color: #0074b6;
+    font-weight: 700;
+}
+}
+
+
 
 .dot {
     height: 6px;
@@ -36,24 +58,12 @@
     border-radius: 50%;
     display: inline-block;
     background: #858181;
+    margin:0 1rem;
 }
 
 .timing{
     color: #858181;  
-}
-
-.views-content{
-    margin-left:24px;
-}
-
-.votes-content img,.views-content img{
-    height: 20px;
-    width: 20px;
-}
-
-.comments-count{
-    color: #0074b6;
-    font-weight: 700;
+    margin-left: 1rem;
 }
 
 @media (max-width: 768px) {

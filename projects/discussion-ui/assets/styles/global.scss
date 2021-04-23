@@ -2,41 +2,49 @@
 
 :root {
     font-size: 16px;
-   // base colors
+    // base colors
     --blue: #024f9d;
     --green: #008840;
     --orange: #e55a28;
     --red: #ff4558;
     --indigo: #6610f2;
     --purple: #6f42c1;
-    --pink: #e83e8c;
+    --pink: #ef64af;
     --yellow: #ffc107;
     --teal: #20c997;
     --cyan: #17a2b8;
     --black: #000000;
     --white: #ffffff;
+    --light-gray: #f5f6fa;
+    --gray-100:#CCCCCC;
+    --gray-200: #999999;
+    --gray-800: #333333;
 }
 
-.recent-tabs{
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+.recent-tabs {
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
-    box-shadow: none!important;
+    box-shadow: none !important;
     border-radius: unset;
-    background: inherit!important; 
+    background: inherit !important;
     z-index: unset;
+    padding-bottom: 8px;
 }
-.tabs-content{
+
+.tabs-content {
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
 }
-.tabs-filter{
+
+.tabs-filter {
     display: flex;
     flex: 1 1 0%;
     flex-wrap: wrap;
 }
-.filter-option{
+
+.filter-option {
     margin: 8px;
     text-decoration: none;
     border: 1px solid var(--gray-400);
@@ -57,23 +65,26 @@
     font-size: 0.875rem;
     color: var(--black);
 }
+
 .filter-option:first-child {
     margin-left: 0;
 }
-.filter-option:hover,.tabs-active {
+
+.filter-option:hover,
+.tabs-active {
     border-bottom: 3px solid var(--blue);
     font-weight: 700;
     text-decoration: none;
 }
 
-.discuss-card-content{
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+.discuss-card-content {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: var(--white);
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     flex: 1;
     height: auto;
     margin-bottom: 16px;
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
     padding: 1rem;
@@ -82,11 +93,11 @@
     z-index: 2;
 }
 
-.tags{
+.tags {
     display: flex;
     flex: 1;
     flex-direction: row;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     position: relative;
     z-index: 2;
 }
@@ -98,12 +109,11 @@
     min-width: max-content;
     max-height: 32px;
     justify-content: space-between;
-    margin-right: 16px;
+    margin: 0.5rem 1rem 0.5rem 0;
     align-items: center;
     text-transform: lowercase;
     padding: 0.5rem 1rem;
     border-radius: 1.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .count {
@@ -121,7 +131,16 @@
 }
 
 @media (max-width: 768px) {
-    .discuss-card-content{
+    .discuss-card-content {
         width: auto;
+    }
+}
+
+
+@media only screen and (max-width: 1199px) and (min-width: 768px) {
+    .ui.container {
+        width: 90%;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }

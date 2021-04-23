@@ -11,19 +11,29 @@ html[layout='joy'] {
   --sbt-bradius-lg: calc(var(--sbt-bradius) * 16);
   /* 32 value */
 
-  .df-back-btn-container {
+  .df-btn {
+    border-radius: var(--sbt-bradius-24) !important;
+    height: 2.5rem !important;
+    box-shadow: var(--sbt-box-shadow-6px) !important;
+    border: 0px !important;
+    padding: 0.5rem 1.5rem !important;
+  }
+
+  .df-back-header {
     background: var(--df-gray-bg) !important;
     border-radius: var(--sbt-bradius-md);
-    margin: 1rem;
+  }
+
+  .df-btn-container {
     z-index: 2;
-    position: relative;
+    margin-bottom: 1rem;
   }
 
   .df-back-btn {
     margin-left: 4px;
   }
 
-  .df-main-content {
+  .discuss-right-panel {
     background: var(--df-gray-bg) !important;
     border-radius: var(--sbt-bradius-md);
 
@@ -33,7 +43,7 @@ html[layout='joy'] {
     }
   }
 
-  .df-side-content {
+  .discuss-left-panel {
     background: var(--white);
     border-radius: var(--sbt-bradius-md);
     margin-right: 1.5rem;
@@ -48,14 +58,14 @@ html[layout='joy'] {
   .menu-active {
     background: var(--df-gray-bg) !important;
     font-weight: 700;
-    border-left: 3px solid #005391;
-    color: #002e50;
+    border-left: 3px solid var(--blue);
+    color: var(--blue);
   }
 
   .df-sidebar-menu-list:hover {
     background: var(--df-gray-bg) !important;
     font-weight: 700;
-    color: #002e50;
+    color: var(--blue);
   }
 
   /* start discussion modal */
@@ -74,7 +84,7 @@ html[layout='joy'] {
   }
 
   .ng2-tag-input.ng2-tag-input--focused {
-    border-color: var(--primary-400) !important;
+    border-color: var(--blue) !important;
     border-bottom: 0.0625rem solid !important;
   }
 }
