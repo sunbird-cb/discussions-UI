@@ -16,8 +16,7 @@ import { DiscussStartComponent } from './discuss-start/discuss-start.component';
 import { TagInputModule } from 'ngx-chips';
 import { DiscussAllComponent } from './discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
-
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     SidePannelComponent,
@@ -37,7 +36,8 @@ import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussi
     FormsModule,
     ReactiveFormsModule,
     TagInputModule,
-    PipesModule
+    PipesModule,
+    InfiniteScrollModule
   ],
   exports: [
     SidePannelComponent,
@@ -48,7 +48,7 @@ import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussi
     DiscussionDetailsComponent,
     DiscussStartComponent,
     // TODO: Add this components
-    //  DiscussAllComponent, 
+    //  DiscussAllComponent,
     TagAllDiscussionComponent
   ],
   providers: [

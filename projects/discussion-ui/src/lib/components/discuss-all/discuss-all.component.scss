@@ -59,15 +59,15 @@
 
 // .custom {
 
-  // height: 48px;
-  // max-height: 48px;
-  // @include breakpoint-xs {
-  //   flex-direction: column;
-  // }
+// height: 48px;
+// max-height: 48px;
+// @include breakpoint-xs {
+//   flex-direction: column;
+// }
 
-  // @include breakpoint-s {
-  //   flex-direction: column;
-  // }
+// @include breakpoint-s {
+//   flex-direction: column;
+// }
 // }
 
 // .pagination-container {
@@ -132,4 +132,20 @@
 
 .height-48 {
   max-height: 48px;
+}
+
+.df-start-btn {
+  height: 2rem;
+  outline: none;
+  font-weight: bold;
+  border: none;
+  border-radius: .25rem;
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  font-size: .75rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 0 1rem 0;
 }
