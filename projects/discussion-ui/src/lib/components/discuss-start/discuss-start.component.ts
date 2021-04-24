@@ -3,6 +3,7 @@ import { DiscussionService } from './../../services/discussion.service';
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { DiscussUtilsService } from '../../services/discuss-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { ConfigService } from '../../services/config.service';
@@ -36,7 +37,8 @@ export class DiscussStartComponent implements OnInit {
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
     private telemetryUtils: TelemetryUtilsService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private discussUtils: DiscussUtilsService
   ) { }
 
   ngOnInit() {
@@ -67,7 +69,9 @@ export class DiscussStartComponent implements OnInit {
       const tags = _.map(_.get(topicData, 'tags'), (element) => {
         return _.get(element, 'value');
       });
-      this.startForm.controls['question'].setValue(_.get(topicData, 'title'));
+
+      /** calling htmlDecode method to get the parsed string */
+      this.startForm.controls['question'].setValue(this.discussUtils.htmlDecode(_.get(topicData, 'title')));
       this.startForm.controls['description'].setValue(_.get(topicData, 'posts[0].content').replace(/<[^>]+>/g, ''));
       this.startForm.controls['tags'].setValue(tags);
       this.validateForm();
@@ -83,7 +87,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
-
     if (this.configService.hasContext() && !this.categoryId) {
       const req = {
         cids: this.cIds.result

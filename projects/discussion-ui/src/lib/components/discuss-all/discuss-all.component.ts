@@ -28,7 +28,7 @@ export class DiscussAllComponent implements OnInit {
   isTopicCreator = false;
   showLoader = false;
   currentFilter = 'recent'
-  currentActivePage: any;
+  currentActivePage: number = 1;
   fetchNewData: false;
   // modalRef: BsModalRef;
   paramsSubscription: Subscription;
@@ -78,7 +78,8 @@ export class DiscussAllComponent implements OnInit {
 
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    this.discussionService.getContextBasedTopic(slug, 1).subscribe(data => {
+    // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
+    this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = _.union(_.get(data, 'topics'), _.get(data, 'children'));

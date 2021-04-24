@@ -23,6 +23,7 @@ export class DiscussHomeComponent implements OnInit {
   categoryId: string;
   isTopicCreator = false;
   showLoader = false;
+  currentActivePage: number = 1;
 
   // Input parameters for infinite scroll
   modalScrollDistance = -12;
@@ -67,8 +68,8 @@ export class DiscussHomeComponent implements OnInit {
    */
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    this.currentPage++;
-    this.discussionService.getContextBasedTopic(slug, this.currentPage).subscribe(data => {
+    // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
+    this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
