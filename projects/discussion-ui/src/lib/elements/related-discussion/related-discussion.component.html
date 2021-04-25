@@ -5,9 +5,9 @@
             class="related-discuss-card-content" (click)="getDiscussion(discussion)">
             <span class="discuss-user-label" [innerHTML]="discussion?.title"></span>
         </a>
-        <div class="related-discuss-card-description mt-8">
+        <div class="related-discuss-card-description">
             <div class="category-name" [innerHTML]="discussion.category.name"></div>
-            <div class="separator-dot mx-8"></div>
+            <div class="separator-dot"></div>
             <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
         </div>
     </div>
