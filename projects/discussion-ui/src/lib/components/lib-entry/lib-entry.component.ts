@@ -19,6 +19,11 @@ import { ConfigService } from '../../services/config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
+  headerOption = true;
+  banner: any
+  private bannerSubscription: any
+  bannerOption: boolean;
+  currentRoute = 'all-discussions'
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -28,7 +33,13 @@ export class LibEntryComponent implements OnInit {
     private discussionEventService: DiscussionEventsService,
     private telemetryUtils: TelemetryUtilsService
 
-  ) { }
+  ) {
+    this.bannerSubscription = this.activatedRoute.data.subscribe(data => {
+      if (data && data.pageData) {
+        this.banner = data.pageData.data.banner || []
+      }
+    })
+  }
 
   ngOnInit() {
     this.configService.setConfig(this.activatedRoute);
@@ -43,7 +54,9 @@ export class LibEntryComponent implements OnInit {
     const rawCategories = _.get(this.data, 'categories');
     this.discussionService.forumIds = _.get(rawCategories, 'result');
     this.discussionService.initializeUserDetails(this.discussionService.userName);
-   }
+    this.headerOption = this.configService.getHeaderOption()
+    this.bannerOption = this.configService.getBannerOption()
+  }
 
   goBack() {
     this.location.back();
