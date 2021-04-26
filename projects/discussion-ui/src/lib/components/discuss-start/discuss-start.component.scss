@@ -30,44 +30,45 @@
 		.discussion-start-form {
 			.start-form-input {
 				margin-bottom: 1rem;
-
-				.start-form-label {
-					display: inline-block;
-					margin-bottom: 0.5rem;
-					font-size: 0.8125rem;
-					font-weight: 700;
-				}
-
-				.start-form-field {
-					position: relative;
-					margin-bottom: 0.5rem;
-
-					.start-form-field-control {
-						background-color: var(--white);
-						border: 0.0625rem solid var(--gray-200);
-						border-radius: 0.1875rem;
-						color: var(--gray-800);
-						display: block;
-						font-size: 0.8125rem;
-						max-width: 100%;
-						position: relative;
-						width: 100%;
-						min-height: 2rem;
-						cursor: pointer;
-						outline: none;
-						padding: 0.5rem 0.875rem;
-
-						&:focus,
-						.active {
-							border-color: var(--primary-400) !important;
-						}
-					}
-				}
-
 			}
 
-			.start-form-msg-error {
+
+			.start-form-label {
+				display: inline-block;
+				margin-bottom: 0.5rem;
+				font-size: 0.8125rem;
+				font-weight: 700;
+			}
+
+			.start-form-field {
+				position: relative;
+				margin-bottom: 0.5rem;
+
+				.start-form-field-control {
+					background-color: var(--white);
+					border: 0.0625rem solid var(--gray-200);
+					border-radius: 0.1875rem;
+					color: var(--gray-800);
+					display: block;
+					font-size: 0.8125rem;
+					max-width: 100%;
+					position: relative;
+					width: 100%;
+					min-height: 2rem;
+					cursor: pointer;
+					outline: none;
+					padding: 0.25rem 0.5rem;
+
+					&:focus,
+					.active {
+						border-color: var(--primary-400) !important;
+					}
+				}
+			}
+
+			.text-error {
 				color: var(--red);
+				font-size: 12px;
 			}
 
 			.mandatory-label {
@@ -77,6 +78,7 @@
 
 			.start-modal-buttons {
 				float: right;
+				display: flex;
 
 				.df-discard-btn {
 					outline: none;
@@ -107,35 +109,6 @@
 					font-size: .75rem;
 					display: flex;
 					align-items: center;
-					cursor: pointer;
-					margin-left: 1rem;
-				}
-
-				.start-common-btn {
-					box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-						0 1px 5px 0 rgba(0, 0, 0, 0.12);
-					vertical-align: baseline;
-					text-align: center;
-					min-width: 64px;
-					line-height: 36px;
-					padding: 0 16px;
-					border-radius: 4px;
-					font-weight: 700;
-					font-size: 14px;
-					border: 0px;
-					cursor: pointer;
-				}
-
-				.discard-btn {
-					color: var(--blue);
-					background: var(--white);
-					cursor: pointer;
-				}
-
-				.submit-post-btn {
-					color: var(--white);
-					margin-left: 1rem;
-					background-color: var(--blue);
 					cursor: pointer;
 				}
 

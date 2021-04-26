@@ -18,7 +18,7 @@
 
         <div class="start-form-field" [ngClass]="{ 'is-invalid': showError('subTitle') }">
           <label class="start-form-label">Ask a question or post an idea</label>
-          <div class="start-form-field">
+          <div>
             <input class="start-form-field-control" placeholder="Ask a question or post an idea"
               formControlName="question" #question maxlength="1000" [required]="true" />
           </div>
@@ -28,7 +28,7 @@
 
         <div class="start-form-field">
           <label class="start-form-label">Please elaborate your question or idea here</label>
-          <div class="start-form-field">
+          <div>
             <textarea minlength="8" class="start-form-field-control" rows="8" formControlName="description" #description
               name="moretext" placeholder="Type here..."></textarea>
           </div>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="start-modal-buttons">
-          <button (click)="closeModal('discard');logTelemetry($event)" mat-raised-button type="button"
+          <button (click)="closeModal('discard');logTelemetry($event)" type="button"
             class="df-btn df-discard-btn" id="discard-discussion-start-form">Discard
           </button>
           <span *ngIf="uploadSaveData" class="px-4">
@@ -73,9 +73,9 @@
         ​
       </form>
       ​
-      <input type="hidden" i18-value i18-aria-value aria-value="Post created successful"
+      <input type="hidden" aria-value="Post created successful"
         value="Post created successfully!" #toastSuccess />
-      <input type="hidden" i18-value i18-aria-value aria-value="unable to create post"
+      <input type="hidden" aria-value="unable to create post"
         value="Error in creating new post!" #toastError />
     </div>
   </div>

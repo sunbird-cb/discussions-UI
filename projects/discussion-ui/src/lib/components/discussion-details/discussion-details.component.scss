@@ -40,7 +40,7 @@
 .discussion-content {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     font-size: 14px;
     color: rgba(0, 0, 0, .6);
     flex-wrap: wrap;
@@ -83,6 +83,10 @@
     color: #948e8e;
     margin-left: 8px;
     font-size: 14px;
+
+    html[dir="rtl"] & {
+        margin-right: 0.5rem;
+    }
 }
 
 .vote-area {
@@ -91,6 +95,10 @@
 
 .vote-data {
     margin-left: 8px;
+
+    html[dir="rtl"] & {
+        margin-right: 0.5rem;
+    }
 }
 
 .comments-area {
@@ -99,7 +107,7 @@
     font-weight: 700;
     flex-direction: row;
     font-size: 14px;
-    margin: 8px 0;
+    margin: 1rem 0;
 }
 
 .text-form-field {
@@ -184,7 +192,7 @@
 .post-card,
 .post-reply-card {
     border-bottom: 1px solid #ddd;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.75rem 0;
 }
 
 .post-sub-card {
@@ -202,6 +210,10 @@
     font-weight: 700;
     margin-left: 16px;
     word-break: break-all;
+
+    html[dir="rtl"] & {
+        margin-right: 1rem;
+    }
 }
 
 .post-time {
@@ -285,6 +297,10 @@
     margin-top: 3px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.6);
+
+    html[dir="rtl"] & {
+        padding-right: 0.5rem;
+    }
 }
 
 .delete-icon,
@@ -293,6 +309,10 @@
     width: 1rem;
     height: 1rem;
     margin-left: 1rem;
+
+    html[dir="rtl"] & {
+        margin-right: 1rem;
+    }
 }
 
 .reply-area {
@@ -318,6 +338,10 @@
     right: 8px;
     top: 22px;
 
+    html[dir="rtl"] & {
+        padding-right: 6px;
+    }
+
     &:hover {
         background: var(--gray-0);
         cursor: pointer;
@@ -333,7 +357,7 @@
     position: absolute;
     border-radius: 2px;
     background-color: var(--white);
-    box-shadow: 0 3px 5px 4px rgba(var(--rc-rgba-black), 0.05);
+    box-shadow: 0 3px 5px 4px rgba(0, 0, 0, 0.05);
     padding: 8px;
     z-index: 1;
     text-align: left;
@@ -374,6 +398,6 @@
 }
 
 .icons {
-    width: 1rem;
-    height: 1rem;
+    width: 14px;
+    height: 14px;
 }
