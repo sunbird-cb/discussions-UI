@@ -5,7 +5,7 @@
     <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" infinite-scroll
          [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
          [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()"
-         class="infinite-scroll" *ngFor="let discussionData of discussionList" id="topic-card">
+         class="" *ngFor="let discussionData of discussionList" id="topic-card">
           <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
     </div>
 </ng-container>

@@ -21,5 +21,5 @@
     <a *ngIf="bannerData.widgetData?.length > 1" role="button" class="next" (click)="slideTo(currentIndex + 1)">&#10095;</a>
 </div>
 <div class="banner-container-solo" *ngIf="bannerData.widgetData?.length == 1">
-    <img i18n-alt alt="Page Banner" [src]="bannerData.widgetData[0].banners.m" wsUtilsImageResponsive class="banner-image-solo" />
+    <img i18n-alt alt="Page Banner" [src]="bannerData.widgetData[0].banners.xl" wsUtilsImageResponsive class="banner-image-solo" />
 </div>
