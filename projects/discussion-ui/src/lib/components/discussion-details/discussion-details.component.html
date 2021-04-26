@@ -20,7 +20,7 @@
         <div *ngIf="post?.index === 0">
           <div class="post-reply-card">
             <p role="link" tabindex="0" class="discussion-heading df-text-color" [innerHTML]="post?.content"></p>
-            <div class="discussion-content mb-0" role="link" tabindex="0">
+            <div class="discussion-content" role="link" tabindex="0">
               <span class="circle-text"><span
                   class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
               <span class="discussion-labels">{{'Asked by '}}</span>

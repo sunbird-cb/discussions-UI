@@ -1,22 +1,24 @@
-.profileCard{
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+.profileCard {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: var(--white);
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     flex: 1;
     height: auto;
     margin-bottom: 0px;
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
     padding: 16px;
     border-radius: 4px;
     width: 100%;
 }
-.profilecard-content{
+
+.profilecard-content {
     display: flex;
     flex-wrap: wrap;
 }
-.profile-header-image{
+
+.profile-header-image {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,50 +32,60 @@
     text-align: center;
 }
 
-.profile-name{
-    color: rgba(0,0,0,.54);
+.profile-name {
+    color: rgba(0, 0, 0, .54);
     font-weight: 700;
     margin-bottom: 8px;
     font-size: 16px;
 }
 
-.profile-label{
-    color: rgba(0,0,0,.54);
+.profile-label {
+    color: rgba(0, 0, 0, .54);
     font-weight: 700;
     margin-bottom: 8px;
     font-size: 14px;
 }
 
-.profile-data{
-    margin-top:16px;
+.profile-data {
+    margin-top: 16px;
     font-size: 14px;
 }
 
-.post-count-area{
-    margin-left:32px;
+.post-count-area {
+    margin-left: 32px;
+
+    html[dir="rtl"] & {
+        margin-right: 32px;
+    }
 }
-.number{
+
+.number {
     color: var(--blue);
-    font-size: 14px;   
+    font-size: 14px;
 }
-.labels{
-    font-size: 14px;  
-    margin-left: 4px;  
+
+.labels {
+    font-size: 14px;
+    margin-left: 4px;
+
+    html[dir="rtl"] & {
+        margin-right: 4px;
+    }
 }
 
 
-.no-data-label{
+.no-data-label {
     font-size: 20px;
     font-weight: bold;
 }
 
 @media (max-width: 768px) {
-    .profileCard{
+    .profileCard {
         width: auto;
     }
 }
 
-.box-text{
+.box-text {
     font-size: 4rem;
     color: var(--white);
     text-transform: uppercase;
