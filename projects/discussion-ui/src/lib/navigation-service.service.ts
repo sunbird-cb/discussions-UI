@@ -12,12 +12,14 @@ export class NavigationServiceService {
   
   constructor(private wrapperService: WrapperNavigateService,private routerService:  RouterServiceService) { }
   /**
+   * used to intialize the navigation service with the wrapperservice or routerservice 
    * @param  {string} wrapperService
    */
   initService(wrapperService: string) {
     this.navigateService = wrapperService
    }
    /**
+    * used for navigating  to the other pages based on the service initalized
     * @param  {} input
     */
    navigate(input){

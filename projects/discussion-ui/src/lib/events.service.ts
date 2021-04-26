@@ -14,7 +14,11 @@ export class EventsService {
   toggleMenuItem: ReplaySubject<any> = new ReplaySubject(1)
 
   constructor() { }
-
+  /**
+   * This function is used to update the states in widget with data
+   * @param  {} data
+   * TODO: Not being used anymore have to cleanup   
+   */
   toggle(data) {
     this.toggleMenuItem.next(data);
   }

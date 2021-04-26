@@ -17,7 +17,7 @@ export class ConfigService implements OnInit {
   getContextData: any;
   hasContextData: any;
   getParams: IdiscussionConfig;
-  changedSubject = new ReplaySubject(1)
+  setCategoryId = new ReplaySubject(1)
   categoryId: string
 
   constructor(
@@ -70,7 +70,7 @@ export class ConfigService implements OnInit {
 
   setCategoryid(id) {
     this.categoryId = id
-    this.changedSubject.next(id)
+    this.setCategoryId.next(id)
   }
 
   public getCategoryid() {

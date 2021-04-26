@@ -22,9 +22,9 @@ import { AbstractConfigService } from '../../services/abstract-config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
-  pageKey: any;
+  pageKey: string;
   config: any;
-  
+
   constructor(
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
@@ -38,19 +38,25 @@ export class LibEntryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /**
+     * calling the initservice to tell navigationservice to use the router service
+     * because this component is invoke only in router approach 
+     */
     this.navigationServiceService.initService('routerService')
     this.activatedRoute.queryParams.subscribe((params) => {
+      // pagkey is used to read the configuration from the AbstractConfigService
+      // since there could be multiple configurations.
       this.pageKey = _.get(params, 'page')
       this.config = this.configService.getConfig(_.get(params, 'page'))
+      //setting the config so that other components can read the data
       this.configSvc.setConfig(JSON.parse(this.config))
-
       this.data = this.configSvc.getConfig();
       this.discussionService.userName = _.get(this.data, 'userName');
       const rawCategories = _.get(this.data, 'categories');
       this.discussionService.forumIds = _.get(rawCategories, 'result');
       this.discussionService.initializeUserDetails(this.data.userName);
     });
-   }
+  }
 
   goBack() {
     this.location.back();
