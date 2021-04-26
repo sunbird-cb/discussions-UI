@@ -19,7 +19,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: DiscussCategoryComponent
+        component: DiscussAllComponent
       },
       {
         path: 'all-discussions',
