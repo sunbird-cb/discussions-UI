@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest",
+    "test:ci": "jest --silent --ci --w 2 --collectCoverage=true --coverageReporters=lcov",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "copy:assets": "cp -r ./projects/discussion-ui/assets dist/discussion-ui/",
@@ -22,11 +23,12 @@
     "@angular/router": "^8.0.0",
     "copyfiles": "^2.4.1",
     "core-js": "^2.5.4",
+    "dayjs": "^1.10.4",
     "ngx-chips": "2.0.2",
+    "ngx-infinite-scroll": "^8.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "dayjs": "^1.10.4"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",
@@ -34,7 +36,7 @@
     "@angular/cli": "^8.0.0",
     "@angular/compiler-cli": "^8.0.0",
     "@angular/language-service": "^8.0.0",
-    "@project-sunbird/client-services": "^3.9.1",
+    "@project-sunbird/client-services": "^3.9.5",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -54,7 +56,10 @@
     "tsickle": ">=0.34.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.4.0"
+    "typescript": "~3.4.0",
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4"
   },
   "description": "Sunbird discussions ui library",
   "repository": {
@@ -71,5 +76,44 @@
   "bugs": {
     "url": "https://github.com/Sunbird-Ed/discussions-UI/issues"
   },
-  "homepage": "https://github.com/Sunbird-Ed/discussions-UI#readme"
+  "homepage": "https://github.com/Sunbird-Ed/discussions-UI#readme",
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/projects/discussion-ui/tsconfig.spec.json"
+      }
+    },
+    "browser": false,
+    "rootDir": "./",
+    "roots": [
+      "<rootDir>/projects/discussion-ui/src/"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coveragePathIgnorePatterns": [],
+    "testMatch": [
+      "**/?(*.)(spec).ts"
+    ],
+    "restoreMocks": true,
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "setupFiles": [],
+    "transform": {
+      "^.+\\.(ts)$": "ts-jest"
+    },
+    "coverageReporters": [
+      "text",
+      "json"
+    ],
+    "transformIgnorePatterns": []
+  }
 }

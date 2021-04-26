@@ -9,7 +9,7 @@ import { NSDiscussData } from './../../models/discuss.model';
   selector: 'lib-related-discussion',
   templateUrl: './related-discussion.component.html',
   styleUrls: ['./related-discussion.component.scss'],
-  host: { class: 'margin-left-l' },
+  // host: { class: 'margin-left-l' },
 })
 export class RelatedDiscussionComponent implements OnInit, OnChanges {
   @Input() catId: any

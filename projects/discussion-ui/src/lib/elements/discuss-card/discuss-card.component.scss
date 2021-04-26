@@ -1,33 +1,76 @@
-
-.discuss-user-label{
-}
-.discuss-card-title{
+.discuss-card-title {
     margin: 0px;
-    color: #000;  
-    cursor:pointer;
+    color: #000;
+    cursor: pointer;
     font-size: 16px;
     font-weight: 700;
-    
+
 }
-.discuss-card-label{
+
+.discuss-card-label {
     color: #0074b6;
+    display: flex;
+
+    img {
+        width: 20px;
+        margin-right: 0.5rem;
+    }
 }
 
-.discuss-card-subtitle{
-    margin:8px 0px;
+.discuss-card-subtitle {
+    margin: 8px 0px;
     font-size: 14px;
-}
-.discuss-card-comments{
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  flex-wrap:wrap;
+    display: flex;
+    align-items: center;
 }
 
-.discuss-comments-area{
-    display: -webkit-box;
-    font-weight: 700;
+.discuss-card-comments {
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
+    flex-wrap: wrap;
+
+    .discuss-comments-area {
+        display: -webkit-box;
+        font-weight: 700;
+        font-size: 0.75rem;
+
+        .views-content {
+            margin-left: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            html[dir="rtl"] & {
+                margin-right: 1.5rem;
+
+            }
+        }
+
+        .votes-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .votes-content img,
+        .views-content img {
+            height: 14px;
+            width: 14px;
+        }
+
+        .votes-content span,
+        .views-content span {
+            margin-left: 0.5rem;
+
+            html[dir="rtl"] & {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+    .comments-count {
+        color: #0074b6;
+        font-weight: 700;
+    }
 }
 
 .dot {
@@ -36,34 +79,22 @@
     border-radius: 50%;
     display: inline-block;
     background: #858181;
+    margin: 0 1rem;
 }
 
-.timing{
-    margin-left:16px;
-    color: #858181;  
-}
+.timing {
+    color: #858181;
+    margin-left: 1rem;
 
-.views-content{
-    margin-left:24px;
-}
+    html[dir="rtl"] & {
+        margin-right: 1rem;
 
-.votes-content img,.views-content img{
-    margin-right:4px;
-    height: 20px;
-    width: 20px;
-}
-
-.comments-count{
-    color: #0074b6;
-    font-weight: 700;
-}
-
-@media (max-width: 768px) {
-    .timing{
-        display: block;
-         margin: 4px 8px;
     }
 }
 
-
-
+@media (max-width: 768px) {
+    .timing {
+        display: block;
+        margin: 4px 8px;
+    }
+}
