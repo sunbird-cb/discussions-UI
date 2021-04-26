@@ -4,6 +4,7 @@ import { NavigationServiceService } from '../../navigation-service.service';
 import { ConfigService } from '../../services/config.service';
 import { DiscussionService } from '../../services/discussion.service';
 import * as _ from 'lodash'
+import { IdiscussionConfig } from '../../models/discussion-config.model';
 
 @Component({
   selector: 'sb-base-wrapper',
@@ -13,8 +14,7 @@ import * as _ from 'lodash'
 })
 export class BaseWrapperComponent implements OnInit {
 
-  @Input() config: any
-  @Input() context: any
+  @Input() config: IdiscussionConfig
   state: string
   constructor(private navigationServiceService: NavigationServiceService, private eventService: EventsService, private configSvc: ConfigService, private discussionService: DiscussionService) { }
 
