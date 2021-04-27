@@ -80,7 +80,6 @@ export class DiscussHomeComponent implements OnInit {
           this.containerHeight = ((132 * this.pageSize)) + 'px';
         } else {
           this.containerHeight = ((132 * this.totalTopics)) + 'px';
-
         }
       }
     }, error => {
