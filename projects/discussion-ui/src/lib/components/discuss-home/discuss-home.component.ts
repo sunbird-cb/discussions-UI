@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -15,7 +15,7 @@ import { ConfigService } from '../../services/config.service';
   templateUrl: './discuss-home.component.html',
   styleUrls: ['./discuss-home.component.css']
 })
-export class DiscussHomeComponent implements OnInit {
+export class DiscussHomeComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollContainerHeight', { static: false }) elementView: ElementRef;
   discussionList = [];
@@ -29,13 +29,10 @@ export class DiscussHomeComponent implements OnInit {
   modalScrollDistance = 2;
   modalScrollThrottle = 500;
   scrollUpDistance = 1.5;
-  containerHeight: string;
 
   currentPage = 0;
   pageSize: number;
   totalTopics: number;
-  topicCardHeight: number; // height of the topic card
-  cardMargin = 16; // margin between topic cards
 
   constructor(
     public router: Router,
@@ -51,6 +48,14 @@ export class DiscussHomeComponent implements OnInit {
       this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
+  }
+  /**
+   * @description - set the scroll container height
+   */
+  ngAfterViewChecked() {
+    if (this.elementView && this.elementView.nativeElement) {
+      this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight) + 'px';
+    }
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -77,18 +82,9 @@ export class DiscussHomeComponent implements OnInit {
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
-      setTimeout(() => {
-        this.topicCardHeight = this.elementView.nativeElement.firstElementChild.offsetHeight;
-        const scrollHeight = (this.topicCardHeight + this.cardMargin); // total height of the topic card
-        if (this.currentPage === 1) {
-          this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-          if (this.totalTopics > this.pageSize) {   // setting the scrollbar container height
-            this.containerHeight = (scrollHeight * this.pageSize) + 'px';
-          } else {
-            this.containerHeight = (scrollHeight * this.totalTopics) + 'px';
-          }
-        }
-      }, 1000);
+      if (this.currentPage === 1) {
+        this.pageSize = _.get(data, 'nextStart'); // count of topics per page
+      }
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
