@@ -73,7 +73,7 @@ export class DiscussAllComponent implements OnInit {
       type: 'Topic'
     });
 
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
   }
 
   getDiscussionList(slug: string) {

@@ -262,7 +262,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
-      this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.CATEGORY} ${this.topicId}`], { queryParams: { page } });
+      this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.CATEGORY} ${this.topicId}`], { queryParams: { page },  queryParamsHandling: "merge"  });
     }
   }
 

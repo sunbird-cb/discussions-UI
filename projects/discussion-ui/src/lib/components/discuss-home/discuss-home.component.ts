@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -8,6 +8,7 @@ import * as CONSTANTS from './../../common/constants.json';
 import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
 import { ConfigService } from '../../services/config.service';
+import { NavigationServiceService } from '../../navigation-service.service';
 /* tslint:enable */
 
 @Component({
@@ -16,11 +17,14 @@ import { ConfigService } from '../../services/config.service';
   styleUrls: ['./discuss-home.component.css']
 })
 export class DiscussHomeComponent implements OnInit {
+  @Input() categoryId;
+  @Input() categoryHomeAction;
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
-  categoryId: string;
+  // categoryId: string;
   isTopicCreator = false;
   showLoader = false;
 
@@ -39,14 +43,21 @@ export class DiscussHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
     private configService: ConfigService,
-    private telemetryUtils: TelemetryUtilsService) { }
+    private telemetryUtils: TelemetryUtilsService,
+    private navigationService: NavigationServiceService) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.route.params.subscribe(params => {
-      this.routeParams = params;
-      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+      this.configService.setCategoryId.subscribe((categoryIds: string) => {
+        this.routeParams = categoryIds;
+        // categoryIds = this.discussionService.getContext(CONTEXT_PROPS.cid)
+        categoryIds = this.categoryId ? this.categoryId : categoryIds
+        this.getDiscussionList(categoryIds);
+      })
+      // this.routeParams = params;
+      // this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+      // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
   }
 
@@ -60,13 +71,16 @@ export class DiscussHomeComponent implements OnInit {
       id: _.get(discussionData, 'tid'),
       type: 'Topic'
     });
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
+    let input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`, queryParams: {}, tid: discussionData.tid, title: discussionData.title }, action: CONSTANTS.CATEGORY_DETAILS }
+    this.navigationService.navigate(input)
+    this.stateChange.emit({ tid: discussionData.tid, title: discussionData.title, action: this.categoryHomeAction })
   }
   /**
    * @description - To get all the topics
    * @param - required cid as a slug
    */
-  getDiscussionList(slug: string) {
+   getDiscussionList(slug: string) {
     this.showLoader = true;
     this.currentPage++;
     this.discussionService.getContextBasedTopic(slug, this.currentPage).subscribe(data => {
@@ -110,7 +124,7 @@ export class DiscussHomeComponent implements OnInit {
   /**
    * @description - call the topic get api when scrolled down
    */
-  onModalScrollDown() {
+   onModalScrollDown() {
     const pageId = this.currentPage;
     if ((this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
       this.getDiscussionList(_.get(this.routeParams, 'slug'));

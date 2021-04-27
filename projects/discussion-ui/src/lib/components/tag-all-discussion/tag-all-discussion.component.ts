@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { NSDiscussData } from '../../models/discuss.model'
 import { Router, ActivatedRoute } from '@angular/router'
 import { DiscussionService } from '../../services/discussion.service';
@@ -44,7 +44,7 @@ export class TagAllDiscussionComponent implements OnInit {
 
     this.cIds = this.configService.getCategories()
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.tagName = params.tagname
+      this.tagName = params.tagname ? params.tagname: this.tagName
     })
     // To check wheather any contexts are there or not from the config service
     if (this.configService.hasContext()) {
@@ -118,7 +118,7 @@ export class TagAllDiscussionComponent implements OnInit {
   navigateWithPage(page: any) {
     if (page !== this.currentActivePage) {
       this.fetchNewData = true
-      this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam } });
+      this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: { page, tagname: this.queryParam },  queryParamsHandling: "merge"  });
     }
   }
 
@@ -135,7 +135,7 @@ export class TagAllDiscussionComponent implements OnInit {
       type: 'Topic'
     });
 
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`]);
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
   }
 
   logTelemetry(event) {
