@@ -26,11 +26,12 @@ export class DiscussHomeComponent implements OnInit {
   currentActivePage: number = 1;
 
   // Input parameters for infinite scroll
-  modalScrollDistance = -12;
+  modalScrollDistance = 2;
   modalScrollThrottle = 500;
-  scrollUpDistance = 5;
+  scrollUpDistance = 1.5;
+  containerHeight: string;
 
-  currentPage = 0 ;
+  currentPage = 0;
   pageSize: number;
   totalTopics: number;
 
@@ -73,10 +74,16 @@ export class DiscussHomeComponent implements OnInit {
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
-      if (this.currentPage === 1) {
-      this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-      }
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
+      if (this.currentPage === 1) {
+        this.pageSize = _.get(data, 'nextStart'); // count of topics per page
+        if (this.totalTopics > this.pageSize) {   // setting the scrollbar container height
+          this.containerHeight = ((132 * this.pageSize)) + 'px';
+        } else {
+          this.containerHeight = ((132 * this.totalTopics)) + 'px';
+
+        }
+      }
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
@@ -105,9 +112,9 @@ export class DiscussHomeComponent implements OnInit {
    * @description - call the topic get api when scrolled down
    */
   onModalScrollDown() {
-    const pageId = this.currentPage - 1;
-    if ( (this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
-    this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    const pageId = this.currentPage;
+    if ((this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
   }
 }
