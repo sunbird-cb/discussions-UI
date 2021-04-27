@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -17,6 +17,7 @@ import { ConfigService } from '../../services/config.service';
 })
 export class DiscussHomeComponent implements OnInit {
 
+  @ViewChild('scrollContainerHeight', { static: false }) elementView: ElementRef;
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
@@ -33,6 +34,8 @@ export class DiscussHomeComponent implements OnInit {
   currentPage = 0;
   pageSize: number;
   totalTopics: number;
+  topicCardHeight: number; // height of the topic card
+  cardMargin = 16; // margin between topic cards
 
   constructor(
     public router: Router,
@@ -74,14 +77,18 @@ export class DiscussHomeComponent implements OnInit {
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
-      if (this.currentPage === 1) {
-        this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-        if (this.totalTopics > this.pageSize) {   // setting the scrollbar container height
-          this.containerHeight = ((132 * this.pageSize)) + 'px';
-        } else {
-          this.containerHeight = ((132 * this.totalTopics)) + 'px';
+      setTimeout(() => {
+        this.topicCardHeight = this.elementView.nativeElement.firstElementChild.offsetHeight;
+        const scrollHeight = (this.topicCardHeight + this.cardMargin); // total height of the topic card
+        if (this.currentPage === 1) {
+          this.pageSize = _.get(data, 'nextStart'); // count of topics per page
+          if (this.totalTopics > this.pageSize) {   // setting the scrollbar container height
+            this.containerHeight = (scrollHeight * this.pageSize) + 'px';
+          } else {
+            this.containerHeight = (scrollHeight * this.totalTopics) + 'px';
+          }
         }
-      }
+      }, 1000);
     }, error => {
       this.showLoader = false;
       // TODO: Toaster

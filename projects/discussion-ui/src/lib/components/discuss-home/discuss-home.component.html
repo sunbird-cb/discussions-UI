@@ -4,7 +4,8 @@
 <ng-container *ngIf="discussionList && discussionList.length > 0">
     <div infinite-scroll class="infinite-scroll" [ngStyle]="{'height': containerHeight}"
         [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
-        [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="false" (scrolled)="onModalScrollDown()">
+        [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="false" (scrolled)="onModalScrollDown()"
+        #scrollContainerHeight>
         <div *ngFor="let discussionData of discussionList"
             (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" id="topic-card">
             <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
