@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -593,10 +599,19 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><ul>
+    <li>required cid as a slug</li>
+    </ul>
+    </div>
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -673,6 +688,35 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> onModalScrollDown</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>onModalScrollDown()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 
     <section>
@@ -690,6 +734,26 @@
     </bcode>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentPage</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentPage:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>0</code>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -731,6 +795,56 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> modalScrollDistance</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>modalScrollDistance:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> modalScrollThrottle</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>modalScrollThrottle:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>500</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> pageSize</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>pageSize:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> routeParams</b>
                         </td>
                     </tr>
@@ -755,6 +869,26 @@
     </bcode>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> scrollUpDistance</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>scrollUpDistance:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>5</code>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
             <table class="table table-sm table-bordered">
@@ -797,6 +931,21 @@
                         </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> totalTopics</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>totalTopics:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
@@ -819,12 +968,21 @@ import { ConfigService } from &#x27;../../services/config.service&#x27;;
 })
 export class DiscussHomeComponent implements OnInit {
 
-  discussionList &#x3D; [];
+  discussionList: any[];
   routeParams: any;
   showStartDiscussionModal &#x3D; false;
   categoryId: string;
   isTopicCreator &#x3D; false;
   showLoader &#x3D; false;
+
+  // Input parameters for infinite scroll
+  modalScrollDistance &#x3D; -12;
+  modalScrollThrottle &#x3D; 500;
+  scrollUpDistance &#x3D; 5;
+
+  currentPage &#x3D; 0 ;
+  pageSize: number;
+  totalTopics: number;
 
   constructor(
     public router: Router,
@@ -854,17 +1012,25 @@ export class DiscussHomeComponent implements OnInit {
     });
     this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, &#x27;slug&#x27;))}&#x60;]);
   }
-
+  /**
+   * @description - To get all the topics
+   * @param - required cid as a slug
+   */
   getDiscussionList(slug: string) {
     this.showLoader &#x3D; true;
-    this.discussionService.getContextBasedTopic(slug).subscribe(data &#x3D;&gt; {
+    this.currentPage++;
+    this.discussionService.getContextBasedTopic(slug, this.currentPage).subscribe(data &#x3D;&gt; {
       this.showLoader &#x3D; false;
       this.isTopicCreator &#x3D; _.get(data, &#x27;privileges.topics:create&#x27;) &#x3D;&#x3D;&#x3D; true ? true : false;
-      this.discussionList &#x3D; _.union(_.get(data, &#x27;topics&#x27;), _.get(data, &#x27;children&#x27;));
+      this.discussionList &#x3D; [...this.discussionList, ...(_.union(_.get(data, &#x27;topics&#x27;), _.get(data, &#x27;children&#x27;)))];
+      if (this.currentPage &#x3D;&#x3D;&#x3D; 1) {
+      this.pageSize &#x3D; _.get(data, &#x27;nextStart&#x27;); // count of topics per page
+      }
+      this.totalTopics &#x3D; _.get(data, &#x27;totalTopicCount&#x27;); // total count of topics
     }, error &#x3D;&gt; {
       this.showLoader &#x3D; false;
       // TODO: Toaster
-      console.log(&#x27;error fetching topic list&#x27;);
+      console.log(&#x27;error fetching topic list&#x27;, error);
     });
   }
 
@@ -878,9 +1044,21 @@ export class DiscussHomeComponent implements OnInit {
 
   closeModal(event) {
     if (_.get(event, &#x27;message&#x27;) &#x3D;&#x3D;&#x3D; &#x27;success&#x27;) {
+      this.discussionList &#x3D; [];
+      this.currentPage &#x3D; 0;
       this.getDiscussionList(_.get(this.routeParams, &#x27;slug&#x27;));
     }
     this.showStartDiscussionModal &#x3D; false;
+  }
+
+  /**
+   * @description - call the topic get api when scrolled down
+   */
+  onModalScrollDown() {
+    const pageId &#x3D; this.currentPage - 1;
+    if ( (this.pageSize * pageId) &lt; this.totalTopics) {  // should fail when it reaches the total topics
+    this.getDiscussionList(_.get(this.routeParams, &#x27;slug&#x27;));
+    }
   }
 }
 </code></pre>

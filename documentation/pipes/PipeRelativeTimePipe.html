@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -324,6 +327,9 @@
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                        </li>
                                        <li class="link">
@@ -503,21 +509,38 @@
     </div>
     <div class="tab-pane fade tab-source-code" id="source">
         <pre><code class="hljs javascript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
-import dayjs from &#x27;dayjs&#x27;;
-import relativeTime from &#x27;dayjs/plugin/relativeTime&#x27;;
-
-dayjs.extend(relativeTime);
-
 
 @Pipe({
   name: &#x27;pipeRelativeTime&#x27;,
 })
 export class PipeRelativeTimePipe implements PipeTransform {
-  transform(value: number): string {
+  transform(value: number): any {
+
     if (value) {
-      return dayjs((new Date(value))).fromNow();
+      const seconds &#x3D; Math.floor((+new Date() - +new Date(value)) / 1000);
+      if (seconds &lt; 29) // less than 30 seconds ago will show as &#x27;Just now&#x27;
+        return &#x27;Just now&#x27;;
+      const intervals &#x3D; {
+        &#x27;year&#x27;: 31536000,
+        &#x27;month&#x27;: 2592000,
+        &#x27;week&#x27;: 604800,
+        &#x27;day&#x27;: 86400,
+        &#x27;hour&#x27;: 3600,
+        &#x27;minute&#x27;: 60,
+        &#x27;second&#x27;: 1
+      };
+      let counter;
+      for (const i in intervals) {
+        counter &#x3D; Math.floor(seconds / intervals[i]);
+        if (counter &gt; 0)
+          if (counter &#x3D;&#x3D;&#x3D; 1) {
+            return counter + &#x27; &#x27; + i + &#x27; ago&#x27;; // singular (1 day ago)
+          } else {
+            return counter + &#x27; &#x27; + i + &#x27;s ago&#x27;; // plural (2 days ago)
+          }
+      }
     }
-    return dayjs().startOf(&#x27;hour&#x27;).fromNow();
+    return value;
   }
 }
 

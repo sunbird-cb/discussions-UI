@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -324,6 +327,9 @@
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                        </li>
                                        <li class="link">
@@ -543,7 +549,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(route: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, discussService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>, activatedRoute: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>, discussUtils: <a href="../injectables/DiscussUtilsService.html" >DiscussUtilsService</a>)</code>
+                            <code>constructor(route: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, discussService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>, activatedRoute: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>, telemetryUtils: <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>, discussUtils: <a href="../injectables/DiscussUtilsService.html" >DiscussUtilsService</a>)</code>
                         </td>
                     </tr>
     
@@ -569,6 +575,8 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Method to fetch the tag based discussion </p>
+    </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
@@ -593,6 +601,8 @@
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Method to fetch the context based discussions </p>
+    </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
@@ -636,6 +646,56 @@
                     <tr>
                         <td class="col-md-4">
     <code>navigateWithPage(page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> navigateToDiscussionDetails</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>navigateToDiscussionDetails(discussionData: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Method to navigate to the dicussion detail page on click of tag related discussion </p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> logTelemetry</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>logTelemetry(event: any)</code>
                         </td>
                     </tr>
     
@@ -729,36 +789,6 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> any</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>any:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <b> any</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>any:     <code>any</code>
-    </bcode>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <b> cIds</b>
                         </td>
                     </tr>
@@ -779,7 +809,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>currentActivePage:     <code>boolean</code>
+                            <code>currentActivePage:     <code>1</code>
     </bcode>
                         </td>
                     </tr>
@@ -929,7 +959,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>similarPosts:     <code>boolean</code>
+                            <code>similarPosts:     <code>any[]</code>
     </bcode>
                         </td>
                     </tr>
@@ -963,6 +993,7 @@ import { Subscriber, Subscription } from &#x27;rxjs&#x27;;
 import { ConfigService } from &#x27;../../services/config.service&#x27;;
 import * as CONSTANTS from &#x27;./../../common/constants.json&#x27;;
 import { DiscussUtilsService } from &#x27;../../services/discuss-utils.service&#x27;;
+import { TelemetryUtilsService } from &#x27;./../../telemetry-utils.service&#x27;;
 
 @Component({
   selector: &#x27;lib-tag-all-discussion&#x27;,
@@ -972,10 +1003,10 @@ import { DiscussUtilsService } from &#x27;../../services/discuss-utils.service&#
 export class TagAllDiscussionComponent implements OnInit {
 
   tagName!: any
-  similarPosts!: any
+  similarPosts :any[]
   queryParam: any
   fetchSingleCategoryLoader &#x3D; false
-  currentActivePage!: any
+  currentActivePage: 1
   defaultError &#x3D; &#x27;Something went wrong, Please try again after sometime!&#x27;
   pager &#x3D; {}
   paginationData!: any
@@ -987,8 +1018,10 @@ export class TagAllDiscussionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private discussService: DiscussionService, public activatedRoute: ActivatedRoute,
+    private discussService: DiscussionService, 
+    public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
+    private telemetryUtils: TelemetryUtilsService,
     private discussUtils: DiscussUtilsService
   ) { }
 
@@ -998,15 +1031,16 @@ export class TagAllDiscussionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params) &#x3D;&gt; {
       this.tagName &#x3D; params.tagname
     })
+    // To check wheather any contexts are there or not from the config service
     if (this.configService.hasContext()) {
-      this.fetchContextBasedTagDetails(this.tagName, this.cIds)
+      this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
-      this.currentActivePage &#x3D; 1
-      this.fetchSingleTagDetails(this.tagName)
+      this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
     }
 
   }
 
+  /**Method to fetch the tag based discussion */
   fetchSingleTagDetails(tagname: string, page?: any) {
     this.fetchSingleCategoryLoader &#x3D; true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
@@ -1023,13 +1057,12 @@ export class TagAllDiscussionComponent implements OnInit {
       })
   }
 
+  /** Method to fetch the context based discussions */
   fetchContextBasedTagDetails(tagname: string, cid: any, page?: any) {
     this.fetchSingleCategoryLoader &#x3D; true
     const req &#x3D; {
-      request: {
-        cid: cid.result,
-        tag: tagname
-      }
+      cid: cid.result,
+      tag: tagname
     };
 
     this.discussService.getContextBasedTagDiscussion(req).subscribe(
@@ -1072,6 +1105,26 @@ export class TagAllDiscussionComponent implements OnInit {
       this.fetchNewData &#x3D; true
       this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions&#x60;], { queryParams: { page, tagname: this.queryParam } });
     }
+  }
+
+  /** Method to navigate to the dicussion detail page on click of tag related discussion */
+  navigateToDiscussionDetails(discussionData) {
+
+    const matchedTopic &#x3D; _.find(this.telemetryUtils.getContext(), { type: &#x27;Topic&#x27; });
+    if (matchedTopic) {
+      this.telemetryUtils.deleteContext(matchedTopic);
+    }
+
+    this.telemetryUtils.uppendContext({
+      id: _.get(discussionData, &#x27;tid&#x27;),
+      type: &#x27;Topic&#x27;
+    });
+
+    this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, &#x27;slug&#x27;))}&#x60;]);
+  }
+
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
   }
 
   // TODO: add refershdata function

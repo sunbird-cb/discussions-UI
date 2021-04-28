@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -880,7 +886,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.data &#x3D; this.configService.getConfig();
     const menuArr &#x3D; _.get(this.data, &#x27;menuOptions&#x27;) &amp;&amp; _.get(this.data, &#x27;menuOptions&#x27;).length &gt; 0
-        ? this.data.menuOptions : CONSTANTS.MENUOPTIONS;
+      ? this.data.menuOptions : CONSTANTS.MENUOPTIONS;
     // })
     for (let i &#x3D; 0; i &lt; menuArr.length; i++) {
       if (menuArr[i].enable) {
@@ -908,8 +914,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
     if (event) {
       this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
     }
-    this.router.navigate([&#x60;${CONSTANTS.ROUTES.DISCUSSION}${pageName}&#x60;]);
-    // this.router.navigate([&#x60;${pageName}&#x60;], { relativeTo: this.activatedRoute });
+    this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}${pageName}&#x60;], { queryParamsHandling: &quot;merge&quot; });
     this.closeNav();
   }
 

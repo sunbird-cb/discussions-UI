@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -324,6 +327,9 @@
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                        </li>
                                        <li class="link">
@@ -535,6 +541,9 @@
                                 <a href="../components/DiscussStartComponent.html">DiscussStartComponent</a>
                             </li>
                             <li class="list-group-item">
+                                <a href="../components/DiscussAllComponent.html">DiscussAllComponent</a>
+                            </li>
+                            <li class="list-group-item">
                                 <a href="../components/TagAllDiscussionComponent.html">TagAllDiscussionComponent</a>
                             </li>
                     </ul>
@@ -607,11 +616,9 @@ import { DiscussionDetailsComponent } from &#x27;./discussion-details/discussion
 import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { DiscussStartComponent } from &#x27;./discuss-start/discuss-start.component&#x27;;
 import { TagInputModule } from &#x27;ngx-chips&#x27;;
-// TODO: Add this components
-// import { DiscussAllComponent } from &#x27;./discuss-all/discuss-all.component&#x27;;
+import { DiscussAllComponent } from &#x27;./discuss-all/discuss-all.component&#x27;;
 import { TagAllDiscussionComponent } from &#x27;./tag-all-discussion/tag-all-discussion.component&#x27;;
-
-
+import { InfiniteScrollModule } from &#x27;ngx-infinite-scroll&#x27;;
 @NgModule({
   declarations: [
     SidePannelComponent,
@@ -621,8 +628,7 @@ import { TagAllDiscussionComponent } from &#x27;./tag-all-discussion/tag-all-dis
     MyDiscussionComponent,
     DiscussionDetailsComponent,
     DiscussStartComponent,
-    // TODO: Add this components
-    // DiscussAllComponent,
+    DiscussAllComponent,
     TagAllDiscussionComponent,
   ],
   imports: [
@@ -632,7 +638,8 @@ import { TagAllDiscussionComponent } from &#x27;./tag-all-discussion/tag-all-dis
     FormsModule,
     ReactiveFormsModule,
     TagInputModule,
-    PipesModule
+    PipesModule,
+    InfiniteScrollModule
   ],
   exports: [
     SidePannelComponent,
@@ -643,7 +650,7 @@ import { TagAllDiscussionComponent } from &#x27;./tag-all-discussion/tag-all-dis
     DiscussionDetailsComponent,
     DiscussStartComponent,
     // TODO: Add this components
-    //  DiscussAllComponent, 
+    //  DiscussAllComponent,
     TagAllDiscussionComponent
   ],
   providers: [

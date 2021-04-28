@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -595,6 +601,30 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> fetchAllCategories</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>fetchAllCategories()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> fetchCategory</b>
                         </td>
                     </tr>
@@ -607,28 +637,10 @@
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Get Category details{returnthis.discussService.fetchSingleCategoryDetails(cid</p>
-    </div>
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <ul class="jsdoc-params">
-                                                <li>
-                                                    <div>
-                                                        <b>cid</b>
-                                                    </div>
-                                                    <div>
-                                                        
-                                                    </div>
-                                                </li>
-                                        </ul>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -996,7 +1008,11 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.navigateToDiscussionPage(_.get(params, &#x27;cid&#x27;));
       } else {
         this.categories &#x3D; [];
-        this.fetchAllAvailableCategories(this.forumIds);
+        if (this.forumIds.length) {
+          this.fetchAllAvailableCategories(this.forumIds);
+        } else {
+          this.fetchAllCategories();
+        }
       }
     });
   }
@@ -1015,11 +1031,18 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Get Category details
-   * @param  {} cid
-   * @param  {} {returnthis.discussService.fetchSingleCategoryDetails(cid
-   */
+  fetchAllCategories() {
+    this.showLoader &#x3D; true;
+    this.discussService.fetchAllCategories().subscribe(data &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      this.categories &#x3D; data
+    }, error &#x3D;&gt; {
+      // TODO: Toast error
+      console.log(&#x27;issue fetching category&#x27;, error);
+      this.showLoader &#x3D; false;
+    });
+  }
+
   fetchCategory(cid) {
     return this.discussService.fetchSingleCategoryDetails(cid);
   }

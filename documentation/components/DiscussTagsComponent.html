@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -581,6 +587,30 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> getContextBasedTags</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>getContextBasedTags(cid: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b><span class="modifier">Public</span> getBgColor</b>
                         </td>
                     </tr>
@@ -799,21 +829,36 @@ export class DiscussTagsComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.TAGS);
-    // this.configService.setConfig(this.activatedRoute)
-    this.getParams &#x3D; this.configService.getConfig()
-    this.cIds &#x3D; _.get(this.getParams, &#x27;categories&#x27;)
-    console.log(this.getParams, this.cIds)
 
-    this.fetchAllTags();
+    this.cIds &#x3D; this.configService.getCategories()
+    if (this.configService.hasContext()) {
+      this.getContextBasedTags(this.cIds.result)
+    } else {
+      this.fetchAllTags();
+    }
+
   }
 
   fetchAllTags() {
     this.showLoader &#x3D; true;
-    console.log(&#x27;in fetchAllTags&#x27;);
     this.discussionService.fetchAllTag().subscribe(data &#x3D;&gt; {
       this.showLoader &#x3D; false;
-      console.log(&#x27;data &#x27;, data);
       this.filteredTags &#x3D; _.get(data, &#x27;tags&#x27;);
+    }, error &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      // TODO: toaster
+      console.log(&#x27;error fetching tags&#x27;);
+    });
+  }
+
+  getContextBasedTags(cid: any) {
+    const req &#x3D; {
+      cids: cid
+    }
+    this.showLoader &#x3D; true;
+    this.discussionService.contextBasedTags(req).subscribe(data &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      this.filteredTags &#x3D; _.get(data, &#x27;result&#x27;);
     }, error &#x3D;&gt; {
       this.showLoader &#x3D; false;
       // TODO: toaster

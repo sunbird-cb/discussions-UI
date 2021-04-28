@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -698,6 +704,30 @@
                             <tr>
                                 <td class="col-md-4">
             <code>fetchAllTag()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> contextBasedTags</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>contextBasedTags(data: any)</code>
                                 </td>
                             </tr>
             
@@ -1177,7 +1207,7 @@
             
                             <tr>
                                 <td class="col-md-4">
-            <code>getContextBasedTopic(slug: string)</code>
+            <code>getContextBasedTopic(slug: string, pageId: number)</code>
                                 </td>
                             </tr>
             
@@ -1608,12 +1638,16 @@ export class DiscussionService {
     // return this.http.get&lt;NSDiscussData.ICategorie&gt;(urlConfig.getSingleCategoryDetails(cid));
   }
   fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
-    const url &#x3D; this.appendPage(page, urlConfig.getSingleCategoryDetails(cid));
-    return this.http.get(&#x60;${url}&amp;sort&#x3D;${sort}&#x60;);
+    return this.csDiscussionService.fetchSingleCategoryDetails(cid);
   }
 
   fetchAllTag() {
     return this.csDiscussionService.fetchAllTags();
+    // return this.http.get(urlConfig.getAllTags());
+  }
+
+  contextBasedTags(data) {
+    return this.csDiscussionService.contextBasedTags(data);
     // return this.http.get(urlConfig.getAllTags());
   }
 
@@ -1653,28 +1687,23 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    const url &#x3D; this.appendPage(page, urlConfig.recentPost());
-    return this.http.get(url);
-    // return this.csDiscussionService.fetchRecentD(page);
+    return this.csDiscussionService.recentPost(page);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
-    const url &#x3D; this.appendPage(page, urlConfig.getTagBasedDiscussion(tag));
-    return this.http.get(url);
+    return this.csDiscussionService.getTagBasedDiscussion(tag);
   }
 
   getContextBasedDiscussion(data) {
-    return this.http.post(urlConfig.getContextBasedDiscussion(), data);
+    return this.csDiscussionService.getContextBasedDiscussion(data);
   }
 
   getContextBasedTagDiscussion(data) {
-    return this.http.post(urlConfig.getContextBasedTagDiscussion(), data);
+    return this.csDiscussionService.getContextBasedTagDiscussion(data);
   }
 
   fetchPopularD(page?: any) {
-    const url &#x3D; this.appendPage(page, urlConfig.popularPost());
-    return this.http.get(url);
-    // return this.csDiscussionService.fetchPopularD(page);
+    return this.csDiscussionService.popularPost(page);
   }
 
   fetchTopicById(topicId: number, slug?: any, page?: any) {
@@ -1722,9 +1751,9 @@ export class DiscussionService {
     return this.csDiscussionService.getUserDetails(this.userName);
   }
 
-  getContextBasedTopic(slug: string) {
+  getContextBasedTopic(slug: string, pageId: number) {
     // return this.http.get(urlConfig.getContextBasedTopics(slug));
-    return this.csDiscussionService.getContextBasedTopic(slug);
+    return this.csDiscussionService.getContextBasedTopic(slug, pageId);
   }
 
   registerUser(data) {

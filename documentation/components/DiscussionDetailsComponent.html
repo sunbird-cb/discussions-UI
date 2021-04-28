@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -590,30 +596,6 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> fetchSingleCategoryDetails</b>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    <code>fetchSingleCategoryDetails(cid: number)</code>
-                        </td>
-                    </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description">
-                                    <b>Returns: </b>    <code>void</code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <b> initializeFormFiled</b>
                         </td>
                     </tr>
@@ -638,13 +620,40 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> refreshPostData</b>
+                            <b><span class="modifier"></span> refreshPostData</b>
                         </td>
                     </tr>
     
                     <tr>
                         <td class="col-md-4">
-    <code>refreshPostData(page: any)</code>
+                                <span class="modifier-icon method fa fa-play ">
+                                    <span class="fa fa-"></span>
+                                </span>
+                            <code>refreshPostData(page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> appendResponse</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>appendResponse(data: any)</code>
                         </td>
                     </tr>
     
@@ -1461,6 +1470,21 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> categoryId</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>categoryId:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> contentPost</b>
                         </td>
                     </tr>
@@ -1873,6 +1897,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   showEditTopicModal &#x3D; false;
   editableTopicDetails: any;
   dropdownContent &#x3D; true;
+  categoryId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -1903,32 +1928,18 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
         this.slug &#x3D; _.get(this.routeParams, &#x27;slug&#x27;);
         this.topicId &#x3D; _.get(this.routeParams, &#x27;topicId&#x27;);
         this.refreshPostData(this.currentActivePage);
+        // this.getRealtedDiscussion(this.cid)
       });
     } else {
       this.refreshPostData(this.currentActivePage);
+      // this.getRealtedDiscussion(this.cid)
     }
 
-    this.paramsSubscription &#x3D; this.route.queryParams.subscribe(x &#x3D;&gt; {
-      if (x.page) {
-        this.currentActivePage &#x3D; x.page || 1;
-        this.refreshPostData(this.currentActivePage);
-      }
-    });
+
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.DETAILS);
   }
 
-  fetchSingleCategoryDetails(cid: number) {
-    this.fetchSingleCategoryLoader &#x3D; true
-    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
-      (data: NSDiscussData.ICategoryData) &#x3D;&gt; {
-        this.similarPosts &#x3D; data.topics
-        this.fetchSingleCategoryLoader &#x3D; false
-      },
-      (err: any) &#x3D;&gt; {
-        // this.openSnackbar(err.error.message.split(&#x27;|&#x27;)[1] || this.defaultError)
-        this.fetchSingleCategoryLoader &#x3D; false
-      })
-  }
+
 
   initializeFormFiled() {
     this.postAnswerForm &#x3D; this.formBuilder.group({
@@ -1942,36 +1953,35 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  refreshPostData(page: any) {
+  async refreshPostData(page?: any) {
     if (this.currentFilter &#x3D;&#x3D;&#x3D; &#x27;timestamp&#x27;) {
+
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) &#x3D;&gt; {
-          this.data &#x3D; data;
-          this.paginationData &#x3D; _.get(data, &#x27;pagination&#x27;);
-          this.mainUid &#x3D; _.get(data, &#x27;loggedInUser.uid&#x27;);
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
+          this.appendResponse(data)
         },
         (err: any) &#x3D;&gt; {
+          console.log(&#x27;Error in fetching topics&#x27;)
           // toast message
           // this.openSnackbar(err.error.message.split(&#x27;|&#x27;)[1] || this.defaultError);
         });
     } else {
       this.discussionService.fetchTopicByIdSort(this.topicId, &#x27;voted&#x27;, page).subscribe(
         (data: NSDiscussData.IDiscussionData) &#x3D;&gt; {
-          this.data &#x3D; data;
-          this.paginationData &#x3D; _.get(data, &#x27;pagination&#x27;);
-          this.mainUid &#x3D; _.get(data, &#x27;loggedInUser.uid&#x27;);
-          this.fetchSingleCategoryDetails(this.data.cid);
-
-          // this.setPagination();
+          this.appendResponse(data)
         },
         (err: any) &#x3D;&gt; {
-          // toast message
-          // this.openSnackbar(err.error.message.split(&#x27;|&#x27;)[1] || this.defaultError);
+          console.log(&#x27;Error in fetching topics&#x27;)
         });
     }
+  }
+
+  appendResponse(data) {
+    this.data &#x3D; data;
+    this.paginationData &#x3D; _.get(data, &#x27;pagination&#x27;);
+    this.mainUid &#x3D; _.get(data, &#x27;loggedInUser.uid&#x27;);
+    this.categoryId &#x3D; _.get(data, &#x27;cid&#x27;);
+    this.topicId &#x3D; _.get(data, &#x27;tid&#x27;);
   }
 
 

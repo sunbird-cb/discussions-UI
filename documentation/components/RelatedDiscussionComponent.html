@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -324,6 +327,9 @@
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                        </li>
                                        <li class="link">
@@ -545,9 +551,28 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <code>relatedDiscussions</code>
+                            <code>catId</code>
                         </td>
                         <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>any</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>topicId</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>any</code>
+
+                              </p>
                         </td>
                     </tr>
                 </tbody>
@@ -561,7 +586,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>)</code>
+                            <code>constructor(router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>, discussionService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>)</code>
                         </td>
                     </tr>
     
@@ -571,6 +596,30 @@
 
     <section>
         <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> fetchRelatedDiscussionData</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>fetchRelatedDiscussionData(cid: number)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -597,33 +646,120 @@
             </table>
     </section>
 
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> fetchSingleCategoryLoader</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>fetchSingleCategoryLoader:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> relatedDiscussions</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>relatedDiscussions:     <code>any[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> similarPosts</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>similarPosts:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+            <pre><code class="hljs javascript">import { Component, Input, OnChanges, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;
+import _ from &#x27;lodash-es&#x27;;
+import { DiscussionService } from &#x27;../../services/discussion.service&#x27;;
 import { ConfigService } from &#x27;../../services/config.service&#x27;;
 import * as CONSTANTS from &#x27;./../../common/constants.json&#x27;;
-
+import { NSDiscussData } from &#x27;./../../models/discuss.model&#x27;;
 @Component({
   selector: &#x27;lib-related-discussion&#x27;,
   templateUrl: &#x27;./related-discussion.component.html&#x27;,
   styleUrls: [&#x27;./related-discussion.component.scss&#x27;],
   host: { class: &#x27;margin-left-l&#x27; },
 })
-export class RelatedDiscussionComponent implements OnInit {
-  @Input()
-  relatedDiscussions!: []
+export class RelatedDiscussionComponent implements OnInit, OnChanges {
+  @Input() catId: any
+  @Input() topicId: any
+
+  relatedDiscussions: any[]
+  fetchSingleCategoryLoader &#x3D; false;
+  similarPosts: any;
 
   constructor(private router: Router,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private discussionService: DiscussionService,
   ) { }
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges() {
+    if (this.catId) {
+      this.fetchRelatedDiscussionData(this.catId)
+    }
+  }
+
+  fetchRelatedDiscussionData(cid: number) {
+    this.fetchSingleCategoryLoader &#x3D; true
+    this.discussionService.fetchSingleCategoryDetails(cid).subscribe(
+      (data: NSDiscussData.ICategoryData) &#x3D;&gt; {
+        this.relatedDiscussions &#x3D; [];
+        _.filter(data.topics, (topic) &#x3D;&gt; {
+          if (this.topicId !&#x3D; topic.tid) {
+            this.relatedDiscussions.push(topic)
+          }
+        })
+        this.fetchSingleCategoryLoader &#x3D; false
+      },
+      (err: any) &#x3D;&gt; {
+        console.log(&#x27;Error in fetching category details&#x27;)
+        // this.openSnackbar(err.error.message.split(&#x27;|&#x27;)[1] || this.defaultError)
+        this.fetchSingleCategoryLoader &#x3D; false
+      })
   }
 
   getDiscussion(discuss) {
     this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}&#x60;]);
   }
+
 
 }
 </code></pre>

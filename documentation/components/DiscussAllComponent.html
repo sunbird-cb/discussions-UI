@@ -88,7 +88,7 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AppLoaderComponent.html"  class="active" >AppLoaderComponent</a>
+                                    <a href="../components/AppLoaderComponent.html" >AppLoaderComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/AvatarPhotoComponent.html" >AvatarPhotoComponent</a>
@@ -97,7 +97,7 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                    <a href="../components/DiscussAllComponent.html"  class="active" >DiscussAllComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -318,7 +318,7 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AppLoaderComponent.html"  class="active" >AppLoaderComponent</a>
+                                           <a href="../components/AppLoaderComponent.html" >AppLoaderComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/AvatarPhotoComponent.html" >AvatarPhotoComponent</a>
@@ -327,7 +327,7 @@
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                           <a href="../components/DiscussAllComponent.html"  class="active" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -480,7 +480,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AppLoaderComponent</li>
+  <li>DiscussAllComponent</li>
 </ol>
 
 
@@ -498,7 +498,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>projects/discussion-ui/src/lib/elements/app-loader/app-loader.component.ts</code>
+    <code>projects/discussion-ui/src/lib/components/discuss-all/discuss-all.component.ts</code>
 </p>
 
 
@@ -521,19 +521,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>lib-app-loader</code></td>
+                <td class="col-md-9"><code>lib-discuss-all</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>app-loader.component.css</code></td>
+                <td class="col-md-9"><code>discuss-all.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>app-loader.component.html</code></td>
+                <td class="col-md-9"><code>discuss-all.component.html</code></td>
             </tr>
 
 
@@ -541,20 +541,6 @@
     </table>
 </section>
 
-    <section>
-        <h3 id="inputs">Inputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <code>data</code>
-                        </td>
-                        <td class="col-md-10">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
 
 
     <section>
@@ -563,7 +549,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor()</code>
+                            <code>constructor(router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, route: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, discussionService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>, activatedRoute: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, telemetryUtils: <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>)</code>
                         </td>
                     </tr>
     
@@ -571,6 +557,297 @@
             </table>
     </section>
 
+    <section>
+        <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> navigateToDiscussionDetails</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>navigateToDiscussionDetails(discussionData: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getDiscussionList</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>getDiscussionList(slug: string)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> filter</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>filter(key: string)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> fillrecent</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>fillrecent(_page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> fillPopular</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>fillPopular(page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getContextBasedDiscussion</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>getContextBasedDiscussion(cid: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> refreshData</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>refreshData(page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getRecentData</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>getRecentData(page: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getContextData</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>getContextData(cid: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> startDiscussion</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>startDiscussion()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> logTelemetry</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>logTelemetry(event: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> closeModal</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>closeModal(event: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
     <section>
         <h3 id="inputs">Properties</h3>
@@ -578,12 +855,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> headerMessage</b>
+                            <b> activatedRoute</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>headerMessage:     <code>string</code>
+                            <code>activatedRoute:     <code><a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a></code>
     </bcode>
                         </td>
                     </tr>
@@ -593,50 +870,425 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> loaderMessage</b>
+                            <b> allTopics</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>loaderMessage:     <code>string</code>
+                            <code>allTopics:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> categoryId</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>categoryId:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> cIds</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>cIds:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentActivePage</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentActivePage:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentFilter</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentFilter:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>recent</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> discussionList</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>discussionList:     <code>any[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> fetchNewData</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>fetchNewData:     <code>false</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getParams</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>getParams:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> isTopicCreator</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>isTopicCreator:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> paramsSubscription</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>paramsSubscription:     <code>Subscription</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> routeParams</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>routeParams:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> router</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>router:     <code><a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> showLoader</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>showLoader:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> showStartDiscussionModal</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>showStartDiscussionModal:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
-
+            <pre><code class="hljs javascript">import { CONTEXT_PROPS } from &#x27;./../../services/discussion.service&#x27;;
+import { Component, OnInit, TemplateRef } from &#x27;@angular/core&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { DiscussionService } from &#x27;../../services/discussion.service&#x27;;
+import { ConfigService } from &#x27;../../services/config.service&#x27;;
+import { TelemetryUtilsService } from &#x27;./../../telemetry-utils.service&#x27;;
+import * as CONSTANTS from &#x27;./../../common/constants.json&#x27;;
 /* tslint:disable */
 import * as _ from &#x27;lodash&#x27;
+import { NSDiscussData } from &#x27;../../models/discuss.model&#x27;;
+import { DiscussStartComponent } from &#x27;../discuss-start/discuss-start.component&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+// import { BsModalService, BsModalRef } from &#x27;ngx-bootstrap/modal&#x27;;
+
 /* tslint:enable */
 
 @Component({
-  selector: &#x27;lib-app-loader&#x27;,
-  templateUrl: &#x27;./app-loader.component.html&#x27;,
-  styleUrls: [&#x27;./app-loader.component.css&#x27;]
+  selector: &#x27;lib-discuss-all&#x27;,
+  templateUrl: &#x27;./discuss-all.component.html&#x27;,
+  styleUrls: [&#x27;./discuss-all.component.scss&#x27;]
 })
-export class AppLoaderComponent implements OnInit {
+export class DiscussAllComponent implements OnInit {
 
-  @Input() data;
-  headerMessage: string;
-  loaderMessage: string;
+  discussionList: any[];
+  routeParams: any;
+  showStartDiscussionModal &#x3D; false;
+  categoryId: string;
+  isTopicCreator &#x3D; false;
+  showLoader &#x3D; false;
+  currentFilter &#x3D; &#x27;recent&#x27;
+  currentActivePage: any;
+  fetchNewData: false;
+  // modalRef: BsModalRef;
+  paramsSubscription: Subscription;
+  getParams: any;
+  cIds: any;
+  allTopics: any;
 
-  constructor() { }
+
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+    private discussionService: DiscussionService,
+    private configService: ConfigService,
+    public activatedRoute: ActivatedRoute,
+    private telemetryUtils: TelemetryUtilsService,
+    // private modalService: BsModalService
+  ) { }
 
   ngOnInit() {
-    this.headerMessage &#x3D; &#x27;Please wait&#x27;;
-    this.loaderMessage &#x3D; &#x27;We are fetching details&#x27;;
-    if (this.data) {
-      this.headerMessage &#x3D; _.get(this.data, &#x27;headerMessage&#x27;) || this.headerMessage;
-      this.loaderMessage &#x3D; _.get(this.data, &#x27;loaderMessage&#x27;) || this.loaderMessage;
+    this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
+
+    this.cIds &#x3D; this.configService.getCategories()
+    this.categoryId &#x3D; this.discussionService.getContext(CONTEXT_PROPS.cid);
+    if (this.configService.hasContext()) {
+      this.getContextBasedDiscussion(this.cIds.result)
+    } else {
+      // this.currentActivePage &#x3D; 1
+      this.refreshData();
     }
 
   }
-}
 
+  navigateToDiscussionDetails(discussionData) {
+
+    const matchedTopic &#x3D; _.find(this.telemetryUtils.getContext(), { type: &#x27;Topic&#x27; });
+    if (matchedTopic) {
+      this.telemetryUtils.deleteContext(matchedTopic);
+    }
+
+    this.telemetryUtils.uppendContext({
+      id: _.get(discussionData, &#x27;tid&#x27;),
+      type: &#x27;Topic&#x27;
+    });
+
+    this.router.navigate([&#x60;${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, &#x27;slug&#x27;))}&#x60;]);
+  }
+
+  getDiscussionList(slug: string) {
+    this.showLoader &#x3D; true;
+    this.discussionService.getContextBasedTopic(slug, 1).subscribe(data &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      this.isTopicCreator &#x3D; _.get(data, &#x27;privileges.topics:create&#x27;) &#x3D;&#x3D;&#x3D; true ? true : false;
+      this.discussionList &#x3D; _.union(_.get(data, &#x27;topics&#x27;), _.get(data, &#x27;children&#x27;));
+    }, error &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      // TODO: Toaster
+      console.log(&#x27;error fetching topic list&#x27;, error);
+    });
+  }
+
+  filter(key: string | &#x27;recent&#x27; | &#x27;popular&#x27;) {
+    if (key) {
+      this.currentFilter &#x3D; key;
+      switch (key) {
+        case &#x27;recent&#x27;:
+          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          break;
+        case &#x27;popular&#x27;:
+          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillPopular()
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  fillrecent(_page?: any) {
+    this.getRecentData(_page)
+  }
+
+  fillPopular(page?: any) {
+    this.showLoader &#x3D; true;
+    return this.discussionService.fetchPopularD(page).subscribe((response: any) &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      this.discussionList &#x3D; _.get(response, &#x27;topics&#x27;)
+    }, error &#x3D;&gt; {
+      this.showLoader &#x3D; false;
+      // TODO: Toaster
+      console.log(&#x27;error fetching topic list&#x27;, error);
+    });
+  }
+
+  getContextBasedDiscussion(cid: any) {
+    this.currentFilter &#x3D;&#x3D;&#x3D; &#x27;recent&#x27; ? this.getContextData(cid) : this.getContextData(cid)
+  }
+
+  refreshData(page?: any) {
+    this.currentFilter &#x3D;&#x3D;&#x3D; &#x27;recent&#x27; ? this.getRecentData(page) : this.fillPopular(page)
+  }
+
+  getRecentData(page: any) {
+    this.showLoader &#x3D; true;
+    return this.discussionService.fetchRecentD(page).subscribe(
+      (data: any) &#x3D;&gt; {
+        this.showLoader &#x3D; false;
+        this.discussionList &#x3D; _.get(data, &#x27;topics&#x27;)
+      }, error &#x3D;&gt; {
+        this.showLoader &#x3D; false;
+        // TODO: Toaster
+        console.log(&#x27;error fetching topic list&#x27;, error);
+      });
+  }
+
+  getContextData(cid: any) {
+    this.showLoader &#x3D; true;
+    const req &#x3D; {
+      // request: {
+      cids: cid
+      // }
+    };
+    return this.discussionService.getContextBasedDiscussion(req).subscribe(
+      (data: any) &#x3D;&gt; {
+        this.showLoader &#x3D; false;
+        this.allTopics &#x3D; _.map(data.result, (topic) &#x3D;&gt; topic.topics);
+        this.discussionList &#x3D; _.flatten(this.allTopics)
+      }, error &#x3D;&gt; {
+        this.showLoader &#x3D; false;
+        // TODO: Toaster
+        console.log(&#x27;error fetching topic list&#x27;, error);
+      });
+  }
+
+  // startDiscussion(template: TemplateRef&lt;any&gt;) {
+  //   this.modalRef &#x3D; this.modalService.show(template);
+
+  // this.showStartDiscussionModal &#x3D; true;
+  // this.bsModalRef &#x3D; this.modalService.show(DiscussStartComponent);
+
+  // this.bsModalRef.content.onClose().subscribe(
+  //   console.log(&#x27;completed&#x27;)
+  // );
+  // }
+
+  startDiscussion() {
+    this.showStartDiscussionModal &#x3D; true;
+  }
+
+  logTelemetry(event) {
+    this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.HOME);
+  }
+
+  closeModal(event) {
+    if (_.get(event, &#x27;message&#x27;) &#x3D;&#x3D;&#x3D; &#x27;success&#x27;) {
+      this.getContextBasedDiscussion(this.cIds.result)
+      // this.getDiscussionList(_.get(this.routeParams, &#x27;slug&#x27;));
+    }
+    this.showStartDiscussionModal &#x3D; false;
+  }
+}
 </code></pre>
         </div>
     </div>

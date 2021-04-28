@@ -97,6 +97,9 @@
                                     <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
                                 </li>
                                 <li class="link">
@@ -322,6 +325,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
@@ -607,7 +613,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(discussService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>, formBuilder: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, telemetryUtils: <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>)</code>
+                            <code>constructor(discussService: <a href="../injectables/DiscussionService.html" >DiscussionService</a>, formBuilder: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, telemetryUtils: <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>, configService: <a href="../injectables/ConfigService.html" >ConfigService</a>)</code>
                         </td>
                     </tr>
     
@@ -866,6 +872,21 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> cIds</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>cIds:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> createErrorMsg</b>
                         </td>
                     </tr>
@@ -1031,6 +1052,26 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> showSelectCategory</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>showSelectCategory:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> startForm</b>
                         </td>
                     </tr>
@@ -1072,6 +1113,7 @@ import { NSDiscussData } from &#x27;./../../models/discuss.model&#x27;;
 import { TelemetryUtilsService } from &#x27;./../../telemetry-utils.service&#x27;;
 /* tslint:disable */
 import * as _ from &#x27;lodash&#x27;
+import { ConfigService } from &#x27;../../services/config.service&#x27;;
 /* tslint:enable */
 
 @Component({
@@ -1091,19 +1133,28 @@ export class DiscussStartComponent implements OnInit {
   postTagsArray: string[] &#x3D; [];
   uploadSaveData &#x3D; false;
   showErrorMsg &#x3D; false;
+  showSelectCategory &#x3D; false;
   createErrorMsg &#x3D; &#x27;&#x27;;
   defaultError &#x3D; &#x27;Something went wrong, Please try again after sometime!&#x27;;
 
   enableSubmitButton &#x3D; false;
+  cIds: any;
 
   constructor(
     private discussService: DiscussionService,
     private formBuilder: FormBuilder,
-    private telemetryUtils: TelemetryUtilsService
+    private telemetryUtils: TelemetryUtilsService,
+    private configService: ConfigService
   ) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
+    this.cIds &#x3D; this.configService.getCategories()
+    if (this.categoryId) {
+      this.showSelectCategory &#x3D; false;
+    } else {
+      this.showSelectCategory &#x3D; true;
+    }
     this.initializeData();
     this.initializeFormFields(this.topicData);
   }
@@ -1113,6 +1164,7 @@ export class DiscussStartComponent implements OnInit {
       question: [&#x27;&#x27;, Validators.required],
       description: [&#x27;&#x27;, Validators.required],
       tags: [],
+      category: []
     });
     this.startForm.valueChanges.subscribe(val &#x3D;&gt; {
       this.validateForm();
@@ -1120,7 +1172,7 @@ export class DiscussStartComponent implements OnInit {
 
     /** If popup is in edit mode */
     if (topicData) {
-      const tags &#x3D; _.map(_.get(topicData, &#x27;tags&#x27;) , (element) &#x3D;&gt; {
+      const tags &#x3D; _.map(_.get(topicData, &#x27;tags&#x27;), (element) &#x3D;&gt; {
         return _.get(element, &#x27;value&#x27;);
       });
       this.startForm.controls[&#x27;question&#x27;].setValue(_.get(topicData, &#x27;title&#x27;));
@@ -1139,6 +1191,25 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
+
+    if (this.configService.hasContext() &amp;&amp; !this.categoryId) {
+      const req &#x3D; {
+        cids: this.cIds.result
+      };
+
+      this.discussService.getContextBasedDiscussion(req).subscribe((data: any) &#x3D;&gt; {
+        this.allCategories &#x3D; data.result
+        if (this.startForm.get(&#x27;category&#x27;)) { }
+        this.startForm.controls[&#x27;category&#x27;].setValue(this.allCategories[0].cid)
+      })
+    } else {
+      this.discussService.fetchAllCategories().subscribe((data: any) &#x3D;&gt; {
+        this.allCategories &#x3D; data
+        if (this.startForm.get(&#x27;category&#x27;)) { }
+        this.startForm.controls[&#x27;category&#x27;].setValue(this.allCategories[1].cid)
+      })
+    }
+
     this.discussService.fetchAllTag().subscribe(data &#x3D;&gt; {
       const tags &#x3D; _.get(data, &#x27;tags&#x27;);
       this.allTags &#x3D; _.map(tags, (tag) &#x3D;&gt; tag.value);
@@ -1155,7 +1226,7 @@ export class DiscussStartComponent implements OnInit {
     this.uploadSaveData &#x3D; true;
     this.showErrorMsg &#x3D; false;
     const postCreateReq &#x3D; {
-      cid: this.categoryId,
+      cid: this.categoryId ? this.categoryId : parseInt(form.value.category),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,
@@ -1204,7 +1275,7 @@ export class DiscussStartComponent implements OnInit {
   }
 
   closeModal(eventMessage: string) {
-    this.close.emit({message: eventMessage});
+    this.close.emit({ message: eventMessage });
   }
 
   logTelemetry(event) {
