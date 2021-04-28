@@ -28,8 +28,7 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
   // Input parameters for infinite scroll
   InfiniteScrollConfig = {
     modalScrollDistance: 2,
-    modalScrollThrottle: 500,
-    scrollUpDistance: 1.5,
+    modalScrollThrottle: 50
   };
 
   constructor(
@@ -52,7 +51,8 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
    */
   ngAfterViewChecked() {
     if (this.elementView && this.elementView.nativeElement) {
-      this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight) + 'px';
+      // the number 10 is just a random value to reduce the height of the parent container to the infinite scroll
+      this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight - 10) + 'px';
     }
   }
 
@@ -98,7 +98,7 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
       this.discussionList = [];
-      this.pagination.currentPage =  this.pagination.first.page;
+      this.pagination.currentPage = this.pagination.first.page;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
@@ -108,7 +108,7 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
    * @description - call the topic get api when scrolled down and setting the limit of API Call
    */
   onModalScrollDown() {
-     if (this.pagination.currentPage !== this.pagination.pageCount) {
+    if (this.pagination.currentPage !== this.pagination.pageCount) {
       this.pagination.currentPage = this.pagination.next.page;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
