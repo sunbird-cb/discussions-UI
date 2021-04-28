@@ -1,0 +1,1864 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>sunbird-ed-discussions-ui-v8 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">sunbird-ed-discussions-ui-v8 documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">sunbird-ed-discussions-ui-v8 documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/ComponentsModule.html" >ComponentsModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/DiscussionUiModule.html" >DiscussionUiModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ElementsModule.html" >ElementsModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PipesModule.html" >PipesModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppLoaderComponent.html" >AppLoaderComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AvatarPhotoComponent.html" >AvatarPhotoComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussCategoryComponent.html" >DiscussCategoryComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussHomeComponent.html" >DiscussHomeComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussStartComponent.html" >DiscussStartComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussTagsComponent.html" >DiscussTagsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DiscussionDetailsComponent.html" >DiscussionDetailsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LibEntryComponent.html" >LibEntryComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MyDiscussionComponent.html" >MyDiscussionComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PostReplyComponent.html" >PostReplyComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RelatedDiscussionComponent.html" >RelatedDiscussionComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SidePannelComponent.html" >SidePannelComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TagAllDiscussionComponent.html" >TagAllDiscussionComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/ConfigService.html" >ConfigService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/DiscussUtilsService.html" >DiscussUtilsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/DiscussionEventsService.html" >DiscussionEventsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/DiscussionService.html"  class="active" >DiscussionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-interfaces-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/IMenuOptions.html" >IMenuOptions</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/ITelemetryObj.html" >ITelemetryObj</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/Icategory.html" >Icategory</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/Icontext.html" >Icontext</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/IdiscussionConfig.html" >IdiscussionConfig</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-plus"></span>
+                            <span>Pipes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-pipes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-pipes-links"
+                            >
+                                <li class="link">
+                                    <a href="../pipes/PipeFilterPipe.html" >PipeFilterPipe</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../pipes/PipeRelativeTimePipe.html" >PipeRelativeTimePipe</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../pipes/SortByPipe.html" >SortByPipe</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../pipes/SplitInitialsPipe.html" >SplitInitialsPipe</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">sunbird-ed-discussions-ui-v8 documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/ComponentsModule.html" >ComponentsModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/DiscussionUiModule.html" >DiscussionUiModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ElementsModule.html" >ElementsModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PipesModule.html" >PipesModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppLoaderComponent.html" >AppLoaderComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AvatarPhotoComponent.html" >AvatarPhotoComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/CategoryCardComponent.html" >CategoryCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussAllComponent.html" >DiscussAllComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussCardComponent.html" >DiscussCardComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussCategoryComponent.html" >DiscussCategoryComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussHomeComponent.html" >DiscussHomeComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussStartComponent.html" >DiscussStartComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussTagsComponent.html" >DiscussTagsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DiscussionDetailsComponent.html" >DiscussionDetailsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LibEntryComponent.html" >LibEntryComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MyDiscussionComponent.html" >MyDiscussionComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PostReplyComponent.html" >PostReplyComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RelatedDiscussionComponent.html" >RelatedDiscussionComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SidePannelComponent.html" >SidePannelComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TagAllDiscussionComponent.html" >TagAllDiscussionComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/ConfigService.html" >ConfigService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/DiscussUtilsService.html" >DiscussUtilsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/DiscussionEventsService.html" >DiscussionEventsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/DiscussionService.html"  class="active" >DiscussionService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/TelemetryUtilsService.html" >TelemetryUtilsService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#interfaces-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/IMenuOptions.html" >IMenuOptions</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/ITelemetryObj.html" >ITelemetryObj</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/Icategory.html" >Icategory</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/Icontext.html" >Icontext</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/IdiscussionConfig.html" >IdiscussionConfig</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-plus"></span>
+                                   <span>Pipes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#pipes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="pipes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../pipes/PipeFilterPipe.html" >PipeFilterPipe</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../pipes/PipeRelativeTimePipe.html" >PipeRelativeTimePipe</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../pipes/SortByPipe.html" >SortByPipe</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../pipes/SplitInitialsPipe.html" >SplitInitialsPipe</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>DiscussionService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+    </li>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="infos">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/discussion-ui/src/lib/services/discussion.service.ts</code>
+        </p>
+
+
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>constructor(http: HttpClient, csModule: CsModule)</code>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                <h3 id="methods">Methods</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> initializeUserDetails</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>initializeUserDetails(userName: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> appendPage</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>appendPage(page: any, url: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchAllTags</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchAllTags()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> createPost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>createPost(data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchAllCategories</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchAllCategories()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchSingleCategoryDetails</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchSingleCategoryDetails(cid: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchSingleCategoryDetailsSort</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchSingleCategoryDetailsSort(cid: number, sort: any, page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchAllTag</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchAllTag()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> contextBasedTags</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>contextBasedTags(data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchPostDetails</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchPostDetails()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> votePost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>votePost(pid: number, data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> deleteVotePost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>deleteVotePost(pid: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> bookmarkPost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>bookmarkPost(pid: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> deleteBookmarkPost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>deleteBookmarkPost(pid: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> replyPost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>replyPost(tid: number, data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchRecentD</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchRecentD(page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getTagBasedDiscussion</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getTagBasedDiscussion(tag: string, page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getContextBasedDiscussion</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getContextBasedDiscussion(data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getContextBasedTagDiscussion</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getContextBasedTagDiscussion(data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchPopularD</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchPopularD(page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchTopicById</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchTopicById(topicId: number, slug: any, page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchTopicByIdSort</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchTopicByIdSort(topicId: number, sort: any, page: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchUnreadCOunt</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchUnreadCOunt()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchProfileInfo</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchProfileInfo(slug: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchUpvoted</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchUpvoted()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchDownvoted</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchDownvoted()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchSaved</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchSaved()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> fetchUserProfile</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>fetchUserProfile(userName: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getContextBasedTopic</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getContextBasedTopic(slug: string, pageId: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> registerUser</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>registerUser(data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> setContext</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>setContext(key: any, value: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> getContext</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>getContext(key: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> editPost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>editPost(pid: number, data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> deletePost</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>deletePost(pid: number, uid: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> editTopic</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>editTopic(tid: number, data: any)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> deleteTopic</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>deleteTopic(tid: number)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> _context</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>_context:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> _forumIds</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>_forumIds:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> _userDetails</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>_userDetails:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> _userName</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>_userName:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b><span class="modifier">Private</span> csDiscussionService</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>csDiscussionService:     <code><a href="../injectables/DiscussionService.html" target="_self" >CsDiscussionService</a></code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> forumIds</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>forumIds:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> userDetails</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>userDetails:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> userName</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>userName:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> usr</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>usr:     <code>any</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre><code class="hljs javascript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
+import { of as observableOf, throwError as observableThrowError, Observable, throwError } from &#x27;rxjs&#x27;;
+import { map, catchError } from &#x27;rxjs/operators&#x27;;
+import { HttpClient, HttpResponse } from &#x27;@angular/common/http&#x27;;
+import { urlConfig } from &#x27;./../config/url.config&#x27;;
+import { NSDiscussData } from &#x27;../models/discuss.model&#x27;;
+
+/* tslint:disable */
+import * as _ from &#x27;lodash&#x27;
+import { CsDiscussionService } from &#x27;@project-sunbird/client-services/services/discussion&#x27;;
+import { CsModule } from &#x27;@project-sunbird/client-services&#x27;;
+/* tslint:enable */
+
+export const CONTEXT_PROPS &#x3D; {
+  cid: &#x27;cid&#x27;,
+  tid: &#x27;tid&#x27;,
+  uid: &#x27;uid&#x27;
+};
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class DiscussionService {
+
+  // tslint:disable-next-line:variable-name
+  private _userDetails: any;
+
+  // tslint:disable-next-line:variable-name
+  private _userName: any;
+
+  // tslint:disable-next-line:variable-name
+  private _forumIds: any;
+  private csDiscussionService: CsDiscussionService;
+
+  // tslint:disable-next-line:variable-name
+  private _context: any &#x3D; {};
+
+  usr: any;
+
+  constructor(
+    private http: HttpClient,
+    @Inject(&#x27;CsModule&#x27;) private csModule: CsModule
+  ) {
+    // TODO: Take from the logged in user data;
+    // this.usr &#x3D; this.configSvc.userProfile
+    this.usr &#x3D; { userId: &#x27;1234&#x27; };
+    console.log(&#x27;CsModule init---&#x27;, CsModule.instance);
+    this.csDiscussionService &#x3D; CsModule.instance.discussionService;
+
+  }
+
+  initializeUserDetails(userName) {
+    console.log(&#x27;userName&#x27;, userName);
+    this.fetchUserProfile(userName).subscribe(response &#x3D;&gt; {
+      console.log(&#x27;user&#x27;, response);
+      this.userDetails &#x3D; response;
+    }, (error) &#x3D;&gt; {
+      // TODO: toaster error
+      console.log(&#x27;error fetching user details&#x27;);
+    });
+  }
+
+  appendPage(page: any, url: string) {
+    if (page) {
+      return &#x60;${url}?page&#x3D;${page}&#x60;;
+    }
+    return &#x60;${url}?page&#x3D;1&#x60;;
+  }
+
+  fetchAllTags() {
+    // const tags &#x3D; this.http.get(urlConfig.getAllTags())
+    //   .toPromise();
+    // return tags;
+    console.log(&#x27;innn fetchAllTags&#x27;);
+    return this.csDiscussionService.fetchAllTags();
+  }
+
+  createPost(data: any) {
+    // return this.http.post(urlConfig.createPost(), data);
+    return this.csDiscussionService.createPost(data);
+  }
+  /**
+   * @description To get all the categories
+   */
+
+  fetchAllCategories() {
+    // return this.http.get&lt;NSDiscussData.ICategorie[]&gt;(urlConfig.getAllCategories()).pipe(
+    //   map((data: any) &#x3D;&gt; {
+    //       // Taking only &quot;categories&quot; from the response
+    //       const resp &#x3D; (data as any).categories;
+    //       return resp;
+    //   }),
+    //   catchError( error &#x3D;&gt; {
+    //     return throwError( &#x27;Something went wrong!&#x27; );
+    //   })
+    // );
+    console.log(&#x27;in fetchall categories&#x27;);
+    return this.csDiscussionService.fetchAllCategories().pipe(
+      map((data: any) &#x3D;&gt; data.categories)
+    );
+  }
+
+  fetchSingleCategoryDetails(cid: any) {
+    return this.csDiscussionService.fetchSingleCategoryDetails(cid);
+    // return this.http.get&lt;NSDiscussData.ICategorie&gt;(urlConfig.getSingleCategoryDetails(cid));
+  }
+  fetchSingleCategoryDetailsSort(cid: number, sort: any, page?: any) {
+    return this.csDiscussionService.fetchSingleCategoryDetails(cid);
+  }
+
+  fetchAllTag() {
+    return this.csDiscussionService.fetchAllTags();
+    // return this.http.get(urlConfig.getAllTags());
+  }
+
+  contextBasedTags(data) {
+    return this.csDiscussionService.contextBasedTags(data);
+    // return this.http.get(urlConfig.getAllTags());
+  }
+
+  fetchPostDetails() {
+    return this.csDiscussionService.fetchAllTags();
+    // return this.http.get(urlConfig.getAllTags());
+  }
+
+  votePost(pid: number, data: any) {
+    return this.csDiscussionService.votePost(pid, data);
+    // const url &#x3D; urlConfig.votePost(pid);
+    // return this.http.post(url, data);
+  }
+
+  deleteVotePost(pid: number) {
+    // const url &#x3D; urlConfig.votePost(pid);
+    // return this.http.delete(url);
+    return this.csDiscussionService.deleteVotePost(pid);
+  }
+
+  bookmarkPost(pid: number) {
+    // const url &#x3D; urlConfig.bookmarkPost(pid);
+    // return this.http.post(url, {});
+    return this.csDiscussionService.bookmarkPost(pid);
+  }
+
+  deleteBookmarkPost(pid: number) {
+    // const url &#x3D; urlConfig.bookmarkPost(pid);
+    // return this.http.delete(url);
+    return this.csDiscussionService.deleteBookmarkPost(pid);
+  }
+
+  replyPost(tid: number, data: any) {
+    // const url &#x3D; urlConfig.replyPost(tid);
+    // return this.http.post(url, data);
+    return this.csDiscussionService.replyPost(tid, data);
+  }
+
+  fetchRecentD(page?: any) {
+    return this.csDiscussionService.recentPost(page);
+  }
+
+  getTagBasedDiscussion(tag?: string, page?: any) {
+    return this.csDiscussionService.getTagBasedDiscussion(tag);
+  }
+
+  getContextBasedDiscussion(data) {
+    return this.csDiscussionService.getContextBasedDiscussion(data);
+  }
+
+  getContextBasedTagDiscussion(data) {
+    return this.csDiscussionService.getContextBasedTagDiscussion(data);
+  }
+
+  fetchPopularD(page?: any) {
+    return this.csDiscussionService.popularPost(page);
+  }
+
+  fetchTopicById(topicId: number, slug?: any, page?: any) {
+    // let url &#x3D; urlConfig.getTopic() + &#x27;/&#x27; + topicId.toString() + &#x27;/&#x27; + slug;
+    // url &#x3D; this.appendPage(page, url);
+    // return this.http.get(url);
+    return this.csDiscussionService.fetchTopicById(topicId, slug, page);
+  }
+
+  fetchTopicByIdSort(topicId: number, sort: any, page?: any) {
+    // let url &#x3D; urlConfig.getTopic + topicId.toString();
+    // url &#x3D; this.appendPage(page, url);
+    // return this.http.get(&#x60;${url}&amp;sort&#x3D;${sort}&#x60;);
+    return this.csDiscussionService.fetchTopicById(topicId, sort, page);
+  }
+
+  fetchUnreadCOunt() {
+    // return this.http.get&lt;any&gt;(urlConfig.unread());
+    return this.csDiscussionService.fetchUnreadCOunt();
+
+  }
+  // fetchProfile() {
+  //   // return this.http.get(urlConfig.profile());
+  //   return this.csDiscussionService.fetchProfile();
+  // }
+  fetchProfileInfo(slug: string) {
+    // return this.http.get(urlConfig.fetchProfile(slug));
+    return this.csDiscussionService.fetchProfileInfo(slug);
+  }
+  fetchUpvoted() {// 0
+    // return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, &#x27;username&#x27;)));
+    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, &#x27;username&#x27;));
+  }
+  fetchDownvoted() { // 0
+    // return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, &#x27;username&#x27;)));
+    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, &#x27;username&#x27;));
+  }
+  fetchSaved() { // 0 this.usr.userId
+    // return this.http.get(urlConfig.listSaved(_.get(this._userDetails, &#x27;username&#x27;)));
+    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, &#x27;username&#x27;));
+  }
+
+  fetchUserProfile(userName) {
+    // return this.http.get&lt;any&gt;(urlConfig.userDetails(userName));
+    return this.csDiscussionService.getUserDetails(this.userName);
+  }
+
+  getContextBasedTopic(slug: string, pageId: number) {
+    // return this.http.get(urlConfig.getContextBasedTopics(slug));
+    return this.csDiscussionService.getContextBasedTopic(slug, pageId);
+  }
+
+  registerUser(data) {
+    return this.http.post(urlConfig.registerUser(), data);
+  }
+
+  set userDetails(userDetails) {
+    this._userDetails &#x3D; userDetails;
+  }
+
+  get userDetails() {
+    return this._userDetails;
+  }
+
+  set userName(userName) {
+    this._userName &#x3D; userName;
+  }
+
+  get userName() {
+    return this._userName;
+  }
+
+  set forumIds(ids) {
+    this._forumIds &#x3D; ids;
+  }
+
+  get forumIds() {
+    return this._forumIds;
+  }
+
+  setContext(key, value) {
+    if (CONTEXT_PROPS[key]) {
+      this._context[key] &#x3D; value;
+    } else {
+      console.log(&#x27;Context can not be set for this key: &#x27;, key);
+    }
+  }
+
+  getContext(key?: string) {
+    return key ? this._context[key] : this._context;
+  }
+
+  editPost(pid: number, data: any) {
+    return this.csDiscussionService.editPost(pid, data);
+  }
+
+  deletePost(pid: number, uid: number) {
+    return this.csDiscussionService.deletePost(pid, uid);
+  }
+
+  editTopic(tid: number, data: any) {
+    return this.csDiscussionService.editTopic(tid, data);
+  }
+
+  deleteTopic(tid: number) {
+    return this.csDiscussionService.deleteTopic(tid);
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
+
+    </body>
+</html>
