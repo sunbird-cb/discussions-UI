@@ -9,7 +9,6 @@ import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
 import { ConfigService } from '../../services/config.service';
 /* tslint:enable */
-
 @Component({
   selector: 'lib-discuss-home',
   templateUrl: './discuss-home.component.html',
@@ -24,15 +23,14 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
   categoryId: string;
   isTopicCreator = false;
   showLoader = false;
+  pagination = Object.create({});
 
   // Input parameters for infinite scroll
-  modalScrollDistance = 2;
-  modalScrollThrottle = 500;
-  scrollUpDistance = 1.5;
-
-  currentPage = 0;
-  pageSize: number;
-  totalTopics: number;
+  InfiniteScrollConfig = {
+    modalScrollDistance: 2,
+    modalScrollThrottle: 500,
+    scrollUpDistance: 1.5,
+  };
 
   constructor(
     public router: Router,
@@ -76,16 +74,12 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
    */
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    this.currentPage++;
-    this.discussionService.getContextBasedTopic(slug, this.currentPage).subscribe(data => {
+    const scrollIndex = this.pagination.currentPage ? this.pagination.currentPage : 1;
+    this.discussionService.getContextBasedTopic(slug, scrollIndex).subscribe(data => {
+      this.pagination = data.pagination;
       this.showLoader = false;
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
-      this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
-      if (this.currentPage === 1) {
-        // TODO: need to get it from child element
-        this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-      }
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
@@ -104,18 +98,18 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
       this.discussionList = [];
-      this.currentPage = 0;
+      this.pagination.currentPage =  this.pagination.first.page;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
   }
 
   /**
-   * @description - call the topic get api when scrolled down
+   * @description - call the topic get api when scrolled down and setting the limit of API Call
    */
   onModalScrollDown() {
-    const pageId = this.currentPage;
-    if ((this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
+     if (this.pagination.currentPage !== this.pagination.pageCount) {
+      this.pagination.currentPage = this.pagination.next.page;
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
   }
