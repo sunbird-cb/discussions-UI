@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -15,8 +15,9 @@ import { ConfigService } from '../../services/config.service';
   templateUrl: './discuss-home.component.html',
   styleUrls: ['./discuss-home.component.css']
 })
-export class DiscussHomeComponent implements OnInit {
+export class DiscussHomeComponent implements OnInit, AfterViewChecked {
 
+  @ViewChild('scrollContainerHeight', { static: false }) elementView: ElementRef;
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
@@ -29,7 +30,6 @@ export class DiscussHomeComponent implements OnInit {
   modalScrollDistance = 2;
   modalScrollThrottle = 500;
   scrollUpDistance = 1.5;
-  containerHeight: string;
 
   currentPage = 0;
   pageSize: number;
@@ -49,6 +49,14 @@ export class DiscussHomeComponent implements OnInit {
       this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
+  }
+  /**
+   * @description - set the scroll container height
+   */
+  ngAfterViewChecked() {
+    if (this.elementView && this.elementView.nativeElement) {
+      this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight) + 'px';
+    }
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -77,12 +85,6 @@ export class DiscussHomeComponent implements OnInit {
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
       if (this.currentPage === 1) {
         this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-        if (this.totalTopics > this.pageSize) {   // setting the scrollbar container height
-          this.containerHeight = ((132 * this.pageSize)) + 'px';
-        } else {
-          this.containerHeight = ((132 * this.totalTopics)) + 'px';
-
-        }
       }
     }, error => {
       this.showLoader = false;
