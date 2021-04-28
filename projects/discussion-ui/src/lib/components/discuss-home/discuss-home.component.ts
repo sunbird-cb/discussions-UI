@@ -83,6 +83,7 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
       if (this.currentPage === 1) {
+        // TODO: need to get it from child element
         this.pageSize = _.get(data, 'nextStart'); // count of topics per page
       }
     }, error => {
