@@ -50,7 +50,7 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
    * @description - set the scroll container height
    */
   ngAfterViewChecked() {
-    if (this.elementView && this.elementView.nativeElement) {
+    if (this.elementView && this.elementView.nativeElement && !this.elementView.nativeElement.style.height) {
       // the number 10 is just a random value to reduce the height of the parent container to the infinite scroll
       this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight - 10) + 'px';
     }
