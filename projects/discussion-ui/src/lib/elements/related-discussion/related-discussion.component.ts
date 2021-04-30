@@ -40,7 +40,7 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
       (data: NSDiscussData.ICategoryData) => {
         this.relatedDiscussions = [];
         _.filter(data.topics, (topic) => {
-          if (this.topicId != topic.tid) {
+          if (topic.deleted == 0 && this.topicId != topic.tid) {
             this.relatedDiscussions.push(topic)
           }
         })
