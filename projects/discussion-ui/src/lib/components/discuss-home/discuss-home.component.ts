@@ -30,9 +30,10 @@ export class DiscussHomeComponent implements OnInit {
   modalScrollThrottle = 500;
   scrollUpDistance = 5;
 
-  currentPage = 0 ;
+  currentPage = 0;
   pageSize: number;
   totalTopics: number;
+  title: any;
 
   constructor(
     public router: Router,
@@ -70,11 +71,13 @@ export class DiscussHomeComponent implements OnInit {
     this.showLoader = true;
     // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
     this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
+      console.log('------------name----------', data)
       this.showLoader = false;
+      this.title = _.get(data, 'title')
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
       if (this.currentPage === 1) {
-      this.pageSize = _.get(data, 'nextStart'); // count of topics per page
+        this.pageSize = _.get(data, 'nextStart'); // count of topics per page
       }
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
     }, error => {
@@ -106,8 +109,8 @@ export class DiscussHomeComponent implements OnInit {
    */
   onModalScrollDown() {
     const pageId = this.currentPage - 1;
-    if ( (this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
-    this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    if ((this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
   }
 }

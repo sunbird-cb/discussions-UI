@@ -18,7 +18,7 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
 export class TagAllDiscussionComponent implements OnInit {
 
   tagName!: any
-  similarPosts :any[]
+  similarPosts: any[]
   queryParam: any
   fetchSingleCategoryLoader = false
   currentActivePage: 1
@@ -33,7 +33,7 @@ export class TagAllDiscussionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private discussService: DiscussionService, 
+    private discussService: DiscussionService,
     public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
     private telemetryUtils: TelemetryUtilsService,
@@ -60,7 +60,13 @@ export class TagAllDiscussionComponent implements OnInit {
     this.fetchSingleCategoryLoader = true
     this.discussService.getTagBasedDiscussion(tagname).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
-        this.similarPosts = data.topics
+        this.similarPosts = [];
+        _.filter(data.topics, (topic) => {
+          if (topic.user.uid !== 0) {
+            this.similarPosts.push(topic)
+          }
+        })
+        // this.similarPosts = data.topics
         this.paginationData = data.pagination
         this.fetchSingleCategoryLoader = false
         this.setPagination()
@@ -82,7 +88,13 @@ export class TagAllDiscussionComponent implements OnInit {
 
     this.discussService.getContextBasedTagDiscussion(req).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
-        this.similarPosts = data.result
+        this.similarPosts = [];
+        _.filter(data.topics, (topic) => {
+          if (topic.user.uid !== 0) {
+            this.similarPosts.push(topic)
+          }
+        })
+        // this.similarPosts = data.result
         // this.paginationData = data.pagination
         this.fetchSingleCategoryLoader = false
         this.setPagination()

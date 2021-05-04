@@ -63,7 +63,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
         this.selectedTab = selectedItem
       }
       return true
-    } else if (selectedItem === 'categories' && !this.selectedTab) {
+    } else if (selectedItem === 'all-discussions' && !this.selectedTab) {
       return true
     }
     return false

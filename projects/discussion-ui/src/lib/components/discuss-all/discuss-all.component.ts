@@ -114,7 +114,13 @@ export class DiscussAllComponent implements OnInit {
     this.showLoader = true;
     return this.discussionService.fetchPopularD(page).subscribe((response: any) => {
       this.showLoader = false;
-      this.discussionList = _.get(response, 'topics')
+      this.discussionList = [];
+      _.filter(response.topics, (topic) => {
+        if (topic.user.uid !== 0) {
+          this.discussionList.push(topic)
+        }
+      })
+      // this.discussionList = _.get(response, 'topics')
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
@@ -135,7 +141,12 @@ export class DiscussAllComponent implements OnInit {
     return this.discussionService.fetchRecentD(page).subscribe(
       (data: any) => {
         this.showLoader = false;
-        this.discussionList = _.get(data, 'topics')
+        this.discussionList = [];
+        _.filter(data.topics, (topic) => {
+          if (topic.user.uid !== 0) {
+            this.discussionList.push(topic)
+          }
+        })
       }, error => {
         this.showLoader = false;
         // TODO: Toaster

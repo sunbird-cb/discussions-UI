@@ -9,6 +9,7 @@ import { RelatedDiscussionComponent } from './related-discussion/related-discuss
 import { PipesModule } from './../pipes/pipes.module';
 
 import { PostReplyComponent } from './post-reply/post-reply.component';
+import { SlidersComponent } from './sliders/sliders.component';
 @NgModule({
   declarations: [
     PostReplyComponent,
@@ -16,7 +17,8 @@ import { PostReplyComponent } from './post-reply/post-reply.component';
     DiscussCardComponent,
     AvatarPhotoComponent,
     AppLoaderComponent,
-    RelatedDiscussionComponent
+    RelatedDiscussionComponent,
+    SlidersComponent
   ],
   imports: [
     CommonModule, PipesModule,
@@ -27,9 +29,11 @@ import { PostReplyComponent } from './post-reply/post-reply.component';
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
-    AppLoaderComponent, RelatedDiscussionComponent,
+    AppLoaderComponent, 
+    RelatedDiscussionComponent,
     AppLoaderComponent,
-    PostReplyComponent
+    PostReplyComponent,
+    SlidersComponent
   ]
 })
 export class ElementsModule { }
