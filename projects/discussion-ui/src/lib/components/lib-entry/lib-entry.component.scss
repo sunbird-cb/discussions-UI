@@ -61,16 +61,19 @@ s
 
     .discussion-forum-content {
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        // grid-template-columns: 1fr 4fr;
+        grid-template-columns: auto 1fr;
 
         .discuss-left-panel {
-            padding: 1.5rem;
+            // padding: 1.5rem;
+            padding: 1.5rem 0;
             position: relative;
             z-index: 2;
         }
 
         .discuss-right-panel {
-            padding: 1.5rem;
+            // padding: 1.5rem;
+            padding: 1.5rem 0 1.5rem 1.5rem;
         }
     }
 }
