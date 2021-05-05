@@ -17,6 +17,7 @@ import { TagInputModule } from 'ngx-chips';
 import { DiscussAllComponent } from './discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
 @NgModule({
   declarations: [
     SidePannelComponent,
@@ -28,6 +29,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     DiscussStartComponent,
     DiscussAllComponent,
     TagAllDiscussionComponent,
+    TrendingTagsComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     DiscussStartComponent,
     // TODO: Add this components
     //  DiscussAllComponent,
-    TagAllDiscussionComponent
+    TagAllDiscussionComponent,
+    TrendingTagsComponent,
   ],
   providers: [
     DiscussionService, ConfigService

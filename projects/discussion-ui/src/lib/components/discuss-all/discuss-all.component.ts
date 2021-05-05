@@ -27,14 +27,16 @@ export class DiscussAllComponent implements OnInit {
   categoryId: string;
   isTopicCreator = false;
   showLoader = false;
-  currentFilter = 'recent'
-  currentActivePage: number = 1;
+  currentFilter = 'recent';
+  currentActivePage = 1;
   fetchNewData: false;
   // modalRef: BsModalRef;
   paramsSubscription: Subscription;
   getParams: any;
   cIds: any;
   allTopics: any;
+  trendingTags!: NSDiscussData.ITag[];
+  sticky = false;
 
 
   constructor(
@@ -50,13 +52,17 @@ export class DiscussAllComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
 
-    this.cIds = this.configService.getCategories()
+    this.cIds = this.configService.getCategories();
     this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
     if (this.configService.hasContext()) {
-      this.getContextBasedDiscussion(this.cIds.result)
+      this.getContextBasedDiscussion(this.cIds.result);
+      // This is to show context based trending tags
+      this.getContextBasedTags(this.cIds.result);
     } else {
       // this.currentActivePage = 1
       this.refreshData();
+      // This is to show trending tags
+      this.fetchAllTags();
     }
 
   }
@@ -95,10 +101,10 @@ export class DiscussAllComponent implements OnInit {
       this.currentFilter = key;
       switch (key) {
         case 'recent':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillrecent();
           break;
         case 'popular':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillPopular()
+          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillPopular();
           break;
         default:
           break;
@@ -107,7 +113,7 @@ export class DiscussAllComponent implements OnInit {
   }
 
   fillrecent(_page?: any) {
-    this.getRecentData(_page)
+    this.getRecentData(_page);
   }
 
   fillPopular(page?: any) {
@@ -117,9 +123,9 @@ export class DiscussAllComponent implements OnInit {
       this.discussionList = [];
       _.filter(response.topics, (topic) => {
         if (topic.user.uid !== 0) {
-          this.discussionList.push(topic)
+          this.discussionList.push(topic);
         }
-      })
+      });
       // this.discussionList = _.get(response, 'topics')
     }, error => {
       this.showLoader = false;
@@ -129,11 +135,11 @@ export class DiscussAllComponent implements OnInit {
   }
 
   getContextBasedDiscussion(cid: any) {
-    this.currentFilter === 'recent' ? this.getContextData(cid) : this.getContextData(cid)
+    this.currentFilter === 'recent' ? this.getContextData(cid) : this.getContextData(cid);
   }
 
   refreshData(page?: any) {
-    this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page)
+    this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page);
   }
 
   getRecentData(page: any) {
@@ -144,9 +150,9 @@ export class DiscussAllComponent implements OnInit {
         this.discussionList = [];
         _.filter(data.topics, (topic) => {
           if (topic.user.uid !== 0) {
-            this.discussionList.push(topic)
+            this.discussionList.push(topic);
           }
-        })
+        });
       }, error => {
         this.showLoader = false;
         // TODO: Toaster
@@ -165,12 +171,39 @@ export class DiscussAllComponent implements OnInit {
       (data: any) => {
         this.showLoader = false;
         this.allTopics = _.map(data.result, (topic) => topic.topics);
-        this.discussionList = _.flatten(this.allTopics)
+        this.discussionList = _.flatten(this.allTopics);
       }, error => {
         this.showLoader = false;
         // TODO: Toaster
         console.log('error fetching topic list', error);
       });
+  }
+
+  fetchAllTags() {
+    this.showLoader = true;
+    this.discussionService.fetchAllTag().subscribe(data => {
+      this.showLoader = false;
+      this.trendingTags = _.get(data, 'tags');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
+  }
+
+  getContextBasedTags(cid: any) {
+    const req = {
+      cids: cid
+    }
+    this.showLoader = true;
+    this.discussionService.contextBasedTags(req).subscribe(data => {
+      this.showLoader = false;
+      this.trendingTags = _.get(data, 'result');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
   }
 
   // startDiscussion(template: TemplateRef<any>) {
@@ -194,7 +227,7 @@ export class DiscussAllComponent implements OnInit {
 
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
-      this.getContextBasedDiscussion(this.cIds.result)
+      this.getContextBasedDiscussion(this.cIds.result);
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
