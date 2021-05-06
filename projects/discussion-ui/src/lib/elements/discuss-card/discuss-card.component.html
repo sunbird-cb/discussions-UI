@@ -21,7 +21,7 @@
       <span class="timing">{{discussionData.lastposttime | date}}</span>
     </div>
   </div>
-  <div class="tags">
+  <div class="tags margin-bottom-s">
     <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
       <span *ngFor="let tag of discussionData.tags" class="tag" [ngStyle]="getBgColor(tag.value)">
         {{tag.value}}

@@ -21,6 +21,7 @@ $size-xxl: 40px;
     --teal: #20c997;
     --cyan: #17a2b8;
     --black: #000000;
+    --black60: rgba(0,0,0,.6);
     --white: #ffffff;
     --light-gray: #f5f6fa;
     --gray-100:#CCCCCC;
@@ -38,7 +39,9 @@ $size-xxl: 40px;
     border-radius: unset;
     background: inherit !important;
     z-index: unset;
-    padding-bottom: 8px;
+    // padding-bottom: 8px;
+    padding: 1.5em;
+    font-family: inherit;
 }
 
 .tabs-content {
@@ -96,7 +99,7 @@ $size-xxl: 40px;
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 4px;
     width: inherit;
     z-index: 2;
@@ -123,11 +126,12 @@ $size-xxl: 40px;
     text-transform: lowercase;
     // padding: 0.5rem 1rem;
     border-radius: 1.5rem;
-    padding: 5px 15px;
+    padding: 3px 15px;
     min-width: 50px;
     justify-content: center;
     border-radius: 20px 5px 5px 20px;
     box-sizing: content-box;
+    line-height:21px;
 }
 
 .count {
@@ -140,7 +144,7 @@ $size-xxl: 40px;
     justify-content: center;
     width: auto;
     min-width: 1rem;
-    margin: 0 0 0 1rem;
+    margin: 5px 0 5px 1rem;
     color: var(--blue);
     line-height: 21px;
 }
