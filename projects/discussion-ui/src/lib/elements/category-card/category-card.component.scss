@@ -7,7 +7,7 @@
     position: relative;
     border-radius: 4px;
     // height: 12.8rem;
-    height: auto;
+    height: 100%;
     width: auto;
     padding: 1rem;
     z-index: 2;
@@ -22,8 +22,7 @@
         align-items: center;
 
         .catergory-card-header-image {
-            border: 1px solid #fed7d7;
-            ;
+            // border: 1px solid #fed7d7;
             border-radius: 50%;
             max-width: 50px;
             width: 100%;
@@ -32,10 +31,11 @@
 
             .category-card-img {
                 position: absolute;
-                top: 8px;
-                left: 8px;
-                width: 32px;
-                height: 32px;
+                top: 3px;
+                left: 3px;
+                width: 45px;
+                height: 45px;
+                vertical-align: middle;
             }
         }
 
@@ -83,10 +83,14 @@
             .post-label {
                 margin-left: 16px;
                 font-size: 14px;
+                font-weight: 700 !important;
+                font-family: inherit;
             }
 
             .discussion-label {
                 font-size: 14px;
+                font-weight: 700 !important;
+                font-family: inherit;
             }
         }
 

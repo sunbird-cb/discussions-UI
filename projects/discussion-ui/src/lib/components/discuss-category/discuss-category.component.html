@@ -3,7 +3,7 @@
   <div class="discuss-category-cards">
     <ng-container  *ngFor="let data of categories">
       <div (click)="navigateToDiscussionPage(data?.cid, data?.slug);logTelemetry($event)" class="categories-card-content" id="category-card">
-      <lib-category-card [category]="data" ></lib-category-card>
+      <lib-category-card [category]="data" class="card-comp"></lib-category-card>
       </div>
     </ng-container>
   </div>

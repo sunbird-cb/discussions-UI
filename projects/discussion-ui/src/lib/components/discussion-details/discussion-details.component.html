@@ -324,8 +324,8 @@
           </div>
           <span class="post-time fnormal">{{ post?.timestamp | date}}</span>
         </div>
-        <div>
-          <p role="link" tabindex="0" [innerHTML]="post?.content"></p>
+        <div class="comment-section">
+          <p role="link" tabindex="0" class="post-labels df-text-color" [innerHTML]="post?.content"></p>
           <div class="reply-area font-weight-bold">
             <div>
               <span class="vote-area">
