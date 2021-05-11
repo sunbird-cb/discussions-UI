@@ -60,7 +60,7 @@ export class TelemetryUtilsService {
     }
     if (this.currentObj) {
       impressionEvent.context = { cdata: [{
-        id: _.get(this.currentObj, 'id').toString(),
+        id: _.get(this.currentObj, 'id'),
         type: _.get(this.currentObj, 'type') }
       ]};
     }

@@ -227,6 +227,10 @@ export class DiscussionService {
     return this.http.post(urlConfig.registerUser(), data);
   }
 
+  createForum(data){
+    return this.csDiscussionService.createForum(data)
+  }
+
   set userDetails(userDetails) {
     this._userDetails = userDetails;
   }

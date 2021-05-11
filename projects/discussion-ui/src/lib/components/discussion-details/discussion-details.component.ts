@@ -25,6 +25,7 @@ const MSGS = {
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
   @Input() slug: string;
+  @Input() widget: boolean
 
   routeParams: any;
   currentActivePage = 1;

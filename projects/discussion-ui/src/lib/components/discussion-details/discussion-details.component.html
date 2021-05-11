@@ -21,8 +21,8 @@
           <div class="post-reply-card">
             <p role="link" tabindex="0" class="discussion-heading df-text-color" [innerHTML]="post?.content"></p>
             <div class="discussion-content" role="link" tabindex="0">
-              <span class="circle-text"><span
-                  class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+              <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials
+                  }}</span></span>
               <span class="discussion-labels">{{'Asked by '}}</span>
               <span class="discussion-labels" *ngIf="post.user.fullname" [innerHTML]="post.user.fullname"></span>
               <span class="discussion-labels" *ngIf="!post.user.fullname" [innerHTML]="post.user.username"></span>
@@ -94,7 +94,7 @@
             </div>
 
           </div>
-          <lib-post-reply (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'"
+          <lib-post-reply *ngIf="!widget" (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'"
             [showCancel]="false"></lib-post-reply>
         </div>
       </ng-container>
@@ -119,8 +119,8 @@
         <!-- header -->
         <div class="comment-section" role="link" tabindex="0">
           <div class="post-header-content">
-            <span class="circle-text"><span
-                class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials
+                }}</span></span>
             <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
             <span class="post-name df-label-color" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
@@ -224,7 +224,7 @@
     </ng-container>
   </div>
 
-  <div class="related-discuss-part">
+  <div *ngIf="!widget" class="related-discuss-part">
     <div *ngIf="fetchSingleCategoryLoader">
     </div>
     <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId" [topicId]="topicId">
@@ -247,8 +247,8 @@
         <!-- card-header -->
         <div class="comment-section" role="link" tabindex="0">
           <div class="post-header-content">
-            <span class="circle-text"><span
-                class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+            <span class="circle-text"><span class="circle-label">{{ post?.user?.username | splitInitials
+                }}</span></span>
             <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
             <span class="df-label-color post-name" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>

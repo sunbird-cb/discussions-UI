@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { ConfigService } from '../../services/config.service';
@@ -10,6 +10,7 @@ import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
 import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
 import { Subscription } from 'rxjs';
+import { NavigationServiceService } from '../../navigation-service.service';
 // import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 /* tslint:enable */
@@ -20,6 +21,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./discuss-all.component.scss']
 })
 export class DiscussAllComponent implements OnInit {
+
+  @Input() context: any
+  @Input() categoryAction;
+
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
   discussionList: any[];
   routeParams: any;
@@ -44,15 +50,16 @@ export class DiscussAllComponent implements OnInit {
     private configService: ConfigService,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService,
+    private navigationService: NavigationServiceService
     // private modalService: BsModalService
   ) { }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
 
-    this.cIds = this.configService.getCategories()
+    this.cIds = this.context ? this.context.categories : this.configService.getCategories()
     this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-    if (this.configService.hasContext()) {
+    if (this.configService.hasContext() || this.context) {
       this.getContextBasedDiscussion(this.cIds.result)
     } else {
       // this.currentActivePage = 1
@@ -73,7 +80,12 @@ export class DiscussAllComponent implements OnInit {
       type: 'Topic'
     });
 
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
+    let slug = _.trim(_.get(discussionData, 'slug'))
+    let input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.CATEGORY_DETAILS, }
+    this.navigationService.navigate(input)
+    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid })
+
+    // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`], { queryParamsHandling: "merge" });
   }
 
   getDiscussionList(slug: string) {

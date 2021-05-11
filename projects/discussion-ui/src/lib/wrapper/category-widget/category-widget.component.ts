@@ -17,8 +17,10 @@ export class CategoryWidgetComponent extends BaseWrapperComponent {
   category = CONSTANTS.CATEGORY;
   detailsPage = CONSTANTS.CATEGORY_DETAILS
   homePage = CONSTANTS.CATEGORY_HOME
-  tid: number
-  slug: string
+  tid: number = 77
+  slug: string = 'testing-124'
+  context: any = { categories: { result: [1, 2] },
+}
 
   constructor(configSvc: ConfigService, discussionService: DiscussionService, navigationServiceService: NavigationServiceService, eventService: EventsService) {
     super(navigationServiceService, eventService, configSvc, discussionService)
@@ -26,7 +28,7 @@ export class CategoryWidgetComponent extends BaseWrapperComponent {
 
 
   wrapperInit() {
-    this.state = this.category;
+    this.state = this.detailsPage;
   }
 
   stateChange(event) {

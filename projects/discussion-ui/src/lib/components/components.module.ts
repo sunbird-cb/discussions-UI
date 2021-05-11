@@ -48,7 +48,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     DiscussionDetailsComponent,
     DiscussStartComponent,
     // TODO: Add this components
-    //  DiscussAllComponent,
+     DiscussAllComponent,
     TagAllDiscussionComponent
   ],
   providers: [
