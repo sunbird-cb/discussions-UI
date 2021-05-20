@@ -39,7 +39,7 @@ export class DiscussAllComponent implements OnInit {
   // modalRef: BsModalRef;
   paramsSubscription: Subscription;
   getParams: any;
-  cIds: any;
+  cIds: any = [];
   allTopics: any;
 
 
@@ -56,16 +56,26 @@ export class DiscussAllComponent implements OnInit {
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
-
-    this.cIds = this.context ? this.context.categories : this.configService.getCategories()
-    this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-    if (this.configService.hasContext() || this.context) {
-      this.getContextBasedDiscussion(this.cIds.result)
-    } else {
-      // this.currentActivePage = 1
-      this.refreshData();
+    let body = {
+      "identifier": 
+        this.context.contextIdArr
+      ,
+      "type": this.context.contextType
     }
-
+    debugger
+    this.discussionService.getForumIds(body).subscribe((data) => {
+      data.result.forEach(forum => {
+        this.cIds.push(forum.cid)
+      });
+      // this.cIds = this.context ? this.context.categories : this.configService.getCategories()
+      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+      if (this.configService.hasContext() || this.context) {
+        this.getContextBasedDiscussion(this.cIds)
+      } else {
+        // this.currentActivePage = 1
+        this.refreshData();
+      }
+    })
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -165,7 +175,11 @@ export class DiscussAllComponent implements OnInit {
     return this.discussionService.getContextBasedDiscussion(req).subscribe(
       (data: any) => {
         this.showLoader = false;
-        this.allTopics = _.map(data.result, (topic) => topic.topics);
+        let result = data.result
+       let res = result.filter((elem) => {
+          return (elem.statusCode !== 404)
+        })
+        this.allTopics = _.map(res, (topic) => topic.topics);
         this.discussionList = _.flatten(this.allTopics)
       }, error => {
         this.showLoader = false;

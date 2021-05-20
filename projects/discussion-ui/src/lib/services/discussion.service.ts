@@ -231,6 +231,10 @@ export class DiscussionService {
     return this.csDiscussionService.createForum(data)
   }
 
+  getForumIds(data){
+    return this.csDiscussionService.getForumIds(data)
+  }
+  
   set userDetails(userDetails) {
     this._userDetails = userDetails;
   }
