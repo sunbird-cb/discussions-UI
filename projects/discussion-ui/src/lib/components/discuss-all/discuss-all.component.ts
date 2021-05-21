@@ -41,7 +41,9 @@ export class DiscussAllComponent implements OnInit {
   getParams: any;
   cIds: any = [];
   allTopics: any;
-
+  trendingTags!: NSDiscussData.ITag[];
+  sticky = false;
+  data
 
   constructor(
     public router: Router,
@@ -56,26 +58,41 @@ export class DiscussAllComponent implements OnInit {
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
+    if (this.context) {
+      this.getForumIds()
+    } else {
+      this.cIds = this.configService.getCategories().result
+      this.loadDiscussionData()
+    }
+  }
+
+  async getForumIds() {
     let body = {
-      "identifier": 
+      "identifier":
         this.context.contextIdArr
       ,
       "type": this.context.contextType
     }
-    debugger
-    this.discussionService.getForumIds(body).subscribe((data) => {
-      data.result.forEach(forum => {
-        this.cIds.push(forum.cid)
-      });
-      // this.cIds = this.context ? this.context.categories : this.configService.getCategories()
-      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-      if (this.configService.hasContext() || this.context) {
-        this.getContextBasedDiscussion(this.cIds)
-      } else {
-        // this.currentActivePage = 1
-        this.refreshData();
-      }
-    })
+    let resp = await this.discussionService.getForumIds(body)
+    resp.result.forEach(forum => {
+      this.cIds.push(forum.cid)
+    });
+    this.loadDiscussionData()
+  }
+
+  loadDiscussionData() {
+    // this.cIds = this.context ? this.context.categories : this.configService.getCategories()
+    this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+    if (this.configService.hasContext() || this.context) {
+      this.getContextBasedDiscussion(this.cIds)
+      // This is to show context based trending tags
+      this.getContextBasedTags(this.cIds);
+    } else {
+      // this.currentActivePage = 1
+      this.refreshData();
+      // This is to show trending tags
+      this.fetchAllTags();
+    }
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -136,7 +153,13 @@ export class DiscussAllComponent implements OnInit {
     this.showLoader = true;
     return this.discussionService.fetchPopularD(page).subscribe((response: any) => {
       this.showLoader = false;
-      this.discussionList = _.get(response, 'topics')
+      this.discussionList = [];
+      _.filter(response.topics, (topic) => {
+        if (topic.user.uid !== 0) {
+          this.discussionList.push(topic);
+        }
+      });
+      // this.discussionList = _.get(response, 'topics')
     }, error => {
       this.showLoader = false;
       // TODO: Toaster
@@ -157,7 +180,12 @@ export class DiscussAllComponent implements OnInit {
     return this.discussionService.fetchRecentD(page).subscribe(
       (data: any) => {
         this.showLoader = false;
-        this.discussionList = _.get(data, 'topics')
+        this.discussionList = [];
+        _.filter(data.topics, (topic) => {
+          if (topic.user.uid !== 0) {
+            this.discussionList.push(topic);
+          }
+        });
       }, error => {
         this.showLoader = false;
         // TODO: Toaster
@@ -176,7 +204,7 @@ export class DiscussAllComponent implements OnInit {
       (data: any) => {
         this.showLoader = false;
         let result = data.result
-       let res = result.filter((elem) => {
+        let res = result.filter((elem) => {
           return (elem.statusCode !== 404)
         })
         this.allTopics = _.map(res, (topic) => topic.topics);
@@ -186,6 +214,33 @@ export class DiscussAllComponent implements OnInit {
         // TODO: Toaster
         console.log('error fetching topic list', error);
       });
+  }
+
+  fetchAllTags() {
+    this.showLoader = true;
+    this.discussionService.fetchAllTag().subscribe(data => {
+      this.showLoader = false;
+      this.trendingTags = _.get(data, 'tags');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
+  }
+
+  getContextBasedTags(cid: any) {
+    const req = {
+      cids: cid
+    }
+    this.showLoader = true;
+    this.discussionService.contextBasedTags(req).subscribe(data => {
+      this.showLoader = false;
+      this.trendingTags = _.get(data, 'result');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
   }
 
   // startDiscussion(template: TemplateRef<any>) {

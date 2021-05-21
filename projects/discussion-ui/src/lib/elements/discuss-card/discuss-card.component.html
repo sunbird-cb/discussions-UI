@@ -12,7 +12,7 @@
     </div>
     <div class="discuss-card-subtitle responsive">
       <span *ngIf="discussionData?.category?.name" class="discuss-card-label">
-        <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="Buffer-image">
+        <img src="./assets/discussion-ui/images/Buffer-512.svg" alt="Buffer-image">
         {{discussionData.category.name}}
       </span>
       <span class="dot"></span>
@@ -21,7 +21,7 @@
       <span class="timing">{{discussionData.lastposttime | date}}</span>
     </div>
   </div>
-  <div class="tags">
+  <div class="tags margin-bottom-s">
     <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
       <span *ngFor="let tag of discussionData.tags" class="tag" [ngStyle]="getBgColor(tag.value)">
         {{tag.value}}
@@ -39,6 +39,7 @@
         <span>{{discussionData.viewcount || 0}} Views</span>
       </span>
     </div>
-    <div class="cursor-pointer comments-count">{{((discussionData.postcount || 1) -1) }} comments</div>
+    <div class="cursor-pointer comments-count" *ngIf="IsSingleComent(discussionData.postcount)" >{{((discussionData.postcount || 1) -1) }} comment</div>
+    <div class="cursor-pointer comments-count" *ngIf="!IsSingleComent(discussionData.postcount)">{{((discussionData.postcount || 1) -1) }} comments</div>
   </div>
 </div>

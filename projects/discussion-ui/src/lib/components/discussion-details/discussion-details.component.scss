@@ -54,6 +54,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 8px;
+    font-family: inherit;
+    font-size: 14px;
 }
 
 .post-header-content {
@@ -189,10 +191,14 @@
 }
 
 
-.post-card,
-.post-reply-card {
+.post-card {
     border-bottom: 1px solid #ddd;
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 1.75rem 0;
+}
+
+.post-reply-card {
+    border: none;
+    margin-bottom: 2.5rem;
 }
 
 .post-sub-card {
@@ -222,7 +228,8 @@
 }
 
 .post-labels {
-    font-size: 12px;
+    // font-size: 12px;
+    font-size: 14px;
 }
 
 .reply-area {
@@ -252,6 +259,73 @@
 .comments-count {
     color: #0074b6;
     font-weight: 700;
+}
+
+.viewsIcon{
+    height: 24px !important;
+    width: 24px !important;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+
+.df-update-btn,
+.df-reply-btn {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.df-reply-btn.transparent{
+    background-color: transparent;
+    color: var(--black60);
+    border: 0;
+}
+
+.df-reply-btn.transparent:hover{
+    color: var(--black60);
+    border: 0;
+    background-color: #f5f6fa;
+}
+
+
+
+:host {
+    .df-reply-btn {
+        margin-left: 1rem;
+
+        html[dir="rtl"] & {
+            margin-right: 1rem;
+        }
+
+    }
+}
+
+
+.df-cancel-btn {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.cancel-update-post {
+    margin-right: 20px;
+}
+
+.df-btn-disabled {
+    // background-color: var(--gray-100);
+    // border: solid var(--gray-100);
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {

@@ -73,6 +73,15 @@ export class ConfigService implements OnInit {
     this.setCategoryId.next(id)
   }
 
+
+  public getHeaderOption() {
+    return this._config.headerOptions !== undefined ? this._config.headerOptions : true;
+  }
+
+  public getBannerOption() {
+    return this._config.bannerOption ? this._config.bannerOption : false;
+  }
+
   public getCategoryid() {
     return this.categoryId
   }

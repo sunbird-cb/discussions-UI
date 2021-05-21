@@ -40,6 +40,17 @@
 	cursor: pointer;
 }
 
+.search {
+	border: 1px solid #dedfe0;
+    height: 1.5rem;
+    padding: 12px;
+    font: inherit;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    min-width: 320px;
+    max-width: 50%;
+}
+
 @media (max-width: 768px) {
 	.discuss-tags {
 		flex-direction: column;

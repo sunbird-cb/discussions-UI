@@ -1,5 +1,12 @@
 @import "theme.scss";
 
+$size-xs: 8px;
+$size-s: 12px;
+$size-m: 16px;
+$size-l: 24px;
+$size-xl: 32px;
+$size-xxl: 40px;
+
 :root {
     font-size: 16px;
     // base colors
@@ -14,12 +21,15 @@
     --teal: #20c997;
     --cyan: #17a2b8;
     --black: #000000;
+    --black60: rgba(0,0,0,.6);
     --white: #ffffff;
     --light-gray: #f5f6fa;
     --gray-100:#CCCCCC;
     --gray-200: #999999;
     --gray-800: #333333;
 }
+
+
 
 .recent-tabs {
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
@@ -29,7 +39,9 @@
     border-radius: unset;
     background: inherit !important;
     z-index: unset;
-    padding-bottom: 8px;
+    // padding-bottom: 8px;
+    padding: 1.5em;
+    font-family: inherit;
 }
 
 .tabs-content {
@@ -87,9 +99,9 @@
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 4px;
-    width: 100%;
+    width: inherit;
     z-index: 2;
 }
 
@@ -106,14 +118,20 @@
     font-size: 12px;
     display: flex;
     width: auto;
-    min-width: max-content;
+    // min-width: max-content;
     max-height: 32px;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin: 0.5rem 1rem 0.5rem 0;
     align-items: center;
     text-transform: lowercase;
-    padding: 0.5rem 1rem;
+    // padding: 0.5rem 1rem;
     border-radius: 1.5rem;
+    padding: 3px 15px;
+    min-width: 50px;
+    justify-content: center;
+    border-radius: 20px 5px 5px 20px;
+    box-sizing: content-box;
+    line-height:21px;
 }
 
 .count {
@@ -126,8 +144,13 @@
     justify-content: center;
     width: auto;
     min-width: 1rem;
-    margin: 0 0 0 1rem;
+    margin: 5px 0 5px 1rem;
     color: var(--blue);
+    line-height: 21px;
+}
+
+mb-0 {
+ margin-bottom: 0 !important;
 }
 
 @media (max-width: 768px) {
@@ -136,11 +159,26 @@
     }
 }
 
-
-@media only screen and (max-width: 1199px) and (min-width: 768px) {
-    .ui.container {
-        width: 90%;
-        margin-left: auto !important;
-        margin-right: auto !important;
+@mixin breakpoint-xs {
+    @media only screen and (max-width: 599px) {
+      @content;
     }
-}
+  }
+  
+  @mixin breakpoint-s {
+    @media only screen and (min-width: 600px) and (max-width: 959px) {
+      @content;
+    }
+  }
+  
+  @mixin breakpoint-m {
+    @media only screen and (min-width: 960px) and (max-width: 1279px) {
+      @content;
+    }
+  }
+  
+  @mixin breakpoint-l {
+    @media only screen and (min-width: 1280px) and (max-width: 1919px) {
+      @content;
+    }
+  }

@@ -15,6 +15,9 @@
 .related-discuss-label{
     font-weight: bold;
 	margin: 0 0 1rem 0;
+    color: #000;
+    font-size: .875rem;
+    font-weight: 700;
 	@media (max-width: 768px) {
 		margin: 1rem 0;
 	   }
@@ -50,4 +53,3 @@
 .time {
 	color: rgba(0, 0, 0, 0.4);
 }
-

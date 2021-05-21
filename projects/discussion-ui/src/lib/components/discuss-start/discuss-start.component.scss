@@ -113,7 +113,9 @@
 				}
 
 				.df-btn-disabled {
-					background-color: var(--gray-100);
+					// background-color: var(--gray-100);
+					opacity: 0.7;
+    				pointer-events: none;
 				}
 			}
 

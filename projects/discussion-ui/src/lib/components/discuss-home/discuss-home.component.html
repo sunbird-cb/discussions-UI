@@ -1,12 +1,19 @@
-<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
-    class="df-btn df-start-btn" data-toggle="modal" data-target="#myModal"
-    id="start-discussion">Start Discussion</button>
+<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn"
+    data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
+
+<div class="flex flex-1 margin-top-xl">
+    <h2 class="cursor-pointer f-medium" [innerHTML]="title"></h2>
+</div>
+<div>
+    <span>&nbsp;</span>
+</div>
+
 <ng-container *ngIf="discussionList && discussionList.length > 0">
     <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" infinite-scroll
-         [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
-         [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()"
-         class="infinite-scroll" *ngFor="let discussionData of discussionList" id="topic-card">
-          <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
+        [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()" class=""
+        *ngFor="let discussionData of discussionList" id="topic-card">
+        <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
     </div>
 </ng-container>
 

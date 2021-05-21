@@ -6,12 +6,12 @@
       <div class="profile-header-image">
         <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
       </div>
-      <div>
+      <div class="info">
         <div class="profile-name" [innerHTML]="data?.username"></div>
-        <div class="profile-label">{{department}}</div>
-        <div class="profile-label">{{location}} </div>
+        <div class="profile-label">{{data?.department}}</div>
+        <div class="profile-label">{{data?.location}} </div>
         <div class='profile-label'>{{data?.email || data?.username}}</div>
-        <ng-container>
+        <div>
           <div class="profile-data">
             <div>
               <span>
@@ -24,7 +24,7 @@
               </span>
             </div>
           </div>
-        </ng-container>
+        </div>
       </div>
     </div>
     </div>
@@ -60,13 +60,13 @@
       </div>
     </div>
   </ng-container>
-  <ng-container *ngIf="discussionList && discussionList.length > 0">
+  <div *ngIf="discussionList && discussionList.length > 0" class="margin-top-l">
     <ng-container *ngFor="let data of discussionList">
-      <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" id="discuss-card">
+      <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" id="discuss-card" class="margin-top-l">
         <lib-discuss-card [discussionData]="data"></lib-discuss-card>
       </div>
     </ng-container>
-  </ng-container>
+  </div>
   <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
     <div class="discuss-card-content cursor-pointer">
         <div class="no-data-label">No Data</div>

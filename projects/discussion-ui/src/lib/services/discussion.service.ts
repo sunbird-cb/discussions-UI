@@ -232,7 +232,7 @@ export class DiscussionService {
   }
 
   getForumIds(data){
-    return this.csDiscussionService.getForumIds(data)
+    return this.csDiscussionService.getForumIds(data).toPromise()
   }
   
   set userDetails(userDetails) {

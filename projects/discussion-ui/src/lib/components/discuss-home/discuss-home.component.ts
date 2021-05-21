@@ -37,6 +37,7 @@ export class DiscussHomeComponent implements OnInit {
   currentPage = 0 ;
   pageSize: number;
   totalTopics: number;
+  title: any;
 
   constructor(
     public router: Router,
@@ -85,6 +86,7 @@ export class DiscussHomeComponent implements OnInit {
     // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
     this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
       this.showLoader = false;
+      this.title = _.get(data, 'title')
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
       if (this.currentPage === 1) {

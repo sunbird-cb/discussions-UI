@@ -17,11 +17,19 @@ import { AbstractConfigService } from '../../services/abstract-config.service';
 @Component({
   selector: 'lib-lib-entry',
   templateUrl: './lib-entry.component.html',
-  styleUrls: ['./lib-entry.component.scss']
+  styleUrls: ['./lib-entry.component.scss'],
+  /* tslint:disable */
+  host: { class: 'flex-1'},
+  /* tslint:enable */
 })
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
+  headerOption = true;
+  banner: any
+  private bannerSubscription: any
+  bannerOption: boolean;
+  currentRoute = 'all-discussions'
   pageKey: string;
   config: any;
 
@@ -35,7 +43,13 @@ export class LibEntryComponent implements OnInit {
     private telemetryUtils: TelemetryUtilsService,
     @Inject('configService') protected configService: AbstractConfigService
 
-  ) { }
+  ) {
+    this.bannerSubscription = this.activatedRoute.data.subscribe(data => {
+      if (data && data.pageData) {
+        this.banner = data.pageData.data.banner || []
+      }
+    })
+  }
 
   ngOnInit() {
     /**
@@ -55,7 +69,9 @@ export class LibEntryComponent implements OnInit {
       const rawCategories = _.get(this.data, 'categories');
       this.discussionService.forumIds = _.get(rawCategories, 'result');
       this.discussionService.initializeUserDetails(this.data.userName);
-    });
+      this.headerOption = this.configSvc.getHeaderOption()
+      this.bannerOption = this.configSvc.getBannerOption()
+    })
   }
 
   goBack() {
