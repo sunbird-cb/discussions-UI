@@ -19,12 +19,6 @@ html[layout='joy'] {
     position: relative;
   }
 
-  .df-btn {
-    border-radius: var(--sbt-bradius-24) !important;
-    height: 2.5rem !important;
-    padding: 0.5rem 1.5rem !important;
-  }
-
   .df-back-btn {
     margin-left: 4px;
   }
@@ -36,6 +30,11 @@ html[layout='joy'] {
     @media (max-width: 768px) {
       margin: 1.5rem 0;
       padding: 1.5rem;
+    }
+    .df-btn {
+      border-radius: var(--sbt-bradius-24) !important;
+      height: 2.5rem !important;
+      padding: 0.5rem 1.5rem !important;
     }
   }
 
