@@ -306,7 +306,7 @@
   <div class="related-discuss-part">
     <div *ngIf="fetchSingleCategoryLoader">
     </div>
-    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId" [topicId]="topicId">
+    <lib-related-discussion *ngIf="!fetchSingleCategoryLoader" [catId]="categoryId" [topicId]="topicId" (passDiscussData)="acceptData($event)">
     </lib-related-discussion>
   </div>
 </div>

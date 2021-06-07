@@ -616,5 +616,6 @@
   
   "CATEGORY": "category",
   "CATEGORY_DETAILS": "categoryDetails",
-  "CATEGORY_HOME":"categoryHome"
+  "CATEGORY_HOME":"categoryHome",
+  "TAG_ALL_DISCUSS": "tagAllDiscuss"
 }
