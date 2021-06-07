@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core'
 import { NSDiscussData } from '../../models/discuss.model'
 import { Router, ActivatedRoute } from '@angular/router'
 import { DiscussionService } from '../../services/discussion.service';
@@ -9,6 +9,7 @@ import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
+import { NavigationServiceService } from '../../navigation-service.service';
 
 @Component({
   selector: 'lib-tag-all-discussion',
@@ -16,7 +17,10 @@ import { TelemetryUtilsService } from './../../telemetry-utils.service';
   styleUrls: ['./tag-all-discussion.component.scss']
 })
 export class TagAllDiscussionComponent implements OnInit {
+  @Input() widgetTagName: any;
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
+  routeParams: any;
   tagName!: any
   similarPosts :any[]
   queryParam: any
@@ -37,21 +41,36 @@ export class TagAllDiscussionComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
     private telemetryUtils: TelemetryUtilsService,
-    private discussUtils: DiscussUtilsService
+    private discussUtils: DiscussUtilsService,
+    private navigationService: NavigationServiceService
   ) { }
 
   ngOnInit() {
-
+    // debugger
     this.cIds = this.configService.getCategories()
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.tagName = params.tagname ? params.tagname: this.tagName
-    })
+
+    if(this.widgetTagName)
+    {
+      this.tagName = this.widgetTagName;
+    }
+    else
+    {
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.tagName = params.tagname ? params.tagname: this.tagName
+      })
+    }
+    
     // To check wheather any contexts are there or not from the config service
     if (this.configService.hasContext()) {
       this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
       this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
     }
+
+  }
+
+  ngOnChange() { 
+    // debugger;
 
   }
 
@@ -136,7 +155,7 @@ export class TagAllDiscussionComponent implements OnInit {
 
   /** Method to navigate to the dicussion detail page on click of tag related discussion */
   navigateToDiscussionDetails(discussionData) {
-
+    debugger
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
     if (matchedTopic) {
       this.telemetryUtils.deleteContext(matchedTopic);
@@ -147,7 +166,12 @@ export class TagAllDiscussionComponent implements OnInit {
       type: 'Topic'
     });
 
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
+    let slug = _.trim(_.get(discussionData, 'slug'))
+    let input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.CATEGORY_DETAILS, }
+    this.navigationService.navigate(input)
+    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid })
+
+    // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
   }
 
   logTelemetry(event) {
