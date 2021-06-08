@@ -28,11 +28,13 @@ export class TrendingTagsComponent implements OnInit, OnChanges {
 
   }
   ngOnInit(): void {
+    // debugger
     this.max = _.get(_.maxBy(this.tags, 'score'), 'score') || 0;
     this.trandingTags = _.chain(this.tags).orderBy('score', 'desc').take(5).value();
   }
 
   ngOnChanges(data: SimpleChanges) {
+    // debugger
     // this.tableData!.columns = data.tableData.currentValue.columns
     this.tags = _.get(data, 'tags.currentValue')
     this.max = _.get(_.maxBy(this.tags, 'score'), 'score') || 0;
