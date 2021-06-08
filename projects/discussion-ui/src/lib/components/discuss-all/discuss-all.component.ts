@@ -74,9 +74,18 @@ export class DiscussAllComponent implements OnInit {
       "type": this.context.contextType
     }
     let resp = await this.discussionService.getForumIds(body)
-    resp.result.forEach(forum => {
-      this.cIds.push(forum.cid)
-    });
+    if (resp.result.length > 0) {
+      resp.result.forEach(forum => {
+        this.cIds.push(forum.cid)
+      });
+    } else {
+      this.discussionService.createForum(this.context.categoryObj).subscribe(((data: any) => {
+        data.result.forEach(forum => {
+          this.cIds.push(forum.newCid)
+        });
+      }))
+
+    }
     this.loadDiscussionData()
   }
 
@@ -270,7 +279,11 @@ export class DiscussAllComponent implements OnInit {
 
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
-      this.getContextBasedDiscussion(this.cIds.result)
+      if (this.context) {
+        this.getContextBasedDiscussion(this.cIds)
+      } else {
+        this.getContextBasedDiscussion(this.cIds.result)
+      }
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
