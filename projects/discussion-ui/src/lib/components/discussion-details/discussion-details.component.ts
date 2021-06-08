@@ -27,7 +27,7 @@ const MSGS = {
 export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
   @Input() slug: string;
-  @Input() widget: boolean
+  @Input() widget: boolean;
 
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
@@ -76,7 +76,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // debugger
     this.initializeFormFiled();
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
@@ -97,7 +96,6 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line: use-life-cycle-interface
   ngOnChanges() {
-    // debugger
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;

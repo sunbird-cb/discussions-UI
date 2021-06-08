@@ -69,11 +69,6 @@ export class TagAllDiscussionComponent implements OnInit {
 
   }
 
-  ngOnChange() { 
-    // debugger;
-
-  }
-
   /**Method to fetch the tag based discussion */
   fetchSingleTagDetails(tagname: string, page?: any) {
     this.fetchSingleCategoryLoader = true
