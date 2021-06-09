@@ -60,6 +60,6 @@
         </div>
     </div>
 
-    <lib-discuss-start (close)="closeModal($event)" *ngIf="showStartDiscussionModal">
+    <lib-discuss-start (close)="closeModal($event)" *ngIf="showStartDiscussionModal" [categoryId]="startDiscussionCategoryId">
     </lib-discuss-start>
 </div>

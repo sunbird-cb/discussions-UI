@@ -21,6 +21,7 @@ export class DiscussStartComponent implements OnInit {
   @Output() close = new EventEmitter();
 
   startForm!: FormGroup;
+  editable = true;
   allCategories!: NSDiscussData.ICategorie[];
   allTags!: NSDiscussData.ITag[];
   postTagsArray: string[] = [];
@@ -42,13 +43,15 @@ export class DiscussStartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // debugger
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
-    this.cIds = this.configService.getCategories()
-    if (this.categoryId) {
-      this.showSelectCategory = false;
-    } else {
-      this.showSelectCategory = true;
-    }
+    this.cIds = this.configService.getCategories();
+    // if (!this.categoryId) {
+    //   this.showSelectCategory = true;
+    // }
+
+    this.showSelectCategory = true;
+
     this.initializeData();
     this.initializeFormFields(this.topicData);
   }
@@ -87,22 +90,33 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
+    // debugger
     if (this.configService.hasContext() && !this.categoryId) {
       const req = {
         cids: this.cIds.result
       };
 
       this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
-        this.allCategories = data.result
+        this.allCategories = data.result;
         if (this.startForm.get('category')) { }
         this.startForm.controls['category'].setValue(this.allCategories[0].cid)
-      })
+      });
+    } else if (this.categoryId) {
+      const req = {
+        cids: this.categoryId
+      };
+      this.editable = false;
+      this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
+        this.allCategories = data.result;
+        if (this.startForm.get('category')) { }
+        this.startForm.controls.category.setValue(this.allCategories[0].cid);
+      });
     } else {
       this.discussService.fetchAllCategories().subscribe((data: any) => {
         this.allCategories = data
         if (this.startForm.get('category')) { }
         this.startForm.controls['category'].setValue(this.allCategories[1].cid)
-      })
+      });
     }
 
     this.discussService.fetchAllTag().subscribe(data => {
