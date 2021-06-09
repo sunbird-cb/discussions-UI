@@ -44,6 +44,7 @@ export class DiscussAllComponent implements OnInit {
   trendingTags!: NSDiscussData.ITag[];
   sticky = false;
   data
+  startDiscussionCategoryId: any;
 
   constructor(
     public router: Router,
@@ -90,6 +91,7 @@ export class DiscussAllComponent implements OnInit {
   }
 
   loadDiscussionData() {
+    // debugger
     // this.cIds = this.context ? this.context.categories : this.configService.getCategories()
     this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
     if (this.configService.hasContext() || this.context) {
@@ -127,6 +129,7 @@ export class DiscussAllComponent implements OnInit {
 
   acceptData(singleTagDetails) {
     // debugger
+    // singleTagDetails.categoryId =  this.categoryId;
     this.stateChange.emit(singleTagDetails);
   }
 
@@ -270,7 +273,12 @@ export class DiscussAllComponent implements OnInit {
   // }
 
   startDiscussion() {
+    debugger
     this.showStartDiscussionModal = true;
+    if (this.context) {
+      this.startDiscussionCategoryId = this.cIds;
+    }
+
   }
 
   logTelemetry(event) {

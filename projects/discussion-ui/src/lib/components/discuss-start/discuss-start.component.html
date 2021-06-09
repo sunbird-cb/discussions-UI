@@ -12,7 +12,7 @@
 				<!-- <label class="start-form-label">Select Category<span class="required"></span></label> -->
 				<div class="start-form-field">
 					<!-- <label>Select list</label> -->
-					<select formControlName="category" #category [required]="true" id="myList" class="post_form_select">
+					<select formControlName="category" #category [required]="true" id="myList" class="post_form_select" [disabled]="!editable">
 						<option value="none" selected>Select Category</option>
 						<option [value]="c.cid" *ngFor="let c of allCategories" [innerHTML]="c.name"></option>
 					</select>
