@@ -18,6 +18,8 @@ import { NavigationServiceService } from '../../navigation-service.service';
 })
 export class TagAllDiscussionComponent implements OnInit {
   @Input() widgetTagName: any;
+  @Input() widgetcIds: any;
+
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
   routeParams: any;
@@ -47,7 +49,7 @@ export class TagAllDiscussionComponent implements OnInit {
 
   ngOnInit() {
     // debugger
-    this.cIds = this.configService.getCategories()
+    this.cIds = this.widgetcIds? this.widgetcIds: this.configService.getCategories()
 
     if(this.widgetTagName)
     {
@@ -61,7 +63,7 @@ export class TagAllDiscussionComponent implements OnInit {
     }
     
     // To check wheather any contexts are there or not from the config service
-    if (this.configService.hasContext()) {
+    if (this.configService.hasContext() || this.widgetcIds) {
       this.fetchContextBasedTagDetails(this.tagName, this.cIds, this.currentActivePage)
     } else {
       this.fetchSingleTagDetails(this.tagName, this.currentActivePage)
@@ -103,7 +105,7 @@ export class TagAllDiscussionComponent implements OnInit {
     this.discussService.getContextBasedTagDiscussion(req).subscribe(
       (data: NSDiscussData.IDiscussionData) => {
         this.similarPosts = [];
-        _.filter(data.topics, (topic) => {
+        _.filter(data.result, (topic) => {
           if (topic.user.uid !== 0) {
             this.similarPosts.push(topic)
           }

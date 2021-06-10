@@ -129,7 +129,9 @@ export class DiscussAllComponent implements OnInit {
 
   acceptData(singleTagDetails) {
     // debugger
-    // singleTagDetails.categoryId =  this.categoryId;
+    if(this.context){
+    singleTagDetails.cIds =  this.cIds;
+    }
     this.stateChange.emit(singleTagDetails);
   }
 
