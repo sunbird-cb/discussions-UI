@@ -20,7 +20,7 @@
       <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
         *ngIf="mode === 'edit'"
         [disabled]="!isButtonEnabled" 
-        class="sb-btn sb-btn-normal sb-btn-primary" 
+        class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
         (click)="onReplyClick('edit')" 
         id="update-post"
         type="button">
@@ -29,7 +29,7 @@
       <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
         *ngIf="mode !== 'edit'"
         [disabled]="!isButtonEnabled" 
-        class="sb-btn sb-btn-normal sb-btn-primary ml-16" 
+        class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
         (click)="onReplyClick('reply')" 
         id="update-post"
         type="button">
