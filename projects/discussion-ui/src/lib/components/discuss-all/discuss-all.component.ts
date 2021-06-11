@@ -69,10 +69,10 @@ export class DiscussAllComponent implements OnInit {
 
   async getForumIds() {
     let body = {
-      "identifier":
+      identifier:
         this.context.contextIdArr
       ,
-      "type": this.context.contextType
+      type: this.context.contextType
     }
     let resp = await this.discussionService.getForumIds(body)
     if (resp.result.length > 0) {
@@ -129,8 +129,8 @@ export class DiscussAllComponent implements OnInit {
 
   acceptData(singleTagDetails) {
     // debugger
-    if(this.context){
-    singleTagDetails.cIds =  this.cIds;
+    if (this.context) {
+      singleTagDetails.cIds = this.cIds;
     }
     this.stateChange.emit(singleTagDetails);
   }

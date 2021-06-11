@@ -29,10 +29,10 @@ export class ConfigService implements OnInit {
 
   }
 
-  setConfig(config) {
-    // activatedRoute.data.subscribe((config) => {
-    this._config = config;
-    // });
+  setConfig(activatedRoute) {
+    activatedRoute.data.subscribe((config) => {
+    this._config = config.data;
+    });
   }
 
   setConfigFromParams(activatedRoute) {
@@ -43,6 +43,10 @@ export class ConfigService implements OnInit {
       };
       this._config = obj;
     });
+  }
+
+  setConfigFromWidgetBaseClass(config){
+    this._config = config
   }
 
   public getConfig() {

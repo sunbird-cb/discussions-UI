@@ -20,7 +20,7 @@ export class BaseWrapperComponent implements OnInit {
 
   ngOnInit() {
     this.navigationServiceService.initService('wrapperService')
-    this.configSvc.setConfig(this.config)
+    this.configSvc.setConfigFromWidgetBaseClass(this.config)
     this.discussionService.userName = _.get(this.config, 'userName')
     const rawCategories = _.get(this.config, 'categories')
     this.discussionService.forumIds = _.get(rawCategories, 'result')

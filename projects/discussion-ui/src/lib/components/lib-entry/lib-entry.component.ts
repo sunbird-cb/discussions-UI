@@ -19,7 +19,7 @@ import { AbstractConfigService } from '../../services/abstract-config.service';
   templateUrl: './lib-entry.component.html',
   styleUrls: ['./lib-entry.component.scss'],
   /* tslint:disable */
-  host: { class: 'flex-1'},
+  host: { class: 'flex-1' },
   /* tslint:enable */
 })
 export class LibEntryComponent implements OnInit {
@@ -36,12 +36,12 @@ export class LibEntryComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     private discussionService: DiscussionService,
-    private configSvc: ConfigService,
+    private configService: ConfigService,
     private location: Location,
     private navigationServiceService: NavigationServiceService,
     private discussionEventService: DiscussionEventsService,
     private telemetryUtils: TelemetryUtilsService,
-    @Inject('configService') protected configService: AbstractConfigService
+    // @Inject('configService') protected configService: AbstractConfigService
 
   ) {
     this.bannerSubscription = this.activatedRoute.data.subscribe(data => {
@@ -57,21 +57,21 @@ export class LibEntryComponent implements OnInit {
      * because this component is invoke only in router approach 
      */
     this.navigationServiceService.initService('routerService')
-    this.activatedRoute.queryParams.subscribe((params) => {
-      // pagkey is used to read the configuration from the AbstractConfigService
-      // since there could be multiple configurations.
-      this.pageKey = _.get(params, 'page')
-      this.config = this.configService.getConfig(_.get(params, 'page'))
-      //setting the config so that other components can read the data
-      this.configSvc.setConfig(JSON.parse(this.config))
-      this.data = this.configSvc.getConfig();
-      this.discussionService.userName = _.get(this.data, 'userName');
-      const rawCategories = _.get(this.data, 'categories');
-      this.discussionService.forumIds = _.get(rawCategories, 'result');
-      this.discussionService.initializeUserDetails(this.data.userName);
-      this.headerOption = this.configSvc.getHeaderOption()
-      this.bannerOption = this.configSvc.getBannerOption()
-    })
+    this.configService.setConfig(this.activatedRoute);
+    // this.activatedRoute.data.subscribe((data) => {
+    this.data = this.configService.getConfig();
+    if (!this.data) {
+      // fallback for query params
+      this.configService.setConfigFromParams(this.activatedRoute);
+      this.data = this.configService.getConfig();
+    }
+    this.discussionService.userName = _.get(this.data, 'userName');
+    const rawCategories = _.get(this.data, 'categories');
+    this.discussionService.forumIds = _.get(rawCategories, 'result');
+    this.discussionService.initializeUserDetails(this.discussionService.userName);
+    this.headerOption = this.configService.getHeaderOption()
+    this.bannerOption = this.configService.getBannerOption()
+
   }
 
   goBack() {
