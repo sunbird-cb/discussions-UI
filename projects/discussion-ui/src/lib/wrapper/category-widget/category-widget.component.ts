@@ -6,6 +6,7 @@ import { NavigationServiceService } from '../../navigation-service.service';
 import * as CONSTANTS from '../../common/constants.json';
 import { EventsService } from '../../events.service';
 import { BaseWrapperComponent } from '../base-wrapper/base-wrapper.component';
+import { IdiscussionConfig } from '../../models/discussion-config.model';
 @Component({
   selector: 'sb-category-widget',
   templateUrl: './category-widget.component.html',
@@ -17,10 +18,9 @@ export class CategoryWidgetComponent extends BaseWrapperComponent {
   category = CONSTANTS.CATEGORY;
   detailsPage = CONSTANTS.CATEGORY_DETAILS
   homePage = CONSTANTS.CATEGORY_HOME
-  tid: number = 77
-  slug: string = 'testing-124'
-  context: any = { categories: { result: [1, 2] },
-}
+  tid: number 
+  slug: string 
+  context: IdiscussionConfig
 
   constructor(configSvc: ConfigService, discussionService: DiscussionService, navigationServiceService: NavigationServiceService, eventService: EventsService) {
     super(navigationServiceService, eventService, configSvc, discussionService)

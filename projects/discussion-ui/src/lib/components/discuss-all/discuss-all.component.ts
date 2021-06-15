@@ -11,6 +11,7 @@ import { NSDiscussData } from '../../models/discuss.model';
 import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
 import { Subscription } from 'rxjs';
 import { NavigationServiceService } from '../../navigation-service.service';
+import { IDiscussionAllContext } from '../../models/discussion-config.model';
 // import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 /* tslint:enable */
@@ -22,8 +23,8 @@ import { NavigationServiceService } from '../../navigation-service.service';
 })
 export class DiscussAllComponent implements OnInit {
 
-  @Input() context: any
-  @Input() categoryAction;
+  @Input() context: IDiscussionAllContext
+  @Input() categoryAction: string;
 
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
@@ -43,8 +44,7 @@ export class DiscussAllComponent implements OnInit {
   allTopics: any;
   trendingTags!: NSDiscussData.ITag[];
   sticky = false;
-  data
-  startDiscussionCategoryId: any;
+  startDiscussionCategoryId: Array<number>;
 
   constructor(
     public router: Router,

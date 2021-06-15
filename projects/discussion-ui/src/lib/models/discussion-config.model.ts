@@ -9,8 +9,22 @@ export interface IdiscussionConfig {
   bannerOption?: boolean
 }
 
-export interface Icontext {
-  id: number
+export interface IDiscussinContext {
+  contextIdArr: Array<number>
+  contextType: string
+  categoryObj: ICategoryObj
+}
+
+export interface ICategoryObj{
+    name: string,
+    pid: string,
+    description: string,
+    context: Array<ICourseContext>
+}
+
+export interface ICourseContext{
+  type: string
+  identifier: string
 }
 
 export interface IMenuOptions {
