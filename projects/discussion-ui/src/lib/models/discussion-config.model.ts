@@ -9,7 +9,7 @@ export interface IdiscussionConfig {
   bannerOption?: boolean
 }
 
-export interface IDiscussinContext {
+export interface IDiscussionAllContext {
   contextIdArr: Array<number>
   contextType: string
   categoryObj: ICategoryObj
