@@ -9,18 +9,18 @@ jobs:
           name: Check current version of node
           command: node -v
       - restore_cache:
+          name: Restore Yarn Package Cache
           keys:
-            - node_modules_cache_{{ checksum "package-lock.json" }}
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          name: Install project dependencies
-          command: |
-            if [ ! -d "node_modules" ]; then
-            npm ci -f
-            fi
+          name: Install Dependencies
+          command: yarn install --immutable
       - save_cache:
-          key: node_modules_cache_{{ checksum "package-lock.json" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
+            - .yarn/cache
+            - .yarn/unplugged
       - run:
           name: Run Tests
           command: npm run test:ci
