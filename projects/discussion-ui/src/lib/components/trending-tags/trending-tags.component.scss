@@ -12,15 +12,15 @@
   align-items: center;
   box-sizing: border-box;
 
-  @include breakpoint-xs {
-    width: auto;
+  // @include breakpoint-xs {
+  //   width: auto;
 
-  }
+  // }
 
-  @include breakpoint-s {
-    width: auto;
+  // @include breakpoint-s {
+  //   width: auto;
 
-  }
+  // }
 }
 
 .custom-margin {

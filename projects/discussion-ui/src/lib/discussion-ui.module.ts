@@ -5,7 +5,7 @@ import { ComponentsModule } from './components/components.module';
 import { DiscussionRoutingModule } from './discussion-routing/discussion-routing.module';
 import { CategoryWidgetComponent } from './wrapper/category-widget/category-widget.component';
 
-import {  NgModule } from '@angular/core';
+import {  ModuleWithProviders, NgModule } from '@angular/core';
 
 import { DiscussionEventsService } from './discussion-events.service';
 import { BaseWrapperComponent } from './wrapper/base-wrapper/base-wrapper.component';
@@ -27,5 +27,12 @@ export function provideCsModule(){
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
 export class DiscussionUiModule { 
- 
+  static forRoot(configService): ModuleWithProviders {
+    return {
+      ngModule: ComponentsModule,
+      providers: [
+        {provide: 'configService', useClass: configService}
+      ]
+    };
+  }
 }
