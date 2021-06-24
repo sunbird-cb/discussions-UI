@@ -594,7 +594,7 @@
     {
       "route": "all-discussions",
       "label": "All discussions",
-      "enable": true
+      "enable": false
     },
     {   
       "route": "categories",
