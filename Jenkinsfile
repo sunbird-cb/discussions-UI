@@ -18,13 +18,16 @@ node() {
             }
         }
 
-        stage('Build') {
-            sh 'npm run build-doc'
+         stage('Build') {
+            sh """
+              yarn install
+              npm run build-doc
+            """
         }
 
         stage('Archive artifacts'){
                  sh """
-                        zip -r discussionUI_artifacts.zip:${artifact_version} documents
+                        zip -r discussionUI_artifacts.zip:${artifact_version} documentation
                     """
                  
             archiveArtifacts artifacts: "discussionUI_artifacts.zip:${artifact_version}", fingerprint: true, onlyIfSuccessful: true
