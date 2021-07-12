@@ -8,6 +8,9 @@
 }
 .discuss-card-label{
     color: #0074b6;
+    @media screen and (max-width:768px) {
+        flex-basis: 100%;
+    }
 }
 
 .discuss-card-subtitle{
@@ -15,6 +18,18 @@
     font-size: 14px;
     display: flex;
     align-items: center;
+    @media screen and (max-width:768px) {
+        align-items: flex-start;
+    }
+}
+
+.cardlabel-container {
+    display: flex;
+    align-items: center;
+    @media screen and (max-width:768px) {
+        margin-right: auto;
+        flex-wrap: wrap;
+    }
 }
 
 .discuss-card-comments{
@@ -39,7 +54,10 @@
 }
 
 .timing{
-    color: #858181;  
+    color: #858181;
+    @media screen and (max-width:768px) { 
+        flex: 0 0 auto;
+    }
 }
 
 .views-content{
@@ -55,13 +73,5 @@
     color: #0074b6;
     font-weight: 700;
 }
-
-@media (max-width: 768px) {
-    .timing{
-        display: block;
-         margin: 4px 8px;
-    }
-}
-
 
 
