@@ -37,7 +37,7 @@ export class ConfigService implements OnInit {
   setConfigFromParams(activatedRoute) {
     activatedRoute.queryParams.subscribe((params) => {
       const obj: IdiscussionConfig = {
-        userName : _.get(params, 'userName'),
+        userId : _.get(params, 'userId'),
         categories : JSON.parse(_.get(params, 'categories'))
       };
       this._config = obj;

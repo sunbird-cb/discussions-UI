@@ -26,7 +26,7 @@ export class DiscussionService {
   private _userDetails: any;
 
   // tslint:disable-next-line:variable-name
-  private _userName: any;
+  private _userId: any;
 
   // tslint:disable-next-line:variable-name
   private _forumIds: any;
@@ -49,9 +49,8 @@ export class DiscussionService {
 
   }
 
-  initializeUserDetails(userName) {
-    console.log('userName', userName);
-    this.fetchUserProfile(userName).subscribe(response => {
+  initializeUserDetails(userId) {
+    this.fetchUserProfile(userId).subscribe(response => {
       console.log('user', response);
       this.userDetails = response;
     }, (error) => {
@@ -153,8 +152,8 @@ export class DiscussionService {
     return this.csDiscussionService.replyPost(tid, data);
   }
 
-  fetchRecentD(page?: any) {
-    return this.csDiscussionService.recentPost(page);
+  fetchRecentPost(uid) {
+    return this.csDiscussionService.recentPost(uid);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
@@ -213,9 +212,13 @@ export class DiscussionService {
     return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'));
   }
 
-  fetchUserProfile(userName) {
+  fetchBestPost() {
+    return this.csDiscussionService.fetchBestPost(_.get(this._userDetails, 'username'));
+  }
+
+  fetchUserProfile(userId) {
     // return this.http.get<any>(urlConfig.userDetails(userName));
-    return this.csDiscussionService.getUserDetails(this.userName);
+    return this.csDiscussionService.getUserDetails(userId);
   }
 
   getContextBasedTopic(slug: string, pageId: number) {
@@ -235,12 +238,12 @@ export class DiscussionService {
     return this._userDetails;
   }
 
-  set userName(userName) {
-    this._userName = userName;
+  set userId(userId) {
+    this._userId = userId;
   }
 
-  get userName() {
-    return this._userName;
+  get userId() {
+    return this._userId;
   }
 
   set forumIds(ids) {

@@ -1,10 +1,11 @@
 export interface IdiscussionConfig {
     menuOptions?: Array<IMenuOptions>
-    userName: string
-    context?: Object
-    categories: Icategory
-    path?: string
-    routerSlug?: string
+    userName?: string;
+    context?: Object;
+    categories: Icategory;
+    path?: string;
+    routerSlug?: string;
+    userId: number;
   }
   
   export interface Icontext {
