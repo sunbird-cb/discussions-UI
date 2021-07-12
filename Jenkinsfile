@@ -20,14 +20,22 @@ node() {
 
          stage('Build') {
             sh """
-              yarn install
-              npm run build-doc
+              docker run -d --name discussion_UI -w /discussionUI node:latest sleep infinity
+              docker cp . discussion_UI:/discussionUI/
+              docker exec discussion_UI bash -x build.sh
+              docker cp discussion_UI:/discussionUI/documentation.tar.gz .
+              docker rm discussion_UI  --force
             """
         }
 
         stage('Archive artifacts'){
                  sh """
+                        mkdir doc-artifacts
+                        cd doc-artifacts
+                        cp ../documentation.tar.gz .
+                        tar -xvzf documentation.tar.gz
                         zip -r discussionUI_artifacts.zip:${artifact_version} documentation
+                        cp discussionUI_artifacts.zip:${artifact_version} ../
                     """
                  
             archiveArtifacts artifacts: "discussionUI_artifacts.zip:${artifact_version}", fingerprint: true, onlyIfSuccessful: true
