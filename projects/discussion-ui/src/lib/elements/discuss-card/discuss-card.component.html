@@ -21,14 +21,21 @@
       </a>
     </div>
     <div class="discuss-card-subtitle responsive">
-      <span *ngIf="discussionData?.category?.name" class="discuss-card-label">
-        <img src="./assets/discussion-ui/images/Buffer-512.svg" alt="Buffer-image">
-        {{discussionData.category.name}}
-      </span>
-      <!-- <span class="dot"></span> -->
-      <!-- <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-      <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-      <span class="timing">{{discussionData.lastposttime | date}}</span> -->
+     
+      <div class="cardlabel-container">
+        <div *ngIf="discussionData?.category?.name" class="discuss-card-label">
+          <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="Buffer-image" width="20px" class="mr-4">
+          {{discussionData.category.name}}
+        </div>
+        <div class="discuss-card-username">
+          <span class="dot mx-8"></span>
+          <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
+          <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+        </div>
+      </div>
+
+      <div class="timing ml-8">{{discussionData.lastposttime | date}}</div>
+      <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
   </div>
   <div class="tags margin-bottom-s">

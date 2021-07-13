@@ -75,6 +75,10 @@ export class LibEntryComponent implements OnInit {
   }
 
   goBack() {
+    const eventAction = {
+      action: 'DF_BACK'
+    };
+    this.discussionEventService.emitTelemetry(eventAction);
     this.location.back();
   }
 

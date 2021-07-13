@@ -1,107 +1,49 @@
-.discuss-card-title {
-    margin: 0 0 12px 0;
-    color: #000;
-    cursor: pointer;
+.discuss-card-title{
+    margin: 0px;
+    color: #000;  
+    cursor:pointer;
     font-size: 16px;
     font-weight: 700;
-
+    
 }
-
-.discuss-card-label {
+.discuss-card-label{
     color: #0074b6;
-    display: flex;
-
-    img {
-        width: 20px;
-        margin-right: 0.5rem;
+    @media screen and (max-width:768px) {
+        flex-basis: 100%;
     }
 }
 
-.discuss-card-subtitle {
-    margin: 8px 0px;
+.discuss-card-subtitle{
+    margin:8px 0px;
     font-size: 14px;
     display: flex;
     align-items: center;
+    @media screen and (max-width:768px) {
+        align-items: flex-start;
+    }
 }
 
-.discuss-card-comments {
+.cardlabel-container {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width:768px) {
+        margin-right: auto;
+        flex-wrap: wrap;
+    }
+}
+
+.discuss-card-comments{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  flex-wrap:wrap;
+}
+
+.discuss-comments-area{
+    display: -webkit-box;
+    font-weight: 700;
     font-size: 14px;
-    flex-wrap: wrap;
-
-    .discuss-comments-area {
-        display: -webkit-box;
-        font-weight: 700;
-        font-size: 0.75rem;
-
-        .views-content {
-            margin-left: 1.5rem;
-            display: flex;
-            align-items: center;
-
-            html[dir="rtl"] & {
-                margin-right: 1.5rem;
-
-            }
-        }
-
-        .votes-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .votes-content img,
-        .views-content img {
-            // height: 24px;
-            // width: 24px;
-            height: 15px;
-            width: 20px;
-        }
-
-        .votes-content span,
-        .views-content span {
-            margin-left: 10px;
-
-            html[dir="rtl"] & {
-                margin-right: 0.5rem;
-            }
-        }
-    }
-
-    .comments-count {
-        // color: #0074b6;
-        font-weight: 700;
-        color: rbga(0, 0, 0, 0.6);
-    }
 }
-
-.discuss-card-header {
-    .user_name_div {
-        margin-bottom: 10px;
-        .circle-text {
-            border-radius: 4px;
-            width: 28px;
-            height: 28px;
-            // display: flex;
-            display: inline-block;
-            justify-content: center;
-            align-items: center;
-            background-color: #306933;
-            color: #fff;
-            text-align: center;
-            font-weight: 600;
-            line-height: 28px;
-        }
-
-        .discuss-user-label{
-            margin-left: 10px;
-            // color: rbga(0, 0, 0, 0.6)!important;
-           color: rgba(0, 0, 0, 0.6)!important;
-        }
-    }
-}
-
 
 .dot {
     height: 6px;
@@ -109,23 +51,26 @@
     border-radius: 50%;
     display: inline-block;
     background: #858181;
-    margin: 0 1rem;
 }
 
-.timing {
+.timing{
     color: #858181;
-    margin-left: 1rem;
-    font-size: 14px;
-
-    html[dir="rtl"] & {
-        margin-right: 1rem;
-
+    @media screen and (max-width:768px) { 
+        flex: 0 0 auto;
     }
 }
 
-@media (max-width: 768px) {
-    .timing {
-        display: block;
-        margin: 4px 8px;
-    }
+.views-content{
+    margin-left:24px;
 }
+
+.votes-content img,.views-content img{
+    height: 20px;
+    width: 20px;
+}
+
+.comments-count{
+    color: #0074b6;
+    font-weight: 700;
+}
+
