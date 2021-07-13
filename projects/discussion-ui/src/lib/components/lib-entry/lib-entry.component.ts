@@ -39,10 +39,10 @@ export class LibEntryComponent implements OnInit {
       this.configService.setConfigFromParams(this.activatedRoute);
       this.data = this.configService.getConfig();
     }
-    this.discussionService.userName = _.get(this.data, 'userName');
+    this.discussionService.userId = _.get(this.data, 'userId');
     const rawCategories = _.get(this.data, 'categories');
     this.discussionService.forumIds = _.get(rawCategories, 'result');
-    this.discussionService.initializeUserDetails(this.discussionService.userName);
+    this.discussionService.initializeUserDetails(this.discussionService.userId);
    }
 
   goBack() {
