@@ -77,6 +77,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initializeFormFiled();
+    if(this.widget){
+      this.fetchSingleCategoryLoader = true
+    }
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;

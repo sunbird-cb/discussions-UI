@@ -45,6 +45,7 @@ export class DiscussAllComponent implements OnInit {
   sticky = false;
   data
   startDiscussionCategoryId: any;
+  isWidget: boolean;
 
   constructor(
     public router: Router,
@@ -60,6 +61,7 @@ export class DiscussAllComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     if (this.context) {
+      this.isWidget  = true
       this.getForumIds()
     } else {
       this.cIds = this.configService.getCategories().result
