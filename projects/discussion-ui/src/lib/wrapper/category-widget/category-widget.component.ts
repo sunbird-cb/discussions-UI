@@ -15,9 +15,9 @@ import { IdiscussionConfig } from '../../models/discussion-config.model';
 export class CategoryWidgetComponent extends BaseWrapperComponent {
 
   detailsToggle = true;
-  category = CONSTANTS.CATEGORY;
-  detailsPage = CONSTANTS.CATEGORY_DETAILS
-  homePage = CONSTANTS.CATEGORY_HOME
+  category = CONSTANTS.STATES.CATEGORY;
+  detailsPage = CONSTANTS.STATES.CATEGORY_DETAILS
+  homePage = CONSTANTS.STATES.CATEGORY_HOME
   tid: number 
   slug: string 
   context: IdiscussionConfig

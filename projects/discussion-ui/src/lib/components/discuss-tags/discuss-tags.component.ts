@@ -96,7 +96,7 @@ export class DiscussTagsComponent implements OnInit {
     const input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`,
     queryParams: this.queryParam, tagName: this.queryParam.tagName }, action: 'tagsAll'};
     this.navigationService.navigate(input);
-    this.stateChange.emit({ action: CONSTANTS.TAG_ALL_DISCUSS, title: tag.value, tid: 'sd' });
+    this.stateChange.emit({ action: CONSTANTS.STATES.TAG_ALL_DISCUSS, title: tag.value, tid: 'sd' });
     // tslint:disable-next-line: max-line-length
     // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
   }

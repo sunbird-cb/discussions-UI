@@ -164,9 +164,9 @@ export class TagAllDiscussionComponent implements OnInit {
     });
 
     let slug = _.trim(_.get(discussionData, 'slug'))
-    let input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.CATEGORY_DETAILS, }
+    let input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.STATES.CATEGORY_DETAILS, }
     this.navigationService.navigate(input)
-    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid })
+    this.stateChange.emit({ action: CONSTANTS.STATES.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid })
 
     // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.trim(_.get(discussionData, 'slug'))}`], { queryParamsHandling: "merge" });
   }

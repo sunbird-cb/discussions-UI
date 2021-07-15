@@ -126,10 +126,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const slug = _.trim(_.get(discuss, 'slug'))
     const input = {
       data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} },
-      action: CONSTANTS.CATEGORY_DETAILS };
+      action: CONSTANTS.STATES.CATEGORY_DETAILS };
 
     this.navigationService.navigate(input);
-    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discuss.title, tid: discuss.tid });
+    this.stateChange.emit({ action: CONSTANTS.STATES.CATEGORY_DETAILS, title: discuss.title, tid: discuss.tid });
   }
 
   initializeFormFiled() {

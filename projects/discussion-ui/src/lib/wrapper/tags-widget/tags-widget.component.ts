@@ -4,6 +4,7 @@ import { NavigationServiceService } from '../../navigation-service.service';
 import { ConfigService } from '../../services/config.service';
 import { DiscussionService } from '../../services/discussion.service';
 import { BaseWrapperComponent } from '../base-wrapper/base-wrapper.component';
+import * as CONSTANTS from '../../common/constants.json';
 
 @Component({
   selector: 'sb-tags-widget',
@@ -12,8 +13,8 @@ import { BaseWrapperComponent } from '../base-wrapper/base-wrapper.component';
 })
 export class TagsWidgetComponent extends BaseWrapperComponent {
 
-  tags: string = 'tags'
-  tagsAll: string = 'tagsAll'
+  tags: string = CONSTANTS.STATES.TAGS
+  tagsAll: string = CONSTANTS.STATES.TAGSALL
   tagName: string
 
   constructor(configSvc: ConfigService, discussionService: DiscussionService, navigationServiceService: NavigationServiceService, eventService: EventsService) {

@@ -124,7 +124,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.configService.setCategoryid(this.categoryId)
 
         let routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : ''
-        input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.CATEGORY}${this.categoryId}`, queryParams: {} }, action: CONSTANTS.CATEGORY_HOME, }
+        input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.CATEGORY}${this.categoryId}`, queryParams: {} }, action: CONSTANTS.STATES.CATEGORY_HOME, }
         this.navigationService.navigate(input)
         this.stateChange.emit({ action: this.categoryAction, categoryId: this.categoryId })
       }

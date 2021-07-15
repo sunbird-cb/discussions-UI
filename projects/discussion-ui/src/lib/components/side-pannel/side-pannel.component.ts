@@ -31,6 +31,7 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   menu: Array<IMenuOptions> = [];
   selectedTab: string;
   showSideMenu: Boolean = true;
+  landingPage: string
 
   constructor(
     public router: Router,
@@ -58,12 +59,13 @@ export class SidePannelComponent implements OnInit, OnDestroy {
   }
 
   isActive(selectedItem) {
+    this.landingPage = this.data.defaultLandingPage ? this.data.defaultLandingPage : 'categories'
     if (this.router.url.indexOf(`/${selectedItem}`) > -1 || this.selectedTab === selectedItem) {
       if (!this.selectedTab) {
         this.selectedTab = selectedItem
       }
       return true
-    } else if (selectedItem === 'all-discussions' && !this.selectedTab) {
+    } else if (selectedItem === this.landingPage && !this.selectedTab) {
       return true
     }
     return false

@@ -5,6 +5,7 @@ import { DiscussionService } from '../../services/discussion.service';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
 import { NSDiscussData } from './../../models/discuss.model';
+import { NavigationServiceService } from '../../navigation-service.service';
 
 @Component({
   selector: 'lib-related-discussion',
@@ -16,16 +17,18 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
   @Input() catId: any;
   @Input() topicId: any;
 
-  @Output() passDiscussData: EventEmitter<any> = new EventEmitter();
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
   relatedDiscussions: any[];
   fetchSingleCategoryLoader = false;
   similarPosts: any;
 
   constructor(
-    // private router: Router,
-    // private configService: ConfigService,
+    private router: Router,
+    private configService: ConfigService,
       private discussionService: DiscussionService,
+      private navigationService: NavigationServiceService
+
   ) { }
 
   ngOnInit() {
@@ -57,9 +60,9 @@ export class RelatedDiscussionComponent implements OnInit, OnChanges {
   }
 
   getDiscussion(discuss) {
-    this.passDiscussData.emit(discuss);
-    // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`],
-    // { queryParamsHandling: "merge" });
+    const input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.DISCUSSION}topic/${discuss.slug}`, queryParams: {} } }
+    this.navigationService.navigate(input);
+    this.stateChange.emit(discuss);
   }
 
 

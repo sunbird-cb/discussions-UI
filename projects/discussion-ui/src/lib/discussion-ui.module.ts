@@ -27,12 +27,4 @@ export function provideCsModule(){
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
 export class DiscussionUiModule { 
-  static forRoot(configService): ModuleWithProviders {
-    return {
-      ngModule: ComponentsModule,
-      providers: [
-        {provide: 'configService', useClass: configService}
-      ]
-    };
-  }
 }

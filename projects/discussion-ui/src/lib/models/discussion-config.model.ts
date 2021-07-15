@@ -7,6 +7,7 @@ export interface IdiscussionConfig {
   routerSlug?: string
   headerOptions?: boolean
   bannerOption?: boolean
+  defaultLandingPage?: string
 }
 
 export interface IDiscussionAllContext {
