@@ -7,6 +7,7 @@ import * as CONSTANTS from '../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { ConfigService } from '../../services/config.service';
+import { combineLatest } from 'rxjs';
 /* tslint:enable */
 
 @Component({
@@ -51,11 +52,21 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showLoader = true;
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
-    if (this.discussService.userName) {
-      this.fetchUserProfile(this.discussService.userName);
-    }
+    const userId = this.discussService.userId;
+    combineLatest([
+      this.discussService.fetchUserProfile(userId),
+      this.discussService.fetchRecentPost(userId)
+    ]).subscribe(result => {
+      this.showLoader = false;
+      this.data = _.merge(result[0], result[1]);
+      this.filter(this.currentFilter);
+    }, error => {
+      this.showLoader = false;
+      console.log(error);
+    });
   }
 
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted') {
@@ -64,10 +75,17 @@ export class MyDiscussionComponent implements OnInit {
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
-          this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
+          this.discussionList = _.get(this.data, 'topics');
           break;
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
+          this.discussService.fetchBestPost().subscribe(result => {
+            if (result) {
+              this.discussionList = _.get(result, 'posts');
+            } else {
+              this.discussionList = [];
+            }
+          });
           this.discussionList = this.data.bestPosts;
           break;
         case 'saved':
