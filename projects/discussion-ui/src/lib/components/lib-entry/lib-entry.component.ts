@@ -33,7 +33,6 @@ export class LibEntryComponent implements OnInit {
 
   ngOnInit() {
     this.histtoryStartIndex = window.history.length-1;
-    console.log('DF lib this.histtoryStartIndex', this.histtoryStartIndex )
     this.configService.setConfig(this.activatedRoute);
     // this.activatedRoute.data.subscribe((data) => {
     this.data = this.configService.getConfig();
