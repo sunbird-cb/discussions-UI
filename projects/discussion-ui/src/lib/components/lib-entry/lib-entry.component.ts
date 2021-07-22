@@ -19,6 +19,7 @@ import { ConfigService } from '../../services/config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
+  histtoryStartIndex;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -31,6 +32,8 @@ export class LibEntryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.histtoryStartIndex = window.history.length-1;
+    console.log('DF lib this.histtoryStartIndex', this.histtoryStartIndex )
     this.configService.setConfig(this.activatedRoute);
     // this.activatedRoute.data.subscribe((data) => {
     this.data = this.configService.getConfig();
@@ -50,10 +53,12 @@ export class LibEntryComponent implements OnInit {
   }
 
   close(event) {
+    console.log('DF close');
     const eventAction = {
       action: 'DF_CLOSE'
     };
     this.discussionEventService.emitTelemetry(eventAction);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.LIB_ENTRY);
+    window.history.go(-(window.history.length - this.histtoryStartIndex ));
   }
 }
