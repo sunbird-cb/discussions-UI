@@ -19,6 +19,7 @@ import { ConfigService } from '../../services/config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
+  histtoryStartIndex: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -31,6 +32,7 @@ export class LibEntryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.histtoryStartIndex = window.history.length-1;
     this.configService.setConfig(this.activatedRoute);
     // this.activatedRoute.data.subscribe((data) => {
     this.data = this.configService.getConfig();
@@ -55,5 +57,6 @@ export class LibEntryComponent implements OnInit {
     };
     this.discussionEventService.emitTelemetry(eventAction);
     this.telemetryUtils.logInteract(event, NSDiscussData.IPageName.LIB_ENTRY);
+    window.history.go(-(window.history.length - this.histtoryStartIndex ));
   }
 }
