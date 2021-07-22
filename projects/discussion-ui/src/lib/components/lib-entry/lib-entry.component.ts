@@ -19,7 +19,7 @@ import { ConfigService } from '../../services/config.service';
 export class LibEntryComponent implements OnInit {
 
   data: IdiscussionConfig;
-  histtoryStartIndex;
+  histtoryStartIndex: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -53,7 +53,6 @@ export class LibEntryComponent implements OnInit {
   }
 
   close(event) {
-    console.log('DF close');
     const eventAction = {
       action: 'DF_CLOSE'
     };
