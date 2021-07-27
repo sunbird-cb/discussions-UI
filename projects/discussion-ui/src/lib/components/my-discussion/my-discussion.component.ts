@@ -58,7 +58,7 @@ export class MyDiscussionComponent implements OnInit {
     const userId = this.discussService.userId;
     combineLatest([
       this.discussService.fetchUserProfile(userId),
-      this.discussService.fetchRecentPost(userId)
+      this.discussService.fetchRecentPost()
     ]).subscribe(result => {
       this.showLoader = false;
       this.data = _.merge(result[0], result[1]);
@@ -75,7 +75,7 @@ export class MyDiscussionComponent implements OnInit {
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
-          this.discussionList = _.get(this.data, 'topics');
+          this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
           break;
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
@@ -109,7 +109,7 @@ export class MyDiscussionComponent implements OnInit {
           this.discussService.fetchUpvoted().subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
-              this.discussionList = response['posts'];
+              this.discussionList = response['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
@@ -124,7 +124,7 @@ export class MyDiscussionComponent implements OnInit {
           this.discussService.fetchDownvoted().subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
-              this.discussionList = response['posts'];
+              this.discussionList = response['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
