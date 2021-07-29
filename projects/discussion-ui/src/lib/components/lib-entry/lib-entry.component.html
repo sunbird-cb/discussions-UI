@@ -21,3 +21,4 @@
         </div>
     </div>
 </div>
+<lib-load-alert *ngIf="showLoaderAlert" (exit)="close($event)" (close)="closeLoadAlert()"></lib-load-alert>

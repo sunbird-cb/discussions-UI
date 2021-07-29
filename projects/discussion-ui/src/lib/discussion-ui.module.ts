@@ -7,6 +7,7 @@ import { DiscussionRoutingModule } from './discussion-routing/discussion-routing
 import { NgModule } from '@angular/core';
 
 import { DiscussionEventsService } from './discussion-events.service';
+import { CommonModule } from '@angular/common';
 
 export function provideCsModule(){
   return window['CsModule'];
@@ -16,7 +17,8 @@ export function provideCsModule(){
   imports: [
     ComponentsModule,
     DiscussionRoutingModule,
-    ElementsModule
+    ElementsModule,
+    CommonModule
   ],
   exports: [ ComponentsModule ],
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
