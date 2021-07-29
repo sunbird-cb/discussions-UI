@@ -308,6 +308,7 @@ export namespace NSDiscussData {
     CATEGORY = 'discussion-category',
     TAGS = 'discussion-category',
     MY_DISCUSSION = 'my-discussion',
-    LIB_ENTRY = 'lib-entry'
+    LIB_ENTRY = 'lib-entry',
+    LOAD_ALERT = 'load-alert'
   }
 }

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { of as observableOf, throwError as observableThrowError, Observable, throwError } from 'rxjs';
+import { of as observableOf, throwError as observableThrowError, Observable, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { urlConfig } from './../config/url.config';
@@ -34,6 +34,8 @@ export class DiscussionService {
 
   // tslint:disable-next-line:variable-name
   private _context: any = {};
+
+  public alertEvent = new Subject();
 
   usr: any;
 
