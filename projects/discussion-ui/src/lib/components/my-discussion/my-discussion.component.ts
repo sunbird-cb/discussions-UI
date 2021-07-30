@@ -80,13 +80,13 @@ export class MyDiscussionComponent implements OnInit {
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
           this.discussService.fetchBestPost().subscribe(result => {
-            if (result) {
-              this.discussionList = _.get(result, 'posts');
+            if (result && result.posts) {
+              // this.discussionList = _.get(result, 'posts');
+              this.discussionList = result['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
           });
-          this.discussionList = this.data.bestPosts.filter(p => (p.isMainPost === true));
           break;
         case 'saved':
           this.discussService.fetchSaved().subscribe(response => {
