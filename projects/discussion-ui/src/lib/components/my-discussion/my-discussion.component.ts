@@ -81,7 +81,6 @@ export class MyDiscussionComponent implements OnInit {
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
           this.discussService.fetchBestPost().subscribe(result => {
             if (result && result.posts) {
-              // this.discussionList = _.get(result, 'posts');
               this.discussionList = result['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
