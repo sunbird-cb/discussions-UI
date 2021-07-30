@@ -86,7 +86,7 @@ export class MyDiscussionComponent implements OnInit {
               this.discussionList = [];
             }
           });
-          this.discussionList = this.data.bestPosts;
+          this.discussionList = this.data.bestPosts.filter(p => (p.isMainPost === true));
           break;
         case 'saved':
           this.discussService.fetchSaved().subscribe(response => {
