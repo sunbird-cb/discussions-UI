@@ -80,13 +80,12 @@ export class MyDiscussionComponent implements OnInit {
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
           this.discussService.fetchBestPost().subscribe(result => {
-            if (result) {
-              this.discussionList = _.get(result, 'posts');
+            if (result && result.posts) {
+              this.discussionList = result['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
           });
-          this.discussionList = this.data.bestPosts;
           break;
         case 'saved':
           this.discussService.fetchSaved().subscribe(response => {
@@ -109,7 +108,7 @@ export class MyDiscussionComponent implements OnInit {
           this.discussService.fetchUpvoted().subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
-              this.discussionList = response['posts'];
+              this.discussionList = response['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
@@ -124,7 +123,7 @@ export class MyDiscussionComponent implements OnInit {
           this.discussService.fetchDownvoted().subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
-              this.discussionList = response['posts'];
+              this.discussionList = response['posts'].filter(p => (p.isMainPost === true));
             } else {
               this.discussionList = [];
             }
@@ -144,7 +143,8 @@ export class MyDiscussionComponent implements OnInit {
 
   navigateToDiscussionDetails(discussionData) {
     console.log('discussionData', discussionData);
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${_.get(discussionData, 'topic.slug')}`]);
+    const slug = _.get(discussionData, 'slug') || _.get(discussionData, 'topic.slug')
+    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`]);
   }
 
   logTelemetry(event) {
