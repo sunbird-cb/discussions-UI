@@ -127,7 +127,7 @@ export class DiscussAllComponent implements OnInit {
   }
 
   refreshData(page?: any) {
-    this.currentFilter === 'recent' ? this.getRecentData() : this.fillPopular(page);
+    this.currentFilter === 'recent' ? this.getRecentData() : this.fillPopular(page)
   }
 
   getRecentData() {
