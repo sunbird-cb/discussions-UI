@@ -9,7 +9,7 @@
           <div class="kabab-menu" id="group-actions" (click)="onMenuClick()"></div>
           <div class="kabab-menu-dropdown-content" [hidden]="dropdownContent">
             <div>
-              <div id="edit-topic" class="d-flex flex-ai-center list p-8 w-100" (click)="editTopic($event, data); editableTopicDetails = data">Edit
+              <div class="list" (click)="editTopic(); editableTopicDetails = data">Edit
               </div>
               <div id="delete-topic" class="list" (click)="deleteTopic($event, data)">Delete</div>
             </div>
@@ -191,7 +191,8 @@
               </span>
             </div>
 
-            <button (click)="togglePost(post); logTelemetry($event, post)" class="df-btn df-reply-btn" id="reply-comment">
+            <button (click)="togglePost(post); logTelemetry($event, post)" class="df-btn df-reply-btn transparent"
+              id="reply-comment">
               Reply </button>
 
           </div>

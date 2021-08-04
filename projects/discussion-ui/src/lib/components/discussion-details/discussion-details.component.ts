@@ -435,9 +435,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   /**
    * @description - It will open update thread popup.
    */
-  editTopic(event, topicData) {
+  editTopic() {
     this.showEditTopicModal = true;
-    this.logTelemetry(event, topicData);
   }
 
   /**

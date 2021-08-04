@@ -1,16 +1,22 @@
-<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
-    class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal"
-    id="start-discussion">Start Discussion</button>
-<div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" #scrollContainerHeight>
-    <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
-        [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
-        [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
-        <div *ngFor="let discussionData of discussionList"
-            (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" id="topic-card">
-            <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
-        </div>
-    </div>
+<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn"
+    data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
+
+<div class="flex flex-1 margin-top-xl">
+    <h2 class="cursor-pointer f-medium" [innerHTML]="title"></h2>
 </div>
+<div>
+    <span>&nbsp;</span>
+</div>
+
+<ng-container *ngIf="discussionList && discussionList.length > 0">
+    <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" infinite-scroll
+        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
+        [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()" class=""
+        *ngFor="let discussionData of discussionList" id="topic-card">
+        <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+    </div>
+</ng-container>
+
 <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
     <div class="discuss-card-content cursor-pointer" id="topic-card">
         <div class="no-data-label">No Data</div>

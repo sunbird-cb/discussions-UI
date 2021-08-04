@@ -132,7 +132,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    this.enableSubmitButton = false;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
