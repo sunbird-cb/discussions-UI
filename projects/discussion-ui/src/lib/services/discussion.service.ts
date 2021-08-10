@@ -152,8 +152,8 @@ export class DiscussionService {
     return this.csDiscussionService.replyPost(tid, data);
   }
 
-  fetchRecentPost(uid) {
-    return this.csDiscussionService.recentPost(uid);
+  fetchRecentPost(uid, pageId?) {
+    return this.csDiscussionService.recentPost(uid, pageId);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
@@ -199,21 +199,21 @@ export class DiscussionService {
     // return this.http.get(urlConfig.fetchProfile(slug));
     return this.csDiscussionService.fetchProfileInfo(slug);
   }
-  fetchUpvoted() {// 0
+  fetchUpvoted(pageId: number) {// 0
     // return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, 'username'), pageId);
   }
-  fetchDownvoted() { // 0
+  fetchDownvoted(pageId: number) { // 0
     // return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, 'username'), pageId);
   }
-  fetchSaved() { // 0 this.usr.userId
+  fetchSaved(pageId: number) { // 0 this.usr.userId
     // return this.http.get(urlConfig.listSaved(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'), pageId);
   }
 
-  fetchBestPost() {
-    return this.csDiscussionService.fetchBestPost(_.get(this._userDetails, 'username'));
+  fetchBestPost(pageId: number) {
+    return this.csDiscussionService.fetchBestPost(_.get(this._userDetails, 'username'), pageId);
   }
 
   fetchUserProfile(userId) {
