@@ -87,7 +87,6 @@ export class MyDiscussionComponent implements OnInit {
       if (resetpagination) {
         this.discussionList = []
         this.pagination.currentPage = 1;
-        this.pagination.nextPage = 2;
       }
       // setting the current page index 
       const scrollIndex = this.pagination.currentPage ? this.pagination.currentPage : 1;
