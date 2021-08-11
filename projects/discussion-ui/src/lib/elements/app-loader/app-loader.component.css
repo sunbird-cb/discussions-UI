@@ -1,7 +1,19 @@
-.sbt-app-loader-container {
-    background:var(--sbt-compt-bg);
-    width:94% !important;
-    margin:0 auto;
+.dt-app-loader-container {
+    background: #e9e8d9;
+    width: 94% !important;
+    margin: 1rem auto;
     border-radius: 1.5rem;
-    border:0px;
+    border: 0px;
+    display: flex;
+    padding: 1rem;
+}
+​
+.loader-content{
+    margin: 0 1rem;
+    font-size: 0.875rem;
+}
+​
+.loader-label{
+    font-weight: bold;
+    margin-bottom: 0.25rem;
 }

@@ -43,7 +43,6 @@ export class MyDiscussionComponent implements OnInit {
 
   /** To fetch user details */
   fetchUserProfile(userName) {
-    this.showLoader = true;
     this.discussService.fetchUserProfile(userName).subscribe(response => {
       this.showLoader = false;
       console.log(response);
@@ -62,7 +61,6 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showLoader = true;
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     this.filter(this.currentFilter, false);
@@ -85,14 +83,15 @@ export class MyDiscussionComponent implements OnInit {
   filter(key: string | 'timestamp' | 'best' | 'saved' | 'watched' | 'upvoted' | 'downvoted', resetpagination: boolean) {
     this.currentFilter = key;
     if (key) {
-      this.showLoader = true;
       // reset the currentpage value to 1 and reset the discussionList data based on the respective api response when the filter is changed
       if (resetpagination) {
         this.discussionList = []
         this.pagination.currentPage = 1;
+        this.pagination.nextPage = 2;
       }
       // setting the current page index 
       const scrollIndex = this.pagination.currentPage ? this.pagination.currentPage : 1;
+      this.showLoader = true;
       switch (key) {
         case 'timestamp':
           this.getRecentTopics(scrollIndex);
@@ -102,14 +101,15 @@ export class MyDiscussionComponent implements OnInit {
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
           this.discussService.fetchBestPost(scrollIndex).subscribe(result => {
             if (result) {
-              this.discussionList = [...this.discussionList, ...(_.get(result, 'posts'))];
+              const bestPost = result['posts'].filter(p => (p.isMainPost === true));
+              this.discussionList = [...this.discussionList, ...bestPost];
               this.pagination = _.get(result, 'pagination');
               this.showLoader = false;
             } else {
+              this.showLoader = false;
               this.discussionList = [];
             }
           });
-          // this.discussionList = this.data.bestPosts;
           break;
         case 'saved':
           this.discussService.fetchSaved(scrollIndex).subscribe(response => {
@@ -119,6 +119,7 @@ export class MyDiscussionComponent implements OnInit {
               this.pagination = _.get(response, 'pagination');
               this.showLoader = false;
             } else {
+              this.showLoader = false;
               this.discussionList = [];
             }
           },
@@ -128,16 +129,19 @@ export class MyDiscussionComponent implements OnInit {
             })
           break;
         case 'watched':
+          this.showLoader = false;
           this.discussionList = [];
           break;
         case 'upvoted':
           this.discussService.fetchUpvoted(scrollIndex).subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
+              const upvoted = response['posts'].filter(p => (p.isMainPost === true));
               this.pagination = _.get(response, 'pagination');
-              this.discussionList = [...this.discussionList, ...response['posts']];
+              this.discussionList = [...this.discussionList, ...upvoted];
               this.showLoader = false;
             } else {
+              this.showLoader = false;
               this.discussionList = [];
             }
           },
@@ -150,10 +154,12 @@ export class MyDiscussionComponent implements OnInit {
           this.discussService.fetchDownvoted(scrollIndex).subscribe(response => {
             if (response) {
               // this.discussionList = _.uniqBy(response['posts'], 'tid');
-              this.discussionList = [...this.discussionList, ...response['posts']];
+              const downvoted = response['posts'].filter(p => (p.isMainPost === true));
+              this.discussionList = [...this.discussionList, ...downvoted];
               this.pagination = _.get(response, 'pagination');
               this.showLoader = false;
             } else {
+              this.showLoader = false;
               this.discussionList = [];
             }
           },
@@ -187,14 +193,14 @@ export class MyDiscussionComponent implements OnInit {
    */
   getRecentTopics(scrollIndex: number) {
     const userId = this.discussService.userId;
-    this.showLoader = true;
+    const userSlug = this.discussService.userDetails.userslug;
     combineLatest([
       this.discussService.fetchUserProfile(userId),
-      this.discussService.fetchRecentPost(userId, scrollIndex)
+      this.discussService.fetchRecentPost(userSlug, scrollIndex)
     ]).subscribe(result => {
       this.showLoader = false;
       this.data = _.merge(result[0], result[1]);
-      this.discussionList = [...this.discussionList, ...(_.get(this.data, 'topics'))];
+      this.discussionList = [...this.discussionList, ...(_.get(this.data, 'posts'))];
       this.pagination = _.get(this.data, 'pagination');
     }, error => {
       this.showLoader = false;
@@ -209,7 +215,11 @@ export class MyDiscussionComponent implements OnInit {
     if (this.pagination.currentPage !== this.pagination.pageCount) {
         this.pagination.currentPage = this.pagination.next.page;
         const resetpagination = false;
-        this.filter(this.currentFilter, resetpagination)
+        // using settimeout to avoid the function call before getting the pagination response from api, 
+        // because the api is called twice with the same page index
+        setTimeout(() => {
+          this.filter(this.currentFilter, resetpagination)
+        }, 800); 
     }
   }
 }
