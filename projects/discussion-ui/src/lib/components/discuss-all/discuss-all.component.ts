@@ -156,10 +156,10 @@ export class DiscussAllComponent implements OnInit {
       this.currentFilter = key;
       switch (key) {
         case 'recent':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillrecent()
           break;
         case 'popular':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillPopular()
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillPopular()
           break;
         default:
           break;
@@ -294,7 +294,7 @@ export class DiscussAllComponent implements OnInit {
       if (this.context) {
         this.getContextBasedDiscussion(this.cIds)
       } else {
-        this.getContextBasedDiscussion(this.cIds.result)
+        this.refreshData()
       }
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
