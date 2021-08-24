@@ -73,6 +73,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.categories.push(data);
       }, error => {
         // TODO: Toast error
+        // error code check
+        this.discussService.showTrafficAlert(error);
         console.log('issue fetching category', error);
         this.showLoader = false;
       });
@@ -86,6 +88,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       this.categories = data
     }, error => {
       // TODO: Toast error
+      // error code check
+      this.discussService.showTrafficAlert(error);
       console.log('issue fetching category', error);
       this.showLoader = false;
     });
@@ -118,6 +122,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.CATEGORY}`, `${this.categoryId}`]);
       }
     }, error => {
+      // error code check
+      this.discussService.showTrafficAlert(error);
       this.showLoader = false;
       // TODO: Toast error
       console.log('issue fetching category', error);
