@@ -82,6 +82,8 @@ export class DiscussHomeComponent implements OnInit, AfterViewChecked {
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
     }, error => {
       this.showLoader = false;
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       // TODO: Toaster
       console.log('error fetching topic list', error);
     });
