@@ -177,7 +177,7 @@ export class DiscussAllComponent implements OnInit {
       this.showLoader = false;
       this.discussionList = [];
       _.filter(response.topics, (topic) => {
-        if (topic.user.uid !== 0) {
+        if (topic.user.uid !== 0 && topic.cid !== 1 ) {
           this.discussionList.push(topic);
         }
       });
@@ -204,7 +204,7 @@ export class DiscussAllComponent implements OnInit {
         this.showLoader = false;
         this.discussionList = [];
         _.filter(data.topics, (topic) => {
-          if (topic.user.uid !== 0) {
+          if (topic.user.uid !== 0 && topic.cid !== 1) {
             this.discussionList.push(topic);
           }
         });
