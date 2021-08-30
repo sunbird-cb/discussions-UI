@@ -154,8 +154,8 @@ export class DiscussionService {
     return this.csDiscussionService.replyPost(tid, data);
   }
 
-  fetchRecentPost(uid) {
-    return this.csDiscussionService.recentPost(uid);
+  fetchRecentPost() {
+    return this.csDiscussionService.recentPost(_.get(this._userDetails, 'username'));
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
