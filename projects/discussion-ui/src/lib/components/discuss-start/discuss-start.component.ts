@@ -135,7 +135,8 @@ export class DiscussStartComponent implements OnInit {
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
-      cid: this.categoryId ? [this.categoryId] : [parseInt(form.value.category)],
+      // tslint:disable-next-line: radix
+      cid: this.categoryId ? this.categoryId : parseInt(form.value.category),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,
