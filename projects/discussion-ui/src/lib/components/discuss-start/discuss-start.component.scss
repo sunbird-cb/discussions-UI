@@ -13,7 +13,7 @@
 	pointer-events: auto;
 
 	.discussion-start-modal-content {
-		max-width: 800px;
+		max-width: 1260px;
 		width: 90%;
 		position: relative;
 		margin: 0 auto;
@@ -214,6 +214,17 @@
 	margin-bottom: 1.5rem;
 }
 
+.discussion_inner_left {
+	float: left;
+	width: 69%;
+}
+.discussion_inner_right {
+	float: right;
+	width: 30%;
+	background-color: #F0F3F4;
+	height: 100vh;
+}
+
 // .discussion-start-modal .discussion-start-modal-content .discussion-start-form .start-form-field .start-form-field-control {
 
 .discussion-start-modal .discussion-start-modal-content .discussion-start-form .start-form-field .textarea_box {	
@@ -275,5 +286,51 @@ select.post_form_select:focus {
 
 .text_form_field_box input.question_input_field {
 	width:97%!important;
+}
+
+@media (max-width: 768px) {
+	.select_form_field_box {
+		width: 100%;
+		display: block;
+	}
+	select.post_form_select {
+		width: 100%;
+	}
+	.text_form_field_box  {
+		width: 100%;
+		float: left;
+	}
+	.post-tags {
+		margin-top: 15px;
+	}
+	.discussion-start-modal {
+		.discussion-start-modal-content {
+			width: 95%;
+			max-width: 95%;
+			box-sizing: border-box;
+			padding: 15px 15px 0 15px;
+			top: 8%;
+    		left: 2.5%;
+			transform: none;
+
+			.discussion-start-form {
+				.start-form-field {
+					width: 100%;
+					box-sizing: border-box;
+					margin-bottom: 0;
+
+					.textarea_box {
+						width: 100%;
+						max-width: 100%;
+						box-sizing: border-box;
+					}
+					.start-form-field-control {
+						width: 100%;
+						box-sizing: border-box;
+					}
+				}
+			}
+		}
+	}
 }
 

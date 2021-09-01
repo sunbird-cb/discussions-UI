@@ -18,3 +18,68 @@
     </div>
   </ng-container>
 </div>
+
+
+<!--========= leaderboard component ================-->
+
+<div class="flex flex-col items-center leader_board_box"> 
+  <div class="search_box flex">
+    <ng-container>
+      <input  #question autocomplete="off" maxlength="20" [(ngModel)]="query" class="search"
+        placeholder="Search by name" [required]="false" />
+    </ng-container>
+  </div>
+  
+
+  <div class="top_contributor_box flex flex-col items-center">
+    <p class="mat-h2">Top contributors of the month</p>
+
+    <div class="discuss-category-cards">
+      <!-- first inner box -->
+      <div class="inner_contributor_box flex flex-row items-center justify-start mat-card">
+        <!-- icon box ---->
+        <div class="flex">
+          <span class="user_title_box bg_pink flex items-center justify-center">DN</span>
+        </div>
+
+        <!--content box -->
+        <div class="user_content_box">
+          <p class="mat-h3 margin-remove user_content_heading">Devaprathap Nagendra</p>
+          <p class="margin-remove user_designation ws-mat-black60-text">Joint Secretary at Tourism</p>
+          <p class="karma_text margin-remove mat-h3 ws-mat-default-text">+42 Karma</p>
+        </div>
+      </div>
+
+       <!-- second inner box -->
+       <div class="inner_contributor_box flex flex-row items-center justify-start mat-card">
+        <!-- icon box ---->
+        <div class="flex">
+          <span class="user_title_box bg_pink flex items-center justify-center">AB</span>
+        </div>
+
+        <!--content box -->
+        <div class="user_content_box">
+          <p class="mat-h3 margin-remove">Anand Bhairavi</p>
+          <p class="margin-remove user_designation ws-mat-black60-text"> Joint Secretary at Tourism</p>
+          <p class="karma_text margin-remove mat-h3 ws-mat-default-text"> +42 Karma</p>
+        </div>
+      </div>
+
+      <!-- second inner box -->
+      <div class="inner_contributor_box flex flex-row items-center justify-start mat-card">
+        <!-- icon box ---->
+        <div class="flex">
+          <span class="user_title_box bg_pink flex items-center justify-center">MM</span>
+        </div>
+
+        <!--content box -->
+        <div class="user_content_box">
+          <p class="mat-h3 margin-remove">Munmunja Mukherjee</p>
+          <p class="margin-remove user_designation ws-mat-black60-text"> Joint Secretary at Tourism</p>
+          <p class="karma_text margin-remove mat-h3 ws-mat-default-text"> +42 Karma</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

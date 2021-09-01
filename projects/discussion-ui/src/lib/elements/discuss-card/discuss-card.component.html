@@ -5,9 +5,12 @@
       <span class="circle-text"><span
         class="circle-label">{{ discussionData?.user?.username | splitInitials }}</span></span>
 
-      <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-      <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-      <span class="timing">{{discussionData.lastposttime | date}}</span>
+        <div class="post_user_text_box">
+          <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
+          <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+          <span class="timing">{{discussionData.lastposttime | date}}</span>
+        </div>
+        
     </div>
     <!-- title -->
     <div>
