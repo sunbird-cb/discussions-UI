@@ -77,7 +77,8 @@ export class MyDiscussionComponent implements OnInit {
       switch (key) {
         case 'timestamp':
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
-          this.discussionList = _.get(this.data, 'posts');
+          // this.discussionList = _.get(this.data, 'posts');
+          this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
           break;
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
