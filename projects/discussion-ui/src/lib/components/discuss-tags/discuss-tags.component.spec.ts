@@ -41,22 +41,22 @@ describe('DiscussCategoryComponent', () => {
     expect(discusstagsComponent).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    it('should call navigateToDiscussionPage', () => {
-      // arrange
-      const params = {
-        categories: 'some_categories'
-      } as any
-      mockConfigService.getConfig = jest.fn(() => params)
-      jest.spyOn(discusstagsComponent, 'fetchAllTags').mockImplementation();
-      // act
-      discusstagsComponent.ngOnInit();
-      // assert
-      expect(mockTelemetryUtilsService.logImpression).toHaveBeenCalledWith(NSDiscussData.IPageName.TAGS);
-      expect(mockTelemetryUtilsService.setContext).toHaveBeenCalledWith([]);
-      expect(discusstagsComponent.fetchAllTags).toHaveBeenCalled();
-    });
-  });
+  // describe('ngOnInit', () => {
+  //   it('should call navigateToDiscussionPage', () => {
+  //     // arrange
+  //     const params = {
+  //       categories: 'some_categories'
+  //     } as any
+  //     mockConfigService.getConfig = jest.fn(() => params)
+  //     jest.spyOn(discusstagsComponent, 'fetchAllTags').mockImplementation();
+  //     // act
+  //     discusstagsComponent.ngOnInit();
+  //     // assert
+  //     expect(mockTelemetryUtilsService.logImpression).toHaveBeenCalledWith(NSDiscussData.IPageName.TAGS);
+  //     expect(mockTelemetryUtilsService.setContext).toHaveBeenCalledWith([]);
+  //     expect(discusstagsComponent.fetchAllTags).toHaveBeenCalled();
+  //   });
+  // });
 
   describe('fetchAllTags', () => {
     it('should fetch all tags', (done) => {
