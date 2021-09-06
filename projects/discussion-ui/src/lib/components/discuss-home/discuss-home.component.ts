@@ -112,7 +112,7 @@ export class DiscussHomeComponent implements OnInit {
     if (_.get(event, 'message') === 'success') {
       this.discussionList = [];
       this.currentPage = 0;
-      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+      this.getDiscussionList(this.routeParams);
     }
     this.showStartDiscussionModal = false;
   }
