@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { Router } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
-import { NavigationServiceService } from '../../navigation-service.service';
+import { NavigationServiceService } from '../../navigation-service.service'
 
 /* tslint:enable */
 @Component({

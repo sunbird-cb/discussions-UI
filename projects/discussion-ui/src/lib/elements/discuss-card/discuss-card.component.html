@@ -5,12 +5,15 @@
       <span class="circle-text"><span
         class="circle-label">{{ discussionData?.user?.username | splitInitials }}</span></span>
 
-      <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-      <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-      <span class="timing">{{discussionData.lastposttime | date}}</span>
+        <div class="post_user_text_box">
+          <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
+          <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+          <span class="timing">{{discussionData.lastposttime | date}}</span>
+        </div>
+        
     </div>
     <!-- title -->
-    <div>
+    <div class="discuss_main_text_box">
       <a href="javascript:void(0)" i18n-aria-label role="link">
         <h3 class='discuss-card-title' *ngIf="discussionData?.title" [innerHTML]="discussionData?.title"></h3>
         <h3 class='discuss-card-title' *ngIf="!discussionData?.title && discussionData?.topic?.title"

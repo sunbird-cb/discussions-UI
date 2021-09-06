@@ -99,6 +99,10 @@
 
 }
 
+.discuss-card-content {
+  z-index: 1!important;
+}
+
 
 .discuss-home {
   background: #0074B6 0% 0% no-repeat padding-box;
@@ -160,4 +164,25 @@
 }
 .tab_margin {
   margin-bottom: 15px!important;
+}
+a.all_category_link {
+ color:  #0074b6;
+}
+
+
+@media (max-width: 768px) {
+
+  .main-div {
+    display: block!important;
+    width:100%!important;
+    padding: 0px 0px!important;
+  }
+  .discussion_outer_box  {
+    display: block!important;
+  }
+  .discussion_main_box, .right_tag_box {
+    width: 100%;
+    display: block!important;
+    float: none;
+  }
 }

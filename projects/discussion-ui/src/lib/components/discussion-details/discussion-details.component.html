@@ -131,18 +131,22 @@
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
-            <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
+            <!-- <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
             <span class="post-name df-label-color" *ngIf="!post?.user?.fullname"
-              [innerHTML]="post?.user?.username"></span>
+              [innerHTML]="post?.user?.username"></span> -->
+
+              <span class="discussion-labels" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
+              <span class="discussion-labels" *ngIf="!post?.user?.fullname"
+                [innerHTML]="post?.user?.username"></span>
           </div>
           <div class="custom-actions">
             <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
-            <ng-container *ngIf="mainUid === post?.uid">
+            <!-- <ng-container *ngIf="mainUid === post?.uid">
               <img src="./assets/discussion-ui/images/edit.svg" class="edit-icon" id="edit-post"
                 (click)="getRealtimePost(post, i)">
               <img src="./assets/discussion-ui/images/delete.svg" class="delete-icon" id="delete-post"
                 (click)="confirmDelete(post?.pid)">
-            </ng-container>
+            </ng-container> -->
           </div>
         </div>
         <!-- / header -->
