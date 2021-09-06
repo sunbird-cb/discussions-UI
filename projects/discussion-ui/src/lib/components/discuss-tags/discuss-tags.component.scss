@@ -36,6 +36,10 @@
 	border-color: var(--blue);
 }
 
+.tags {
+	z-index: 1!important;
+}
+
 .tag {
 	cursor: pointer;
 
@@ -68,68 +72,3 @@
 	}
 }
 
-
-/************ leader_board_box ************/
-
-.leader_board_box  {
-
-	.top_contributor_box {
-		width: 100%;
-
-		.discuss-category-cards {
-			display: flex;
-			grid-template-columns: repeat(auto-fill,minmax(292px,1fr));
-			grid-gap: 24px;
-			margin-bottom: 24px;
-			cursor: pointer;
-			position: relative;
-			z-index: unset;
-			width: 100%;
-		
-		}
-	}
-
-	
-
-	.inner_contributor_box {
-		width: 315px;
-		box-sizing: border-box;
-
-		.user_title_box {
-			width: 48px;
-			height: 48px;
-			border-radius: 4px 4px;
-			text-align: center;
-			color: #fff;
-		}
-
-		.user_content_box {
-			margin-left: 12px;
-			text-align: left;
-    		align-content: flex-start;
-
-			p.user_content_heading {
-				margin-bottom: 4px!important;
-			}
-
-			p.user_designation {
-				font: 400 12px/16px Lato;
-				margin-bottom: 4px!important;
-			}
-
-			// p.karma_text {
-
-			// }
-		}
-	}
-
-	.bg_pink {
-		background-color: #C4544E;
-	}
-	.bg_blue {
-		background-color: #49418C;
-	}
-	.bg_purple {
-		background-color: #7B418C;
-	}
-}

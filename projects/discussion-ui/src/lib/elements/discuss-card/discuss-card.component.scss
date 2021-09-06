@@ -108,8 +108,16 @@
         }
         
     }
+
+    .discuss_main_text_box {
+        white-space: inherit;
+        word-break: break-all;
+    }
 }
 
+.discuss-card-content {
+    z-index: 1!important;
+  }
 
 .dot {
     height: 6px;
