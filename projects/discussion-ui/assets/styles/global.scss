@@ -71,6 +71,7 @@
     border-radius: 0.25rem;
     width: 100%;
     z-index: 2;
+    word-break: break-all;
     @media (max-width: 768px) {
         z-index: unset; 
     }
