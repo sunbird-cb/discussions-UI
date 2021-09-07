@@ -47,6 +47,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   editableTopicDetails: any;
   dropdownContent = true;
   categoryId: any;
+  showLoader = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -108,6 +109,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.appendResponse(data)
+          this.showLoader = true;
         },
         (err: any) => {
           console.log('Error in fetching topics')
@@ -118,6 +120,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.appendResponse(data)
+          this.showLoader = true;
         },
         (err: any) => {
           console.log('Error in fetching topics')
