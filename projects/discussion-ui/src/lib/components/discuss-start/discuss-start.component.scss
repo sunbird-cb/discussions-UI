@@ -13,8 +13,10 @@
 	pointer-events: auto;
 
 	.discussion-start-modal-content {
-		max-width: 1260px;
-		width: 90%;
+		// max-width: 1260px;
+		// width: 90%;
+		width: 750px;
+		max-width: 750px;
 		position: relative;
 		margin: 0 auto;
 		padding: 24px;
@@ -216,13 +218,15 @@
 
 .discussion_inner_left {
 	float: left;
-	width: 69%;
+	// width: 69%;
+	width: 100%;
 }
 .discussion_inner_right {
 	float: right;
 	width: 30%;
 	background-color: #F0F3F4;
 	height: 100vh;
+	display: none;
 }
 
 // .discussion-start-modal .discussion-start-modal-content .discussion-start-form .start-form-field .start-form-field-control {
@@ -267,6 +271,7 @@ select.post_form_select {
 	border-radius: 4px 4px;
 	font: 400 16px/24px Lato;
 	background-color: #f0f0f0;
+	width: 100%;
 }
 select.post_form_select:focus-visible  {
 	outline: none!important;
