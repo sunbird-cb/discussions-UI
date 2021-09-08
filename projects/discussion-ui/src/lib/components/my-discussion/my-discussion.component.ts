@@ -55,6 +55,8 @@ export class MyDiscussionComponent implements OnInit {
       // }
     }, error => {
       this.showLoader = false;
+      // error code check
+      this.discussService.showTrafficAlert(error);
       // TODO: Toaster
       console.log('error fetching user details');
     });
@@ -95,6 +97,8 @@ export class MyDiscussionComponent implements OnInit {
         case 'timestamp':
           this.getRecentTopics(scrollIndex);
           // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
+          // this.discussionList = _.get(this.data, 'posts');
+          this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
           break;
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
@@ -108,6 +112,9 @@ export class MyDiscussionComponent implements OnInit {
               this.showLoader = false;
               this.discussionList = [];
             }
+          }, error => {
+            // error code check
+            this.discussService.showTrafficAlert(error);
           });
           break;
         case 'saved':
@@ -123,7 +130,9 @@ export class MyDiscussionComponent implements OnInit {
             }
           },
             // tslint:disable-next-line
-            () => {
+            (error) => {
+              // error code check
+              this.discussService.showTrafficAlert(error);
               this.discussionList = [];
             })
           break;
@@ -145,9 +154,12 @@ export class MyDiscussionComponent implements OnInit {
             }
           },
             // tslint:disable-next-line
-            () => {
+            (error) => {
               this.discussionList = [];
-            })
+              // error code check
+              this.discussService.showTrafficAlert(error);
+            });
+
           break;
         case 'downvoted':
           this.discussService.fetchDownvoted(scrollIndex).subscribe(response => {
@@ -163,9 +175,11 @@ export class MyDiscussionComponent implements OnInit {
             }
           },
             // tslint:disable-next-line
-            () => {
+            (error) => {
               this.discussionList = [];
-            })
+              // error code check
+              this.discussService.showTrafficAlert(error);
+            });
           break;
         default:
           // this.discussionList = _.uniqBy(this.data.latestPosts, 'tid');
@@ -195,7 +209,7 @@ export class MyDiscussionComponent implements OnInit {
     const userSlug = this.discussService.userDetails.userslug;
     combineLatest([
       this.discussService.fetchUserProfile(userId),
-      this.discussService.fetchRecentPost(userSlug, scrollIndex)
+      this.discussService.fetchRecentPost(scrollIndex)
     ]).subscribe(result => {
       this.showLoader = false;
       this.data = _.merge(result[0], result[1]);

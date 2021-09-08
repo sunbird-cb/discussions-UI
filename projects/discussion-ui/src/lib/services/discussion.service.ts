@@ -154,8 +154,8 @@ export class DiscussionService {
     return this.csDiscussionService.replyPost(tid, data);
   }
 
-  fetchRecentPost(uid, pageId?) {
-    return this.csDiscussionService.recentPost(uid, pageId);
+  fetchRecentPost(pageId?) {
+    return this.csDiscussionService.recentPost(_.get(this._userDetails, 'username'), pageId);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
@@ -282,6 +282,18 @@ export class DiscussionService {
 
   deleteTopic(tid: number) {
     return this.csDiscussionService.deleteTopic(tid);
+  }
+
+  /** To check the error code and show alert message
+   *  if it is 502 - error 
+   */
+   showTrafficAlert(errorObject) {
+    const errorCode = _.get(errorObject, 'response.responseCode')
+    if(errorCode) {
+      if([502, '502'].includes(errorCode)) {
+        this.alertEvent.next();
+      }
+    }
   }
 
 }

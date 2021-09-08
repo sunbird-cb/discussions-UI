@@ -132,10 +132,10 @@ export class DiscussAllComponent implements OnInit {
 
   getRecentData() {
     this.showLoader = true;
-    return this.discussionService.fetchRecentPost(this.discussionService.userId).subscribe(
+    return this.discussionService.fetchRecentPost().subscribe(
       (data: any) => {
         this.showLoader = false;
-        this.discussionList = _.get(data, 'topics');
+        this.discussionList = _.get(data, 'posts');
       }, error => {
         this.showLoader = false;
         // TODO: Toaster
