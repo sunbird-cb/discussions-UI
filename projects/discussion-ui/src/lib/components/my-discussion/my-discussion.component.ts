@@ -96,9 +96,6 @@ export class MyDiscussionComponent implements OnInit {
       switch (key) {
         case 'timestamp':
           this.getRecentTopics(scrollIndex);
-          // this.discussionList = _.uniqBy(_.filter(this.data.posts, p => _.get(p, 'isMainPost') === true), 'tid');
-          // this.discussionList = _.get(this.data, 'posts');
-          this.discussionList = this.data.posts.filter(p => (p.isMainPost === true));
           break;
         case 'best':
           // this.discussionList = _.uniqBy(this.data.bestPosts, 'tid');
@@ -211,9 +208,11 @@ export class MyDiscussionComponent implements OnInit {
       this.discussService.fetchUserProfile(userId),
       this.discussService.fetchRecentPost(scrollIndex)
     ]).subscribe(result => {
+      console.log('getRecentTopics', result)
       this.showLoader = false;
       this.data = _.merge(result[0], result[1]);
       this.discussionList = [...this.discussionList, ...(_.get(this.data, 'posts'))];
+      this.discussionList = this.discussionList.filter(p => (p.isMainPost === true));
       this.pagination = _.get(this.data, 'pagination');
     }, error => {
       this.showLoader = false;
