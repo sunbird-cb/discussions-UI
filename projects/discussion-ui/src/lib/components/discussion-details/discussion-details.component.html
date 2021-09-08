@@ -1,4 +1,5 @@
-<div class="discuss-details-content">
+<lib-app-loader *ngIf="!showLoader"></lib-app-loader>
+<div class="discuss-details-content" *ngIf="showLoader">
   <div class="flex flex-3 flex-column discussion-details">
     <!-- card -->
     <div>
