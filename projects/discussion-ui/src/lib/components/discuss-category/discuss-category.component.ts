@@ -113,8 +113,10 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       this.showStartDiscussionModal = false;
       let input
       if (_.get(response, 'children').length > 0) {
-        input = { data: { url: '', queryParams: { cid: this.categoryId } }, action: this.categoryAction}
-        this.navigationService.navigate(input)
+        this.router.navigate([], { relativeTo: this.activatedRoute.parent, queryParams: { cid: this.categoryId } });
+
+        // input = { data: { url: '', queryParams: { cid: this.categoryId } }, action: this.categoryAction}
+        // this.navigationService.navigate(input)
 
         _.get(response, 'children').forEach(subCategoryData => {
           this.categories.push(subCategoryData);
