@@ -19,7 +19,7 @@ import { AbstractConfigService } from '../../services/abstract-config.service';
   templateUrl: './lib-entry.component.html',
   styleUrls: ['./lib-entry.component.scss'],
   /* tslint:disable */
-  host: { class: 'flex-1, main_discuss_lib',},
+  host: { class: 'flex-1 main_discuss_lib',},
   /* tslint:enable */
 })
 export class LibEntryComponent implements OnInit {
