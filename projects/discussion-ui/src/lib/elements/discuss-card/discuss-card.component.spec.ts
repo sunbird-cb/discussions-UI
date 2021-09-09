@@ -1,25 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DiscussCardComponent } from './discuss-card.component';
+import { DiscussCardComponent } from "./discuss-card.component"
 
 describe('DiscussCardComponent', () => {
-  let component: DiscussCardComponent;
-  let fixture: ComponentFixture<DiscussCardComponent>;
+  let discussCardComponent: DiscussCardComponent
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DiscussCardComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeAll(() => {
+    discussCardComponent = new DiscussCardComponent();
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiscussCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    jest.clearAllMocks();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create an instance of DiscussHomeComponent', () => {
+    expect(discussCardComponent).toBeTruthy();
   });
-});
+
+})
