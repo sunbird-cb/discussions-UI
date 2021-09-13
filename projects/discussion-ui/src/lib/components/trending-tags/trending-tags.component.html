@@ -1,7 +1,7 @@
 <div class="margin-left-l right_tag_inner_box">
     <span class="mat-subheading-2" role="link" tabindex="0" aria-label="Trending tags">Trending tags</span>
     <ng-container *ngIf="trandingTags && trandingTags.length > 0">
-      <div *ngFor="let tag of trandingTags" class="tag ws-mat-primary-lite-background-important" role="link" tabindex="0"
+      <div *ngFor="let tag of trandingTags" class="tag ws-mat-primary-lite-background-important cursor-pointer" role="link" tabindex="0"
         [attr.aria-label]="tag.value"
         [ngStyle]="{'background-image':'linear-gradient(to right, #ECECEC, #ECECEC ' + ((tag.score / max) *100 ) + '%, #FFF 24px)'}" (click)="getAllDiscussions(tag)">
         <span class="margin-left-m mat-caption">{{tag.value}}</span>

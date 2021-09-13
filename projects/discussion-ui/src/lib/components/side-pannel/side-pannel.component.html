@@ -12,7 +12,7 @@
       <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
       <div class="sidebar-menu__content">
         <ul class="sb-sidebar-menu-mob pl-0">
-          <li class="df-sidebar-menu-list" *ngIf="false" [ngClass]="{'menu-active': selectedTab === 'all-discussions'}"  (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
+          <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'all-discussions'}"  (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
           <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'categories'}" (click)="navigate('categories', $event)" id="discussion-categories"><a>Categories</a></li>
           <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'tags'}" (click)="navigate('tags', $event)" id="discussion-tags"><a>Tags</a></li>
           <!-- <li class="df-sidebar-menu-list" id="leader-board"><a>Leaderboard</a></li> -->
