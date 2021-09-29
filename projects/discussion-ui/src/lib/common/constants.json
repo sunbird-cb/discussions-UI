@@ -603,7 +603,7 @@
     {
       "route": "all-discussions",
       "label": "All discussions",
-      "enable": false
+      "enable": true
     },
     {
       "route": "categories",
@@ -621,12 +621,10 @@
       "enable": true
     }
   ],
-  "STATES": {
-    "CATEGORY": "category",
-    "CATEGORY_DETAILS": "categoryDetails",
-    "CATEGORY_HOME": "categoryHome",
-    "TAG_ALL_DISCUSS": "tagAllDiscuss",
-    "TAGS": "TAGS",
-    "TAGSALL":"TAGSALL"
-  }
+  "CATEGORY": "category",
+  "CATEGORY_DETAILS": "categoryDetails",
+  "CATEGORY_HOME": "categoryHome",
+  "TAG_ALL_DISCUSS": "tagAllDiscuss",
+  "TAGS": "TAGS",
+  "TAGSALL": "TAGSALL"
 }

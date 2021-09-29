@@ -13,8 +13,8 @@ import * as CONSTANTS from '../../common/constants.json';
 })
 export class TagsWidgetComponent extends BaseWrapperComponent {
 
-  tags: string = CONSTANTS.STATES.TAGS
-  tagsAll: string = CONSTANTS.STATES.TAGSALL
+  tags: string = CONSTANTS.TAGS
+  tagsAll: string = CONSTANTS.TAGSALL
   tagName: string
 
   constructor(configSvc: ConfigService, discussionService: DiscussionService, navigationServiceService: NavigationServiceService, eventService: EventsService) {

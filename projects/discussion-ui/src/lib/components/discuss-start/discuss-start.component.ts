@@ -105,6 +105,7 @@ export class DiscussStartComponent implements OnInit {
       const req = {
         cids: this.categoryId
       };
+      this.showSelectCategory = false;
       this.editable = false;
       this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
         this.allCategories = data.result;
@@ -132,11 +133,10 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    this.enableSubmitButton = false;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
-      cid: this.categoryId ? this.categoryId : parseInt(form.value.category),
+      cid: this.categoryId ? [this.categoryId] : [parseInt(form.value.category)],
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,

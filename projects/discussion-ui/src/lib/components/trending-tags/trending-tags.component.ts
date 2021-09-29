@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { Router } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
-import { NavigationServiceService } from '../../navigation-service.service';
+import { NavigationServiceService } from '../../navigation-service.service'
 
 /* tslint:enable */
 @Component({
@@ -54,7 +54,7 @@ export class TrendingTagsComponent implements OnInit, OnChanges {
     const input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`,
     queryParams: this.queryParam, tagName: this.queryParam.tagName }, action: 'tagsAll'};
     this.navigationService.navigate(input);
-    this.stateChange.emit({ action: CONSTANTS.STATES.TAG_ALL_DISCUSS, title: tag.value, tid: 'sd' });
+    this.stateChange.emit({ action: CONSTANTS.TAG_ALL_DISCUSS, title: tag.value, tid: 'sd' });
 
     // tslint:disable-next-line: max-line-length
     // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });

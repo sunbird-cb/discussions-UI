@@ -77,6 +77,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initializeFormFiled();
+    if(this.widget){
+      this.fetchSingleCategoryLoader = true
+    }
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
         this.routeParams = params;
@@ -126,10 +129,10 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     const slug = _.trim(_.get(discuss, 'slug'))
     const input = {
       data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} },
-      action: CONSTANTS.STATES.CATEGORY_DETAILS };
+      action: CONSTANTS.CATEGORY_DETAILS };
 
     this.navigationService.navigate(input);
-    this.stateChange.emit({ action: CONSTANTS.STATES.CATEGORY_DETAILS, title: discuss.title, tid: discuss.tid });
+    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discuss.title, tid: discuss.tid });
   }
 
   initializeFormFiled() {
@@ -432,9 +435,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   /**
    * @description - It will open update thread popup.
    */
-  editTopic(event, topicData) {
+  editTopic() {
     this.showEditTopicModal = true;
-    this.logTelemetry(event, topicData);
   }
 
   /**

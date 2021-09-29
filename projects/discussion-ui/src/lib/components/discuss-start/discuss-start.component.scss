@@ -13,8 +13,10 @@
 	pointer-events: auto;
 
 	.discussion-start-modal-content {
-		max-width: 800px;
-		width: 90%;
+		// max-width: 1260px;
+		// width: 90%;
+		width: 750px;
+		max-width: 750px;
 		position: relative;
 		margin: 0 auto;
 		padding: 24px;
@@ -214,11 +216,24 @@
 	margin-bottom: 1.5rem;
 }
 
+.discussion_inner_left {
+	float: left;
+	// width: 69%;
+	width: 100%;
+}
+.discussion_inner_right {
+	float: right;
+	width: 30%;
+	background-color: #F0F3F4;
+	height: 100vh;
+	display: none;
+}
+
 // .discussion-start-modal .discussion-start-modal-content .discussion-start-form .start-form-field .start-form-field-control {
 
 .discussion-start-modal .discussion-start-modal-content .discussion-start-form .start-form-field .textarea_box {	
-	width: 98%;
-	max-width: 98%;
+	width: 100%;
+	max-width: 100%;
 	border: 1px solid #70707069;
 	outline: none;
 	border-radius: 4px 4px;
@@ -256,6 +271,7 @@ select.post_form_select {
 	border-radius: 4px 4px;
 	font: 400 16px/24px Lato;
 	background-color: #f0f0f0;
+	width: 100%;
 }
 select.post_form_select:focus-visible  {
 	outline: none!important;
@@ -273,7 +289,57 @@ select.post_form_select:focus {
 	float: right;
 }
 
+.text_form_field_box_full_width {
+	width:100%
+}
+
 .text_form_field_box input.question_input_field {
-	width:97%!important;
+	width:100%!important;
+}
+
+@media (max-width: 768px) {
+	.select_form_field_box {
+		width: 100%;
+		display: block;
+	}
+	select.post_form_select {
+		width: 100%;
+	}
+	.text_form_field_box  {
+		width: 100%;
+		float: left;
+	}
+	.post-tags {
+		margin-top: 15px;
+	}
+	.discussion-start-modal {
+		.discussion-start-modal-content {
+			width: 95%;
+			max-width: 95%;
+			box-sizing: border-box;
+			padding: 15px 15px 0 15px;
+			top: 8%;
+    		left: 2.5%;
+			transform: none;
+
+			.discussion-start-form {
+				.start-form-field {
+					width: 100%;
+					box-sizing: border-box;
+					margin-bottom: 0;
+
+					.textarea_box {
+						width: 100%;
+						max-width: 100%;
+						box-sizing: border-box;
+					}
+					.start-form-field-control {
+						width: 100%;
+						box-sizing: border-box;
+					}
+				}
+			}
+		}
+	}
 }
 

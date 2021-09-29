@@ -115,18 +115,23 @@ $size-xxl: 40px;
 }
 
 .tag {
-    font-size: 0.75rem;
+    font-size: 12px;
     display: flex;
     width: auto;
-    min-width: max-content;
-    max-height: 2rem;
-    justify-content: space-between;
+    // min-width: max-content;
+    max-height: 32px;
+    // justify-content: space-between;
+    margin: 0.5rem 1rem 0.5rem 0;
     align-items: center;
     text-transform: lowercase;
-    margin: 0.5rem 1rem 0.5rem 0;
-    padding: 0.5rem 1rem;
+    // padding: 0.5rem 1rem;
     border-radius: 1.5rem;
-    cursor: pointer;
+    padding: 3px 15px;
+    min-width: 50px;
+    justify-content: center;
+    border-radius: 20px 5px 5px 20px;
+    box-sizing: content-box;
+    line-height:21px;
 }
 
 .count {
@@ -153,11 +158,27 @@ mb-0 {
         width: auto;
     }
 }
-.df-reply-btn,.df-cancel-btn{
-    background: var(--white);
-    padding: .5rem 1rem;
-    font-size: .75rem;
-    border: 1px solid var(--blue);
-    color: var(--blue);
-    border-radius: 0.25rem;
+
+@mixin breakpoint-xs {
+    @media only screen and (max-width: 599px) {
+      @content;
+    }
+  }
+  
+  @mixin breakpoint-s {
+    @media only screen and (min-width: 600px) and (max-width: 959px) {
+      @content;
+    }
+  }
+  
+  @mixin breakpoint-m {
+    @media only screen and (min-width: 960px) and (max-width: 1279px) {
+      @content;
+    }
+  }
+  
+  @mixin breakpoint-l {
+    @media only screen and (min-width: 1280px) and (max-width: 1919px) {
+      @content;
+    }
   }

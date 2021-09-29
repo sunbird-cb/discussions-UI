@@ -17,6 +17,8 @@
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
+    white-space: initial;
+    word-break: break-word;
 }
 
 .related-discuss-part {
@@ -205,6 +207,10 @@
 .post-reply-card {
     border: none;
     margin-bottom: 2.5rem;
+}
+
+.tags {
+    z-index: 1!important;
 }
 
 .post-sub-card {

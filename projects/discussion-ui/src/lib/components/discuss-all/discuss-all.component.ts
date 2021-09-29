@@ -11,7 +11,6 @@ import { NSDiscussData } from '../../models/discuss.model';
 import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
 import { Subscription } from 'rxjs';
 import { NavigationServiceService } from '../../navigation-service.service';
-import { IDiscussionAllContext } from '../../models/discussion-config.model';
 // import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 /* tslint:enable */
@@ -23,8 +22,8 @@ import { IDiscussionAllContext } from '../../models/discussion-config.model';
 })
 export class DiscussAllComponent implements OnInit {
 
-  @Input() context: IDiscussionAllContext
-  @Input() categoryAction: string;
+  @Input() context: any
+  @Input() categoryAction;
 
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
@@ -44,7 +43,9 @@ export class DiscussAllComponent implements OnInit {
   allTopics: any;
   trendingTags!: NSDiscussData.ITag[];
   sticky = false;
-  startDiscussionCategoryId: Array<number>;
+  data
+  startDiscussionCategoryId: any;
+  isWidget: boolean;
 
   constructor(
     public router: Router,
@@ -60,6 +61,7 @@ export class DiscussAllComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     if (this.context) {
+      this.isWidget  = true
       this.getForumIds()
     } else {
       this.cIds = this.configService.getCategories().result
@@ -69,10 +71,10 @@ export class DiscussAllComponent implements OnInit {
 
   async getForumIds() {
     let body = {
-      identifier:
+      "identifier":
         this.context.contextIdArr
       ,
-      type: this.context.contextType
+      "type": this.context.contextType
     }
     let resp = await this.discussionService.getForumIds(body)
     if (resp.result.length > 0) {
@@ -120,17 +122,17 @@ export class DiscussAllComponent implements OnInit {
 
     const slug = _.trim(_.get(discussionData, 'slug'));
     // tslint:disable-next-line: max-line-length
-    const input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.STATES.CATEGORY_DETAILS, }
+    const input = { data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} }, action: CONSTANTS.CATEGORY_DETAILS, }
     this.navigationService.navigate(input);
-    this.stateChange.emit({ action: CONSTANTS.STATES.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid });
+    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discussionData.title, tid: discussionData.tid });
 
     // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`], { queryParamsHandling: "merge" });
   }
 
   acceptData(singleTagDetails) {
     // debugger
-    if (this.context) {
-      singleTagDetails.cIds = this.cIds;
+    if(this.context){
+    singleTagDetails.cIds =  this.cIds;
     }
     this.stateChange.emit(singleTagDetails);
   }
@@ -154,10 +156,10 @@ export class DiscussAllComponent implements OnInit {
       this.currentFilter = key;
       switch (key) {
         case 'recent':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillrecent()
           break;
         case 'popular':
-          this.cIds.result.length ? this.getContextData(this.cIds.result) : this.fillPopular()
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillPopular()
           break;
         default:
           break;
@@ -175,7 +177,7 @@ export class DiscussAllComponent implements OnInit {
       this.showLoader = false;
       this.discussionList = [];
       _.filter(response.topics, (topic) => {
-        if (topic.user.uid !== 0) {
+        if (topic.user.uid !== 0 && topic.cid !== 1 ) {
           this.discussionList.push(topic);
         }
       });
@@ -202,7 +204,7 @@ export class DiscussAllComponent implements OnInit {
         this.showLoader = false;
         this.discussionList = [];
         _.filter(data.topics, (topic) => {
-          if (topic.user.uid !== 0) {
+          if (topic.user.uid !== 0 && topic.cid !== 1) {
             this.discussionList.push(topic);
           }
         });
@@ -292,7 +294,7 @@ export class DiscussAllComponent implements OnInit {
       if (this.context) {
         this.getContextBasedDiscussion(this.cIds)
       } else {
-        this.getContextBasedDiscussion(this.cIds.result)
+        this.refreshData()
       }
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
