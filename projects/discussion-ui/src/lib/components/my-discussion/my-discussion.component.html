@@ -39,30 +39,30 @@
     <div class="recent-tabs pb-8">
       <div class="tabs-content">
         <div class="tabs-filter">
-          <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'timestamp',
+          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
             (click)="filter('timestamp', true);logTelemetry($event)" id="recent-post">
-            Recent posts </a>
-          <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'best',
+            Recent posts </button>
+          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'best',
                               'ws-mat-accent-border font-medium':currentFilter !== 'best'}"
             (click)="filter('best', true);logTelemetry($event)" id="best-post">
-            Best posts </a>
-          <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'saved',
+            Best posts </button>
+          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'saved',
                                           'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
             (click)="filter('saved', true);logTelemetry($event)" id="saved-post">
-            Saved posts </a>
-          <!-- <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
+            Saved posts </button>
+          <!-- <button role="button" class="filter-option df-filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
                                             'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
             (click)="filter('watched')">
-            Watched </a> -->
-          <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'upvoted',
+            Watched </button> -->
+          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'upvoted',
                                               'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
             (click)="filter('upvoted', true);logTelemetry($event)" id="upvoted-post">
-            Upvoted </a>
-          <a href="javascript:void(0)" role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'downvoted',
+            Upvoted </button>
+          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'downvoted',
                                                 'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
             (click)="filter('downvoted', true);logTelemetry($event)" id="downvoted-post">
-            Downvoted </a>
+            Downvoted </button>
         </div>
       </div>
     </div>
