@@ -1,6 +1,6 @@
 <ul class="sb-sidebar-menu pl-0" *ngIf="!hideSidePanel">
   <!-- <li class="df-sidebar-menu-list" *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
-  <li *ngFor='let d of menu' class="df-sidebar-menu-list" [ngClass]="{'menu-active': isActive(d.route)}"
+  <li *ngFor='let d of menu' class="df-sidebar-menu-list" tabindex="0" role="link" [ngClass]="{'menu-active': isActive(d.route)}"
     (click)="navigate(d.route, $event)" id="d.route"><a>{{d.label}}</a></li>
 </ul>
 
@@ -11,10 +11,12 @@
       <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
       <div class="sidebar-menu__content">
         <ul class="sb-sidebar-menu-mob pl-0">
-          <li class="df-sidebar-menu-list" *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
-          <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'categories'}" (click)="navigate('categories', $event)" id="discussion-categories"><a>Categories</a></li>
-          <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'tags'}" (click)="navigate('tags', $event)" id="discussion-tags"><a>Tags</a></li>
-          <li class="df-sidebar-menu-list" [ngClass]="{'menu-active': selectedTab === 'my-discussion'}" (click)="navigate('my-discussion', $event)" id="my-discussion"><a>My discussions</a></li>
+          <!-- <li *ngFor='let d of menu' class="df-sidebar-menu-list" tabindex="0" role="link" [ngClass]="{'menu-active': isActive(d.route)}"
+          (click)="navigate(d.route, $event)" id="d.route"><a>{{d.label}}</a></li> -->
+          <li class="df-sidebar-menu-list" tabindex="0" role="link" *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li>
+          <li class="df-sidebar-menu-list" tabindex="0" role="link" [ngClass]="{'menu-active': selectedTab === 'categories'}" (click)="navigate('categories', $event)" id="discussion-categories"><a>Categories</a></li>
+          <li class="df-sidebar-menu-list" tabindex="0" role="link"[ngClass]="{'menu-active': selectedTab === 'tags'}" (click)="navigate('tags', $event)" id="discussion-tags"><a>Tags</a></li>
+          <li class="df-sidebar-menu-list" tabindex="0" role="link" [ngClass]="{'menu-active': selectedTab === 'my-discussion'}" (click)="navigate('my-discussion', $event)" id="my-discussion"><a>My discussions</a></li>
       </ul>
       </div>
   </div>

@@ -28,11 +28,14 @@
 .discussion-card-title {
     font-size: 20px;
     font-weight: 700;
-    margin-right: 16px;   
+    margin-right: 16px;
 }
-.discussion-heading{
- font-weight: 400;
- pointer-events: none;
+
+.discussion-heading {
+    font-size: 0.875rem;
+    font-weight: 400;
+    pointer-events: none;
+    margin-bottom: 0px;
 }
 
 .discussion-content {
@@ -77,7 +80,7 @@
 }
 
 .discussion-labels {
-    color: #948e8e;  
+    color: #5C5757;
 }
 
 .comments-area {
@@ -166,13 +169,14 @@
 }
 
 
-.post-card ,.post-reply-card{
+.post-card,
+.post-reply-card {
     border-bottom: 1px solid #ddd;
-    margin:1rem 0;
+    margin-bottom: 1rem;
 }
 
-.post-sub-card{
-  margin: 0 8px 8px;
+.post-sub-card {
+    margin: 0 8px 8px;
 }
 
 .comments-section {
@@ -280,12 +284,13 @@
     height: 1rem;
 }
 
-.discuss-card-kabab-menu{
+.discuss-card-kabab-menu {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.kabab-menu{
+
+.kabab-menu {
     color: var(--primary-400);
     width: 30px;
     height: 30px;
@@ -296,16 +301,19 @@
     position: absolute;
     right: 8px;
     top: 22px;
-    &:hover{
-      background: var(--gray-0);
-      cursor: pointer;
+
+    &:hover {
+        background: var(--gray-0);
+        cursor: pointer;
     }
+
     &::after {
-      content: '\2807';
-      font-size: 24px;
+        content: '\2807';
+        font-size: 24px;
     }
-  }
-  .kabab-menu-dropdown-content {
+}
+
+.kabab-menu-dropdown-content {
     position: absolute;
     border-radius: 2px;
     background-color: var(--white);
@@ -313,34 +321,40 @@
     padding: 8px;
     z-index: 1;
     text-align: left;
-    right:0;
+    right: 0;
     top: 0;
     min-width: 210px;
-    .list{
-      cursor: pointer;
-      font-size: 14px;
-      padding: 8px;
-      &:hover,&:active{
-        background-color: var(--primary-100);
-      }
-      &:last-child{
-        .sb-btn-normal{
-          color: var(--red-400);
-        }
-      }
-      .sb-btn-normal{
-        font-size: 14px;
-      }
-    }
-  }
-  ::ng-deep {
-    html[dir='rtl'] .kabab-menu-dropdown-content {
-      right:auto;
-      left:0;
-    }
-  }
 
-  .icons{
-      width: 1rem;
-      height: 1rem;
-  }
+    .list {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 8px;
+
+        &:hover,
+        &:active {
+            background-color: var(--primary-100);
+        }
+
+        &:last-child {
+            .sb-btn-normal {
+                color: var(--red-400);
+            }
+        }
+
+        .sb-btn-normal {
+            font-size: 14px;
+        }
+    }
+}
+
+::ng-deep {
+    html[dir='rtl'] .kabab-menu-dropdown-content {
+        right: auto;
+        left: 0;
+    }
+}
+
+.icons {
+    width: 1rem;
+    height: 1rem;
+}
