@@ -5,15 +5,27 @@
       <div class="profilecard-content">
       <div class="profile-header-image">
         <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
+       
       </div>
       <div class="info">
-        <div class="profile-name" [innerHTML]="data?.username"></div>
-        <div class="profile-label department_name">{{data?.department}}</div>
-        <div class="profile-label location_name">{{data?.location}} </div>
-        <div class='profile-label'>{{data?.email || data?.username}}</div>
-        <div>
-          <div class="profile-data">
-            <div>
+        <div class="info-top-box flex justify-between">
+          <div class="user_info_box">
+            <div class="profile-name" [innerHTML]="data?.username"></div>
+            <div class="profile-label department_name">{{data?.department}}</div>
+            <div class="profile-label location_name">{{data?.location}} </div>
+            <div class='profile-label'>{{data?.email || data?.username}}</div>
+          </div>
+          <div class="karma_box flex flex-column">
+            <a class="karma_btn">
+              <p class="margin-remove"> 56  Karma</p>
+            </a>
+           
+          </div>
+        </div>
+        
+        <div class="bottom_info_box">
+          <div class="profile-data flex justify-between">
+            <div class="profile-data-left">
               <span>
                 <span class="number">{{data?.topiccount || 0 }}</span>
                 <span class="labels">Discussions</span>
@@ -22,10 +34,19 @@
                 <span class="number">{{data?.postcount || 0 }}</span>
                 <span class="labels">Posts</span>
               </span>
+              <span  class="post-count-area">
+                <span class="number">45</span>
+                <span class="labels">  Profile views</span>
+              </span>
+            </div>
+
+            <div class="post-time-box">
+              <p class="margin-remove mat-body-2 ws-mat-primary-text">Last online 4 minutes ago</p>
             </div>
           </div>
         </div>
       </div>
+      
     </div>
     </div>
 

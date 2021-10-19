@@ -67,12 +67,23 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    justify-content: space-evenly;
+    // justify-content: space-evenly;
+    justify-content: space-between;
+    width: calc(100% - 180px);
 }
 
+.bottom_info_box {
+    width: 100%;
+    display: flex;
+}
+.info-top-box {
+    flex-wrap: wrap;
+    width: 100%;
+}
 .profile-data {
     margin-top: 16px;
     font-size: 14px;
+    width: 100%;
 }
 
 .post-count-area {
@@ -133,6 +144,23 @@
         // }
     }
 }
+
+a.karma_btn {
+    padding: 10px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    font: 700 14px/21px Lato;
+    border-radius: 4px 4px;
+    background-color: rgba(0, 0, 0, .04);   
+}
+.post-time-box {
+    p {
+        font-weight: 700;
+    }
+}
+// .karma_icon {
+//     margin-right: 8px;
+// }
 
 .discuss-card-content {
     z-index: 1!important;
