@@ -150,16 +150,7 @@
     color: var(--white);
     text-transform: uppercase;
 }
-
-.tabs-filter {
-    .filter-option {
-        border-bottom: 1px solid rgba(0, 0, 0, .3);
-    }
-    .filter-option.tabs-active {
-        border-bottom: 3px solid var(--blue);
-      }
-}
-
-.recent-tabs {
-    padding: 15px 0 0 0!important;
+.topic-list-container {
+    overflow-y: scroll;
+    min-height: 250px;
 }

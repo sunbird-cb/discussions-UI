@@ -1,33 +1,23 @@
-<div class="discuss-card-content cursor-pointer border">
-  <div class="discuss-card-header">
-    <!-- user name -->
-    <div class="user_name_div">
-      <span class="circle-text"><span
-        class="circle-label">{{ discussionData?.user?.username | splitInitials }}</span></span>
+<!-- Card container -->
+<div class="discuss-card-content cursor-pointer border" tabindex="0" role="link">
 
-        <div class="post_user_text_box">
-          <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-          <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
-          <span class="timing">{{discussionData.lastposttime | date}}</span>
-        </div>
-        
-    </div>
-    <!-- title -->
-    <div class="discuss_main_text_box">
-      <a href="javascript:void(0)" i18n-aria-label role="link">
+  <!-- Card header -->
+  <div class="discuss-card-header">
+    <!-- Card title-->
+    <div tabindex="0" role="link">
+      <!-- <a href="javascript:void(0)" i18n-aria-label tabindex="0" role="link"> -->
         <h3 class='discuss-card-title' *ngIf="discussionData?.title" [innerHTML]="discussionData?.title"></h3>
-        <h3 class='discuss-card-title' *ngIf="!discussionData?.title && discussionData?.topic?.title"
-          [innerHTML]="discussionData?.topic?.title"></h3>
-        <h3 class='discuss-card-title'
-          *ngIf="!discussionData?.title && !discussionData?.topic?.title && discussionData?.name"
-          [innerHTML]="discussionData?.name"></h3>
-      </a>
+        <h3 class='discuss-card-title' *ngIf="!discussionData?.title && discussionData?.topic?.title" [innerHTML]="discussionData?.topic?.title"></h3>
+        <h3 class='discuss-card-title' *ngIf="!discussionData?.title && !discussionData?.topic?.title && discussionData?.name" [innerHTML]="discussionData?.name"></h3>
+      <!-- </a> -->
     </div>
+    <!-- /Card title -->
+
+    <!-- Card subtitle -->
     <div class="discuss-card-subtitle responsive">
-     
       <div class="cardlabel-container">
         <div *ngIf="discussionData?.category?.name" class="discuss-card-label">
-          <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="Buffer-image" width="20px" class="mr-4">
+          <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="category card icon" width="20px" class="mr-4">
           {{discussionData.category.name}}
         </div>
         <div class="discuss-card-username">
@@ -40,26 +30,40 @@
       <div class="timing ml-8">{{discussionData.lastposttime | date}}</div>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
+    <!-- /Card subtitle -->
   </div>
-  <div class="tags margin-bottom-s">
+  <!-- /Card header -->
+
+  <!-- Card content -->
+  <div class="tags">
     <ng-container *ngIf="discussionData && discussionData.tags && discussionData.tags.length > 0">
       <span *ngFor="let tag of discussionData.tags" class="tag" [ngStyle]="getBgColor(tag.value)">
         {{tag.value}}
       </span>
     </ng-container>
   </div>
+  <!-- /Card content -->
+
+  <!-- Card footer -->
   <div class="discuss-card-comments">
     <div class="discuss-comments-area">
-      <span class="votes-content">
-        <img src="./assets/discussion-ui/images/votes.svg" alt="votes-image">
-        <span>{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
+      <span class="mobile votes-content">
+        <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
+        <img src="./assets/discussion-ui/images/votes.svg" alt="votes icon">
+        <span class="ml-8">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
       </span>
-      <span class="views-content">
-        <img src="./assets/discussion-ui/images/views.svg" alt="views-image">
-        <span>{{discussionData.viewcount || 0}} Views</span>
+      <span class="mobile views-content">
+        <!-- <mat-icon>trending_up</mat-icon> -->
+        <img src="./assets/discussion-ui/images/views.svg" alt="views icon">
+        <span class="ml-8">{{discussionData.viewcount || 0}} Views</span>
       </span>
     </div>
-    <div class="cursor-pointer comments-count" *ngIf="IsSingleComent(discussionData.postcount)" >{{((discussionData.postcount || 1) -1) }} comment</div>
-    <div class="cursor-pointer comments-count" *ngIf="!IsSingleComent(discussionData.postcount)">{{((discussionData.postcount || 1) -1) }} comments</div>
+    <div class="cursor-pointer">
+      <span class="comments-count">{{((discussionData.postcount || 1) -1) }}
+        comments</span>
+    </div>
   </div>
+
+  <!-- /Card footer -->
 </div>
+<!-- /Card header -->

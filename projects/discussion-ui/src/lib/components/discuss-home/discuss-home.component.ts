@@ -95,6 +95,8 @@ export class DiscussHomeComponent implements OnInit {
       this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
     }, error => {
       this.showLoader = false;
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       // TODO: Toaster
       console.log('error fetching topic list', error);
     });

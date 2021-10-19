@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { of as observableOf, throwError as observableThrowError, Observable, throwError } from 'rxjs';
+import { of as observableOf, throwError as observableThrowError, Observable, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { urlConfig } from './../config/url.config';
@@ -26,7 +26,7 @@ export class DiscussionService {
   private _userDetails: any;
 
   // tslint:disable-next-line:variable-name
-  private _userName: any;
+  private _userId: any;
 
   // tslint:disable-next-line:variable-name
   private _forumIds: any;
@@ -34,6 +34,8 @@ export class DiscussionService {
 
   // tslint:disable-next-line:variable-name
   private _context: any = {};
+
+  public alertEvent = new Subject();
 
   usr: any;
 
@@ -49,9 +51,8 @@ export class DiscussionService {
 
   }
 
-  initializeUserDetails(userName) {
-    console.log('userName', userName);
-    this.fetchUserProfile(userName).subscribe(response => {
+  initializeUserDetails(userId) {
+    this.fetchUserProfile(userId).subscribe(response => {
       console.log('user', response);
       this.userDetails = response;
     }, (error) => {
@@ -153,8 +154,8 @@ export class DiscussionService {
     return this.csDiscussionService.replyPost(tid, data);
   }
 
-  fetchRecentD(page?: any) {
-    return this.csDiscussionService.recentPost(page);
+  fetchRecentPost(pageId?) {
+    return this.csDiscussionService.recentPost(_.get(this._userDetails, 'username'), pageId);
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
@@ -200,22 +201,26 @@ export class DiscussionService {
     // return this.http.get(urlConfig.fetchProfile(slug));
     return this.csDiscussionService.fetchProfileInfo(slug);
   }
-  fetchUpvoted() {// 0
+  fetchUpvoted(pageId: number) {// 0
     // return this.http.get(urlConfig.listUpVote(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchUpvoted(_.get(this._userDetails, 'username'), pageId);
   }
-  fetchDownvoted() { // 0
+  fetchDownvoted(pageId: number) { // 0
     // return this.http.get(urlConfig.listDownVoted(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchDownvoted(_.get(this._userDetails, 'username'), pageId);
   }
-  fetchSaved() { // 0 this.usr.userId
+  fetchSaved(pageId: number) { // 0 this.usr.userId
     // return this.http.get(urlConfig.listSaved(_.get(this._userDetails, 'username')));
-    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'));
+    return this.csDiscussionService.fetchSaved(_.get(this._userDetails, 'username'), pageId);
   }
 
-  fetchUserProfile(userName) {
+  fetchBestPost(pageId: number) {
+    return this.csDiscussionService.fetchBestPost(_.get(this._userDetails, 'username'), pageId);
+  }
+
+  fetchUserProfile(userId) {
     // return this.http.get<any>(urlConfig.userDetails(userName));
-    return this.csDiscussionService.getUserDetails(this.userName);
+    return this.csDiscussionService.getUserDetails(userId);
   }
 
   getContextBasedTopic(slug: string, pageId: number) {
@@ -243,12 +248,12 @@ export class DiscussionService {
     return this._userDetails;
   }
 
-  set userName(userName) {
-    this._userName = userName;
+  set userId(userId) {
+    this._userId = userId;
   }
 
-  get userName() {
-    return this._userName;
+  get userId() {
+    return this._userId;
   }
 
   set forumIds(ids) {
@@ -285,6 +290,18 @@ export class DiscussionService {
 
   deleteTopic(tid: number) {
     return this.csDiscussionService.deleteTopic(tid);
+  }
+
+  /** To check the error code and show alert message
+   *  if it is 502 - error 
+   */
+   showTrafficAlert(errorObject) {
+    const errorCode = _.get(errorObject, 'response.responseCode')
+    if(errorCode) {
+      if([502, '502'].includes(errorCode)) {
+        this.alertEvent.next();
+      }
+    }
   }
 
 }

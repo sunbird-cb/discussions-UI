@@ -1,32 +1,23 @@
-<!-- <div *ngIf="bannerOption && currentRoute == 'all-discussions'" class="container-balanced-banner margin-top-s">
-    <ws-widget-sliders [bannerData]="banner"></ws-widget-sliders>
-</div> -->
-
-
-<ng-container *ngIf="headerOption">
-    <div class="df-back-header">
-        <div class="df-btn-container">
-
-            <!-- /* Back button */ -->
+<div class="sbt-inside-page-container">
+    <div class="df-back-btn-container relative position">
+        <div class="df-btn-container ui container">
             <button (click)="goBack()" type="button" class="df-btn df-back-btn">
-                <img src="./assets/discussion-ui/images/back-img.png" alt="back-image">
+                <img src="./assets/discussion-ui/images/back-img.png" alt="back icon">
                 Back
             </button>
-            <button (click)="close($event)" class="df-btn df-close-btn" id="close-discussion-forum" type="button">
-                Close
-                <img src="./assets/discussion-ui/images/close.png"></button>
-
+            <button (click)="close($event)" class="df-btn df-close-btn" id="close-discussion-forum" type="button"> Close
+                <img src="./assets/discussion-ui/images/close.png" alt="close icon"></button>
         </div>
     </div>
-</ng-container>
-
-<div class="ui container discussion-forum">
-    <div class="discussion-forum-content">
-        <div class="discuss-left-panel">
-            <lib-side-pannel></lib-side-pannel>
-        </div>
-        <div class="discuss-right-panel">
-            <router-outlet></router-outlet>
+    <div class="discussion-forum">
+        <div class="ui container discussion-forum-content">
+            <div class="discuss-left-panel">
+                <lib-side-pannel></lib-side-pannel>
+            </div>
+            <div class="discuss-right-panel">
+                <router-outlet (activate)="onScrollTopActive($event)"></router-outlet>
+            </div>
         </div>
     </div>
 </div>
+<lib-load-alert *ngIf="showLoaderAlert" (exit)="close($event)" (close)="closeLoadAlert()"></lib-load-alert>

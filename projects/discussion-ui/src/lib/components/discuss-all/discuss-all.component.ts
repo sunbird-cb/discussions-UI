@@ -168,7 +168,7 @@ export class DiscussAllComponent implements OnInit {
   }
 
   fillrecent(_page?: any) {
-    this.getRecentData(_page)
+    this.getRecentData();
   }
 
   fillPopular(page?: any) {
@@ -194,12 +194,12 @@ export class DiscussAllComponent implements OnInit {
   }
 
   refreshData(page?: any) {
-    this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page)
+    this.currentFilter === 'recent' ? this.getRecentData() : this.fillPopular(page)
   }
 
-  getRecentData(page: any) {
+  getRecentData() {
     this.showLoader = true;
-    return this.discussionService.fetchRecentD(page).subscribe(
+    return this.discussionService.fetchRecentPost().subscribe(
       (data: any) => {
         this.showLoader = false;
         this.discussionList = [];
@@ -208,6 +208,7 @@ export class DiscussAllComponent implements OnInit {
             this.discussionList.push(topic);
           }
         });
+        this.discussionList = _.get(data, 'posts');
       }, error => {
         this.showLoader = false;
         // TODO: Toaster

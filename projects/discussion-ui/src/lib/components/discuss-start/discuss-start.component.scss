@@ -46,6 +46,10 @@
 				position: relative;
 				margin-bottom: 0.5rem;
 
+				.select-category{
+					margin: 0 0.5rem;
+				}
+
 				.start-form-field-control {
 					background-color: var(--white);
 					border: 0.0625rem solid var(--gray-200);

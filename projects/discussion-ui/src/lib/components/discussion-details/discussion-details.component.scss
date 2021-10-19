@@ -6,7 +6,7 @@
 .discussion-details {
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: var(--white);
-    color: rgba(0, 0, 0, .87);
+    color: var(--black);
     flex: 3;
     height: auto;
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
@@ -22,7 +22,7 @@
 }
 
 .related-discuss-part {
-    padding: 0 0 1rem 1rem;
+    padding: 0 0 1rem 1.5rem;
     position: relative;
     z-index: 2;
 }
@@ -30,13 +30,14 @@
 .discussion-card-title {
     font-size: 20px;
     font-weight: 700;
-    margin: 0 1rem 1rem 0;
+    margin-right: 16px;
 }
 
 .discussion-heading {
+    font-size: 0.875rem;
     font-weight: 400;
-    margin-bottom: 8px;
-    font-size: 14px;
+    pointer-events: none;
+    margin-bottom: 0px;
 }
 
 .discussion-content {
@@ -89,26 +90,7 @@
 }
 
 .discussion-labels {
-    color: #948e8e;
-    margin-left: 8px;
-    font-size: 14px;
-
-    html[dir="rtl"] & {
-        margin-right: 0.5rem;
-    }
-}
-
-.vote-area {
-    margin-right: 24px;
-}
-
-.vote-data {
-    margin-left: 8px;
-    color: rgba(0, 0, 0, .6);
-
-    html[dir="rtl"] & {
-        margin-right: 0.5rem;
-    }
+    color: #5C5757;
 }
 
 .comments-area {
@@ -191,7 +173,7 @@
     line-height: 36px;
     padding: 0 16px;
     overflow: visible;
-    color: #000;
+    color: var(--black);
     font-weight: 700;
     font-size: 14px;
     background: none;
@@ -199,18 +181,10 @@
 }
 
 
-.post-card {
-    border-bottom: 1px solid #ddd;
-    margin: 0 0 1.75rem 0;
-}
-
+.post-card,
 .post-reply-card {
-    border: none;
-    margin-bottom: 2.5rem;
-}
-
-.tags {
-    z-index: 1!important;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
 }
 
 .post-sub-card {
@@ -240,8 +214,8 @@
 }
 
 .post-labels {
-    // font-size: 12px;
-    font-size: 14px;
+    font-size: 12px;
+    pointer-events: none;
 }
 
 .reply-area {
@@ -371,6 +345,7 @@
     .comment-section {
         flex-direction: column;
         align-items: start;
+        pointer-events: none;
     }
 }
 
@@ -402,11 +377,6 @@
     }
 }
 
-.reply-area {
-    margin: 0 0 1rem 0;
-    font-size: 14px;
-}
-
 .discuss-card-kabab-menu {
     display: flex;
     justify-content: space-between;
@@ -424,10 +394,6 @@
     position: absolute;
     right: 8px;
     top: 22px;
-
-    html[dir="rtl"] & {
-        padding-right: 6px;
-    }
 
     &:hover {
         background: var(--gray-0);
@@ -456,9 +422,6 @@
         cursor: pointer;
         font-size: 14px;
         padding: 8px;
-        display: flex;
-        align-items: center;
-        width: 100%;
 
         &:hover,
         &:active {
@@ -485,6 +448,6 @@
 }
 
 .icons {
-    width: 14px;
-    height: 14px;
+    width: 1rem;
+    height: 1rem;
 }

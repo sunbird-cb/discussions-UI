@@ -1,4 +1,4 @@
-.df-back-header {
+.df-back-btn-container {
     background: var(--white);
     margin-bottom: 1rem;
 
@@ -6,133 +6,76 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.75rem 0;
-        position: relative;
-        margin: 0 1rem;
-s
+        padding: 1rem 0;
+
         .df-back-btn {
-            outline: none;
-            font-weight: bold;
-            border: 1px solid var(--blue) !important;
-            border-radius: .25rem;
-            background: var(--white);
-            color: var(--blue);
-            padding: 0.5rem 0.75rem;
-            font-size: .75rem;
             display: flex;
             align-items: center;
-            height: 2rem;
-            margin: 0 1rem;
-            cursor: pointer;
+            border: 0;
+            font-size: 0.75rem;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
 
             img {
-                width: 16px;
-                height: 16px;
-                margin: 0 0.25rem 0 0;
+                width: 1rem;
+                height: 1rem;
+                margin-right: 0.25rem;
             }
         }
 
         .df-close-btn {
-            padding: 0.5rem 0.75rem;
-            outline: 0;
-            color: var(--black);
             font-weight: 700;
-            background: var(--pink);
             border: 0;
-            border-radius: .25rem;
-            height: 2rem;
-            font-size: 12px;
-            margin: 0 1rem;
-            cursor: pointer;
+            font-size: 0.75rem;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
 
             img {
                 width: 0.5rem;
                 height: 0.5rem;
-                margin: 0 0.25rem;
+                margin-left: .25rem;
             }
         }
     }
 }
 
 .discussion-forum {
+    width: 100%;
     min-height: 100vh;
     position: relative;
     z-index: unset;
-    width:99%;
+
+    @media (max-width: 768px) {
+        height: 100vh;
+        // overflow: auto;
+        // background: #e9e8d9;
+    }
 
     .discussion-forum-content {
-        // display: grid;
-        display: block;
-        // grid-template-columns: 1fr 4fr;
-        grid-template-columns: auto 1fr;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
 
         .discuss-left-panel {
-            // padding: 1.5rem;
             padding: 1.5rem 0;
             position: relative;
             z-index: 2;
-            width:175px;
-            display: inline-block;
+
+            @media (max-width: 768px) {
+                padding: 0 0 1rem 0;
+                width: auto;
+            }
         }
 
         .discuss-right-panel {
-            // padding: 1.5rem;
-            padding: 1.5rem 0 1.5rem 0;
-            width: calc(100% - 208px);
-            margin-left: 25px;
-            float: right;
-        }
-    }
-}
+            padding: 1.5rem;
 
-.main_discuss_lib {
-    overflow: hidden!important;
-    width:100%;
-}
-
-@media (max-width: 992px) {
-    .discussion-forum {
-        padding: 0 0px;
-        height: 100vh;
-        overflow: auto;
-        overflow-x: hidden;
-        background: #e9e8d9;
-        width: 100% !important;
-        box-sizing:border-box;
-
-        .discussion-forum-content {
-            width: calc(100% - 20px);
-            box-sizing: border-box;
-            overflow: hidden;
-            margin: 15px auto 0px auto;
-
-            .discuss-left-panel {
-                // padding: 1rem 0;
-                padding: 0px!important;
-                width: 100%;
-            }
-        
-            .discuss-right-panel {
-                // padding: 0px 0px 48px 0px;
-                padding: 0!important;
-                width: 100%;
-                margin-left:0!important;
-                margin-top: 15px!important;
+            @media (max-width: 768px) {
+                padding: 0px 0px 3rem 0px;
             }
         }
     }
-}
-
-@media screen and (min-width: 376px) and (max-width: 768px) {
-    .discussion-forum-content {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media screen and (min-width: 320px) and (max-width:375px) {
-    .discussion-forum-content {
-        grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
-    }
-
 }

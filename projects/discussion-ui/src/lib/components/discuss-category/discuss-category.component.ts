@@ -77,6 +77,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.categories.push(data);
       }, error => {
         // TODO: Toast error
+        // error code check
+        this.discussService.showTrafficAlert(error);
         console.log('issue fetching category', error);
         this.showLoader = false;
       });
@@ -90,6 +92,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
       this.categories = data
     }, error => {
       // TODO: Toast error
+      // error code check
+      this.discussService.showTrafficAlert(error);
       console.log('issue fetching category', error);
       this.showLoader = false;
     });
@@ -131,6 +135,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         this.stateChange.emit({ action: this.categoryAction, categoryId: this.categoryId })
       }
     }, error => {
+      // error code check
+      this.discussService.showTrafficAlert(error);
       this.showLoader = false;
       // TODO: Toast error
       console.log('issue fetching category', error);

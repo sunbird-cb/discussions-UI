@@ -1,144 +1,24 @@
-## Step 1: Install the package
-```
-   npm install
+# Discussions-UI
 
-```
-   
-## Step 2: import  CsModule  from project-sunbird in root component
-```
-   import { CsModule } from '@project-sunbird/client-services'
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
-```
+## Code scaffolding
 
-## Step 3: install and configure the common service library
- 
- Refer the common service library documentation https://github.com/Sunbird-Ed/sunbird-client-services
+Run `ng generate component component-name --project discussion-ui` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project discussion-ui`.
+> Note: Don't forget to add `--project discussion-ui` or else it will be added to the default project in your `angular.json` file. 
 
- ```
-if (!CsModule.instance.isInitialised) { // Singleton initialised or not
-    await CsModule.instance.init({
-        core: {
-            ...
-            global: {
-               ...
-            },
-            api: {
-                host: 'https://domain.com', // default host
-                authentication: {
-                    // userToken: string; // optional
-                    // bearerToken: string; // optional
-                }
-            }
-        },
-        services: {
-             ...
-             ...
-             discussionServiceConfig: {
-                apiPath: '/discussion',
-             },
-        }
-    );
-}
+## Build
 
-```
- ## Step 4: import  DiscussionUiModule  from project-sunbird in app.module.ts
+Run `ng build discussion-ui` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-```
- import { DiscussionUiModule } from '@project-sunbird/discussions-ui-v8'
- import { ConfigService } from '/services/config.service'
+## Publishing
 
+After building your library with `ng build discussion-ui`, go to the dist folder `cd dist/discussion-ui` and run `npm publish`.
 
- @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        DiscussionUiModule.forRoot(ConfigService),
-    ],
-    exports: [DiscussionUiModule],
-})
+## Running unit tests
 
-```
+Run `ng test discussion-ui` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
- ## Step 5: Define the config service implementation which is used in above step
+## Further help
 
- ```
-
- import { Injectable } from '@angular/core'
- import { AbstractConfigService, IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
-
- @Injectable({
-  providedIn: 'root'
- })
- export class ConfigService extends AbstractConfigService {
-
-  constructor() {
-    super()
-  }
-
-  getConfig(key: any): IdiscussionConfig {
-    return localStorage.getItem(key)
-  }
-
- }
-
-```
- ## Step 6: Add the below route in router module for loading the library in routing mode
-
- ```
-
-  {
-    path: 'discussion-forum',
-    loadChildren: () => import('@project-sunbird/discussions-ui-v8').then(u => u.DiscussionUiModule),
-  }
-
- ```
-
- ## Step 7: Use the route to redirect to discussion-forum after  setting the config in local storage
-
- ```
-
- import { IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
-
-   discussionConfig: IdiscussionConfig = {
-    userName: 'nptest',
-    categories: { result: ["2"] },
-  }
-  
-  navigate() {
-  localStorage.setItem('home', JSON.stringify(this.discussionConfig))
-  this.router.navigate(['/discussion-forum'], { queryParams: { page: 'home' }, queryParamsHandling: "merge" })
-  }
-
-  ```
-
- ## Step 8: Use the selector of the widget as below  to use the  widgets in desired components with input
-
- ```
-
-   <sb-category-widget [config]="discussionConfig"></sb-category-widget>
-
- ```
-
-  Import the IdiscussionConfig interface from the library to know which data to pass.
-
-  ```
-
-  import { IdiscussionConfig } from '@project-sunbird/discussions-ui-v8'
-
-  ```
-
-  ## Available components
-|Feature| Notes| Selector|
-|--|--|--|
-| [LibEntryComponent] | entry point for the library in routing mode| sb-lib-entry|
-| [SidePannelComponent] | used for loading the menu items and switching between them |sb-side-pannel|
-| [ DiscussCategoryComponent ] |used to load the list of categories available |sb-discuss-category|
-| [DiscussHomeComponent] | home component for categories | sb-discuss-home| [DiscussionDetailsComponent] | loads the category details  |sb-discussion-details|
-| [DiscussTagsComponent] | displays all the tags available |sb-discuss-tags|
-| [MyDiscussionComponent] | displays the user data |sb-my-discussion|
-| [DiscussStartComponent] | used to start the discussion |sb-discuss-start|
-
-
-
-
-
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

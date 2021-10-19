@@ -10,6 +10,7 @@ import { PipesModule } from './../pipes/pipes.module';
 
 import { PostReplyComponent } from './post-reply/post-reply.component';
 import { SlidersComponent } from './sliders/sliders.component';
+import { LoadAlertComponent } from './load-alert/load-alert.component';
 @NgModule({
   declarations: [
     PostReplyComponent,
@@ -18,7 +19,8 @@ import { SlidersComponent } from './sliders/sliders.component';
     AvatarPhotoComponent,
     AppLoaderComponent,
     RelatedDiscussionComponent,
-    SlidersComponent
+    SlidersComponent,
+    LoadAlertComponent
   ],
   imports: [
     CommonModule, PipesModule,
@@ -33,7 +35,8 @@ import { SlidersComponent } from './sliders/sliders.component';
     RelatedDiscussionComponent,
     AppLoaderComponent,
     PostReplyComponent,
-    SlidersComponent
+    SlidersComponent,
+    LoadAlertComponent
   ]
 })
 export class ElementsModule { }

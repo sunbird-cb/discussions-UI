@@ -1,4 +1,3 @@
-@import "theme.scss";
 
 $size-xs: 8px;
 $size-s: 12px;
@@ -11,15 +10,7 @@ $size-xxl: 40px;
     font-size: 16px;
     // base colors
     --blue: #024f9d;
-    --green: #008840;
-    --orange: #e55a28;
-    --red: #ff4558;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #ef64af;
     --yellow: #ffc107;
-    --teal: #20c997;
-    --cyan: #17a2b8;
     --black: #000000;
     --black60: rgba(0,0,0,.6);
     --white: #ffffff;
@@ -55,12 +46,11 @@ $size-xxl: 40px;
     flex: 1 1 0%;
     flex-wrap: wrap;
 }
-
-.filter-option {
-    margin: 8px;
+.filter-option{
+    margin: 0.5rem;
     text-decoration: none;
     border: 1px solid var(--gray-400);
-    border-width: 0 0 2px;
+    border-width: 0 0 0.125rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -81,10 +71,8 @@ $size-xxl: 40px;
 .filter-option:first-child {
     margin-left: 0;
 }
-
-.filter-option:hover,
-.tabs-active {
-    border-bottom: 3px solid var(--blue);
+.filter-option:hover,.tabs-active {
+    border-bottom: 0.1875rem solid var(--blue);
     font-weight: 700;
     text-decoration: none;
 }
@@ -92,17 +80,21 @@ $size-xxl: 40px;
 .discuss-card-content {
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: var(--white);
-    color: rgba(0, 0, 0, .87);
+    color: var(--black);
     flex: 1;
     height: auto;
-    margin-bottom: 16px;
-    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    margin-bottom: 1rem;
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
     position: relative;
-    padding: 1.5rem;
-    border-radius: 4px;
-    width: inherit;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
     z-index: 2;
+    word-break: break-all;
+    @media (max-width: 768px) {
+        z-index: unset; 
+    }
 }
 
 .tags {
@@ -112,6 +104,9 @@ $size-xxl: 40px;
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
+    @media (max-width: 768px) {
+        z-index: unset; 
+    }
 }
 
 .tag {
@@ -137,8 +132,8 @@ $size-xxl: 40px;
 .count {
     height: auto;
     background: var(--white);
-    border-radius: 4px;
-    padding: 1px 3px;
+    border-radius: 0.25rem;
+    padding: 0.0625rem 0.1875rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -159,26 +154,51 @@ mb-0 {
     }
 }
 
-@mixin breakpoint-xs {
-    @media only screen and (max-width: 599px) {
-      @content;
-    }
+.df-btn{
+    height: 2rem;
+}
+
+.df-reply-btn,.df-cancel-btn{
+    background: var(--white);
+    padding: .5rem 1rem;
+    font-size: .75rem;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    border-radius: 0.25rem;
   }
-  
-  @mixin breakpoint-s {
-    @media only screen and (min-width: 600px) and (max-width: 959px) {
-      @content;
-    }
+
+  .ui.container {
+    display: block;
+    max-width: 100%!important;
+}
+  @media only screen and (max-width: 767px){
+  .ui.container {
+    width: auto!important;
+    margin-left: 1em!important;
+    margin-right: 1em!important;
   }
-  
-  @mixin breakpoint-m {
-    @media only screen and (min-width: 960px) and (max-width: 1279px) {
-      @content;
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 768px){
+    .ui.container {
+        width: 90%;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
-  }
-  
-  @mixin breakpoint-l {
-    @media only screen and (min-width: 1280px) and (max-width: 1919px) {
-      @content;
-    }
-  }
+}
+
+// rtl css
+
+html[dir='rtl'] .related-discuss-part{
+    padding: 0 1.5rem 1rem 0;  
+}
+
+html[dir='rtl'] .df-back-btn img {
+    margin-right: inherit;
+    margin-left: 0.25rem;
+}
+
+html[dir='rtl'] .df-close-btn img {
+    margin-left: inherit;
+    margin-right: 0.25rem;
+}

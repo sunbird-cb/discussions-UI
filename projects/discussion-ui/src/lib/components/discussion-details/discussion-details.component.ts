@@ -52,6 +52,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   editableTopicDetails: any;
   dropdownContent = true;
   categoryId: any;
+  showLoader = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -153,8 +154,11 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicById(this.topicId, this.slug, page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.appendResponse(data)
+          this.showLoader = true;
         },
         (err: any) => {
+          // error code check
+          this.discussionService.showTrafficAlert(err);
           console.log('Error in fetching topics')
           // toast message
           // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
@@ -163,8 +167,11 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.discussionService.fetchTopicByIdSort(this.topicId, 'voted', page).subscribe(
         (data: NSDiscussData.IDiscussionData) => {
           this.appendResponse(data)
+          this.showLoader = true;
         },
         (err: any) => {
+          // error code check
+          this.discussionService.showTrafficAlert(err);
           console.log('Error in fetching topics')
         });
     }
@@ -213,6 +220,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           this.refreshPostData(this.currentActivePage);
         },
         (err: any) => {
+          // error code check
+          this.discussionService.showTrafficAlert(err);
           // toast
           // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
@@ -226,6 +235,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.refreshPostData(this.currentActivePage);
     },
       (err: any) => {
+        // error code check
+        this.discussionService.showTrafficAlert(err);
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
@@ -237,6 +248,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.refreshPostData(this.currentActivePage);
     },
       (err: any) => {
+        // error code check
+        this.discussionService.showTrafficAlert(err);
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
@@ -248,6 +261,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.refreshPostData(this.currentActivePage);
     },
       (err: any) => {
+        // error code check
+        this.discussionService.showTrafficAlert(err);
         // toast
         // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
       });
@@ -267,6 +282,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           this.refreshPostData(this.currentActivePage);
         },
         (err: any) => {
+          // error code check
+          this.discussionService.showTrafficAlert(err);
           // toast
           // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
@@ -286,6 +303,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
           this.refreshPostData(this.currentActivePage);
         },
         (err: any) => {
+          // error code check
+          this.discussionService.showTrafficAlert(err);
           // toast
           // this.openSnackbar(err.error.message.split('|')[1] || this.defaultError);
         });
@@ -375,6 +394,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: Success toast
       this.refreshPostData(this.currentActivePage);
     }, (error) => {
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       // TODO: error toast
       console.log('e', error);
     });
@@ -386,6 +407,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       // TODO: Success toast
       this.refreshPostData(this.currentActivePage);
     }, (error) => {
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       // TODO: error toast
       console.log('e', error);
     });
@@ -435,8 +458,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   /**
    * @description - It will open update thread popup.
    */
-  editTopic() {
+   editTopic(event, topicData) {
     this.showEditTopicModal = true;
+    this.logTelemetry(event, topicData);
   }
 
   /**
@@ -448,6 +472,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       console.log('update success', data);
       this.refreshPostData(this.currentActivePage);
     }, error => {
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       console.log('error while updating', error);
     });
   }
@@ -470,6 +496,8 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.discussionService.deleteTopic(topicId).subscribe(data => {
       this.location.back();
     }, error => {
+      // error code check
+      this.discussionService.showTrafficAlert(error);
       console.log('error while deleting', error);
     });
   }

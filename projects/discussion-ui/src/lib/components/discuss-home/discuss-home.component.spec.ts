@@ -123,17 +123,17 @@ describe('DiscussHomeComponent', () => {
     })
   });
 
-  describe('closeModal', () => {
-    it('should close start discussion modal', () => {
-      // arrange
-      const event = {
-        message: 'success'
-      };
-      // act
-      discussHomeComponent.closeModal(event);
-      // assert
-      expect(discussHomeComponent.showStartDiscussionModal).toBe(false);
-    })
-  })
+  // describe('closeModal', () => {
+  //   it('should close start discussion modal', () => {
+  //     // arrange
+  //     const event = {
+  //       message: 'success'
+  //     };
+  //     // act
+  //     discussHomeComponent.closeModal(event);
+  //     // assert
+  //     expect(discussHomeComponent.showStartDiscussionModal).toBe(false);
+  //   })
+  // })
 
 })

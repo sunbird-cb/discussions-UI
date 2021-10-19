@@ -18,5 +18,10 @@
     </div>
   </ng-container>
 </div>
-
-
+​
+​
+<div class="tag-empty-container" *ngIf="!showLoader && !filteredTags.length">
+  <div class="tag-empty-img"><img src="./assets/discussion-ui/images/empty.svg" alt="empty image"></div>
+  <label class="tag-empty-label">No tags Available !</label>
+  <p class="tag-empty-text">Stay tuned ! we will be updating our tags library and add them here</p>
+</div>
