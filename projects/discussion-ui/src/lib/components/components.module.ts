@@ -18,6 +18,8 @@ import { DiscussAllComponent } from './discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
+import { LeaderBoardComponent } from './leader-board/leaderboard-component';
+
 @NgModule({
   declarations: [
     SidePannelComponent,
@@ -30,6 +32,7 @@ import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
     DiscussAllComponent,
     TagAllDiscussionComponent,
     TrendingTagsComponent,
+    LeaderBoardComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,7 @@ import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
     ReactiveFormsModule,
     TagInputModule,
     PipesModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
   ],
   exports: [
     SidePannelComponent,
@@ -53,6 +56,7 @@ import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
      DiscussAllComponent,
     TagAllDiscussionComponent,
     TrendingTagsComponent,
+    LeaderBoardComponent,
   ],
   providers: [
     DiscussionService, ConfigService

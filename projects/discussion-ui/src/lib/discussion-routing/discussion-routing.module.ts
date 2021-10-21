@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DiscussHomeComponent } from './../components/discuss-home/discuss-home.component';
 import { DiscussAllComponent } from './../components/discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './../components/tag-all-discussion/tag-all-discussion.component';
+import { LeaderBoardComponent } from '../components/leader-board/leaderboard-component';
 
 
 const routes: Routes = [
@@ -56,6 +57,11 @@ const routes: Routes = [
         path: 'topic/:topicId/:slug',
         pathMatch: 'full',
         component: DiscussionDetailsComponent
+      },
+      {
+        path: 'leaderboard',
+        pathMatch: 'full',
+        component: LeaderBoardComponent
       }
     ]
   },
