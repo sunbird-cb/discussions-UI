@@ -1,7 +1,7 @@
 <h5 aria-label="Related discussions" class="related-discuss-label mb-16">Related discussions</h5>
 <ng-container *ngIf="relatedDiscussions && relatedDiscussions.length > 0">
-    <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card">
-        <label role="link" aria-label="related discussion post df-text-color"
+    <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card" tabindex="0">
+        <label role="link" tabindex="0" aria-label="related discussion post df-text-color"
             class="related-discuss-card-content discuss-user-label" (click)="getDiscussion(discussion)"
             [innerHTML]="discussion?.title">
         </label>
