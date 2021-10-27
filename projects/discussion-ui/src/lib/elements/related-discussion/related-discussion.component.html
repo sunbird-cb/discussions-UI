@@ -6,7 +6,11 @@
             <span class="discuss-user-label" [innerHTML]="discussion?.title"></span>
         </a>
         <div class="related-discuss-card-description">
-            <div class="category-name" [innerHTML]="discussion.category.name"></div>
+            <div class="category-name ws-mat-default-text" [innerHTML]="discussion.category.name">
+                <img src="./assets/images/Buffer-512.svg" alt="Buffer-image" class="margin-right-xs">
+                
+            </div>
+            
             <div class="separator-dot"></div>
             <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
         </div>

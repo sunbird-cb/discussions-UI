@@ -68,8 +68,8 @@
 .circle-text {
     // border-radius: 50%;
     border-radius: 4px 4px;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +82,7 @@
 
 .circle-label {
     color: var(--white);
-    font-size: 17px;
+    font-size: 10px;
     line-height: 12px;
     letter-spacing: .2625px;
     text-transform: uppercase;
