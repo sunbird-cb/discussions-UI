@@ -23,7 +23,7 @@
             </div>
 
             <!-- right question box =========== -->
-            <div class="start-form-field text_form_field_box" [ngClass]="{ 'is-invalid': showError('subTitle') }">
+            <div class="start-form-field" [ngClass]="{ 'is-invalid': showError('subTitle'),'text_form_field_box_full_width': !showSelectCategory, 'text_form_field_box': showSelectCategory }">
               <!-- <label class="start-form-label">Ask a question or post an idea<span class="required"></span></label> -->
               <!-- <h1>this is test heading</h1> -->
               <div>

@@ -105,6 +105,7 @@ export class DiscussStartComponent implements OnInit {
       const req = {
         cids: this.categoryId
       };
+      this.showSelectCategory = false;
       this.editable = false;
       this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
         this.allCategories = data.result;
