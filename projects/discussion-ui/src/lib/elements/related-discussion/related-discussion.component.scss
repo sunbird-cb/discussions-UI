@@ -54,3 +54,12 @@
 .time {
 	color: rgba(0, 0, 0, 0.4);
 }
+
+.category_text img.category_img {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+} 
+.category_text .category-name {
+    display: inline-block;
+}
