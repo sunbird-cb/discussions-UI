@@ -1,57 +1,71 @@
 .sb-search-box {
-	display: flex;
-	align-items: center;
-	border: 0px;
+    display: flex;
+    align-items: center;
+    border: 0px;
 }
 
 .sb-search-box .sb-search-input {
-	width: 100%;
-	font-size: 14px;
-	min-height: 2rem;
-	outline: 0;
-	border-radius: 0;
-	line-height: normal;
-	background: none;
-	padding: 1em;
-	border-radius: 5px;
-	border: 0px;
+    width: 100%;
+    font-size: 14px;
+    min-height: 2rem;
+    outline: 0;
+    border-radius: 0;
+    line-height: normal;
+    background: none;
+    padding: 1em;
+    border-radius: 5px;
+    border: 0px;
 }
 
 .search-icon {
-	width: 18px;
-	height: 18px;
-	margin: 16px 0px 16px 16px;
+    width: 18px;
+    height: 18px;
+    margin: 16px 0px 16px 16px;
 }
 
 .sb-search-box .input-div {
-	border-radius: 24px;
-	background: var(--white);
-	display: flex;
-	align-items: center;
-	border: 1px solid #ddd;
-	width: 100%;
+    border-radius: 24px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    width: 100%;
 }
 
 .sb-search-box .input-div:hover {
-	border-color: var(--blue);
+    border-color: var(--blue);
 }
 
 .tags {
-	z-index: 1!important;
+    z-index: 1!important;
 }
 
 .tag {
-	cursor: pointer;
-
-	.count {
-		background-color: transparent!important;
-		color: #fff!important;
-	}
+    cursor: pointer;
+    background-color: #fff;
+    padding: 4px 4px 4px 0px;
+    margin: 0px 24px 16px 0px;
+    box-sizing: border-box;
+    max-height: 48px!important;
+    height: 48px;
+    border-radius: 100px 100px;
+    font-size: 16px;
+    font-family: 'Lato';
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    .count {
+        background-color: #e9e8d9!important;
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        .tag_score {
+            font: 400 12px/40px Lato;
+            color: rgba(0, 0, 0, 0.87);
+        }
+    }
 }
 
-
 .search {
-	border: 1px solid #dedfe0;
+    border: 1px solid #dedfe0;
     height: 1.5rem;
     padding: 12px;
     font: inherit;
@@ -62,16 +76,11 @@
 }
 
 .theme-igot.day-mode .ws-mat-default-text {
-	color:#fff;
+    color: #fff;
 }
-
 
 @media (max-width: 768px) {
-	.discuss-tags {
-		flex-direction: column;
-	}
+    .discuss-tags {
+        flex-direction: column;
+    }
 }
-
-
-
-

@@ -1,23 +1,35 @@
-.df-start-btn{
-    height: 2rem;
-      outline: none;
-      font-weight: bold;
-      border: none;
-      border-radius: .25rem;
-      background: var(--blue);
-      color: var(--white);
-      padding: 0.5rem 0.75rem;
-      font-size: .75rem;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      margin: 0 0 1rem 0;
-  }
+.df-start-btn {
+    // height: 2rem;
+    outline: none;
+    // font-weight: bold;
+    border: none;
+    border-radius: .25rem;
+    background: var(--blue);
+    color: var(--white);
+    // padding: 0.5rem 0.75rem;
+    // font-size: .75rem;
+    padding: 14px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    // margin: 0 0 1rem 0;
+}
 
-  .infinite-scroll {
+.infinite-scroll {
     overflow-y: scroll;
-    }
+}
 
-    .discuss-card-content {
-      z-index: 1!important;
-    }
+.discuss-card-content {
+    z-index: 1!important;
+}
+
+.category_title_div {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 4px 4px;
+}
+
+.category_img {
+    height: 48px;
+    width: 48px;
+}

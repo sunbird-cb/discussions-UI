@@ -4,13 +4,11 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
-
 }
 
 .discuss-card-label {
     color: #0074b6;
     display: flex;
-
     img {
         width: 20px;
         margin-right: 0.5rem;
@@ -29,46 +27,37 @@
     justify-content: space-between;
     font-size: 14px;
     flex-wrap: wrap;
-
     .discuss-comments-area {
         display: -webkit-box;
         font-weight: 700;
         font-size: 0.75rem;
-
         .views-content {
             margin-left: 1.5rem;
             display: flex;
             align-items: center;
-
             html[dir="rtl"] & {
                 margin-right: 1.5rem;
-
             }
         }
-
         .votes-content {
             display: flex;
             align-items: center;
         }
-
         .votes-content img,
         .views-content img {
             // height: 24px;
             // width: 24px;
-            height: 15px;
+            height: 20px;
             width: 20px;
         }
-
         .votes-content span,
         .views-content span {
             margin-left: 10px;
-
             html[dir="rtl"] & {
                 margin-right: 0.5rem;
             }
         }
     }
-
     .comments-count {
         // color: #0074b6;
         font-weight: 700;
@@ -78,11 +67,11 @@
 
 .discuss-card-header {
     .user_name_div {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         .circle-text {
             border-radius: 4px;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             // display: flex;
             display: inline-block;
             justify-content: center;
@@ -91,24 +80,24 @@
             color: #fff;
             text-align: center;
             font-weight: 600;
-            line-height: 28px;
+            line-height: 20px;
             vertical-align: middle;
+            .circle-label {
+                font: 400 10px/12px Lato;
+            }
         }
-
         .post_user_text_box {
             margin-left: 10px;
             display: inline-block;
             vertical-align: middle;
             width: calc(100% - 42px);
-            .discuss-user-label{
-               
-                // color: rbga(0, 0, 0, 0.6)!important;
-               color: rgba(0, 0, 0, 0.6)!important;
-            }
+            font: 400 14px/21px Lato;
+            color: rgba(0, 0, 0, 0.6)!important;
+            // .discuss-user-label {
+            //     color: rgba(0, 0, 0, 0.6)!important;
+            // }
         }
-        
     }
-
     .discuss_main_text_box {
         white-space: inherit;
         word-break: break-all;
@@ -119,7 +108,7 @@
 
 .discuss-card-content {
     z-index: 1!important;
-  }
+}
 
 .dot {
     height: 6px;
@@ -130,14 +119,23 @@
     margin: 0 1rem;
 }
 
-.timing {
-    color: #858181;
-    margin-left: 1rem;
-    font-size: 14px;
+.post_tag {
+    display: inline-block;
+    border-radius: 100px 4px 4px 100px;
+    padding: 4px 12px 4px 12px;
+    width: auto;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, .04);
+    border: 1px solid rgba(0, 0, 0, .08);
+    box-sizing: border-box;
+}
 
+.timing {
+    // color: #858181;
+    margin-left: 10px;
+    // font-size: 14px;
     html[dir="rtl"] & {
         margin-right: 1rem;
-
     }
 }
 
@@ -145,9 +143,8 @@
     .discuss-card-header {
         .user_name_div {
             .post_user_text_box {
-
-                .discuss-user-label{
-                   margin-left: 0;
+                .discuss-user-label {
+                    margin-left: 0;
                     vertical-align: top;
                     line-height: 1;
                 }
@@ -155,10 +152,9 @@
                     display: block;
                     margin: 0;
                     line-height: 1;
-                    padding:0;
+                    padding: 0;
                 }
             }
         }
     }
-   
 }

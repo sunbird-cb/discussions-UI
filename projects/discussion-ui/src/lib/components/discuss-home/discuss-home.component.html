@@ -1,18 +1,21 @@
-<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn"
-    data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
+<div class="flex flex-1 margin-bottom-l border category_title_div justify-between">
+    <div class="flex">
+        <div class="main_title_box flex flex-row">
+            <img src="./assets/discussion-ui/images/Buffer-512.svg" alt="Buffer-image" class="margin-right-m category_img">
+            <h2 class="cursor-pointer f-medium" [innerHTML]="title"></h2>
+        </div>
 
-<div class="flex flex-1 margin-top-xl">
-    <h2 class="cursor-pointer f-medium" [innerHTML]="title"></h2>
+    </div>
+    <div class="start_discussion_box">
+        <button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn mat-subheading-2" data-toggle="modal" data-target="#myModal" id="start-discussion">Start Discussion</button>
+    </div>
+
 </div>
-<div>
-    <span>&nbsp;</span>
-</div>
+
 
 <ng-container *ngIf="discussionList && discussionList.length > 0">
-    <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" infinite-scroll
-        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance"
-        [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true" (scrolled)="onModalScrollDown()" class=""
-        *ngFor="let discussionData of discussionList" id="topic-card">
+    <div (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" infinite-scroll [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollDistance]="modalScrollDistance" [infiniteScrollThrottle]="modalScrollThrottle" [scrollWindow]="true"
+        (scrolled)="onModalScrollDown()" class="" *ngFor="let discussionData of discussionList" id="topic-card">
         <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
     </div>
 </ng-container>

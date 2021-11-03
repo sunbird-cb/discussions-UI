@@ -21,6 +21,7 @@ export class DiscussHomeComponent implements OnInit {
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
+
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
@@ -60,6 +61,7 @@ export class DiscussHomeComponent implements OnInit {
       // this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
+
   }
 
   navigateToDiscussionDetails(discussionData) {
