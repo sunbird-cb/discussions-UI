@@ -20,7 +20,7 @@
           <label class="start-form-label">Discussion topic*</label>
           <div class="start-form-field">
             <input class="start-form-field-control py-8" placeholder="Type here (minimum 8 characters)"
-              formControlName="question" #question/>
+              formControlName="question" #question maxlength="1000" />
           </div>
           <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
             Question is mandatory. It should be minimum of
