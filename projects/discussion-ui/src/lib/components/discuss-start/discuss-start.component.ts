@@ -55,7 +55,7 @@ export class DiscussStartComponent implements OnInit {
 
   initializeFormFields(topicData) {
     this.startForm = this.formBuilder.group({
-      question: ['', Validators.required],
+      question: ['', [Validators.required, Validators.minLength(8)]],
       description: ['', Validators.required],
       tags: [],
       category: []
