@@ -4,7 +4,7 @@
     <!-- card -->
     <div>
       <!-- header -->
-      <div class="discuss-card-kabab-menu" role="link" tabindex="0">
+      <div class="discuss-card-kabab-menu">
         <!-- title -->
         <div class="discussion-card-title mb-8 df-label-color" [innerHTML]="data?.title"></div>
         <div *ngIf="data?.uid === mainUid">
@@ -23,9 +23,9 @@
       <ng-container *ngFor="let post of data?.posts">
         <div *ngIf="post?.index === 0">
           <div class="post-reply-card">
-            <p role="link" tabindex="0" class="discussion-heading df-text-color"
+            <p class="discussion-heading df-text-color"
               [innerHTML]="post?.content"></p>
-            <div class="discussion-content mb-0" role="link" tabindex="0">
+            <div class="discussion-content mb-0">
               <span class="circle-text"><span
                   class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
               <span class=" fnormal ml-8 discussion-labels">{{'Asked by '}}</span>
@@ -35,7 +35,7 @@
                 [innerHTML]="post.user.username"></span>
             </div>
 
-            <div class="flex flex-1 margin-top-m tags" role="link" tabindex="0" aria-label="tags">
+            <div class="flex flex-1 margin-top-m tags" aria-label="tags">
               <ng-container *ngIf="data && data?.tags && data?.tags?.length > 0">
                 <span *ngFor="let tag of data?.tags" class="tag" role="link" tabindex="0" i18n-aria-label
                   [ngStyle]="getBgColor(tag.value)">
@@ -130,7 +130,7 @@
       <!-- card content -->
       <div *ngIf="post?.index != 0" class="post-card">
         <!-- header -->
-        <div class="mb-8 comment-section align-center" role="link" tabindex="0">
+        <div class="mb-8 comment-section align-center">
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
@@ -151,7 +151,7 @@
         <!-- / header -->
         <div>
           <div class="d-flex" *ngIf="!editMode || editContentIndex !== i">
-            <p role="link" tabindex="0" [innerHTML]="post?.content" class="post-labels df-text-color"></p>
+            <p [innerHTML]="post?.content" class="post-labels df-text-color"></p>
             <div class="edited-text" *ngIf="post?.edited">(edited)</div>
           </div>
           <div *ngIf="editMode && editContentIndex === i">
@@ -266,7 +266,7 @@
       <!-- card -->
       <div class="post-sub-card border-0">
         <!-- card-header -->
-        <div class="my-16 comment-section align-center" role="link" tabindex="0">
+        <div class="my-16 comment-section align-center">
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
