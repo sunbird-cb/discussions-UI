@@ -17,8 +17,6 @@
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
-    white-space: initial;
-    word-break: break-word;
 }
 
 .related-discuss-part {
@@ -43,7 +41,7 @@
 .discussion-content {
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
     font-size: 14px;
     color: rgba(0, 0, 0, .6);
     flex-wrap: wrap;
@@ -56,9 +54,6 @@
     margin-bottom: 16px;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 8px;
-    font-family: inherit;
-    font-size: 14px;
 }
 
 .post-header-content {
@@ -67,18 +62,13 @@
 }
 
 .circle-text {
-    // border-radius: 50%;
-    border-radius: 4px 4px;
+    border-radius: 50%;
     width: 28px;
     height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(48, 105, 51);
-}
-
-.category-name {
-    color: #0074b6;
 }
 
 .circle-label {
@@ -98,8 +88,6 @@
     justify-content: space-between;
     font-weight: 700;
     flex-direction: row;
-    font-size: 14px;
-    margin: 1rem 0;
 }
 
 .text-form-field {
@@ -156,7 +144,7 @@
 .comment-btns {
     display: flex;
     justify-content: flex-end;
-    margin: 1rem 0px;
+    margin: 16px 0px;
 }
 
 .cancel-btn,
@@ -202,10 +190,6 @@
     font-weight: 700;
     margin-left: 16px;
     word-break: break-all;
-
-    html[dir="rtl"] & {
-        margin-right: 1rem;
-    }
 }
 
 .post-time {
@@ -243,76 +227,8 @@
 }
 
 .comments-count {
-    // color: #0074b6;
+    color: #0074b6;
     font-weight: 700;
-    color: rgba(0, 0, 0, .6);
-}
-
-.viewsIcon{
-    height: 14px !important;
-    width: 18px !important;
-    object-fit: cover;
-    vertical-align: middle;
-}
-
-
-.df-update-btn,
-.df-reply-btn {
-    background-color: var(--blue);
-    color: var(--white);
-    border: 0;
-    padding: 10px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.df-reply-btn.transparent{
-    background-color: transparent;
-    color: var(--black60);
-    border: 0;
-}
-
-.df-reply-btn.transparent:hover{
-    color: var(--black60);
-    border: 0;
-    background-color: #f5f6fa;
-}
-
-
-
-:host {
-    .df-reply-btn {
-        margin-left: 1rem;
-
-        html[dir="rtl"] & {
-            margin-right: 1rem;
-        }
-
-    }
-}
-
-
-.df-cancel-btn {
-    background-color: var(--white);
-    color: var(--blue);
-    border: 1px solid var(--blue);
-    border: 0;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.cancel-update-post {
-    margin-right: 20px;
-}
-
-.df-btn-disabled {
-    // background-color: var(--gray-100);
-    // border: solid var(--gray-100);
-    opacity: 0.7;
-    pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -359,10 +275,6 @@
     margin-top: 3px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.6);
-
-    html[dir="rtl"] & {
-        padding-right: 0.5rem;
-    }
 }
 
 .delete-icon,
@@ -370,11 +282,6 @@
     cursor: pointer;
     width: 1rem;
     height: 1rem;
-    margin-left: 1rem;
-
-    html[dir="rtl"] & {
-        margin-right: 1rem;
-    }
 }
 
 .discuss-card-kabab-menu {
@@ -410,7 +317,7 @@
     position: absolute;
     border-radius: 2px;
     background-color: var(--white);
-    box-shadow: 0 3px 5px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 5px 4px rgba(var(--rc-rgba-black), 0.05);
     padding: 8px;
     z-index: 1;
     text-align: left;

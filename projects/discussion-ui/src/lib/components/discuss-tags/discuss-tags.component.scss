@@ -25,7 +25,7 @@
 
 .sb-search-box .input-div {
 	border-radius: 24px;
-	background: var(--white);
+	background: #ffff;
 	display: flex;
 	align-items: center;
 	border: 1px solid #ddd;
@@ -33,38 +33,12 @@
 }
 
 .sb-search-box .input-div:hover {
-	border-color: var(--blue);
-}
-
-.tags {
-	z-index: 1!important;
+	border-color: #0074b6;
 }
 
 .tag {
 	cursor: pointer;
-
-	.count {
-		background-color: transparent!important;
-		color: #fff!important;
-	}
 }
-
-
-.search {
-	border: 1px solid #dedfe0;
-    height: 1.5rem;
-    padding: 12px;
-    font: inherit;
-    border-radius: 5px;
-    margin-bottom: 2rem;
-    min-width: 320px;
-    max-width: 50%;
-}
-
-.theme-igot.day-mode .ws-mat-default-text {
-	color:#fff;
-}
-
 
 @media (max-width: 768px) {
 	.discuss-tags {

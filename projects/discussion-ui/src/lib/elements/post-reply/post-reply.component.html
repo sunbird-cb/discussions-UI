@@ -7,13 +7,32 @@
       class="text-content fnormal mb-8"
       [ngModel]="content">
   </textarea>
-</div>
+  </div>
 </form>
-<div class="updatePostActions">
-<button class="df-btn df-cancel-btn" *ngIf="showCancel" (click)="onCancelClick()" id="cancel-update-post"
-  type="button">Cancel</button>
-<button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode === 'edit'" [disabled]="!isButtonEnabled"
-  class="df-btn df-update-btn" (click)="onReplyClick('edit')" id="update-post" type="button">Update</button>
-<button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode !== 'edit'" [disabled]="!isButtonEnabled"
-  class="df-btn df-reply-btn" (click)="onReplyClick('reply')" id="update-post" type="button">Post Reply</button>
+<div class="updatePostActions mb-16">
+    <button class="df-btn df-cancel-btn"
+      *ngIf="showCancel"
+      (click)="onCancelClick()" 
+      id="cancel-update-post" 
+      type="button">
+      <span class="text-white">Cancel</span>
+    </button>
+    <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+      *ngIf="mode === 'edit'"
+      [disabled]="!isButtonEnabled" 
+      class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
+      (click)="onReplyClick('edit')" 
+      id="update-post"
+      type="button">
+      <span class="text-white">Update</span>
+    </button>
+    <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+      *ngIf="mode !== 'edit'"
+      [disabled]="!isButtonEnabled" 
+      class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
+      (click)="onReplyClick('reply')" 
+      id="update-post"
+      type="button">
+      <span class="text-white">Post Reply</span>
+    </button>
 </div>

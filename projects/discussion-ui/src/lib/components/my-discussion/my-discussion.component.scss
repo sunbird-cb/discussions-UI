@@ -1,24 +1,22 @@
-.profileCard {
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-    background: var(--white);
-    color: rgba(0, 0, 0, .87);
+.profileCard{
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    background: #fff;
+    color: rgba(0,0,0,.87);
     flex: 1;
     height: auto;
     margin-bottom: 0px;
-    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     display: block;
     position: relative;
     padding: 16px;
     border-radius: 4px;
-    width: 96.5%;
+    width: 100%;
 }
-
-.profilecard-content {
+.profilecard-content{
     display: flex;
     flex-wrap: wrap;
 }
-
-.profile-header-image {
+.profile-header-image{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,126 +26,36 @@
     height: 135px;
     border: 1px solid #ddd;
     margin-right: 24px;
-    background: var(--green);
+    background: green;
     text-align: center;
 }
-
-.profile-name {
-    // color: rgba(0, 0, 0, .54);
-    // font-weight: 700;
-    // margin-bottom: 8px;
-    // font-size: 16px;
-    color: #000;
-    font-weight: 600;
-    margin-bottom: 5px;
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-.profile-label {
-    // color: rgba(0, 0, 0, .54);
-    // font-weight: 700;
-    // margin-bottom: 8px;
-    // font-size: 14px;
-   
-    font-weight: 400;
-    margin-bottom: 5px;
-    font-size: 14px;
-    line-height: 20px;
-}
-.profile-label.department_name {
-    color: rgba(0,0,0,.87);
-}
-
-.profile-label.location_name {
-    color: rgba(0,0,0,.6);
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: space-evenly;
-}
-
-.profile-data {
-    margin-top: 16px;
-    font-size: 14px;
-}
-
-.post-count-area {
-    margin-left: 32px;
-
-    html[dir="rtl"] & {
-        margin-right: 32px;
-    }
-}
-
-.number {
-    // color: var(--blue);
-    font-size: 14px;
-    color:#3F87C5;
+.profile-label{
+    color: rgba(0,0,0,.54);
     font-weight: 700;
 }
 
-.labels {
-    font-size: 14px;
-    margin-left: 8px;
-    font-weight: 700;
-    font-family: inherit;
-
-    html[dir="rtl"] & {
-        margin-right: 4px;
-    }
+.post-count-area{
+    margin-left:32px;
+}
+.number{
+    color: #0074b6;   
 }
 
 
-.no-data-label {
+.no-data-label{
     font-size: 20px;
     font-weight: bold;
 }
 
-.profileCard {
-    .profilecard-content {
-        margin-bottom: 5px;
-
-        .profile-header-image {
-            .box-text {
-                border-radius: 4px;
-                width: 28px;
-                height: 28px;
-                display: inline-block;
-                justify-content: center;
-                align-items: center;
-                // background-color: #306933;
-                color: #fff;
-                text-align: center;
-                font-weight: 600;
-                line-height: 28px;
-            }
-        }
-       
-
-        // .discuss-user-label{
-        //     margin-left: 10px;
-        // }
-    }
-}
-
-.discuss-card-content {
-    z-index: 1!important;
-  }
-
-
 @media (max-width: 768px) {
-    .profileCard {
+    .profileCard{
         width: auto;
     }
 }
 
-.box-text {
+.box-text{
     font-size: 4rem;
-    color: var(--white);
+    color: white;
     text-transform: uppercase;
 }
 .topic-list-container {
