@@ -1,0 +1,46 @@
+.text-form-field{
+    display: flex;
+    flex-direction: column;
+    /* width: 97.6%;   */
+}
+
+.text-content{
+    min-height: 108px;
+    max-height: 540px;
+    /* width: 97.6%;  */
+    border: 1.5px solid #ccc2c2;
+    border-radius: 16px;
+    cursor: pointer;
+    padding: 16px;
+    outline: none;
+}
+
+.updatePostActions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-btn,.post-reply-btn{
+    background-color: #0074b6;
+    color: #fff;
+    border: 0;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cancel-update-post {
+    margin-right: 20px;
+}
+
+.sb-btn-disabled {
+    background-color: var(--gray-100);
+    border: solid var(--gray-100);
+}

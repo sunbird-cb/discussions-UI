@@ -1,19 +1,19 @@
 <form [formGroup]="replyForm">
-    <div appearance="outline" class="flex-1 w-full text-form-field">
-      <label class="font-weight-normal">Your answer here</label>
-      <textarea placeholder="Type here (minimum 10 characters)" 
-        minlength="10" aria-label="Type your message here"
-        formControlName="replyContent" 
-        class="text-content fnormal mb-8"
-        [ngModel]="content">
-    </textarea>
-  </div>
+  <div appearance="outline" class="flex-1 w-full text-form-field">
+    <label class="font-weight-normal">Your answer here</label>
+    <textarea placeholder="Type here (minimum 10 characters)" 
+      minlength="10" aria-label="Type your message here"
+      formControlName="replyContent" 
+      class="text-content fnormal mb-8"
+      [ngModel]="content">
+  </textarea>
+</div>
 </form>
 <div class="updatePostActions">
-  <button class="df-btn df-cancel-btn" *ngIf="showCancel" (click)="onCancelClick()" id="cancel-update-post"
-    type="button">Cancel</button>
-  <button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode === 'edit'" [disabled]="!isButtonEnabled"
-    class="df-btn df-update-btn" (click)="onReplyClick('edit')" id="update-post" type="button">Update</button>
-  <button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode !== 'edit'" [disabled]="!isButtonEnabled"
-    class="df-btn df-reply-btn" (click)="onReplyClick('reply')" id="update-post" type="button">Post Reply</button>
+<button class="df-btn df-cancel-btn" *ngIf="showCancel" (click)="onCancelClick()" id="cancel-update-post"
+  type="button">Cancel</button>
+<button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode === 'edit'" [disabled]="!isButtonEnabled"
+  class="df-btn df-update-btn" (click)="onReplyClick('edit')" id="update-post" type="button">Update</button>
+<button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" *ngIf="mode !== 'edit'" [disabled]="!isButtonEnabled"
+  class="df-btn df-reply-btn" (click)="onReplyClick('reply')" id="update-post" type="button">Post Reply</button>
 </div>

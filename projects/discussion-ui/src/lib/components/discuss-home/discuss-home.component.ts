@@ -1,5 +1,5 @@
 import { CONTEXT_PROPS } from './../../services/discussion.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
@@ -14,13 +14,14 @@ import { NavigationServiceService } from '../../navigation-service.service';
 @Component({
   selector: 'lib-discuss-home',
   templateUrl: './discuss-home.component.html',
-  styleUrls: ['./discuss-home.component.scss']
+  styleUrls: ['./discuss-home.component.css']
 })
 export class DiscussHomeComponent implements OnInit {
   @Input() categoryId;
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('scrollContainerHeight', { static: false }) elementView: ElementRef;
   discussionList = [];
   routeParams: any;
   showStartDiscussionModal = false;
@@ -28,13 +29,20 @@ export class DiscussHomeComponent implements OnInit {
   isTopicCreator = false;
   showLoader = false;
   currentActivePage: number = 1;
+  pagination = Object.create({});
+
+  // Input parameters for infinite scroll
+  InfiniteScrollConfig = {
+    modalScrollDistance: 2,
+    modalScrollThrottle: 50
+  };
 
   // Input parameters for infinite scroll
   modalScrollDistance = -12;
   modalScrollThrottle = 500;
   scrollUpDistance = 5;
 
-  currentPage = 0 ;
+  currentPage = 0;
   pageSize: number;
   totalTopics: number;
   title: any;
@@ -62,6 +70,16 @@ export class DiscussHomeComponent implements OnInit {
     });
   }
 
+  /**
+  * @description - set the scroll container height
+  */
+  ngAfterViewChecked() {
+    if (this.elementView && this.elementView.nativeElement && !this.elementView.nativeElement.style.height) {
+      // the number 10 is just a random value to reduce the height of the parent container to the infinite scroll
+      this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight - 10) + 'px';
+    }
+  }
+
   navigateToDiscussionDetails(discussionData) {
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
     if (matchedTopic) {
@@ -83,16 +101,12 @@ export class DiscussHomeComponent implements OnInit {
    */
   getDiscussionList(slug: string) {
     this.showLoader = true;
-    // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
-    this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
+    const scrollIndex = this.pagination.currentPage ? this.pagination.currentPage : 1;
+    this.discussionService.getContextBasedTopic(slug, scrollIndex).subscribe(data => {
+      this.pagination = data.pagination;
       this.showLoader = false;
-      this.title = _.get(data, 'title')
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
       this.discussionList = [...this.discussionList, ...(_.union(_.get(data, 'topics'), _.get(data, 'children')))];
-      if (this.currentPage === 1) {
-      this.pageSize = _.get(data, 'nextStart'); // count of topics per page
-      }
-      this.totalTopics = _.get(data, 'totalTopicCount'); // total count of topics
     }, error => {
       this.showLoader = false;
       // error code check
@@ -113,8 +127,8 @@ export class DiscussHomeComponent implements OnInit {
   closeModal(event) {
     if (_.get(event, 'message') === 'success') {
       this.discussionList = [];
-      this.currentPage = 0;
-      this.getDiscussionList(this.routeParams);
+      this.pagination.currentPage = this.pagination.first.page;
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
     this.showStartDiscussionModal = false;
   }
@@ -123,9 +137,9 @@ export class DiscussHomeComponent implements OnInit {
    * @description - call the topic get api when scrolled down
    */
   onModalScrollDown() {
-    const pageId = this.currentPage - 1;
-    if ( (this.pageSize * pageId) < this.totalTopics) {  // should fail when it reaches the total topics
-    this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    if (this.pagination.currentPage !== this.pagination.pageCount) {
+      this.pagination.currentPage = this.pagination.next.page;
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
     }
   }
 }

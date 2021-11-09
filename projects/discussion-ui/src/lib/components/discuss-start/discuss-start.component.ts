@@ -45,12 +45,12 @@ export class DiscussStartComponent implements OnInit {
   ngOnInit() {
     // debugger
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
-    this.cIds = this.configService.getCategories();
-    // if (!this.categoryId) {
-    //   this.showSelectCategory = true;
-    // }
-
+    this.cIds = this.configService.getCategories()
+    if (this.categoryId) {
+      this.showSelectCategory = false;
+    } else {
     this.showSelectCategory = true;
+    }
 
     this.initializeData();
     this.initializeFormFields(this.topicData);
@@ -136,7 +136,7 @@ export class DiscussStartComponent implements OnInit {
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {
-      cid: this.categoryId ? [this.categoryId] : [parseInt(form.value.category)],
+      cid: this.categoryId ? this.categoryId : parseInt(form.value.category),
       title: form.value.question,
       content: form.value.description,
       tags: form.value.tags,

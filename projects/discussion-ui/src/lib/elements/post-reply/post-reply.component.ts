@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'lib-post-reply',
   templateUrl: './post-reply.component.html',
-  styleUrls: ['./post-reply.component.scss']
+  styleUrls: ['./post-reply.component.css']
 })
 export class PostReplyComponent implements OnInit {
   @Input() showCancel = true;

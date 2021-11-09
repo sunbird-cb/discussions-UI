@@ -7,7 +7,7 @@
     </div>
     <div class="flex flex-1 custom">
         <div class="flex flex-1 flex-column margin-fix">
-            <!-- <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader> -->
+            <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
 
             <ng-container *ngIf="similarPosts && similarPosts.length > 0">
                 <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)"
