@@ -82,6 +82,7 @@
             font-weight: 600;
             line-height: 20px;
             vertical-align: middle;
+            text-transform: uppercase;
             .circle-label {
                 font: 400 10px/12px Lato;
             }
@@ -93,6 +94,7 @@
             width: calc(100% - 42px);
             font: 400 14px/21px Lato;
             color: rgba(0, 0, 0, 0.6)!important;
+            text-transform: capitalize;
             // .discuss-user-label {
             //     color: rgba(0, 0, 0, 0.6)!important;
             // }

@@ -49,18 +49,18 @@
     // font-weight: 700;
     // margin-bottom: 8px;
     // font-size: 14px;
-   
     font-weight: 400;
     margin-bottom: 5px;
     font-size: 14px;
     line-height: 20px;
 }
+
 .profile-label.department_name {
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
 }
 
 .profile-label.location_name {
-    color: rgba(0,0,0,.6);
+    color: rgba(0, 0, 0, .6);
 }
 
 .info {
@@ -76,10 +76,12 @@
     width: 100%;
     display: flex;
 }
+
 .info-top-box {
     flex-wrap: wrap;
     width: 100%;
 }
+
 .profile-data {
     margin-top: 16px;
     font-size: 14px;
@@ -88,7 +90,6 @@
 
 .post-count-area {
     margin-left: 32px;
-
     html[dir="rtl"] & {
         margin-right: 32px;
     }
@@ -97,7 +98,7 @@
 .number {
     // color: var(--blue);
     font-size: 14px;
-    color:#3F87C5;
+    color: #3F87C5;
     font-weight: 700;
 }
 
@@ -106,12 +107,10 @@
     margin-left: 8px;
     font-weight: 700;
     font-family: inherit;
-
     html[dir="rtl"] & {
         margin-right: 4px;
     }
 }
-
 
 .no-data-label {
     font-size: 20px;
@@ -121,11 +120,10 @@
 .profileCard {
     .profilecard-content {
         margin-bottom: 5px;
-
         .profile-header-image {
             .box-text {
                 border-radius: 4px;
-                width: 28px;
+                // width: 28px;
                 height: 28px;
                 display: inline-block;
                 justify-content: center;
@@ -137,8 +135,6 @@
                 line-height: 28px;
             }
         }
-       
-
         // .discuss-user-label{
         //     margin-left: 10px;
         // }
@@ -152,21 +148,21 @@ a.karma_btn {
     font: 700 14px/21px Lato;
     border-radius: 4px 4px;
     background-color: rgba(0, 0, 0, .04);
-    width:185px;   
+    width: 185px;
 }
+
 .post-time-box {
     p {
         font-weight: 700;
     }
 }
+
 // .karma_icon {
 //     margin-right: 8px;
 // }
-
 .discuss-card-content {
     z-index: 1!important;
-  }
-
+}
 
 @media (max-width: 768px) {
     .profileCard {
@@ -186,7 +182,7 @@ a.karma_btn {
     }
     .filter-option.tabs-active {
         border-bottom: 3px solid var(--blue);
-      }
+    }
 }
 
 .recent-tabs {
