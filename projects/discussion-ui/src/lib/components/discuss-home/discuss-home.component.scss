@@ -19,6 +19,20 @@
     overflow-y: scroll;
 }
 
+.category_main_box {
+    width: 685px;
+    @media screen and (max-width: 992px) {
+        width: 100%;
+    }
+}
+
+.right_tag_box {
+    width: 275px;
+    @media screen and (max-width: 992px) {
+        width: 100%;
+    }
+}
+
 .discuss-card-content {
     z-index: 1!important;
 }

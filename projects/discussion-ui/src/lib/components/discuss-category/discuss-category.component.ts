@@ -19,6 +19,8 @@ import { NavigationServiceService } from '../../navigation-service.service';
 })
 export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
+
+
   categories: NSDiscussData.ICategorie[] = [];
 
   forumIds: any;
@@ -34,6 +36,8 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
 
   categoryId: any;
 
+  trendingTags: any;
+
   paramsSubscription: Subscription;
 
   showLoader = false;
@@ -45,13 +49,18 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService,
     private navigationService: NavigationServiceService
+    
   ) { }
 
   ngOnInit() {
     /** It will look for the queryParams, if back button is clicked,
      * the queryParams will change and it will fetch the categories
      * if there is no queryParams available, then it will fetch the default categories of the forumIds
+     * 
+     * 
      */
+
+  
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
     this.forumIds = this.categoryIds ? this.categoryIds : this.discussService.forumIds;
@@ -67,6 +76,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
         }
       }
     });
+ 
   }
 
   fetchAllAvailableCategories(ids) {
@@ -98,6 +108,10 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   fetchCategory(cid) {
     return this.discussService.fetchSingleCategoryDetails(cid);
   }
+
+
+
+  
 
   /**
    * It will fetch the children for each category click.
