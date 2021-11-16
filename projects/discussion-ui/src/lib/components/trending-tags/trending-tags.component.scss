@@ -1,0 +1,98 @@
+@import '../../../../assets/styles/global.scss';
+
+.tag {
+  display: flex;
+  width: 276px;
+  height: 32px;
+  border-radius: 4px;
+  justify-content: space-between;
+  // margin: $size-m 0;
+  margin:10px 0;
+  // background-color: red;
+  align-items: center;
+  box-sizing: border-box;
+
+  // @include breakpoint-xs {
+  //   width: auto;
+
+  // }
+
+  // @include breakpoint-s {
+  //   width: auto;
+
+  // }
+}
+
+.custom-margin {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+// .progress {
+//   background: #000000;
+//   border-radius: 13px;
+//   /* (height of inner div) / 2 + padding */
+//   // padding: 3px;
+// }
+
+// .progress::after {
+//   content: '';
+//   position: fixed;
+//   height: 100%;
+//   width: 50%;
+//   left: 50%;
+//   background: #116699
+// }
+
+
+@media (max-width: 768px) {
+  .right_tag_inner_box {
+      width: 100%;
+      margin-left: 0!important;
+  }
+}
+
+
+.update_box {
+  box-sizing: border-box;
+  margin-top: 32px;
+  display: none;
+
+  .update_inner_box {
+    box-sizing: border-box;
+    margin-top: 16px;
+
+    .update_card {
+      box-sizing: border-box;
+
+      .card_head {
+
+        p.blue_heading {
+          color: #0074b6;
+          margin-bottom: 8px;
+        }
+      }
+
+      // .card_body {
+      //   width: 100%;
+      // }
+
+     
+    }
+
+    .update_btn_box {
+      width: 100%;
+      margin-top: 8px;
+
+      a.all_update_link {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        color: #0074b6;
+        border-radius: 4px 4px;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+      }
+    }
+    
+  }
+}
