@@ -50,12 +50,20 @@ const routes: Routes = [
       {
         path: 'category/:slug',
         pathMatch: 'full',
-        component: DiscussHomeComponent
+        component: DiscussHomeComponent,
+        data: {
+          pageId: 'catergory/:categoryId',
+          module: 'Discuss',
+        }
       },
       {
         path: 'topic/:topicId/:slug',
         pathMatch: 'full',
-        component: DiscussionDetailsComponent
+        component: DiscussionDetailsComponent,
+        data: {
+          pageId: 'topic/:topicId/:topicSlug',
+          module: 'Discuss',
+        }
       }
     ]
   },
