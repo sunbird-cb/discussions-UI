@@ -1,7 +1,7 @@
 <form [formGroup]="replyForm">
     <div appearance="outline" class="flex-1 w-full text-form-field">
       <label class="font-weight-normal">Your answer here</label>
-      <textarea placeholder="Type here (minimum 10 characters)" 
+      <textarea [ngClass]="{'is-invalid' : isFieldValid('replyContent')}" placeholder="Type here (minimum 10 characters)" 
         minlength="10" aria-label="Type your message here"
         formControlName="replyContent" 
         class="text-content fnormal mb-8"
@@ -26,9 +26,9 @@
         type="button">
         <span class="text-white">Update</span>
       </button>
-      <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+      <button [ngClass]="{'sb-btn-disabled': !(isButtonEnabled && replyForm.valid) }" 
         *ngIf="mode !== 'edit'"
-        [disabled]="!isButtonEnabled" 
+        [disabled]="!(isButtonEnabled && replyForm.valid)" 
         class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
         (click)="onReplyClick('reply')" 
         id="update-post"

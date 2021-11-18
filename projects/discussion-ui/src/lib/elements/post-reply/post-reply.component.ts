@@ -43,6 +43,18 @@ export class PostReplyComponent implements OnInit {
     }
   }
 
+  isFieldValid(field) {
+    const valueNoWhiteSpace = this.replyForm.value[field];
+    if (valueNoWhiteSpace) {
+      if (valueNoWhiteSpace.trim() === '') {
+        this.isButtonEnabled = false;
+      } else {
+        this.isButtonEnabled = true
+      }
+    }
+    return !this.replyForm.get(field).valid && this.replyForm.get(field).dirty;
+  }
+
   onReplyClick(mode: string) {
     // tslint:disable-next-line:no-string-literal
     this.actionEvent.emit({action: mode, content: this.replyForm.controls['replyContent'].value.trim()});
