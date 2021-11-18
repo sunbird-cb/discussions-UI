@@ -5,7 +5,8 @@
       minlength="10" aria-label="Type your message here"
       formControlName="replyContent" 
       class="text-content fnormal mb-8"
-      [ngModel]="content">
+      [ngModel]="content"
+      [ngClass]="{'is-invalid' : isFieldValid('replyContent')}">
   </textarea>
   </div>
 </form>
@@ -26,9 +27,9 @@
       type="button">
       <span class="text-white">Update</span>
     </button>
-    <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+    <button [ngClass]="{'sb-btn-disabled': !(isButtonEnabled && replyForm.valid) }" 
       *ngIf="mode !== 'edit'"
-      [disabled]="!isButtonEnabled" 
+      [disabled]="!(isButtonEnabled && replyForm.valid)" 
       class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
       (click)="onReplyClick('reply')" 
       id="update-post"

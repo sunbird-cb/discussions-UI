@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
-import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
@@ -58,8 +58,8 @@ export class DiscussStartComponent implements OnInit {
 
   initializeFormFields(topicData) {
     this.startForm = this.formBuilder.group({
-      question: ['', [Validators.required, Validators.minLength(8)]],
-      description: ['', Validators.required],
+      question: [null, [Validators.required, Validators.minLength(8)]],
+      description: [null, [Validators.required, Validators.minLength(8)]],
       tags: [],
       category: []
     });
@@ -79,6 +79,18 @@ export class DiscussStartComponent implements OnInit {
       this.startForm.controls['tags'].setValue(tags);
       this.validateForm();
     }
+  }
+
+  isFieldValid(field) {
+    const valueNoWhiteSpace = this.startForm.value[field];
+    if (valueNoWhiteSpace) {
+      if (valueNoWhiteSpace.trim() === '') {
+        this.enableSubmitButton = false;
+      } else {
+        this.enableSubmitButton = true
+      }
+    }
+    return (!this.startForm.get(field).valid && this.startForm.get(field).dirty);
   }
 
   validateForm() {
