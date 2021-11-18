@@ -2,6 +2,7 @@
   <!-- <li class="df-sidebar-menu-list" *ngIf="false" (click)="navigate('home', $event)" id="all-discussions"><a>All discussions</a></li> -->
   <li *ngFor='let d of menu' class="df-sidebar-menu-list" tabindex="0" role="link" [ngClass]="{'menu-active': isActive(d.route)}"
     (click)="navigate(d.route, $event)" id="d.route"><a>{{d.label}}</a></li>
+    <!-- <li class="df-sidebar-menu-list" id="leader-board"><a>Leaderboard</a></li> -->
 </ul>
 
 <!-- for mobile-view -->

@@ -1,7 +1,7 @@
 import { DiscussionService } from './discussion.service';
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import * as _ from 'lodash'
 import { IdiscussionConfig } from '../models/discussion-config.model';
 
@@ -17,7 +17,8 @@ export class ConfigService implements OnInit {
   getContextData: any;
   hasContextData: any;
   getParams: IdiscussionConfig;
-
+  setCategoryId = new ReplaySubject(1)
+  categoryId: string
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -30,7 +31,7 @@ export class ConfigService implements OnInit {
 
   setConfig(activatedRoute) {
     activatedRoute.data.subscribe((config) => {
-      this._config = config.data;
+    this._config = config.data;
     });
   }
 
@@ -42,6 +43,10 @@ export class ConfigService implements OnInit {
       };
       this._config = obj;
     });
+  }
+
+  setConfigFromWidgetBaseClass(config){
+    this._config = config
   }
 
   public getConfig() {
@@ -65,6 +70,24 @@ export class ConfigService implements OnInit {
       (this.getCategories().result ? this.getCategories().result : null)
       : null
     return this.getContextData
+  }
+
+  setCategoryid(id) {
+    this.categoryId = id
+    this.setCategoryId.next(id)
+  }
+
+
+  public getHeaderOption() {
+    return this._config.headerOptions !== undefined ? this._config.headerOptions : true;
+  }
+
+  public getBannerOption() {
+    return this._config.bannerOption ? this._config.bannerOption : false;
+  }
+
+  public getCategoryid() {
+    return this.categoryId
   }
 
   public getRouterSlug() {

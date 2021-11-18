@@ -203,7 +203,7 @@ export class MyDiscussionComponent implements OnInit {
    */
   getRecentTopics(scrollIndex: number) {
     const userId = this.discussService.userId;
-    const userSlug = this.discussService.userDetails.userslug;
+    // const userSlug = this.discussService.userDetails.userslug;
     combineLatest([
       this.discussService.fetchUserProfile(userId),
       this.discussService.fetchRecentPost(scrollIndex)

@@ -9,6 +9,7 @@ import { RelatedDiscussionComponent } from './related-discussion/related-discuss
 import { PipesModule } from './../pipes/pipes.module';
 
 import { PostReplyComponent } from './post-reply/post-reply.component';
+import { SlidersComponent } from './sliders/sliders.component';
 import { LoadAlertComponent } from './load-alert/load-alert.component';
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { LoadAlertComponent } from './load-alert/load-alert.component';
     AvatarPhotoComponent,
     AppLoaderComponent,
     RelatedDiscussionComponent,
+    SlidersComponent,
     LoadAlertComponent
   ],
   imports: [
@@ -29,9 +31,11 @@ import { LoadAlertComponent } from './load-alert/load-alert.component';
     CategoryCardComponent,
     DiscussCardComponent,
     AvatarPhotoComponent,
-    AppLoaderComponent, RelatedDiscussionComponent,
+    AppLoaderComponent, 
+    RelatedDiscussionComponent,
     AppLoaderComponent,
     PostReplyComponent,
+    SlidersComponent,
     LoadAlertComponent
   ]
 })

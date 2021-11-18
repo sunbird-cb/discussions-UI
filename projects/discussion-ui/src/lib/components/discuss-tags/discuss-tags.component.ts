@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
 import * as CONSTANTS from './../../common/constants.json';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
+import { NavigationServiceService } from '../../navigation-service.service';
 /* tslint:enable */
 
 @Component({
@@ -18,6 +19,8 @@ import { DiscussUtilsService } from '../../services/discuss-utils.service';
   styleUrls: ['./discuss-tags.component.scss']
 })
 export class DiscussTagsComponent implements OnInit {
+
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
   query: string;
   filteredTags: NSDiscussData.ITag[];
   showLoader = false;
@@ -31,7 +34,8 @@ export class DiscussTagsComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private configService: ConfigService,
-    private discussUtils: DiscussUtilsService
+    private discussUtils: DiscussUtilsService,
+    private navigationService: NavigationServiceService
   ) { }
 
   ngOnInit() {
@@ -81,14 +85,20 @@ export class DiscussTagsComponent implements OnInit {
   }
 
   getAllDiscussions(tag: { value: any }) {
-    this.queryParam = tag.value
+    this.queryParam = tag.value;
     const tagdata = {
       tagname: ''
-    }
-    tagdata.tagname = tag.value
-    this.queryParam = tagdata
+    };
 
-    this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
+    tagdata.tagname = tag.value;
+    this.queryParam = tagdata;
+    const routerSlug = this.configService.getConfig().routerSlug ? this.configService.getConfig().routerSlug : '';
+    const input = { data: { url: `${routerSlug}${CONSTANTS.ROUTES.TAG}tag-discussions`,
+    queryParams: this.queryParam, tagName: this.queryParam.tagName }, action: 'tagsAll'};
+    this.navigationService.navigate(input);
+    this.stateChange.emit({ action: CONSTANTS.TAG_ALL_DISCUSS, title: tag.value, tid: 'sd' });
+    // tslint:disable-next-line: max-line-length
+    // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TAG}tag-discussions`], { queryParams: this.queryParam });
   }
 
 }
