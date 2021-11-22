@@ -46,7 +46,7 @@ export class PostReplyComponent implements OnInit {
   isFieldValid(field) {
     const valueNoWhiteSpace = this.replyForm.value[field];
     if (valueNoWhiteSpace) {
-      if (valueNoWhiteSpace.trim() === '') {
+      if (valueNoWhiteSpace.trim() === '' || valueNoWhiteSpace !== valueNoWhiteSpace.trim()) {
         this.isButtonEnabled = false;
       } else {
         this.isButtonEnabled = true

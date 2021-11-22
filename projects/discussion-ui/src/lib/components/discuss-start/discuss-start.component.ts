@@ -84,7 +84,7 @@ export class DiscussStartComponent implements OnInit {
   isFieldValid(field) {
     const valueNoWhiteSpace = this.startForm.value[field];
     if (valueNoWhiteSpace) {
-      if (valueNoWhiteSpace.trim() === '') {
+      if (valueNoWhiteSpace.trim() === '' || valueNoWhiteSpace !== valueNoWhiteSpace.trim()) {
         this.enableSubmitButton = false;
       } else {
         this.enableSubmitButton = true
