@@ -82,12 +82,13 @@ export class DiscussStartComponent implements OnInit {
   }
 
   isFieldValid(field) {
-    const valueNoWhiteSpace = this.startForm.value[field];
+    let valueNoWhiteSpace = this.startForm.get(field).value;
     if (valueNoWhiteSpace) {
-      if (valueNoWhiteSpace.trim() === '') {
-        this.enableSubmitButton = false;
+      const index = valueNoWhiteSpace.length;
+      if (index >= 2 && valueNoWhiteSpace.charAt(index - 2) === " ") {
+        this.startForm.patchValue({ replyContent: this.startForm.get(field).value.trim() });
       } else {
-        this.enableSubmitButton = true
+        this.startForm.patchValue({ replyContent: this.startForm.get(field).value.trimStart() })
       }
     }
     return (!this.startForm.get(field).valid && this.startForm.get(field).dirty);

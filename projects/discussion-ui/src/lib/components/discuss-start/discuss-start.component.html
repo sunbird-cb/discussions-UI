@@ -60,7 +60,7 @@
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
           </span>
           <button *ngIf="mode !== 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
-            [ngClass]="{'df-btn-disabled': ! (enableSubmitButton && startForm.valid) }" [disabled]="!(enableSubmitButton && startForm.valid)"
+            [ngClass]="{'df-btn-disabled': !startForm.valid }" [disabled]="!startForm.valid"
             (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
             <span class="text-white">Submit</span>
           </button>

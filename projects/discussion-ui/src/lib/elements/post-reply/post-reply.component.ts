@@ -44,14 +44,15 @@ export class PostReplyComponent implements OnInit {
   }
 
   isFieldValid(field) {
-    const valueNoWhiteSpace = this.replyForm.value[field];
+    let valueNoWhiteSpace = this.replyForm.get(field).value;
     if (valueNoWhiteSpace) {
-      if (valueNoWhiteSpace.trim() === '') {
-        this.isButtonEnabled = false;
+      const length = valueNoWhiteSpace.length;
+      if (length >= 2 && valueNoWhiteSpace.charAt(length - 2) === " ") {
+        this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trim() });
       } else {
-        this.isButtonEnabled = true
+        this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trimStart() })
       }
-    }
+  }
     return !this.replyForm.get(field).valid && this.replyForm.get(field).dirty;
   }
 
