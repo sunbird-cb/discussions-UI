@@ -46,8 +46,8 @@ export class PostReplyComponent implements OnInit {
   isFieldValid(field) {
     let valueNoWhiteSpace = this.replyForm.get(field).value;
     if (valueNoWhiteSpace) {
-      const index = valueNoWhiteSpace.length;
-      if (index >= 2 && valueNoWhiteSpace.charAt(index - 2) === " ") {
+      const length = valueNoWhiteSpace.length;
+      if (length >= 2 && valueNoWhiteSpace.charAt(length - 2) === " ") {
         this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trim() });
       } else {
         this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trimStart() })
