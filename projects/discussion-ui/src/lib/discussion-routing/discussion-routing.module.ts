@@ -51,17 +51,20 @@ const routes: Routes = [
       {
         path: 'category/:slug',
         pathMatch: 'full',
-        component: DiscussHomeComponent
+        component: DiscussHomeComponent,
+        data: {
+          pageId: 'catergory/:categoryId',
+          module: 'Discuss',
+        }
       },
       {
         path: 'topic/:topicId/:slug',
         pathMatch: 'full',
-        component: DiscussionDetailsComponent
-      },
-      {
-        path: 'leaderboard',
-        pathMatch: 'full',
-        component: LeaderBoardComponent
+        component: DiscussionDetailsComponent,
+        data: {
+          pageId: 'topic/:topicId/:topicSlug',
+          module: 'Discuss',
+        }
       }
     ]
   },
