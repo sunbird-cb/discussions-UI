@@ -20,33 +20,57 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: DiscussAllComponent
+        component: DiscussAllComponent,
+        data: {
+          pageId: '',
+          module: 'Discuss',
+        }
       },
       {
         path: 'all-discussions',
         pathMatch: 'full',
-        component: DiscussAllComponent
+        component: DiscussAllComponent,
+        data: {
+          pageId: 'all-discussions',
+          module: 'Discuss',
+        }
       },
       {
         path: 'categories',
         pathMatch: 'full',
-        component: DiscussCategoryComponent
+        component: DiscussCategoryComponent,
+        data: {
+          pageId: 'categories',
+          module: 'Discuss',
+        }
       },
       {
         path: 'tags',
         pathMatch: 'full',
-        component: DiscussTagsComponent
+        component: DiscussTagsComponent,
+        data: {
+          pageId: 'tags',
+          module: 'Discuss',
+        }
       },
       // TODO: ADD LATER
       {
         path: 'tags/tag-discussions',
         pathMatch: 'full',
-        component: TagAllDiscussionComponent
+        component: TagAllDiscussionComponent,
+        data: {
+          pageId: 'tags/tag-discussions',
+          module: 'Discuss',
+        }
       },
       {
         path: 'my-discussion',
         pathMatch: 'full',
-        component: MyDiscussionComponent
+        component: MyDiscussionComponent,
+        data: {
+          pageId: 'my-discussion',
+          module: 'Discuss',
+        }
       },
       {
         path: 'category/:slug',
