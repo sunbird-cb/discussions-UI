@@ -17,10 +17,12 @@ import { NavigationServiceService } from '../../navigation-service.service';
   styleUrls: ['./discuss-home.component.scss']
 })
 export class DiscussHomeComponent implements OnInit {
+  
   @Input() categoryId;
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
+  
 
   discussionList = [];
   routeParams: any;
@@ -58,13 +60,14 @@ export class DiscussHomeComponent implements OnInit {
         categoryIds = this.categoryId ? this.categoryId : categoryIds
         this.getDiscussionList(categoryIds);
       })
-      // this.routeParams = params;
-      // this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-      // this.getDiscussionList(_.get(this.routeParams, 'slug'));
+      this.routeParams = params;
+      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+      this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
 
     this.fetchAllTags();
 
+  
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -91,6 +94,7 @@ export class DiscussHomeComponent implements OnInit {
     
     // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
     this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
+   
       this.showLoader = false;
       this.title = _.get(data, 'title')
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;

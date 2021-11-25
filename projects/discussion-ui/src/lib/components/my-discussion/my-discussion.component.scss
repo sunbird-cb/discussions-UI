@@ -10,7 +10,8 @@
     position: relative;
     padding: 16px;
     border-radius: 4px;
-    width: 96.5%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 img.karma_img {
@@ -36,6 +37,11 @@ img.karma_img {
     margin-right: 24px;
     background: var(--green);
     text-align: center;
+
+    @media (max-width: 992px) {
+        max-width: 70px;
+        height: 70px;
+    }
 }
 
 .profile-name {
@@ -76,6 +82,10 @@ img.karma_img {
     // justify-content: space-evenly;
     justify-content: space-between;
     width: calc(100% - 180px);
+
+    @media (max-width: 992px) {
+        width: calc(100% - 100px);
+    }
 }
 
 .bottom_info_box {
@@ -139,6 +149,7 @@ img.karma_img {
                 text-align: center;
                 font-weight: 600;
                 line-height: 28px;
+
             }
         }
         // .discuss-user-label{
@@ -180,6 +191,10 @@ a.karma_btn {
     font-size: 4rem;
     color: var(--white);
     text-transform: uppercase;
+
+    @media (max-width: 992px) {
+       font-size: 3rem;
+    }
 }
 
 .tabs-filter {

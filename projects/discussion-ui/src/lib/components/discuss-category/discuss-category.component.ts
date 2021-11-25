@@ -24,6 +24,7 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   categories: NSDiscussData.ICategorie[] = [];
 
   forumIds: any;
+  @Input() category: any;
   @Input() categoryIds;
   @Input() categoryAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();

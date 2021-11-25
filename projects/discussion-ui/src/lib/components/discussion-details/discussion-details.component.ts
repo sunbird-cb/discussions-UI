@@ -28,6 +28,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   @Input() topicId: any;
   @Input() slug: string;
   @Input() widget: boolean;
+  @Input() cid: number;
 
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 

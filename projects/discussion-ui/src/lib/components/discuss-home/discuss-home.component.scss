@@ -30,6 +30,8 @@
     width: 275px;
     @media screen and (max-width: 992px) {
         width: 100%;
+        margin-left: 0px!important;
+        margin-bottom: 32px!important;
     }
 }
 
@@ -49,4 +51,10 @@
 .category_img {
     height: 48px;
     width: 48px;
+}
+
+.category_inner_box {
+    @media screen and (max-width: 992px) {
+        flex-direction: column!important;
+    }
 }

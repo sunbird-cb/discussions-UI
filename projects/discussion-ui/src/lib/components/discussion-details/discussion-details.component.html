@@ -389,4 +389,4 @@
 <input type="hidden" aria-value="Thank you for voting!" value="Thank you for voting!!" #toastSuccess />
 <input type="hidden" aria-value="Something went wrong, please try again later!" value="Something went wrong, please try again later!" #toastError />
 
-<lib-discuss-start [mode]="'edit'" [topicData]="editableTopicDetails" (close)="closeModal($event)" *ngIf="showEditTopicModal"></lib-discuss-start>
+<lib-discuss-start [mode]="'edit'" [categoryId]='cid' [topicData]="editableTopicDetails" (close)="closeModal($event)" *ngIf="showEditTopicModal"></lib-discuss-start>
