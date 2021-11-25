@@ -17,9 +17,12 @@ import { NavigationServiceService } from '../../navigation-service.service';
   styleUrls: ['./discuss-home.component.scss']
 })
 export class DiscussHomeComponent implements OnInit {
+  
   @Input() categoryId;
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
+
+  
 
   discussionList = [];
   routeParams: any;
@@ -38,6 +41,7 @@ export class DiscussHomeComponent implements OnInit {
   pageSize: number;
   totalTopics: number;
   title: any;
+  trendingTags: any;
 
   constructor(
     public router: Router,
@@ -60,6 +64,10 @@ export class DiscussHomeComponent implements OnInit {
       this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
+
+    this.fetchAllTags();
+
+  
   }
 
   navigateToDiscussionDetails(discussionData) {
@@ -83,8 +91,10 @@ export class DiscussHomeComponent implements OnInit {
    */
   getDiscussionList(slug: string) {
     this.showLoader = true;
+    
     // TODO : this.currentActivePage shoulb be dynamic when pagination will be implemented
     this.discussionService.getContextBasedTopic(slug, this.currentActivePage).subscribe(data => {
+   
       this.showLoader = false;
       this.title = _.get(data, 'title')
       this.isTopicCreator = _.get(data, 'privileges.topics:create') === true ? true : false;
@@ -116,6 +126,19 @@ export class DiscussHomeComponent implements OnInit {
     }
     this.showStartDiscussionModal = false;
   }
+
+  fetchAllTags() {
+    this.showLoader = true;
+    this.discussionService.fetchAllTag().subscribe(data => {
+      this.showLoader = false;
+      this.trendingTags = _.get(data, 'tags');
+    }, error => {
+      this.showLoader = false;
+      // TODO: toaster
+      console.log('error fetching tags');
+    });
+  }
+
 
   /**
    * @description - call the topic get api when scrolled down

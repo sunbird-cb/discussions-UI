@@ -1,31 +1,49 @@
 @import '../../../../assets/styles/global.scss';
+.tag_title_box {
+    width: 100%;
+    display: block;
+}
+
+.right_tag_inner_box {
+    width: 100%;
+}
+
+.tag_score_box {
+    height: 22px;
+    width: 22px;
+    border-radius: 100%;
+    background-color: #E9D9CC;
+    display: inline-block;
+    .tag_text {
+        font: 400 10px/22px Lato;
+    }
+}
 
 .tag {
-  display: flex;
-  width: 276px;
-  height: 32px;
-  border-radius: 4px;
-  justify-content: space-between;
-  // margin: $size-m 0;
-  margin:10px 0;
-  // background-color: red;
-  align-items: center;
-  box-sizing: border-box;
-
-  @include breakpoint-xs {
+    // display: flex;
+    // width: 276px;
+    // height: 32px;
+    display: inline-block;
+    border-radius: 100px 4px 4px 100px;
+    padding: 4px 6px 4px 0px;
     width: auto;
-
-  }
-
-  @include breakpoint-s {
-    width: auto;
-
-  }
+    justify-content: space-between;
+    // margin: $size-m 0;
+    margin: 0px 8px 8px 0px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    @include breakpoint-xs {
+        width: auto;
+    }
+    @include breakpoint-s {
+        width: auto;
+    }
 }
 
 .custom-margin {
-  margin-top: auto !important;
-  margin-bottom: auto !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
 }
 
 // .progress {
@@ -34,7 +52,6 @@
 //   /* (height of inner div) / 2 + padding */
 //   // padding: 3px;
 // }
-
 // .progress::after {
 //   content: '';
 //   position: fixed;
@@ -43,56 +60,43 @@
 //   left: 50%;
 //   background: #116699
 // }
-
-
 @media (max-width: 768px) {
-  .right_tag_inner_box {
-      width: 100%;
-      margin-left: 0!important;
-  }
+    .right_tag_inner_box {
+        width: 100%;
+        margin-left: 0!important;
+    }
 }
 
-
 .update_box {
-  box-sizing: border-box;
-  margin-top: 32px;
-  display: none;
-
-  .update_inner_box {
     box-sizing: border-box;
-    margin-top: 16px;
-
-    .update_card {
-      box-sizing: border-box;
-
-      .card_head {
-
-        p.blue_heading {
-          color: #0074b6;
-          margin-bottom: 8px;
+    margin-top: 32px;
+    display: none;
+    .update_inner_box {
+        box-sizing: border-box;
+        margin-top: 16px;
+        .update_card {
+            box-sizing: border-box;
+            .card_head {
+                p.blue_heading {
+                    color: #0074b6;
+                    margin-bottom: 8px;
+                }
+            }
+            // .card_body {
+            //   width: 100%;
+            // }
         }
-      }
-
-      // .card_body {
-      //   width: 100%;
-      // }
-
-     
+        .update_btn_box {
+            width: 100%;
+            margin-top: 8px;
+            a.all_update_link {
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+                color: #0074b6;
+                border-radius: 4px 4px;
+                border: 1px solid rgba(0, 0, 0, 0.16);
+            }
+        }
     }
-
-    .update_btn_box {
-      width: 100%;
-      margin-top: 8px;
-
-      a.all_update_link {
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        color: #0074b6;
-        border-radius: 4px 4px;
-        border: 1px solid rgba(0, 0, 0, 0.16);
-      }
-    }
-    
-  }
 }

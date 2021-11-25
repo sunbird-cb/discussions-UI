@@ -7,24 +7,36 @@
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     background: var(--white);
     color: rgba(0, 0, 0, .87);
-    flex: 3;
+    // flex: 3;
     height: auto;
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
     display: block;
     position: relative;
-    padding: 0.875rem 1rem;
-    border-radius: 1rem;
+    padding: 24px 24px;
+    border-radius: 4px;
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
     white-space: initial;
     word-break: break-word;
+    width: 685px;
+    box-sizing: border-box;
+
+    @media (max-width: 992px) {
+        width: 100%;
+     }
 }
 
 .related-discuss-part {
     padding: 0 0 1rem 1rem;
     position: relative;
     z-index: 2;
+    width: 295px;
+    box-sizing: border-box;
+    
+    @media (max-width: 992px) {
+        width: 100%;
+     }
 }
 
 .discussion-card-title {
@@ -42,7 +54,7 @@
 .discussion-content {
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     font-size: 14px;
     color: rgba(0, 0, 0, .6);
     flex-wrap: wrap;
@@ -68,8 +80,8 @@
 .circle-text {
     // border-radius: 50%;
     border-radius: 4px 4px;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +94,7 @@
 
 .circle-label {
     color: var(--white);
-    font-size: 17px;
+    font-size: 10px;
     line-height: 12px;
     letter-spacing: .2625px;
     text-transform: uppercase;
@@ -92,7 +104,6 @@
     color: #948e8e;
     margin-left: 8px;
     font-size: 14px;
-
     html[dir="rtl"] & {
         margin-right: 0.5rem;
     }
@@ -105,7 +116,6 @@
 .vote-data {
     margin-left: 8px;
     color: rgba(0, 0, 0, .6);
-
     html[dir="rtl"] & {
         margin-right: 0.5rem;
     }
@@ -198,7 +208,6 @@
     border-radius: 4px;
 }
 
-
 .post-card {
     border-bottom: 1px solid #ddd;
     margin: 0 0 1.75rem 0;
@@ -211,6 +220,17 @@
 
 .tags {
     z-index: 1!important;
+}
+
+.post_tag {
+    display: inline-block;
+    border-radius: 100px 4px 4px 100px;
+    padding: 4px 12px;
+    width: auto;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, .04);
+    border: 1px solid rgba(0, 0, 0, .08);
+    box-sizing: border-box;
 }
 
 .post-sub-card {
@@ -228,7 +248,6 @@
     font-weight: 700;
     margin-left: 16px;
     word-break: break-all;
-
     html[dir="rtl"] & {
         margin-right: 1rem;
     }
@@ -274,13 +293,12 @@
     color: rgba(0, 0, 0, .6);
 }
 
-.viewsIcon{
-    height: 14px !important;
-    width: 18px !important;
+.viewsIcon {
+    height: 18px !important;
+    width: 20px !important;
     object-fit: cover;
     vertical-align: middle;
 }
-
 
 .df-update-btn,
 .df-reply-btn {
@@ -293,31 +311,26 @@
     cursor: pointer;
 }
 
-.df-reply-btn.transparent{
+.df-reply-btn.transparent {
     background-color: transparent;
     color: var(--black60);
     border: 0;
 }
 
-.df-reply-btn.transparent:hover{
+.df-reply-btn.transparent:hover {
     color: var(--black60);
     border: 0;
     background-color: #f5f6fa;
 }
 
-
-
 :host {
     .df-reply-btn {
         margin-left: 1rem;
-
         html[dir="rtl"] & {
             margin-right: 1rem;
         }
-
     }
 }
-
 
 .df-cancel-btn {
     background-color: var(--white);
@@ -345,29 +358,23 @@
     .discuss-details-content {
         flex-direction: column;
     }
-
     .related-discuss-part {
         padding: 0px;
     }
-
     .post-btn {
         width: 100%;
         margin-top: 8px;
     }
-
     .comments-area {
         flex-direction: column;
     }
-
     .comments-count {
         margin-top: 8px;
     }
-
     .post-time {
         margin-top: 8px;
         margin-left: 0px;
     }
-
     .comment-section {
         flex-direction: column;
         align-items: start;
@@ -384,7 +391,6 @@
     margin-top: 3px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.6);
-
     html[dir="rtl"] & {
         padding-right: 0.5rem;
     }
@@ -396,7 +402,6 @@
     width: 1rem;
     height: 1rem;
     margin-left: 1rem;
-
     html[dir="rtl"] & {
         margin-right: 1rem;
     }
@@ -424,16 +429,13 @@
     position: absolute;
     right: 8px;
     top: 22px;
-
     html[dir="rtl"] & {
         padding-right: 6px;
     }
-
     &:hover {
         background: var(--gray-0);
         cursor: pointer;
     }
-
     &::after {
         content: '\2807';
         font-size: 24px;
@@ -451,7 +453,6 @@
     right: 0;
     top: 0;
     min-width: 210px;
-
     .list {
         cursor: pointer;
         font-size: 14px;
@@ -459,18 +460,15 @@
         display: flex;
         align-items: center;
         width: 100%;
-
         &:hover,
         &:active {
             background-color: var(--primary-100);
         }
-
         &:last-child {
             .sb-btn-normal {
                 color: var(--red-400);
             }
         }
-
         .sb-btn-normal {
             font-size: 14px;
         }

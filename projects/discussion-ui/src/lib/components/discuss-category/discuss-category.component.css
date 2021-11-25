@@ -1,6 +1,7 @@
-.discuss-category-cards{
+.discuss-category-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(292px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, minmax(475px, 1fr));
     grid-gap: 24px;
     margin-bottom: 24px;
     cursor: pointer;
@@ -13,12 +14,128 @@
 }
 
 .card-comp {
-    height: calc(100% - 24px);
+    height: calc(100% - 32px);
     display: inline-block;
 }
 
+.discuss-home {
+    background: no-repeat padding-box #0074b6;
+    border-radius: 4px 4px;
+    padding: 14px 15px;
+    box-sizing: border-box;
+    width: 140px;
+    height: 50px;
+}
+
+.recent-tabs {
+    padding: 0 0!important;
+}
+
+.filter-option {
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+
+.filter-option.tabs-active {
+    border-bottom: 3px solid var(--blue);
+}
+
 @media (max-width: 700px) {
-.discuss-category-cards {
-    grid-template-columns: 1fr;
- } 
+    .discuss-category-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+h1 {
+    text-align: center;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #06D85F;
+    margin: 80px 0;
+}
+
+.box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.button {
+    font-size: 1em;
+    padding: 10px;
+    color: #fff;
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.button:hover {
+    background: #06D85F;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 0px auto;
+    padding: 20px;
+    background: transparent;
+    border-radius: 5px;
+    width: 1195px;
+    position: relative;
+    border: 5px solid #3C3E62;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+    .popup {
+        width: 70%;
+    }
 }
