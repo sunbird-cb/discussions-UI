@@ -43,6 +43,7 @@ export class DiscussStartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    (document.querySelector('[tabindex="-1"]') as HTMLElement).focus();
     // debugger
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.cIds = this.configService.getCategories()
