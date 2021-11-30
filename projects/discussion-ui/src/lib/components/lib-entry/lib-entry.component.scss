@@ -1,81 +1,81 @@
-  .df-back-btn-container {
-      background: var(--white);
-      margin-bottom: 1rem;
+.df-back-btn-container {
+    background: var(--white);
+    margin-bottom: 1rem;
 
-      .df-btn-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1rem 0;
+    .df-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
 
-          .df-back-btn {
-              display: flex;
-              align-items: center;
-              border: 0;
-              font-size: 0.75rem;
-              padding: 0 1rem;
-              border-radius: 0.25rem;
+        .df-back-btn {
+            display: flex;
+            align-items: center;
+            border: 0;
+            font-size: 0.75rem;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
 
-              img {
-                  width: 1rem;
-                  height: 1rem;
-                  margin-right: 0.25rem;
-              }
-          }
+            img {
+                width: 1rem;
+                height: 1rem;
+                margin-right: 0.25rem;
+            }
+        }
 
-          .df-close-btn {
-              font-weight: 700;
-              border: 0;
-              font-size: 0.75rem;
-              padding: 0 1rem;
-              border-radius: 0.25rem;
+        .df-close-btn {
+            font-weight: 700;
+            border: 0;
+            font-size: 0.75rem;
+            padding: 0 1rem;
+            border-radius: 0.25rem;
 
-              img {
-                  width: 0.5rem;
-                  height: 0.5rem;
-                  margin-left: .25rem;
-              }
-          }
-      }
-  }
+            img {
+                width: 0.5rem;
+                height: 0.5rem;
+                margin-left: .25rem;
+            }
+        }
+    }
+}
 
-  .discussion-forum {
-      width: 100%;
-      min-height: 100vh;
-      position: relative;
-      z-index: unset;
+.discussion-forum {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: unset;
 
-      @media (max-width: 768px) {
-          height: 100vh;
-          // overflow: auto;
-          // background: #e9e8d9;
-      }
+    @media (max-width: 768px) {
+        height: 100vh;
+        // overflow: auto;
+        // background: #e9e8d9;
+    }
 
-      .discussion-forum-content {
-          display: grid;
-          grid-template-columns: 1fr 4fr;
+    .discussion-forum-content {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
 
-          @media (max-width: 768px) {
-              grid-template-columns: 1fr;
-          }
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
 
-          .discuss-left-panel {
-              padding: 1.5rem 0;
-              position: relative;
-              z-index: 2;
+        .discuss-left-panel {
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 2;
 
-              @media (max-width: 768px) {
-                  padding: 0 0 1rem 0;
-                  width: auto;
-              }
-          }
+            @media (max-width: 768px) {
+                padding: 0 0 1rem 0;
+                width: auto;
+            }
+        }
 
-          .discuss-right-panel {
-              padding: 1.5rem;
+        .discuss-right-panel {
+            padding: 1.5rem;
 
-              @media (max-width: 768px) {
-                  padding: 0px 0px 3rem 0px;
-              }
-          }
-      }
-  }
+            @media (max-width: 768px) {
+                padding: 0px 0px 3rem 0px;
+            }
+        }
+    }
+}

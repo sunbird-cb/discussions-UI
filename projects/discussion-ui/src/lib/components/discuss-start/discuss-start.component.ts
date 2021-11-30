@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiscussionService } from './../../services/discussion.service';
-import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NSDiscussData } from './../../models/discuss.model';
 import { TelemetryUtilsService } from './../../telemetry-utils.service';
 import { DiscussUtilsService } from '../../services/discuss-utils.service';
@@ -21,6 +21,7 @@ export class DiscussStartComponent implements OnInit {
   @Output() close = new EventEmitter();
 
   startForm!: FormGroup;
+  editable = true;
   allCategories!: NSDiscussData.ICategorie[];
   allTags!: NSDiscussData.ITag[];
   postTagsArray: string[] = [];
@@ -42,21 +43,24 @@ export class DiscussStartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    (document.querySelector('[tabindex="-1"]') as HTMLElement).focus();
+    // debugger
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.START);
     this.cIds = this.configService.getCategories()
     if (this.categoryId) {
       this.showSelectCategory = false;
     } else {
-      this.showSelectCategory = true;
+    this.showSelectCategory = true;
     }
+
     this.initializeData();
     this.initializeFormFields(this.topicData);
   }
 
   initializeFormFields(topicData) {
     this.startForm = this.formBuilder.group({
-      question: ['', [Validators.required, Validators.minLength(8)]],
-      description: ['', Validators.required],
+      question: [null, [Validators.required, Validators.minLength(8)]],
+      description: [null, [Validators.required, Validators.minLength(8)]],
       tags: [],
       category: []
     });
@@ -78,6 +82,19 @@ export class DiscussStartComponent implements OnInit {
     }
   }
 
+  isFieldValid(field) {
+    let valueNoWhiteSpace = this.startForm.get(field).value;
+    if (valueNoWhiteSpace) {
+      const index = valueNoWhiteSpace.length;
+      if (index >= 2 && valueNoWhiteSpace.charAt(index - 2) === " ") {
+        this.startForm.patchValue({ replyContent: this.startForm.get(field).value.trim() });
+      } else {
+        this.startForm.patchValue({ replyContent: this.startForm.get(field).value.trimStart() })
+      }
+    }
+    return (!this.startForm.get(field).valid && this.startForm.get(field).dirty);
+  }
+
   validateForm() {
     if (this.startForm.status === 'VALID') {
       this.enableSubmitButton = true;
@@ -87,22 +104,34 @@ export class DiscussStartComponent implements OnInit {
   }
 
   initializeData() {
+    // debugger
     if (this.configService.hasContext() && !this.categoryId) {
       const req = {
         cids: this.cIds.result
       };
 
       this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
-        this.allCategories = data.result
+        this.allCategories = data.result;
         if (this.startForm.get('category')) { }
         this.startForm.controls['category'].setValue(this.allCategories[0].cid)
-      })
+      });
+    } else if (this.categoryId) {
+      const req = {
+        cids: this.categoryId
+      };
+      this.showSelectCategory = false;
+      this.editable = false;
+      this.discussService.getContextBasedDiscussion(req).subscribe((data: any) => {
+        this.allCategories = data.result;
+        if (this.startForm.get('category')) { }
+        this.startForm.controls.category.setValue(this.allCategories[0].cid);
+      });
     } else {
       this.discussService.fetchAllCategories().subscribe((data: any) => {
         this.allCategories = data
         if (this.startForm.get('category')) { }
         this.startForm.controls['category'].setValue(this.allCategories[1].cid)
-      })
+      });
     }
 
     this.discussService.fetchAllTag().subscribe(data => {
@@ -118,7 +147,6 @@ export class DiscussStartComponent implements OnInit {
   }
 
   public submitPost(form: any) {
-    this.enableSubmitButton = false;
     this.uploadSaveData = true;
     this.showErrorMsg = false;
     const postCreateReq = {

@@ -37,4 +37,12 @@ export class DiscussCardComponent implements OnInit {
   getContrast() {
     return 'rgba(255, 255, 255, 80%)';
   }
+
+  IsSingleComent(postCount) {
+    if (postCount && (postCount - 1) == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

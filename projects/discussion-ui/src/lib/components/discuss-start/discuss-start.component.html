@@ -1,5 +1,5 @@
 <!--modals-->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
   <div class="discussion-start-modal">
     <div class="discussion-start-modal-content">
       <form [formGroup]="startForm" class="discussion-start-form">
@@ -19,23 +19,21 @@
         <div class="mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
           <label class="start-form-label">Discussion topic*</label>
           <div class="start-form-field">
-            <input class="start-form-field-control py-8" placeholder="Type here (minimum 8 characters)"
+            <input [ngClass]="{'is-invalid' : isFieldValid('question')}" class="start-form-field-control py-8" placeholder="Type here (minimum 8 characters)"
               formControlName="question" #question maxlength="1000" />
+              <small class="text-error">Question is mandatory. It should be minimum of
+                8 characters</small>
           </div>
-          <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
-            Question is mandatory. It should be minimum of
-            8 characters</small>
         </div>
 
         <div class="mb-16">
           <div class="start-form-field">
             <label class="start-form-label" for="description">Please elaborate your question or idea here*</label>
-            <textarea minlength="8" class="start-form-field-control py-8" rows="8" formControlName="description"
-              #description name="moretext" placeholder="Type here (minimum 8 characters)" id="description"></textarea>
+            <textarea [ngClass]="{'is-invalid' : isFieldValid('description')}" class="start-form-field-control py-8" formControlName="description"
+              #description name="moretext" placeholder="Type here (minimum 8 characters)" id="description" ></textarea>
+              <small class="text-error" > Description is mandatory. It should be minimum of
+                8 characters </small>
           </div>
-          <small class="text-error" *ngIf="showError('description')"
-            i18n="description Error|Explains description is required"> Description is mandatory. It should be minimum of
-            8 characters </small>
         </div>
 
         <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
@@ -62,7 +60,7 @@
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
           </span>
           <button *ngIf="mode !== 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
-            [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
+            [ngClass]="{'df-btn-disabled': !startForm.valid }" [disabled]="!startForm.valid"
             (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
             <span class="text-white">Submit</span>
           </button>

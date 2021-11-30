@@ -3,24 +3,28 @@ import { ElementsModule } from './elements/elements.module';
 import { LibEntryComponent } from './components/lib-entry/lib-entry.component';
 import { ComponentsModule } from './components/components.module';
 import { DiscussionRoutingModule } from './discussion-routing/discussion-routing.module';
+import { CategoryWidgetComponent } from './wrapper/category-widget/category-widget.component';
 
-import { NgModule } from '@angular/core';
+import {  ModuleWithProviders, NgModule } from '@angular/core';
 
 import { DiscussionEventsService } from './discussion-events.service';
+import { BaseWrapperComponent } from './wrapper/base-wrapper/base-wrapper.component';
+import { TagsWidgetComponent } from './wrapper/tags-widget/tags-widget.component';
 import { CommonModule } from '@angular/common';
 
 export function provideCsModule(){
   return window['CsModule'];
 }
 @NgModule({
-  declarations: [ LibEntryComponent],
+  declarations: [ LibEntryComponent, CategoryWidgetComponent, BaseWrapperComponent, TagsWidgetComponent],
   imports: [
     ComponentsModule,
     DiscussionRoutingModule,
     ElementsModule,
-    CommonModule
+    CommonModule,
   ],
-  exports: [ ComponentsModule ],
+  exports: [ ComponentsModule , CategoryWidgetComponent, BaseWrapperComponent, TagsWidgetComponent ],
   providers: [ DiscussionEventsService, TelemetryUtilsService,{provide: 'CsModule', useFactory: provideCsModule} ]
 })
-export class DiscussionUiModule { }
+export class DiscussionUiModule { 
+}
