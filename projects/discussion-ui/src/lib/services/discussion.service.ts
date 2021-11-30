@@ -52,6 +52,10 @@ export class DiscussionService {
   }
 
   initializeUserDetails(userId) {
+    console.log('userId in service', userId)
+    userId = userId? userId:window.sessionStorage.getItem('dFUserId');
+    console.log('userId-->', userId);
+    
     this.fetchUserProfile(userId).subscribe(response => {
       console.log('user', response);
       this.userDetails = response;
