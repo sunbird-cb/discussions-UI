@@ -70,10 +70,7 @@ export class LibEntryComponent implements OnInit, OnDestroy {
       this.configService.setConfigFromParams(this.activatedRoute);
       this.data = this.configService.getConfig();
     }
-    let userId = _.get(this.data, 'userId');
-    userId = userId? userId:window.sessionStorage.getItem('dFUserId');
-    this.discussionService.userId = userId;
-    window.sessionStorage.setItem('dFUserId', userId);
+    this.discussionService.userId = _.get(this.data, 'userId');
     const rawCategories = _.get(this.data, 'categories');
     this.discussionService.forumIds = _.get(rawCategories, 'result');
     this.discussionService.initializeUserDetails(this.discussionService.userId);
