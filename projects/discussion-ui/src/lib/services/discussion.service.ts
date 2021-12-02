@@ -41,7 +41,7 @@ export class DiscussionService {
 
   constructor(
     private http: HttpClient,
-    @Inject('CsModule') private csModule: CsModule,
+    @Inject('CsModule') private csModule: CsModule
   ) {
     // TODO: Take from the logged in user data;
     // this.usr = this.configSvc.userProfile
@@ -53,12 +53,12 @@ export class DiscussionService {
 
   initializeUserDetails(userId) {
     userId = userId? userId:window.sessionStorage.getItem('dFUserId');
-    this.userDetails = JSON.parse(window.sessionStorage.getItem('dFUserDetails'))
+    this.userDetails = JSON.parse(sessionStorage.getItem('dFUserDetails'))
     
     this.fetchUserProfile(userId).subscribe(response => {
       console.log('user', response);
       this.userDetails = response;
-      window.sessionStorage.setItem('dFUserDetails', JSON.stringify(response));
+      sessionStorage.setItem('dFUserDetails', JSON.stringify(response));
     }, (error) => {
       // TODO: toaster error
       console.log('error fetching user details');
