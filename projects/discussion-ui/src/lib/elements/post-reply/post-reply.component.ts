@@ -43,6 +43,19 @@ export class PostReplyComponent implements OnInit {
     }
   }
 
+  isFieldValid(field) {
+    let valueNoWhiteSpace = this.replyForm.get(field).value;
+    if (valueNoWhiteSpace) {
+      const length = valueNoWhiteSpace.length;
+      if (length >= 2 && valueNoWhiteSpace.charAt(length - 2) === " ") {
+        this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trim() });
+      } else {
+        this.replyForm.patchValue({ replyContent: this.replyForm.get(field).value.trimStart() })
+      }
+  }
+    return !this.replyForm.get(field).valid && this.replyForm.get(field).dirty;
+  }
+
   onReplyClick(mode: string) {
     // tslint:disable-next-line:no-string-literal
     this.actionEvent.emit({action: mode, content: this.replyForm.controls['replyContent'].value.trim()});
