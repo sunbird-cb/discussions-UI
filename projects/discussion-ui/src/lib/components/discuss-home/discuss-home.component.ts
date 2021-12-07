@@ -64,9 +64,9 @@ export class DiscussHomeComponent implements OnInit {
         categoryIds = this.categoryId ? this.categoryId : categoryIds
         this.getDiscussionList(categoryIds);
       })
-      this.routeParams = params;
-      this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
-      this.getDiscussionList(_.get(this.routeParams, 'slug'));
+      // this.routeParams = params;
+      // this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
+      // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
   }
 
