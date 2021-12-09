@@ -41,7 +41,7 @@ const routes: Routes = [
         component: DiscussCategoryComponent,
         data: {
           pageId: 'categories',
-          module: 'Discuss',
+          module: 'Discuss-categories',
         }
       },
       {
