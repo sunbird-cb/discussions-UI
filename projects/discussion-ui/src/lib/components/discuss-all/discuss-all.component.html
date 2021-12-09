@@ -1,12 +1,12 @@
 <div class="main-div">
 
-    <!-- <button (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn" data-toggle="modal"
+    <!-- <button (click)="startDiscussion();logTelemetry($event)" class="df-btn df-btn-normal df-btn-primary" data-toggle="modal"
         data-target="#myModal" id="start-discussion">Start Discussion</button> -->
 
 
     <div class="flex flex-1 custom discussion_outer_box">
         <div class="flex flex-3 flex-column discussion_main_box">
-            <div class="flex flex-1 cursor-pointer margin-fix height-48" (click)="startDiscussion();logTelemetry($event)" data-toggle="modal"
+            <div (click)="startDiscussion();logTelemetry($event)" data-toggle="modal"
             data-target="#myModal" id="start-discussion">
                 <a href="javascript:void(0)" class="flex flex-1 cursor-pointer margin-fix height-48" i18n-aria-label role="link">
                   <div
@@ -26,11 +26,11 @@
             <ng-container>
                 <div class="flex flex-1 flex-row margin-fix tab_margin">
                     <div class="flex flex-1 filter max-height-60">
-                        <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'recent',
+                        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'recent',
           ' font-medium':currentFilter !== 'recent'}" mat-button (click)="filter('recent')" role="button">Recent</a>
-                        <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'popular',
+                        <a href="javascript:void(0)"  role="link" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'popular',
           ' font-medium':currentFilter !== 'popular'}" mat-button (click)="filter('popular')" role="button">Popular</a>
-                        <a href="javascript:void(0)" class="filter-option watching_link"  mat-button role="button">Watching</a>
+                        <a href="javascript:void(0)"  role="link" class="filter-option watching_link"  mat-button role="button">Watching</a>
                     </div>
                     <div class="flex items-center">
                         <a class="all_category_link mat-subheading-2 margin-remove">All categories </a>
@@ -48,7 +48,7 @@
             </ng-container>
 
             <ng-container *ngIf=" !(discussionList && discussionList.length > 0)">
-                <div class="discuss-card-content cursor-pointer" tabindex="0">
+                <div class="no-card-content" tabindex="0">
                     <div class="no-data-label">No Data</div>
                     <div>
                         <span>&nbsp;</span>

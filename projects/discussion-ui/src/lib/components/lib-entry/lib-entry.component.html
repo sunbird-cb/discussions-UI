@@ -1,23 +1,25 @@
-<div class="sbt-inside-page-container">
-    <div class="df-back-btn-container relative position">
-        <div class="df-btn-container ui container">
-            <button type="button" class="df-btn df-back-btn" tabindex="0" autofocus role="button" (click)="goBack()">
-                <img src="./assets/discussion-ui/images/back-img.png" alt="back icon">
-                Back
-            </button>
-            <button (click)="close($event)" class="df-btn df-close-btn" tabindex="0" id="close-discussion-forum" type="button" autofocus> Close
-                <img src="./assets/discussion-ui/images/close.png" alt="close icon"></button>
-        </div>
+<div class="sbt-inside-page-container ui container">
+    <div class="df-header">
+        <button type="button" class="df-btn df-btn-normal df-btn-primary df-back-btn" tabindex="0" autofocus
+            role="button" (click)="goBack()">
+            <img src="./assets/discussion-ui/images/back-img.png" alt="back icon" />
+            Back
+        </button>
+        <button (click)="close($event)" class="df-btn df-btn-normal df-btn-primary df-close-btn" tabindex="0"
+            id="close-discussion-forum" type="button" autofocus>
+            Close
+            <img src="./assets/discussion-ui/images/close.png" alt="close icon" />
+        </button>
     </div>
-    <div class="discussion-forum">
-        <div class="ui container discussion-forum-content">
-            <div class="discuss-left-panel">
-                <lib-side-pannel></lib-side-pannel>
-            </div>
-            <div class="discuss-right-panel">
-                <router-outlet (activate)="onScrollTopActive($event)"></router-outlet>
-            </div>
+
+    <div class="discussion-forum-content">
+        <div class="discuss-left-panel">
+            <lib-side-pannel></lib-side-pannel>
+        </div>
+        <div class="discuss-right-panel">
+            <router-outlet (activate)="onScrollTopActive($event)"></router-outlet>
         </div>
     </div>
 </div>
+
 <lib-load-alert *ngIf="showLoaderAlert" (exit)="close($event)" (close)="closeLoadAlert()"></lib-load-alert>

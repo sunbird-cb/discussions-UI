@@ -1,4 +1,4 @@
-<h5 aria-label="Related discussions" class="related-discuss-label mb-16">Related discussions</h5>
+<h5 aria-label="Related discussions" class="related-discuss-label">Related discussions</h5>
 <ng-container *ngIf="relatedDiscussions && relatedDiscussions.length > 0">
     <div *ngFor="let discussion of relatedDiscussions | slice:0:5;" class="related-discuss-card df-card" tabindex="0">
         <label role="link" tabindex="0" aria-label="related discussion post df-text-color"
@@ -7,7 +7,7 @@
         </label>
         <div class="related-discuss-card-description mt-8">
             <div class="category-name" [innerHTML]="discussion.category.name"></div>
-            <div class="separator-dot mx-8"></div>
+            <div class="separator-dot"></div>
             <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
         </div>
     </div>

@@ -5,8 +5,8 @@
 
 .discussion-details {
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-    background: var(--white);
-    color: var(--black);
+    background:var(--df-card-bg);
+    color:var(--df-text);
     flex: 3;
     height: auto;
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
@@ -23,12 +23,14 @@
     padding: 0 0 1rem 1.5rem;
     position: relative;
     z-index: 2;
+    .related-discuss-part-content{
+        padding: 0 0.25rem;
+    }
 }
 
 .discussion-card-title {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-right: 16px;
 }
 
 .discussion-heading {
@@ -36,22 +38,24 @@
     font-weight: 400;
     pointer-events: none;
     margin-bottom: 0px;
+    margin-top: 0.5rem;
 }
 
 .discussion-content {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
-    font-size: 14px;
-    color: rgba(0, 0, 0, .6);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
     flex-wrap: wrap;
+    margin-bottom: 0;
+    margin-top: 1rem;
 }
 
 .comment-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin: 0.5rem 0;
     flex-direction: row;
     flex-wrap: wrap;
 }
@@ -63,8 +67,8 @@
 
 .circle-text {
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 1.75rem;
+    height: 1.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,21 +77,26 @@
 
 .circle-label {
     color: var(--white);
-    font-size: 17px;
-    line-height: 12px;
+    font-size: 1rem;
+    line-height: 0.75rem;
     letter-spacing: .2625px;
     text-transform: uppercase;
 }
 
 .discussion-labels {
-    color: #5C5757;
+    color: var(--gray-400);
+    margin-left: 0.5rem;
+    font-size: 00.875rem;
 }
 
 .comments-area {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     font-weight: 700;
     flex-direction: row;
+    font-size: 0.875rem;
+    margin: 1rem 0;
 }
 
 .text-form-field {
@@ -99,84 +108,48 @@
 .text-content {
     min-height: 108px;
     max-height: 540px;
-    /* width: 97.6%;  */
-    border: 1.5px solid #ccc2c2;
-    border-radius: 16px;
+    margin-bottom: 0.875rem;
+    background-color: var(--df-field-control-bg);
+    border: 0.0625rem solid var(--gray-200);
+    border-radius: 0.1875rem;
+    color: var(--df-text);
+    display: block;
+    font-size: .8125rem;
+    font-family: sans-serif;
+    position: relative;
     cursor: pointer;
-    padding: 16px;
-    outline: none;
+    outline: 0;
+    padding: 0.5rem 0.875rem;
 }
 
 .text-content.is-invalid,
 .text-content.is-invalid:hover,
 .text-content.is-invalid:focus {
-    border: 1px solid #ff6979;
+    border: 0.0625rem solid #ff6979;
 }
 
 .text-content.is-valid,
 .text-content.is-valid:hover,
 .text-content.is-valid:focus {
-    border: 1px solid #0074b6;
-}
-
-.post-btn,
-.post-reply-btn {
-    background-color: #0074b6;
-    color: var(--white);
-    border: 0;
-    vertical-align: baseline;
-    text-align: center;
-    margin: 0;
-    min-width: 64px;
-    padding: 0 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
+    border: 0.0625rem solid var(--primary-400);
 }
 
 .up-vote-text,
 .down-vote-text {
-    font-size: 16px;
-    color: rgba(0, 0, 0, .6);
-}
-
-.comment-btns {
-    display: flex;
-    justify-content: flex-end;
-    margin: 16px 0px;
-}
-
-.cancel-btn,
-.reply-btn {
-    cursor: pointer;
-    position: relative;
-    cursor: pointer;
-    outline: 0;
-    border: none;
-    display: inline-block;
-    text-align: center;
-    margin: 0;
-    min-width: 64px;
-    line-height: 36px;
-    padding: 0 16px;
-    overflow: visible;
+    font-size: 1rem;
     color: var(--black);
-    font-weight: 700;
-    font-size: 14px;
-    background: none;
-    border-radius: 4px;
+    margin-right: 0.5rem;
 }
-
 
 .post-card,
 .post-reply-card {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 1rem;
+    border-bottom: 0.0625rem solid var(--gray-100);
+    margin-bottom: 1.5rem;
 }
 
 .post-sub-card {
-    margin: 0 8px 8px;
+    margin: 0 0.5rem 0.5rem;
+    border: 0;
 }
 
 .comments-section {
@@ -185,32 +158,46 @@
     justify-content: space-between;
 }
 
+.post-icons{
+    margin-right: 1rem;
+    html[dir="rtl"]{
+        margin-right: unset;
+        margin-left: 1rem;
+    }
+}
+
 .post-name {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
-    margin-left: 16px;
+    margin-left: 1rem;
     word-break: break-all;
+    text-transform: capitalize;
 }
 
 .post-time {
-    color: rgba(0, 0, 0, .6);
+    color: var( var(--gray-400));
     margin: 0 1rem;
+    font-size: 0.875rem;
 }
 
 .post-labels {
-    font-size: 12px;
-    pointer-events: none;
+    font-size: 0.875rem;
+    margin: 0;
 }
 
 .reply-area {
     display: flex;
     justify-content: space-between;
-    margin: 16px 0;
     align-items: center;
 }
 
+.reply-area-content{
+    position: relative;
+    margin-top: 1rem;
+}
+
 .margin-gap-tb {
-    margin: 16px 0;
+    margin: 1rem 0;
 }
 
 .custom-actions {
@@ -219,7 +206,7 @@
 }
 
 .edit-post {
-    margin-right: 20px;
+    margin-right: 1.25rem;
 }
 
 .border-0 {
@@ -227,8 +214,9 @@
 }
 
 .comments-count {
-    color: #0074b6;
+    color: var(--primary);
     font-weight: 700;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -242,11 +230,12 @@
 
     .post-btn {
         width: 100%;
-        margin-top: 8px;
+        margin-top: 0.5rem;
+        cursor:pointer;
     }
 
     .comments-area {
-        flex-direction: column;
+        align-items: start;
     }
 
     .comments-count {
@@ -254,27 +243,31 @@
     }
 
     .post-time {
-        margin-top: 8px;
+        margin-top: 0.5rem;
         margin-left: 0px;
     }
 
     .comment-section {
+        display: flex;
         flex-direction: column;
         align-items: start;
-        pointer-events: none;
+        margin-bottom: 0.5rem;
     }
 }
 
-.sb-btn-disabled {
-    background-color: var(--gray-100);
-    border: solid var(--gray-100);
+.df-btn-disabled {
+    background-color: var(--gray-100) !important;
+    color: var(--gray-200) !important;
 }
 
+.df-reply-btn{
+margin-bottom: 0.5rem;
+}
 .edited-text {
-    padding-left: 8px;
-    margin-top: 3px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.6);
+    padding-left: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--gray-200);
 }
 
 .delete-icon,
@@ -282,6 +275,7 @@
     cursor: pointer;
     width: 1rem;
     height: 1rem;
+    margin:0 0.5rem;
 }
 
 .discuss-card-kabab-menu {
@@ -292,15 +286,14 @@
 
 .kabab-menu {
     color: var(--primary-400);
-    width: 30px;
-    height: 30px;
-    line-height: 28px;
+    width: 1.875rem;
+    height: 1.875rem;
+    line-height: 1.75rem;
     text-align: center;
     border-radius: 50%;
-    padding-left: 6px;
+    padding-left: 0.5rem;
     position: absolute;
-    right: 8px;
-    top: 22px;
+    right: 0.5rem;
 
     &:hover {
         background: var(--gray-0);
@@ -309,26 +302,29 @@
 
     &::after {
         content: '\2807';
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 }
 
 .kabab-menu-dropdown-content {
     position: absolute;
-    border-radius: 2px;
+    border-radius: 0.125rem;
     background-color: var(--white);
     box-shadow: 0 3px 5px 4px rgba(var(--rc-rgba-black), 0.05);
-    padding: 8px;
+    padding: 0.5rem;
     z-index: 1;
     text-align: left;
     right: 0;
     top: 0;
-    min-width: 210px;
+    min-width: 13.125rem;
 
     .list {
+        display: flex;
+        align-items: center;
+        width: 100%;
         cursor: pointer;
-        font-size: 14px;
-        padding: 8px;
+        font-size: 0.875rem;
+        padding: 0.5rem;
 
         &:hover,
         &:active {
@@ -336,13 +332,13 @@
         }
 
         &:last-child {
-            .sb-btn-normal {
+            .df-btn-normal {
                 color: var(--red-400);
             }
         }
 
-        .sb-btn-normal {
-            font-size: 14px;
+        .df-btn-normal {
+            font-size: 0.875rem;
         }
     }
 }
@@ -354,7 +350,43 @@
     }
 }
 
+.vote-value{
+    margin-left: 0.5rem;
+}
+
 .icons {
-    width: 1rem;
-    height: 1rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    position: relative;
+    top: 0.125rem;
+    cursor: pointer;
+}
+
+.edit-text{
+    display: flex;
+}
+
+.last-reply-data{
+    margin: 1rem 0;
+    font-size: 0.875rem;
+}
+
+.reply-content{
+    display: flex;
+    align-items: center;
+}
+
+.replies{
+    width: 100%;
+}
+
+.replies-count{
+    font-size: 0.875rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.toggle-icon{
+    padding: 0 1rem;
+    cursor: pointer;
 }

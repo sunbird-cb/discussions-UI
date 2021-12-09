@@ -1,8 +1,8 @@
 .discuss-category-cards{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
-    grid-gap: 24px;
-    margin-bottom: 24px;
+    grid-gap: 1.5rem;
+    margin-bottom: 1.5rem;
     cursor: pointer;
     position: relative;
     z-index: unset;

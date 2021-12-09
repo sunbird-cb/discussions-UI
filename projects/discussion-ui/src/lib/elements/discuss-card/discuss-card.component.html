@@ -1,33 +1,29 @@
 <!-- Card container -->
-<div class="discuss-card-content cursor-pointer border" tabindex="0" role="link">
+<div class="discuss-card-content" tabindex="0" role="link">
 
   <!-- Card header -->
-  <div class="discuss-card-header">
-    <!-- Card title-->
-    <div tabindex="0" role="link">
+  <div tabindex="0" role="link">
       <!-- <a href="javascript:void(0)" i18n-aria-label tabindex="0" role="link"> -->
         <h3 class='discuss-card-title' *ngIf="discussionData?.title" [innerHTML]="discussionData?.title"></h3>
         <h3 class='discuss-card-title' *ngIf="!discussionData?.title && discussionData?.topic?.title" [innerHTML]="discussionData?.topic?.title"></h3>
         <h3 class='discuss-card-title' *ngIf="!discussionData?.title && !discussionData?.topic?.title && discussionData?.name" [innerHTML]="discussionData?.name"></h3>
       <!-- </a> -->
-    </div>
-    <!-- /Card title -->
 
     <!-- Card subtitle -->
-    <div class="discuss-card-subtitle responsive">
-      <div class="cardlabel-container">
+    <div class="discuss-card-subtitle">
+      <div class="card-label-container">
         <div *ngIf="discussionData?.category?.name" class="discuss-card-label">
           <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="category card icon" width="20px" class="mr-4">
           {{discussionData.category.name}}
         </div>
-        <div class="discuss-card-username">
-          <span class="dot mx-8"></span>
+        <div>
+          <span class="separator-dot"></span>
           <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
           <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
         </div>
       </div>
 
-      <div class="timing ml-8">{{discussionData.lastposttime | date}}</div>
+      <div class="timing">{{discussionData.lastposttime | date}}</div>
       <!-- <span class="margin-left-l">{{discussionData.timestamp | pipeRelativeTime}}</span> -->
     </div>
     <!-- /Card subtitle -->
@@ -46,21 +42,20 @@
 
   <!-- Card footer -->
   <div class="discuss-card-comments">
-    <div class="discuss-comments-area">
-      <span class="mobile votes-content">
+    <div class="comments-content">
+      <span class="votes-content">
         <!-- <mat-icon class="cursor-pointer">import_export</mat-icon> -->
         <img src="./assets/discussion-ui/images/votes.svg" alt="votes icon">
-        <span class="ml-8">{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
+        <span>{{(discussionData.upvotes + discussionData.downvotes) || 0 }} Votes</span>
       </span>
-      <span class="mobile views-content">
+      <span class="views-content">
         <!-- <mat-icon>trending_up</mat-icon> -->
         <img src="./assets/discussion-ui/images/views.svg" alt="views icon">
-        <span class="ml-8">{{discussionData.viewcount || 0}} Views</span>
+        <span>{{discussionData.viewcount || 0}} Views</span>
       </span>
     </div>
-    <div class="cursor-pointer">
-      <span class="comments-count">{{((discussionData.postcount || 1) -1) }}
-        comments</span>
+    <div class="comments-count">{{((discussionData.postcount || 1) -1) }}
+        comments
     </div>
   </div>
 

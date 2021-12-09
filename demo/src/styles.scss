@@ -1,0 +1,151 @@
+//themes css
+
+// Joy Theme
+html[layout="joy"] {
+  --df-body-bg: #cece52; // body bg
+  --df-header-bg: #e9e8d9; // df header bg
+  --df-sidebar-menu-active-bg: #e9e8d9; // sidebar active bg
+  --df-modal-content-bg: #e9e8d9; // modal content bg
+  --df-common-bg: #e9e8d9;
+}
+
+// Dark Theme
+html[data-theme="Darkmode"] {
+  // Dark Theme color variation
+  --primary: #ffd92a;
+  --primary-0: #fffcee;
+  --primary-100: #fff8db; // default button bg
+  --primary-200: #fffd2a; // divider
+  --primary-250: #f1f1c7;
+  --primary-300: #ffeb2a; // outline, focus fields
+  --primary-400: var(
+    --primary
+  ); // button bg, heading, table titles, links, toggles
+  --primary-600: #ffc72a; // on press
+  --primary-800: #ffb62a; // hover
+
+  --secondary: #ffd92a;
+  --secondary-200: #ffd92a;
+
+  --df-body-bg: var(--black); // body bg
+  --df-header-bg: #333; // df header bg
+  --df-tag-empty-bg: #333; // tag container
+  --df-filter-bg: #333; // filter bg
+  --df-form-field-bg: var(--gray-600); // form field bg
+  --df-dot-bg: var(--white); // dot bg
+
+  //sidebar
+  --df-sidebar-menu-text: var(--primary-0);
+  --df-sidebar-menu-active-bg: #333;
+  --open-btn-bg: var(--white);
+  --open-btn-color: #333; // hamburger menu
+
+  --df-sidebar-menu-text: var(--gray-300);
+  --df-sidebar-menu-active-text: var(--primary-800);
+  --df-sidebar-menu-bl: var(--primary-800);
+  --df-sidebar-menu-active-bg: var(--gray-800);
+  --open-btn-bg: var(--primary);
+  --open-btn-color: var(--gray-800); // hamburger menu
+  --df-overlay-sidebar-bg: var(--black);
+  --df-overlay-sidebar-bg-menu: var(--black);
+
+  // Text Color
+  --df-text: var(--white);
+  --df-text-primary: var(--primary);
+  --df-btn-default-color: var(--black);
+  --df-field-control-bg:#222;
+
+  //tabs menu
+  --df-tab-bg: var(--black);
+  --df-tab-text: var(--white);
+  --df-tab-bg-active: var(--primary);
+  --df-tab-text-active: var(--black);
+
+  // Cards
+  --df-card-bg: var(--black);
+  --df-category-card-label: var(--df-text);
+  --df-category-card-text: var(--df-text);
+  --df-related-card-bg: #222;
+
+  //modal
+  --df-modal-content-bg: #333;
+  --df-modal-field-control-bg: #222;
+  --df-ng-tag-bg: var(--black);
+
+  --df-common-bg: #333333;
+  --df-btn-default-color: var(--black);
+
+  img {
+    filter: invert(1);
+  }
+
+  .df-btn-primary.active,
+  .df-btn-primary:active,
+  .df-btn-primary:hover,
+  .df-btn-secondary.active,
+  .df-btn-secondary:active,
+  .df-btn-secondary:hover,
+  .df-btn-tertiary.active,
+  .df-btn-tertiary:active,
+  .df-btn-tertiary:hover {
+    color: var(--df-btn-default-color);
+  }
+}
+
+// Green Theme
+html[data-theme="Green"] {
+  --primary: #008a40;
+  --primary-0: #f0faf1;
+  --primary-100: #d5e9d7;
+  --primary-200: #afcab1;
+  --primary-300: #74b48b;
+  --primary-400: var(--primary);
+  --primary-800: #0b8242;
+
+  --df-body-bg: var(--primary); // body bg
+  --df-header-bg: var(--primary-300); // df header bg
+}
+
+// Orange Theme
+html[data-theme="Orange"] {
+  --primary: #e7800b;
+  --primary-100: #ffe081;
+  --primary-200: #d4a56f;
+  --primary-300: #ffb561;
+  --primary-400: var(--primary);
+  --primary-800: #e77b00;
+
+  --df-body-bg: var(--primary); // body bg
+  --df-header-bg: var(--primary-200); // df header bg
+}
+
+//darkmode old theme specific classes
+html[data-theme="Darkmode"][layout="old"] {
+	lib-lib-entry .discussion-forum-content .discuss-right-panel {
+	     background: var(--df-common-bg);
+		padding: 1.5rem;
+	}
+}
+
+//	specific classes for joy theme
+html[layout="joy"] {
+  lib-lib-entry {
+    .df-header,
+    .discussion-forum-content .discuss-right-panel,.discussion-start-modal .discussion-start-modal-content{
+      border-radius: 1.5rem;
+      background: var(--df-common-bg);
+      padding: 1.5rem;
+    }
+
+    .df-btn {
+      border-radius: 1.5rem !important;
+      box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+      border: 0;
+    }
+
+    .df-btn-normal {
+      height: 2.5rem;
+      padding: 0.5rem 1.5rem;
+    }
+  }
+}

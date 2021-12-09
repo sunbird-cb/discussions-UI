@@ -1,22 +1,17 @@
 <div class="category-card" tabindex="0" role="link">
-  <div class="category-card-header">
-    <div class="catergory-card-header-image mr-16">
-      <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="category card icon" class="category-card-img">
-    </div>
-      <div class="category-card-header-label fs-1 font-weight-bold" [innerHTML]="category.name"></div>
-  </div>
-  <p class="category-card-header-text my-8 fnormal">{{category.description}}</p>
-  <div class="category-card-main">
-    <div class="category-card-main-content">
-      <div>
-        <span class="discussion-label fnormal font-weight-bold">{{category.totalTopicCount}} Discussions</span>
+    <div class="category-card-header">
+      <div class="category-card-header-image">
+        <img src="./assets/discussion-ui/images/Buffer-512.webp" alt="category card icon" class="category-card-img">
       </div>
-      <div>
-        <span class="post-label fnormal font-weight-bold ml-16">{{category.totalPostCount}} Posts</span>
-      </div>
+        <div class="category-card-header-label" [innerHTML]="category.name"></div>
     </div>
-    <div class="flex flex-1" class="cursor-pointer text-right mobile2">
-      <img src="./assets/discussion-ui/images/eye-icon.png" class="eye-icon" alt="eye icon">
+    <p class="category-card-header-text">{{category.description}}</p>
+    <div class="category-card-main">
+      <div class="category-card-main-content">
+        <div class="discussion-label">{{category.totalTopicCount}} Discussions</div>
+        <div class="post-label">{{category.totalPostCount}} Posts</div>
+      </div>
+    <div><img src="./assets/discussion-ui/images/eye-icon.png" class="eye-icon" alt="eye icon">
     </div>
   </div>
 </div>
