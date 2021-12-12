@@ -2,7 +2,7 @@
 
 // Joy Theme
 html[layout="joy"] {
-  --df-body-bg: #cece52; // body bg
+  --df-body-bg: #f3f3e5; // body bg
   --df-header-bg: #e9e8d9; // df header bg
   --df-sidebar-menu-active-bg: #e9e8d9; // sidebar active bg
   --df-modal-content-bg: #e9e8d9; // modal content bg
@@ -47,13 +47,13 @@ html[data-theme="Darkmode"] {
   --open-btn-bg: var(--primary);
   --open-btn-color: var(--gray-800); // hamburger menu
   --df-overlay-sidebar-bg: var(--black);
-  --df-overlay-sidebar-bg-menu: var(--black);
+  --df-overlay-sidebar-bg-menu: #f5f6fa;
 
   // Text Color
   --df-text: var(--white);
   --df-text-primary: var(--primary);
   --df-btn-default-color: var(--black);
-  --df-field-control-bg:#222;
+  --df-field-control-bg: #222;
 
   //tabs menu
   --df-tab-bg: var(--black);
@@ -74,10 +74,6 @@ html[data-theme="Darkmode"] {
 
   --df-common-bg: #333333;
   --df-btn-default-color: var(--black);
-
-  img {
-    filter: invert(1);
-  }
 
   .df-btn-primary.active,
   .df-btn-primary:active,
@@ -104,6 +100,9 @@ html[data-theme="Green"] {
 
   --df-body-bg: var(--primary); // body bg
   --df-header-bg: var(--primary-300); // df header bg
+  --df-sidebar-menu-active-bg: var(--primary-200); // sidebar active bg
+  --df-modal-content-bg: var(--primary-300); // modal content bg
+  --df-common-bg: var(--primary-300);
 }
 
 // Orange Theme
@@ -117,21 +116,35 @@ html[data-theme="Orange"] {
 
   --df-body-bg: var(--primary); // body bg
   --df-header-bg: var(--primary-200); // df header bg
+  --df-sidebar-menu-active-bg: var(--primary-200); // sidebar active bg
+  --df-modal-content-bg: var(--primary-200); // modal content bg
+  --df-common-bg: var(--primary-200);
 }
 
-//darkmode old theme specific classes
+//dark mode  theme specific classes
+html[data-theme="Darkmode"] {
+  lib-lib-entry .df-header img {
+    filter: unset !important;
+  }
+
+  img {
+    filter: invert(1);
+  }
+}
+
+//dark mode old theme specific classes
 html[data-theme="Darkmode"][layout="old"] {
-	lib-lib-entry .discussion-forum-content .discuss-right-panel {
-	     background: var(--df-common-bg);
-		padding: 1.5rem;
-	}
+  lib-lib-entry .discussion-forum-content .discuss-right-panel {
+    background: var(--df-common-bg);
+    padding: 1.5rem;
+  }
 }
 
-//	specific classes for joy theme
+//specific classes for joy theme
 html[layout="joy"] {
   lib-lib-entry {
     .df-header,
-    .discussion-forum-content .discuss-right-panel,.discussion-start-modal .discussion-start-modal-content{
+    .discussion-forum-content .discuss-right-panel {
       border-radius: 1.5rem;
       background: var(--df-common-bg);
       padding: 1.5rem;
@@ -139,7 +152,8 @@ html[layout="joy"] {
 
     .df-btn {
       border-radius: 1.5rem !important;
-      box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
       border: 0;
     }
 

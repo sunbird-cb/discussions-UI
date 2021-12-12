@@ -41,6 +41,16 @@
     font-size: 0.875rem;
 	flex-wrap: wrap;
     margin-top: 0.5rem;
+    .dot{
+        height: 6px;
+        width: 6px;
+        background-color: var(--gray-400);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 0.5rem;
+        position: relative;
+        bottom: 1px;
+      }
 }
 
 

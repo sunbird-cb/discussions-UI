@@ -62,17 +62,18 @@
       font-size: 0.875rem;
       margin: 1rem 0;
       font-weight: 600;
-      .my-discussion-label {
-        margin: 0 0.5rem;
-        .number {
-          color: var(--primary-300);
+      &__content {
+        display: flex;
+        .my-discussion-label {
+          margin: 0 0.5rem;
+          .number {
+            color: var(--primary-300);
+          }
         }
-      }
-      .post-count-area {
-        margin-left: 2rem;
+        .post-count-area {
+          margin-left: 2rem;
+        }
       }
     }
   }
 }
-
-

@@ -55,7 +55,16 @@
           flex-basis: 100%;
         }
       }
-
+      .dot{
+        height: 6px;
+        width: 6px;
+        background-color: var(--gray-400);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 0.5rem;
+        position: relative;
+        bottom: 1px;
+      }
       .discuss-user-label {
         word-break: break-word;
       }

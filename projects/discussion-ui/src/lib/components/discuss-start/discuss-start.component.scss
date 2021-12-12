@@ -140,7 +140,8 @@
   }
 
   .ng2-tag-input__text-input {
-    margin: 0 1rem;
+    height: 36px;
+    margin: 0 0.5rem;
     background: var(--df-ng-tag-bg);
     color: var(--df-text);
   }
@@ -152,5 +153,8 @@
    tag {
     background: var(--df-ng-tag-bg) !important;
     color: var(--df-text) !important;
+    &:first-child{
+      margin-left: 0.5rem !important;
+    }
   }
 }
