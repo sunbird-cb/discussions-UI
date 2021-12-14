@@ -1,5 +1,5 @@
 .dt-app-loader-container {
-    background: #e9e8d9;
+    background: var(--gray-100);
     width: 94% !important;
     margin: 1rem auto;
     border-radius: 1.5rem;
