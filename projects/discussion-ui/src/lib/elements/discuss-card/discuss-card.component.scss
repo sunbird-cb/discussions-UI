@@ -46,10 +46,6 @@
 
         img {
           margin-right: 0.25rem;
-          html[dir="rtl"] {
-            margin-left: 0.25rem;
-            margin-right: unset;
-          }
         }
         @media screen and (max-width: 768px) {
           flex-basis: 100%;
@@ -100,10 +96,6 @@
   
       .views-content {
         margin-left: 1.5rem;
-        html[dir="rtl"] {
-          margin-left: unset;
-          margin-right: 1.5rem;
-        }
       }
   
       .votes-content img,

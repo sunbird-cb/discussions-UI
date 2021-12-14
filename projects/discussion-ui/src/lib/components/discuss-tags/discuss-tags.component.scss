@@ -1,3 +1,7 @@
+::ng-deep:root{
+	--df-tag-empty-bg:var(--white);
+}
+
 .sb-search-box {
 	display: flex;
 	align-items: center;
@@ -48,31 +52,33 @@
 
 .tag-empty-container{
 	background: var(--white);
+	background: var(--df-tag-empty-bg);
+	color: var(--df-text);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 1.5rem;
     height: 100%;
+    border-radius: 0.25rem;
     min-height: 28.125rem;
+
 	.tag-empty-img{
       width: 100%;
 	  max-width: 13.875rem;
-	  padding: 0 1rem;
-	  img{
-		  filter: unset;
-	  }
 	}
+
 	.tag-empty-label{
 		font-size: 0.875rem;
 		font-weight: bold;
 		margin: 1.5rem 0 0.75rem 0;
 		color: var(--black) !important;
 	}
+
 	.tag-empty-text{
 		font-size: 0.875rem;
 		font-weight: normal;
 		text-align: center;
-		padding: 0 1rem;
+		color: var(--black) !important;
 	}
 }

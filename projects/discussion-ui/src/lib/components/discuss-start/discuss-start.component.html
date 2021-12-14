@@ -1,7 +1,7 @@
 <!--modals-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="myModal">
   <div class="discussion-start-modal">
-    <div class="discussion-start-modal-content" role="document">
+    <div class="discussion-start-modal-content topic-list-container" id="topic-scroll" tabindex="-1" role="dialog">
       <form [formGroup]="startForm" class="discussion-start-form">
 
         <div class="start-form-content" *ngIf="showSelectCategory" [ngClass]="{ 'is-invalid': showError('subTitle') }">

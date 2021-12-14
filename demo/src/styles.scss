@@ -27,18 +27,21 @@ html[data-theme="Darkmode"] {
   --secondary: #ffd92a;
   --secondary-200: #ffd92a;
 
+  --df-333:#333; 
+  --df-222:#222;
+
   --df-body-bg: var(--black); // body bg
-  --df-header-bg: #333; // df header bg
-  --df-tag-empty-bg: #333; // tag container
-  --df-filter-bg: #333; // filter bg
+  --df-header-bg: var(--df-333); // df header bg
+  --df-tag-empty-bg: var(--df-333); // tag container
+  --df-filter-bg: var(--df-333); // filter bg
   --df-form-field-bg: var(--gray-600); // form field bg
-  --df-dot-bg: var(--white); // dot bg
+  --df-cancel-btn-bg:#444;
 
   //sidebar
   --df-sidebar-menu-text: var(--primary-0);
-  --df-sidebar-menu-active-bg: #333;
+  --df-sidebar-menu-active-bg: var(--df-333);
   --open-btn-bg: var(--white);
-  --open-btn-color: #333; // hamburger menu
+  --open-btn-color: var(--df-333); // hamburger menu
 
   --df-sidebar-menu-text: var(--gray-300);
   --df-sidebar-menu-active-text: var(--primary-800);
@@ -53,7 +56,7 @@ html[data-theme="Darkmode"] {
   --df-text: var(--white);
   --df-text-primary: var(--primary);
   --df-btn-default-color: var(--black);
-  --df-field-control-bg: #222;
+  --df-field-control-bg: var(--df-222);
 
   //tabs menu
   --df-tab-bg: var(--black);
@@ -62,17 +65,18 @@ html[data-theme="Darkmode"] {
   --df-tab-text-active: var(--black);
 
   // Cards
-  --df-card-bg: var(--black);
+  --df-card-bg: var(--df-333);
   --df-category-card-label: var(--df-text);
   --df-category-card-text: var(--df-text);
-  --df-related-card-bg: #222;
+  --df-related-card-bg: var(--df-222);
 
   //modal
-  --df-modal-content-bg: #333;
-  --df-modal-field-control-bg: #222;
-  --df-ng-tag-bg: var(--black);
+  --df-modal-content-bg: var(--df-333);
+  --df-modal-field-control-bg: var(--df-222);
+  --df-tag-bg:var(--black);
+  --df-ng-tag-bg: var(--df-222);
 
-  --df-common-bg: #333333;
+  --df-common-bg: var(--df-222);
   --df-btn-default-color: var(--black);
 
   .df-btn-primary.active,
@@ -127,16 +131,15 @@ html[data-theme="Darkmode"] {
     filter: unset !important;
   }
 
-  img {
-    filter: invert(1);
-  }
+  .df-cancel-btn {
+    &:hover,&:active{
+            color: var(--black);
+            background-color: var(--primary-800);
+    }
 }
 
-//dark mode old theme specific classes
-html[data-theme="Darkmode"][layout="old"] {
-  lib-lib-entry .discussion-forum-content .discuss-right-panel {
-    background: var(--df-common-bg);
-    padding: 1.5rem;
+  img {
+    filter: invert(1);
   }
 }
 

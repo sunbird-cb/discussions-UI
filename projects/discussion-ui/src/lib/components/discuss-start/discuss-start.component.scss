@@ -1,7 +1,8 @@
 ::ng-deep:root {
   --df-modal-content-bg: var(--white);
   --df-modal-field-control-bg: var(--white);
-  --df-ng-tag-bg: #e9e8d9;
+  --df-tag-bg:#e9e8d9;
+  --df-ng-tag-bg: var(--white);
 }
 
 .discussion-start-modal {
@@ -142,8 +143,8 @@
   .ng2-tag-input__text-input {
     height: 36px;
     margin: 0 0.5rem;
-    background: var(--df-ng-tag-bg);
     color: var(--df-text);
+    background: var(--df-ng-tag-bg);
   }
 
   .ng2-tag-input.active {
@@ -151,7 +152,7 @@
   }
 
    tag {
-    background: var(--df-ng-tag-bg) !important;
+    background: var(--df-tag-bg) !important;
     color: var(--df-text) !important;
     &:first-child{
       margin-left: 0.5rem !important;
