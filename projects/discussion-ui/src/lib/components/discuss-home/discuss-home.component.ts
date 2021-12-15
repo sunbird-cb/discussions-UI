@@ -59,9 +59,10 @@ export class DiscussHomeComponent implements OnInit {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     this.route.params.subscribe(params => {
       this.configService.setCategoryId.subscribe((categoryIds: string) => {
-        this.routeParams = categoryIds;
+        this.routeParams = params ? params : categoryIds;
+        let cid = this.discussionService.getContext(CONTEXT_PROPS.cid);
         // categoryIds = this.discussionService.getContext(CONTEXT_PROPS.cid)
-        categoryIds = this.categoryId ? this.categoryId : categoryIds
+        categoryIds = cid ? cid : categoryIds
         this.getDiscussionList(categoryIds);
       })
       // this.routeParams = params;
