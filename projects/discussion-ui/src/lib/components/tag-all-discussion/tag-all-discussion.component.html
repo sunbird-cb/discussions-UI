@@ -1,11 +1,45 @@
+
+
+
+<!-- <div class="flex flex-1 cursor-pointer margin-fix height-48"  id="start-discussion">
+    <a href="javascript:void(0)" class="flex flex-1 cursor-pointer margin-fix height-48" i18n-aria-label role="link">
+        <div class="flex flex-1 items-center border discuss border-solid discuss-border ws-mat-primary-background-op100 ">
+           
+            <div class="discuss-home text-white flex items-center justify-center cursor-pointer mat-subheading-2">
+                Start discussion
+            </div>
+        </div>
+       
+    </a>
+</div> -->
+
+
 <div class="main-div">
-    <div class="flex flex-1 margin-top-xl">
-        <h2 class="margin-remove-bottom tagtitle" [ngStyle]="getBgColor(tagName)">{{tagName}}</h2>
+    <div class="flex flex-1 tag_header_box">
+        <!-- <h2 class="margin-remove-bottom tagtitle" [ngStyle]="getBgColor(tagName)">{{tagName}}</h2> -->
+        <h2 class="margin-remove-bottom mat-h2">{{tagName}}</h2>
     </div>
     <div>
         <span>&nbsp;</span>
     </div>
-    <div class="flex flex-1 custom">
+
+    <!-- <ng-container>
+        <div class="flex flex-1 flex-row margin-fix tab_margin align-content-between">
+            <div class="flex flex-1 filter max-height-60">
+                <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'recent',
+    ' font-medium':currentFilter !== 'recent'}" mat-button (click)="filter('recent')" role="button">Recent</a>
+                <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'popular',
+    ' font-medium':currentFilter !== 'popular'}" mat-button (click)="filter('popular')" role="button">Popular</a>
+               
+            </div>
+           
+            <div>
+                <button class="df-btn df-start-btn mat-subheading-2 ng-star-inserted" id="start-discussion">Start Discussion</button>
+            </div>
+        </div>
+        
+    </ng-container> -->
+    <div class="flex flex-1 custom margin-top-l">
         <div class="flex flex-1 flex-column margin-fix">
             <!-- <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader> -->
 
