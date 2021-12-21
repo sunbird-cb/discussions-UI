@@ -35,6 +35,11 @@ export class TagAllDiscussionComponent implements OnInit {
   paramsSubscription: Subscription;
   getParams: any;
   cIds: any;
+  currentFilter = 'recent'
+  showLoader = false;
+  discussionList: any[];
+  allTopics: any;
+  showStartDiscussionModal = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -188,5 +193,100 @@ export class TagAllDiscussionComponent implements OnInit {
     const color = this.discussUtils.getContrast();
     return { color, 'background-color': bgColor };
   }
+
+  fillrecent(_page?: any) {
+    this.getRecentData(_page)
+  }
+
+  fillPopular(page?: any) {
+    this.showLoader = true;
+    return this.discussService.fetchPopularD(page).subscribe((response: any) => {
+      this.showLoader = false;
+      this.discussionList = [];
+      _.filter(response.topics, (topic) => {
+        if (topic.user.uid !== 0 && topic.cid !== 1 ) {
+          this.discussionList.push(topic);
+        }
+      });
+      // this.discussionList = _.get(response, 'topics')
+    }, error => {
+      this.showLoader = false;
+      // TODO: Toaster
+      console.log('error fetching topic list', error);
+    });
+  }
+
+  filter(key: string | 'recent' | 'popular') {
+    if (key) {
+      this.currentFilter = key;
+      switch (key) {
+        case 'recent':
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          break;
+        case 'popular':
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillPopular()
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  getContextBasedDiscussion(cid: any) {
+    this.currentFilter === 'recent' ? this.getContextData(cid) : this.getContextData(cid)
+  }
+
+  refreshData(page?: any) {
+    this.currentFilter === 'recent' ? this.getRecentData(page) : this.fillPopular(page)
+  }
+
+
+  getRecentData(page: any) {
+    this.showLoader = true;
+    return this.discussService.fetchRecentD(page).subscribe(
+      (data: any) => {
+        this.showLoader = false;
+        this.discussionList = [];
+        _.filter(data.topics, (topic) => {
+          if (topic.user.uid !== 0 && topic.cid !== 1) {
+            this.discussionList.push(topic);
+          }
+        });
+      }, error => {
+        this.showLoader = false;
+        // TODO: Toaster
+        console.log('error fetching topic list', error);
+      });
+  }
+
+  getContextData(cid: any) {
+    this.showLoader = true;
+    const req = {
+      // request: {
+      cids: cid
+      // }
+    };
+    return this.discussService.getContextBasedDiscussion(req).subscribe(
+      (data: any) => {
+        this.showLoader = false;
+        let result = data.result
+        let res = result.filter((elem) => {
+          return (elem.statusCode !== 404)
+        })
+        this.allTopics = _.map(res, (topic) => topic.topics);
+        this.discussionList = _.flatten(this.allTopics)
+      }, error => {
+        this.showLoader = false;
+        // TODO: Toaster
+        console.log('error fetching topic list', error);
+      });
+  }
+
+
+
+  
+ 
+
+  
 
 }

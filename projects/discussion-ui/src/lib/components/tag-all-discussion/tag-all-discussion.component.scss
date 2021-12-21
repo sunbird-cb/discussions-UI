@@ -13,3 +13,35 @@
 .discuss-card-content {
     z-index: 1!important;
   }
+
+.tag_header_box {
+    width: 100%;
+    height: 180px;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 4px;
+    background-image: url(assets/images/banners/category_header.svg);
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.df-start-btn {
+    outline: 0;
+    border: none;
+    border-radius: 0.25rem;
+    background: #0074b6;
+    color: var(--white);
+    padding: 14px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin:0;
+}
+.filter {
+    height: 48px;
+}
+.filter-option {
+    margin:0;
+    margin-right: 8px;
+}
