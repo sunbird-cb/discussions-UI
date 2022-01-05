@@ -180,7 +180,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   appendResponse(data) {
     this.data = data;
     this.paginationData = _.get(data, 'pagination');
-    this.mainUid = _.get(data, 'loggedInUser.uid');
+    this.mainUid = _.get(data, 'privileges.uid');
     this.categoryId = _.get(data, 'cid');
     this.topicId = _.get(data, 'tid');
   }
