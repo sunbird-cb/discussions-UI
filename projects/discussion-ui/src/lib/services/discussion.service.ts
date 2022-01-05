@@ -52,7 +52,7 @@ export class DiscussionService {
   }
 
   initializeUserDetails(userId) {
-    userId = userId? userId:window.sessionStorage.getItem('dFUserId');
+    userId = userId? userId:sessionStorage.getItem('dFUserId');
     this.userDetails = JSON.parse(sessionStorage.getItem('dFUserDetails'))
     
     this.fetchUserProfile(userId).subscribe(response => {
