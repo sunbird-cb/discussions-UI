@@ -52,9 +52,11 @@ export class DiscussionService {
   }
 
   initializeUserDetails(userId) {
+    userId = userId
+    this.userDetails = JSON.parse(sessionStorage.getItem('dFUserDetails'))
     this.fetchUserProfile(userId).subscribe(response => {
-      console.log('user', response);
       this.userDetails = response;
+      sessionStorage.setItem('dFUserDetails', JSON.stringify(response));
     }, (error) => {
       // TODO: toaster error
       console.log('error fetching user details');
