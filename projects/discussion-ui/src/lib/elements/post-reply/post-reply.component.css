@@ -10,8 +10,8 @@
 }
 
 .text-content{
-    min-height: 108px;
-    max-height: 540px;
+    min-height: 6.75rem;
+    max-height: 33.75rem;
     margin-bottom: 0.875rem;
     background-color: var(--df-field-control-bg);
     border: 0.0625rem solid var(--gray-200);

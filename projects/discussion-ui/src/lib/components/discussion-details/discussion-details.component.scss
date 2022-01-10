@@ -13,7 +13,6 @@
     display: block;
     position: relative;
     padding: 0.875rem 1rem;
-    border-radius: 1rem;
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
@@ -106,8 +105,8 @@
 }
 
 .text-content {
-    min-height: 108px;
-    max-height: 540px;
+    min-height: 6.75rem;
+    max-height: 33.75rem;
     margin-bottom: 0.875rem;
     background-color: var(--df-field-control-bg);
     border: 0.0625rem solid var(--gray-200);
@@ -125,7 +124,7 @@
 .text-content.is-invalid,
 .text-content.is-invalid:hover,
 .text-content.is-invalid:focus {
-    border: 0.0625rem solid #ff6979;
+    border: 0.0625rem solid var(--red-100);
 }
 
 .text-content.is-valid,
@@ -235,7 +234,7 @@
     }
 
     .comments-count {
-        margin-top: 8px;
+        margin-top: 0.5rem;
     }
 
     .post-time {
