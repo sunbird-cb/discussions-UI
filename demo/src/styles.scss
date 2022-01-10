@@ -1,160 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background: var(--df-body-bg);
+}
+
 //themes css
 
 // Joy Theme
 html[layout="joy"] {
-  --df-body-bg: #f3f3e5; // body bg
-  --df-header-bg: #e9e8d9; // df header bg
-  --df-sidebar-menu-active-bg: #e9e8d9; // sidebar active bg
-  --df-modal-content-bg: #e9e8d9; // modal content bg
-  --df-common-bg: #e9e8d9;
-}
+  --primary-hs: 210, 97%; // template primary color // #024f9d
+  --primary: hsl(var(--primary-hs), 31%);  
 
-// Dark Theme
-html[data-theme="Darkmode"] {
-  // Dark Theme color variation
-  --primary: #ffd92a;
-  --primary-0: #fffcee;
-  --primary-100: #fff8db; // default button bg
-  --primary-200: #fffd2a; // divider
-  --primary-250: #f1f1c7;
-  --primary-300: #ffeb2a; // outline, focus fields
-  --primary-400: var(
-    --primary
-  ); // button bg, heading, table titles, links, toggles
-  --primary-600: #ffc72a; // on press
-  --primary-800: #ffb62a; // hover
+  --secondary-hs: 49, 100%; // template primary color // #ffd829
+  --secondary: hsl(var(--secondary-hs), 58%);
 
-  --secondary: #ffd92a;
-  --secondary-200: #ffd92a;
-
-  --df-333:#333; 
-  --df-222:#222;
-
-  --df-body-bg: var(--black); // body bg
-  --df-header-bg: var(--df-333); // df header bg
-  --df-tag-empty-bg: var(--df-333); // tag container
-  --df-filter-bg: var(--df-333); // filter bg
-  --df-form-field-bg: var(--gray-600); // form field bg
-  --df-cancel-btn-bg:#444;
-
-  //sidebar
-  --df-sidebar-menu-text: var(--primary-0);
-  --df-sidebar-menu-active-bg: var(--df-333);
-  --open-btn-bg: var(--white);
-  --open-btn-color: var(--df-333); // hamburger menu
-
-  --df-sidebar-menu-text: var(--gray-300);
-  --df-sidebar-menu-active-text: var(--primary-800);
-  --df-sidebar-menu-bl: var(--primary-800);
-  --df-sidebar-menu-active-bg: var(--gray-800);
-  --open-btn-bg: var(--primary);
-  --open-btn-color: var(--gray-800); // hamburger menu
-  --df-overlay-sidebar-bg: var(--black);
-  --df-overlay-sidebar-bg-menu: #f5f6fa;
-
-  // Text Color
-  --df-text: var(--white);
-  --df-text-primary: var(--primary);
-  --df-btn-default-color: var(--black);
-  --df-field-control-bg: var(--df-222);
-
-  //tabs menu
-  --df-tab-bg: var(--black);
-  --df-tab-text: var(--white);
-  --df-tab-bg-active: var(--primary);
-  --df-tab-text-active: var(--black);
-
-  // Cards
-  --df-card-bg: var(--df-333);
-  --df-category-card-label: var(--df-text);
-  --df-category-card-text: var(--df-text);
-  --df-related-card-bg: var(--df-222);
-
-  //modal
-  --df-modal-content-bg: var(--df-333);
-  --df-modal-field-control-bg: var(--df-222);
-  --df-tag-bg:var(--black);
-  --df-ng-tag-bg: var(--df-222);
-
-  --df-common-bg: var(--df-222);
-  --df-btn-default-color: var(--black);
-
-  .df-btn-primary.active,
-  .df-btn-primary:active,
-  .df-btn-primary:hover,
-  .df-btn-secondary.active,
-  .df-btn-secondary:active,
-  .df-btn-secondary:hover,
-  .df-btn-tertiary.active,
-  .df-btn-tertiary:active,
-  .df-btn-tertiary:hover {
-    color: var(--df-btn-default-color);
-  }
+  --df-common-bg: var(--df-e9e8d9);
+  --df-body-bg: var(--secondary-0); // body bg #f3f3e5
 }
 
 // Green Theme
 html[data-theme="Green"] {
-  --primary: #008a40;
-  --primary-0: #f0faf1;
-  --primary-100: #d5e9d7;
-  --primary-200: #afcab1;
-  --primary-300: #74b48b;
-  --primary-400: var(--primary);
-  --primary-800: #0b8242;
+  --primary-hs: 148, 100%; // template primary color // #008a40
+  --primary: hsl(var(--primary-hs), 27%);
+  --df-common-bg: var(--primary-100);
+  --df-body-bg: var(--primary-0); // body bg
 
-  --df-body-bg: var(--primary); // body bg
-  --df-header-bg: var(--primary-300); // df header bg
-  --df-sidebar-menu-active-bg: var(--primary-200); // sidebar active bg
-  --df-modal-content-bg: var(--primary-300); // modal content bg
-  --df-common-bg: var(--primary-300);
+    img {
+      filter: unset;
+   }
 }
 
 // Orange Theme
 html[data-theme="Orange"] {
-  --primary: #e7800b;
-  --primary-100: #ffe081;
-  --primary-200: #d4a56f;
-  --primary-300: #ffb561;
-  --primary-400: var(--primary);
-  --primary-800: #e77b00;
+  --primary-hs: 32, 91%; // template primary color // #e57f0b
+  --primary: hsl(var(--primary-hs), 47%);
+  --df-common-bg: var(--primary-100);
+  --df-body-bg: var(--primary-0); // body bg 
 
-  --df-body-bg: var(--primary); // body bg
-  --df-header-bg: var(--primary-200); // df header bg
-  --df-sidebar-menu-active-bg: var(--primary-200); // sidebar active bg
-  --df-modal-content-bg: var(--primary-200); // modal content bg
-  --df-common-bg: var(--primary-200);
-}
-
-//dark mode  theme specific classes
-html[data-theme="Darkmode"] {
-  lib-lib-entry .df-header img {
-    filter: unset !important;
-  }
-
-  .df-cancel-btn {
-    &:hover,&:active{
-            color: var(--black);
-            background-color: var(--primary-800);
-    }
-}
-
-  img {
+  .category-card .category-card-main .eye-icon , .bookmark-icon{
     filter: invert(1);
+  }
+}
+
+// Dark Mode
+html[data-mode="Dark"]{
+  // Dark Theme color variation
+  --primary-hs: 49, 100%; // template primary color // #ffd829
+  --primary: hsl(var(--primary-hs), 58%);
+
+  //common variables
+  --df-333: #333;
+  --df-222: #222;
+  --text-color: var(--white);
+  --df-background: var(--df-222);
+  --df-common-bg: var(--df-333);
+
+  //declared variables
+  --df-body-bg: var(--black); // body bg
+  --df-card-bg: var(--black);
+  --df-related-card-bg: var(--black);
+  --df-sidebar-menu-text: var(--gray-300);
+  --df-sidebar-menu-active-bg: var(--gray-800);
+  --df-tab-text: var(--text-color);
+  --df-btn-default-color: var(--black);
+}
+
+//specific classes for dark theme
+html[data-mode="Dark"] {
+  lib-lib-entry {
+    .df-header img {
+      filter: unset !important;
+    }
+
+  .discussion-forum-content .discuss-right-panel {
+      background: var(--df-common-bg);
+      padding: 1rem;
+    }
+
+    .df-cancel-btn:hover,
+    .df-cancel-btn:active {
+        color: var(--black);
+        background-color: var(--primary-800);
+      }
+    
+    img {
+      filter: invert(1);
+    }
   }
 }
 
 //specific classes for joy theme
 html[layout="joy"] {
   lib-lib-entry {
-    .df-header,
+    .df-header{
+      border-radius: 1.5rem;
+    }
+
     .discussion-forum-content .discuss-right-panel {
       border-radius: 1.5rem;
       background: var(--df-common-bg);
-      padding: 1.5rem;
+      padding: 1rem;
     }
 
     .df-btn {
-      border-radius: 1.5rem !important;
+      border-radius: 1.5rem;
       box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
         0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
       border: 0;
@@ -163,6 +120,9 @@ html[layout="joy"] {
     .df-btn-normal {
       height: 2.5rem;
       padding: 0.5rem 1.5rem;
+    }
+    .recent-tabs .tabs-content .tabs-filter .filter-option {
+      border-radius: 0.375rem;
     }
   }
 }
