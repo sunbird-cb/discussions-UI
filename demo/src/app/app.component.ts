@@ -54,9 +54,9 @@ export class AppComponent implements OnInit {
   }
 
   changeMode(){
-    this.dataThemeAttribute = document.documentElement.getAttribute('data-mode');
-    this.dataThemeAttribute = this.dataThemeAttribute === 'Light' ? 'Dark' : 'Light';
-    document.documentElement.setAttribute('data-mode', this.dataThemeAttribute);
+      this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
+      this.dataThemeAttribute = this.dataThemeAttribute === 'Default' ? 'Darkmode' : 'Default';
+      document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
   }
 
   changeLayout() {

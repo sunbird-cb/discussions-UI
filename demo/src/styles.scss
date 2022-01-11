@@ -51,7 +51,7 @@ html[data-theme="Orange"] {
 }
 
 // Dark Mode
-html[data-mode="Dark"]{
+html[data-theme="Darkmode"]{
   // Dark Theme color variation
   --primary-hs: 49, 100%; // template primary color // #ffd829
   --primary: hsl(var(--primary-hs), 58%);
@@ -68,13 +68,13 @@ html[data-mode="Dark"]{
   --df-card-bg: var(--black);
   --df-related-card-bg: var(--black);
   --df-sidebar-menu-text: var(--gray-300);
-  --df-sidebar-menu-active-bg: var(--gray-800);
+  --df-sidebar-menu-active-bg: var(--df-333);
   --df-tab-text: var(--text-color);
   --df-btn-default-color: var(--black);
 }
 
 //specific classes for dark theme
-html[data-mode="Dark"] {
+html[data-theme="Darkmode"] {
   lib-lib-entry {
     .df-header img {
       filter: unset !important;

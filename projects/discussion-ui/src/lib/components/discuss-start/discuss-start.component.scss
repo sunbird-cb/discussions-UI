@@ -5,18 +5,21 @@
   --df-ng-tag-bg: var(--df-background);
 }
 
+#myModal{
+  display: block;
+  opacity: 2!important;
+}
+
 .discussion-start-modal {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: var(--black);
+  background: rgba(0,0,0,.8);
   z-index: 99999;
   opacity: 1;
-  -webkit-transition: opacity 100ms ease-in;
-  -moz-transition: opacity 100ms ease-in;
-  transition: opacity 100ms ease-in;
+  transition: opacity .1s ease-in;
   pointer-events: auto;
 
   .discussion-start-modal-content {
@@ -33,7 +36,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: auto;
-    max-height: calc(100% - 56px);
+    max-height: calc(100% - 156px);
 
     .discussion-start-form {
       .start-form-content {

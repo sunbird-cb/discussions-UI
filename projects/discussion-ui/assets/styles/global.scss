@@ -37,7 +37,7 @@
 
   // secondary colors
   // --secondary: hsl(148, 100%, 27%);
-  --secondary-hs: 148, 100%; // template primary color // #008840
+  --secondary-hs: 148, 100%; //  #008840
   --secondary: hsl(var(--secondary-hs), 27%);
   --secondary-0: hsl(var(--secondary-hs), 94%); // toast bg, label
   --secondary-100: hsl(var(--secondary-hs), 39%); // button bg bg, toast
@@ -46,7 +46,7 @@
 
   // tertiary colors
   // --tertiary: hsl(16, 78%, 53%);
-  --tertiary-hs:16,78%; // template primary color // #e55a28
+  --tertiary-hs:16,78%; //  #e55a28
   --tertiary:hsl(var(--tertiary-hs), 53%);
   --tertiary-0:hsl(var(--tertiary-hs), 92%); // toast bg, label
   --tertiary-100: hsl(var(--tertiary-hs), 56%); // buttong bg, toast
@@ -79,7 +79,6 @@
   --df-tab-bg-active: var(--primary);
   --df-tab-text-active: var(--white);
 }
-
 
 //tabs
 .recent-tabs {
@@ -160,12 +159,17 @@
 }
 
 .df-cancel-btn {
-    background-color: var(--df-cancel-btn-bg);
+    background-color: var(--white);
     color: var(--primary-400);
+    border-color: var(--primary-400);
+    // background-color: var(--df-cancel-btn-bg);
+    // color: var(--primary-400);
     margin: 0 0.5rem;
     &:hover,&:active{
-            color: var(--primary-800);
-            background-color: var(--primary-200);
+      color: var(--primary-800);
+      background-color: var(--primary-100);
+            // color: var(--primary-800);
+            // background-color: var(--primary-200);
     }
 }
 
@@ -179,17 +183,15 @@
 #topic-scroll::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: var(--gray-0);
+  background-color: #ccc;
 }
 
 #topic-scroll::-webkit-scrollbar {
-  width: 4px;
-  background-color: var(--gray-100);
+  width: 8px;
 }
 
 #topic-scroll::-webkit-scrollbar-thumb {
-  background-color: var(--black);
-  border: 2px solid var(--gray-800);
+  background: #808080;
 }
 
 //no data in card
