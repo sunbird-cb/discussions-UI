@@ -99,11 +99,12 @@
                 0 comments</span>
             </div>
           </div>
-        </div>
         <!-- /card content -->
         <!-- post reply -->
         <lib-post-reply (actionEvent)="postReplyHandler($event, post); logTelemetry($event, post)" [mode]="'reply'"
           [showCancel]="false"></lib-post-reply>
+          
+        </div>
       </ng-container>
     <!-- /card end -->
 
