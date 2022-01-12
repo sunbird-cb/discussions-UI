@@ -54,16 +54,6 @@
 			flex-direction: row-reverse;
 			align-items: center;
 			cursor: pointer;
-			.df-alert-close-btn {
-				background-color: #024f9d;
-				border-color: #024f9d;
-				color: #fff;
-                &:hover {
-                    background-color: #002E50;
-                    border: 1px solid transparent;
-                    color: var(--white);
-                }
-			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
-<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
-    class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal"
+<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)" role="link" tabindex="0"
+    class="df-btn df-btn-normal df-btn-primary df-start-btn" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false"
     id="start-discussion">Start Discussion</button>
-<div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" #scrollContainerHeight>
+<div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" id="topic-scroll" #scrollContainerHeight>
     <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
         [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
         [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
@@ -12,7 +12,7 @@
     </div>
 </div>
 <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
-    <div class="discuss-card-content cursor-pointer" id="topic-card" tabindex="0">
+    <div class="no-card-content" id="topic-card" tabindex="0">
         <div class="no-data-label">No Data</div>
         <div>
             <span>&nbsp;</span>
