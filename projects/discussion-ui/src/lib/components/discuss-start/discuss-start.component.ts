@@ -117,7 +117,7 @@ export class DiscussStartComponent implements OnInit {
       });
     } else if (this.categoryId) {
       const req = {
-        cids: this.categoryId
+        cids: Array.isArray(this.categoryId) ? this.categoryId : [this.categoryId]
       };
       this.showSelectCategory = false;
       this.editable = false;
