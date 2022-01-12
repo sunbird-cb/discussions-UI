@@ -1,8 +1,8 @@
 ::ng-deep:root {
   --df-sidebar-menu-text: var(--gray-600);
-  --df-sidebar-menu-active-text: var(--primary-800);
-  --df-sidebar-menu-bl:var(--primary-600);
-  --df-sidebar-menu-active-bg: var(--white);
+  --df-sidebar-menu-active-text: var(--primary);
+  --df-sidebar-menu-bl:var(--primary);
+  --df-sidebar-menu-active-bg: var(--df-common-bg);
   --open-btn-bg: var(--white);
   --open-btn-color: var(--gray-800); // hamburger menu
   --df-overlay-sidebar-bg:var(--black);
@@ -29,7 +29,7 @@
   &:hover {
     background-color: var(--df-sidebar-menu-active-bg);
     font-weight: 700;
-    border-left: 3px solid var(--df-sidebar-menu-bl);
+    border-left: 0.1875rem solid var(--df-sidebar-menu-bl);
     color: var(--df-sidebar-menu-active-text);
     border-bottom: 0px;
   }
@@ -55,10 +55,10 @@
     display: inline;
     border: none;
     cursor: pointer;
-    height: 40px;
-    width: 40px;
-    border-radius: 16px;
-    font-size: 22px;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    font-size: 1.375rem;
     background-color: var(--open-btn-bg);
     box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.1);
     color: var(--open-btn-color);

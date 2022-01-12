@@ -1,5 +1,5 @@
 ::ng-deep:root {
-  --df-header-bg:var(--white);
+  --df-header-bg:var(--df-common-bg);
 }
 
 .df-header {
@@ -41,7 +41,6 @@
     grid-template-columns: 1fr;
   }
 }
-
 
 .ui.container {
   display: block;

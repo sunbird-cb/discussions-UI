@@ -53,10 +53,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  changeTheme() {
-    this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
-    this.dataThemeAttribute = this.dataThemeAttribute === 'default' ? 'darkmode' : 'default';
-    document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
+  changeMode(){
+      this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
+      this.dataThemeAttribute = this.dataThemeAttribute === 'Default' ? 'Darkmode' : 'Default';
+      document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
   }
 
   changeLayout() {
@@ -73,5 +73,23 @@ export class AppComponent implements OnInit {
         userId: 10
       }
     });
+  }
+
+  DefaultTheme(){
+    this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
+    this.dataThemeAttribute = this.dataThemeAttribute === 'Default' ? 'Default' : 'Default';
+    document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
+  }
+
+  GreenTheme(){
+    this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
+    this.dataThemeAttribute = this.dataThemeAttribute === 'Green' ? 'Green' : 'Green';
+    document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
+  }
+
+  OrangeTheme(){
+    this.dataThemeAttribute = document.documentElement.getAttribute('data-theme');
+    this.dataThemeAttribute = this.dataThemeAttribute === 'Orange' ? 'Orange' : 'Orange';
+    document.documentElement.setAttribute('data-theme', this.dataThemeAttribute);
   }
 }

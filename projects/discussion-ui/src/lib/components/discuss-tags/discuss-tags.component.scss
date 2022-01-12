@@ -1,5 +1,5 @@
 ::ng-deep:root{
-	--df-tag-empty-bg:var(--white);
+	--df-tag-empty-bg:var(--df-common-bg);
 }
 
 .sb-search-box {
@@ -24,7 +24,7 @@
 .search-icon {
 	width: 1.125rem;
 	height: 1.125rem;
-	margin: 1rem 0px 1rem 1rem;
+	margin: 1rem 0rem 1rem 1rem;
 }
 
 .sb-search-box .input-div {
@@ -32,7 +32,7 @@
 	background: var(--white);
 	display: flex;
 	align-items: center;
-	border: 1px solid var(--gray-100);
+	border: 0.0625rem solid var(--gray-100);
 	width: 100%;
 }
 
