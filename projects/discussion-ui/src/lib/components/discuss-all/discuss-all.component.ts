@@ -46,6 +46,7 @@ export class DiscussAllComponent implements OnInit {
   data
   startDiscussionCategoryId: any;
   isWidget: boolean;
+  showModerationModal = false
 
   constructor(
     public router: Router,
@@ -61,7 +62,7 @@ export class DiscussAllComponent implements OnInit {
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
     if (this.context) {
-      this.isWidget  = true
+      this.isWidget = true
       this.getForumIds()
     } else {
       this.cIds = this.configService.getCategories().result
@@ -131,8 +132,8 @@ export class DiscussAllComponent implements OnInit {
 
   acceptData(singleTagDetails) {
     // debugger
-    if(this.context){
-    singleTagDetails.cIds =  this.cIds;
+    if (this.context) {
+      singleTagDetails.cIds = this.cIds;
     }
     this.stateChange.emit(singleTagDetails);
   }
@@ -177,7 +178,7 @@ export class DiscussAllComponent implements OnInit {
       this.showLoader = false;
       this.discussionList = [];
       _.filter(response.topics, (topic) => {
-        if (topic.user.uid !== 0 && topic.cid !== 1 ) {
+        if (topic.user.uid !== 0 && topic.cid !== 1) {
           this.discussionList.push(topic);
         }
       });
@@ -297,7 +298,18 @@ export class DiscussAllComponent implements OnInit {
         this.refreshData()
       }
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
+    } else if (_.get(event, 'message') === 'moderation') {
+      if (this.context) {
+        this.getContextBasedDiscussion(this.cIds)
+      } else {
+        this.refreshData()
+      }
+      this.showModerationModal = true
     }
     this.showStartDiscussionModal = false;
+  }
+
+  closeModerationModal(event) {
+    this.showModerationModal = false
   }
 }

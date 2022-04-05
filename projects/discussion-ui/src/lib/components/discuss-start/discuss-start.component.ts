@@ -142,8 +142,12 @@ export class DiscussStartComponent implements OnInit {
       tags: form.value.tags,
     };
     this.discussService.createPost(postCreateReq).subscribe(
-      () => {
-        this.closeModal('success');
+      (data) => {
+        if (data.payload) {
+          this.closeModal('success');
+        }else{
+          this.closeModal('moderation');
+        }
         form.reset();
         this.uploadSaveData = false;
         // success toast;

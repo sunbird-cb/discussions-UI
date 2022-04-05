@@ -13,6 +13,7 @@ import { MyDiscussionComponent } from './my-discussion/my-discussion.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DiscussStartComponent } from './discuss-start/discuss-start.component';
+import {DiscussModerationComponent} from './discuss-moderation/discuss-moderation.component';
 import { TagInputModule } from 'ngx-chips';
 import { DiscussAllComponent } from './discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
@@ -33,6 +34,7 @@ import { LeaderBoardComponent } from './leader-board/leaderboard-component';
     TagAllDiscussionComponent,
     TrendingTagsComponent,
     LeaderBoardComponent,
+    DiscussModerationComponent
   ],
   imports: [
     CommonModule,
