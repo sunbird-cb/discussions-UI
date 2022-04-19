@@ -4,43 +4,43 @@
     /* width: 97.6%;   */
 }
 
+.text-form-label{
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
 .text-content{
-    min-height: 108px;
-    max-height: 540px;
-    /* width: 97.6%;  */
-    border: 1.5px solid #ccc2c2;
-    border-radius: 16px;
+    min-height: 6.75rem;
+    max-height: 33.75rem;
+    margin-bottom: 0.875rem;
+    background-color: var(--df-field-control-bg);
+    border: 0.0625rem solid var(--gray-200);
+    border-radius: 0.1875rem;
+    color: var(--df-text);
+    display: block;
+    font-size: .8125rem;
+    font-family: sans-serif;
+    position: relative;
     cursor: pointer;
-    padding: 16px;
-    outline: none;
+    outline: 0;
+    padding: 0.5rem 0.875rem;
 }
 
 .updatePostActions {
     display: flex;
     justify-content: flex-end;
+    margin-bottom:1rem;
 }
 
-.post-btn,.post-reply-btn{
-    background-color: #0074b6;
-    color: #fff;
-    border: 0;
-    vertical-align: baseline;
-    text-align: center;
-    margin: 0;
-    min-width: 64px;
-    line-height: 36px;
-    padding: 0 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
+.df-update-btn,.df-post-reply-btn{
+    margin: 0.5rem 0;
 }
 
 .cancel-update-post {
     margin-right: 20px;
 }
 
-.sb-btn-disabled {
+.df-btn-disabled {
     background-color: var(--gray-100);
     border: solid var(--gray-100);
 }

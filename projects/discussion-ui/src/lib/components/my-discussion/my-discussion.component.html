@@ -1,91 +1,103 @@
 <lib-app-loader *ngIf="showLoader"></lib-app-loader>
 
-<div class="flex flex-1 flex-column my-discussion">
-  <div class="flex-custom">
-    <div class="profileCard">
-      <div class="profilecard-content">
-        <div class="profile-header-image">
-          <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
-        </div>
-        <div class="flex-1">
-          <div class="profile-label fs-1 name mb-4" [innerHTML]="data?.username"></div>
-          <div class="profile-label fnormal department mb-4">{{department}}</div>
-          <div class="profile-label fnormal location mb-4">{{location}} </div>
-          <div class='profile-label fnormal email mb-4'>{{data?.email || data?.username}}</div>
-          <ng-container>
-            <div class="fnormal mt-16">
-              <div class="flex flex-1 flex-custom-m">
-                <span class="flex mobile ">
-                  <span class="fnormal number">{{data?.topiccount || 0 }}</span>
-                  <span class="fnormal ml-4">Discussions</span>
-                </span>
-                <span class="flex post-count-area mobile">
-                  <span class="fnormal number">{{data?.postcount || 0 }}</span>
-                  <span class="fnormal ml-4">Posts</span>
-                </span>
-              </div>
-              <div class="flex flex-1" class="text-right mobile2">
-                <!-- Enable lated when other user can visit your profile -->
-                <!-- <span class="noocoments" mat-card-subtitle>Last online {{data?.lastonline | pipeRelativeTime}}</span> -->
-              </div>
+<div class="profileCard">
+  <div class="profile-card-content">
+    <div class="profile-header-image">
+      <div class="box-text">
+        <span class="box-label"></span>{{ data?.username | splitInitials }}
+      </div>
+    </div>
+    <div>
+      <div class="profile-label name" [innerHTML]="data?.username"></div>
+      <div class="profile-label department">{{ department }}</div>
+      <div class="profile-label location">{{ location }}</div>
+      <div class="profile-label email">{{ data?.email || data?.username }}</div>
+      <ng-container>
+        <div class="my-discuss-topics">
+          <div class="my-discuss-topics__content">
+            <div class="my-discuss-label">
+              <span class="number">{{ data?.topiccount || 0 }}</span>
+              Discussions
             </div>
-          </ng-container>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ng-container>
-    <div class="recent-tabs pb-8">
-      <div class="tabs-content">
-        <div class="tabs-filter">
-          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'timestamp',
-                              'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
-            (click)="filter('timestamp', true);logTelemetry($event)" id="recent-post">
-            Recent posts </button>
-          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'best',
-                              'ws-mat-accent-border font-medium':currentFilter !== 'best'}"
-            (click)="filter('best', true);logTelemetry($event)" id="best-post">
-            Best posts </button>
-          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'saved',
-                                          'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
-            (click)="filter('saved', true);logTelemetry($event)" id="saved-post">
-            Saved posts </button>
-          <!-- <button role="button" class="filter-option df-filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
-                                            'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
-            (click)="filter('watched')">
-            Watched </button> -->
-          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'upvoted',
-                                              'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
-            (click)="filter('upvoted', true);logTelemetry($event)" id="upvoted-post">
-            Upvoted </button>
-          <button role="button" class="filter-option df-filter-option" [ngClass]="{'tabs-active' : currentFilter === 'downvoted',
-                                                'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
-            (click)="filter('downvoted', true);logTelemetry($event)" id="downvoted-post">
-            Downvoted </button>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-  <div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" #scrollContainerHeight>
-    <!--infinite scroll-->
-    <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
-      [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
-      [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
-      <ng-container *ngFor="let data of discussionList">
-        <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" id="discuss-card">
-          <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+            <div class="post-count-area my-discuss-label">
+              <span class="number">{{ data?.postcount || 0 }}</span>
+              Posts
+            </div>
+          </div>
+          <div class="text-right">
+            <!-- Enable lated when other user can visit your profile -->
+            <!-- <span class="noocoments" mat-card-subtitle>Last online {{data?.lastonline | pipeRelativeTime}}</span> -->
+          </div>
         </div>
       </ng-container>
     </div>
   </div>
-  <lib-app-loader *ngIf="showLoader"></lib-app-loader>
-  <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
-    <div class="discuss-card-content cursor-pointer" tabindex="0">
-      <div class="no-data-label">No Data</div>
-      <div>
-        <span>&nbsp;</span>
+</div>
+
+<ng-container>
+  <div class="recent-tabs">
+    <div class="tabs-content">
+      <div class="tabs-filter">
+        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{
+            'tabs-active': currentFilter === 'timestamp',
+            'ws-mat-accent-border font-medium': currentFilter !== 'timestamp'
+          }" (click)="filter('timestamp', true); logTelemetry($event)" id="recent-post">
+          Recent posts
+        </a>
+        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{
+            'tabs-active': currentFilter === 'best',
+            'ws-mat-accent-border font-medium': currentFilter !== 'best'
+          }" (click)="filter('best', true); logTelemetry($event)" id="best-post">
+          Best posts
+        </a>
+        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{
+            'tabs-active': currentFilter === 'saved',
+            'ws-mat-accent-border font-medium': currentFilter !== 'saved'
+          }" (click)="filter('saved', true); logTelemetry($event)" id="saved-post">
+          Saved posts
+        </a>
+        <!-- <a href="javascript:void(0)" role="link" class="filter-option " [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
+                                            'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
+            (click)="filter('watched')">
+            Watched </a> -->
+        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{
+            'tabs-active': currentFilter === 'upvoted',
+            'ws-mat-accent-border font-medium': currentFilter !== 'upvoted'
+          }" (click)="filter('upvoted', true); logTelemetry($event)" id="upvoted-post">
+          Upvoted
+        </a>
+
+        <a href="javascript:void(0)" role="link" class="filter-option" [ngClass]="{
+            'tabs-active': currentFilter === 'downvoted',
+            'ws-mat-accent-border font-medium': currentFilter !== 'downvoted'
+          }" (click)="filter('downvoted', true); logTelemetry($event)" id="downvoted-post">
+          Downvoted
+        </a>
       </div>
     </div>
-  </ng-container>
+  </div>
+</ng-container>
+
+<div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" id="topic-scroll"
+  #scrollContainerHeight>
+  <!--infinite scroll-->
+  <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
+    [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
+    [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
+    <ng-container *ngFor="let data of discussionList">
+      <div (click)="navigateToDiscussionDetails(data); logTelemetry($event)" id="discuss-card">
+        <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+      </div>
+    </ng-container>
+  </div>
 </div>
+
+<lib-app-loader *ngIf="showLoader"></lib-app-loader>
+<ng-container *ngIf="!(discussionList && discussionList.length > 0)">
+  <div class="no-card-content" tabindex="0">
+    <div class="no-data-label">No Data</div>
+    <div>
+      <span>&nbsp;</span>
+    </div>
+  </div>
+</ng-container>

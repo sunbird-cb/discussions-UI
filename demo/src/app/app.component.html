@@ -1,0 +1,10 @@
+<div class="change-theme">
+    <button class='df-btn df-btn-normal testing-buttons' (click)='navigate()'> Navigate </button>
+    <button class='df-btn df-btn-normal testing-buttons' (click)='changeMode()'>Light/Dark mode</button>
+    <button class='df-btn df-btn-normal testing-buttons' (click)='changeLayout()' #layoutToggle>Old/Joy</button>
+    <button class='df-btn  df-btn-normal testing-buttons' (click)='DefaultTheme()' #darkThemeToggle>Default</button>
+    <button class='df-btn  df-btn-normal testing-buttons' (click)='GreenTheme()'>Green</button>
+    <button class='df-btn  df-btn-normal testing-buttons' (click)='OrangeTheme()'>Orange</button>
+</div>
+
+<router-outlet></router-outlet>

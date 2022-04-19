@@ -17,8 +17,8 @@
 		max-width: 30rem;
 		width: 100%;
 		margin: 0 auto;
-		border-radius: 3px;
-		background: #fff;
+		border-radius: 0.1875rem;
+		background: var(--white);
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -26,18 +26,18 @@
 		overflow: auto;
 		height: auto;
 		.df-alert-modal-header {
-			background-color: #024f9d;
+			background-color: var(--primary);
 			color: var(--white);
 			font-weight: 700;
 			font-size: 1rem;
 			padding: .5rem 1rem;
-			border-bottom: 0 solid #cccccc;
+			border-bottom: 0 solid var(--gray-100);
 			min-height: 2.5rem;
 			line-height: 1.5rem;
 		}
 		.df-alert-modal-content {
 			padding: 1rem;
-			min-height: 60px;
+			min-height: 3.75rem;
 			.df-alert-label {
 				display: inline-block;
 				margin-bottom: 0;
@@ -47,23 +47,13 @@
 		}
 		.df-alert-modal-buttons {
 			padding: .5rem 1rem;
-			background: #fff;
-			border-top: .0625rem solid #ccc;
+			background: var(--white);
+			border-top: .0625rem solid var(--gray-100);
 			min-height: 3.5rem;
 			display: flex;
 			flex-direction: row-reverse;
 			align-items: center;
 			cursor: pointer;
-			.df-alert-close-btn {
-				background-color: #024f9d;
-				border-color: #024f9d;
-				color: #fff;
-                &:hover {
-                    background-color: #002E50;
-                    border: 1px solid transparent;
-                    color: var(--white);
-                }
-			}
 		}
 	}
 }

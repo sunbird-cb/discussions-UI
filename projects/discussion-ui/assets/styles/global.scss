@@ -1,95 +1,148 @@
 
 :root {
-    font-size: 16px;
-   // base colors
-    --blue: #024f9d;
-    --yellow: #ffc107;
-    --black: #000000;
-    --white: #ffffff;
+  font-size: 16px;
+  // Base Theme color
+  --blue: #024f9d;
+  --green: #008840;
+  --black: #000000;
+  --white: #ffffff;
+  --red:#ff4558;
+
+  // Base Theme color variations
+  --primary: var(--blue);
+  --secondary: #008840;
+  --tertiary: #e55a28;
+
+  // gray colors shades
+  --gray-hs: 0, 0%;
+  --gray: hsl(var(--gray-hs), 20%);
+  --gray-0: hsl(var(--gray-hs), 95%); // place holder active bg #F2F2F2
+  --gray-100: hsl(var(--gray-hs), 80%); // disable btn bg, icon color #CCCCCC
+  --gray-200: hsl(var(--gray-hs), 60%); // disable text, place holder text #999999
+  --gray-300: hsl(var(--gray-hs), 59%); // sub heading 2 #969696
+  --gray-400: hsl(var(--gray-hs), 40%); // sub heading #666666
+  --gray-800: var(--gray); // text color #333333
+
+  // primary colors
+  --primary-hs: 210, 97%; // template primary color // #024f9d
+  --primary: hsl(var(--primary-hs), 31%);
+  --primary-0: hsl(var(--primary-hs), 98%);
+  --primary-100: hsl(var(--primary-hs), 88%);
+  --primary-200: hsl(var(--primary-hs), 78%);
+  --primary-250: hsl(var(--primary-hs), 73%);
+  --primary-300: hsl(var(--primary-hs), 68%);
+  --primary-400: var(--primary);
+  --primary-600: hsl(var(--primary), 48%);
+  --primary-800: hsl(var(--primary-hs), 38%);
+
+  // secondary colors
+  // --secondary: hsl(148, 100%, 27%);
+  --secondary-hs: 148, 100%; //  #008840
+  --secondary: hsl(var(--secondary-hs), 27%);
+  --secondary-0: hsl(var(--secondary-hs), 94%); // toast bg, label
+  --secondary-100: hsl(var(--secondary-hs), 39%); // button bg bg, toast
+  --secondary-200: hsl(var(--secondary-hs), 38%); // button bg
+  --secondary-400: var(--secondary); // hover
+
+  // tertiary colors
+  // --tertiary: hsl(16, 78%, 53%);
+  --tertiary-hs:16,78%; //  #e55a28
+  --tertiary:hsl(var(--tertiary-hs), 53%);
+  --tertiary-0:hsl(var(--tertiary-hs), 92%); // toast bg, label
+  --tertiary-100: hsl(var(--tertiary-hs), 56%); // buttong bg, toast
+  --tertiary-400: var(--tertiary); // icon, label, notification bg
+
+  // red colors
+  --red-0: #fbccd1; // toast bg
+  --red-100: #ff6979; // buttong bg, toast
+  --red-400: var(--red); // icon color, lable, notification
+
+  // common variables
+  --df-e9e8d9:#e9e8d9;
+  --df-333:#333;
+  --text-color:var(--df-333);
+  --df-background:var(--white);
+  --df-common-bg:var(--white);
+
+  //default variables declared
+  --df-body-bg: var(--primary-0); // body bg
+  --df-theme-bg: var(--df-background);
+  --df-text: var(--text-color);;
+  --df-card-bg: var(--df-background);
+  --df-btn-default-color: var(--white);
+  --df-field-control-bg: var(--df-background);
+  --df-cancel-btn-bg:var(--df-background);
+
+  //tabs
+  --df-tab-bg: var(--df-background);
+  --df-tab-text: var(--primary);
+  --df-tab-bg-active: var(--primary);
+  --df-tab-text-active: var(--white);
 }
 
-.recent-tabs{
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
-    display: block;
-    position: relative;
-    box-shadow: none!important;
-    border-radius: unset;
-    background: inherit!important; 
-    z-index: unset;
-}
-.tabs-content{
+//tabs
+.recent-tabs {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  box-shadow: none !important;
+  border-radius: unset;
+  background: inherit !important;
+  z-index: unset;
+  padding-bottom: 0.5rem;
+
+  .tabs-content {
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
-}
-.tabs-filter{
-    display: flex;
-    flex: 1 1 0%;
-    flex-wrap: wrap;
-}
-.filter-option{
-    margin: 0.5rem;
-    text-decoration: none;
-    border: 1px solid var(--gray-400);
-    border-width: 0 0 0.125rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    outline: 0;
-    display: inline-block;
-    white-space: nowrap;
-    text-decoration: none;
-    vertical-align: baseline;
-    text-align: center;
-    padding: 0.5rem;
-    overflow: visible;
-    font-size: 0.875rem;
-    color: var(--black);
-}
-.filter-option:first-child {
-    margin-left: 0;
-}
-.filter-option:hover,.tabs-active {
-    border-bottom: 0.1875rem solid var(--blue);
-    font-weight: 700;
-    text-decoration: none;
-}
 
-.discuss-card-content{
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-    background: var(--white);
-    color: var(--black);
-    flex: 1;
-    height: auto;
-    margin-bottom: 1rem;
-    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
-    display: block;
-    position: relative;
-    padding: 1rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    z-index: 2;
-    word-break: break-all;
-    @media (max-width: 768px) {
-        z-index: unset; 
+    .tabs-filter {
+      display: flex;
+      flex: 1 1 0%;
+      flex-wrap: wrap;
+
+      .filter-option {
+        background: var(--df-tab-bg);
+        padding: 0.5rem 1rem;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+          0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+        font-size: 0.875rem;
+        font-weight: 700;
+        margin-right: 0.75rem;
+        margin-top: 0.5rem;
+        transition: all ease 0.3s;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        white-space: nowrap;
+        text-decoration: none;
+        color: var(--df-tab-text);
+        &:first-child {
+          margin-left: 0;
+        }
+        &:hover,
+        &.tabs-active {
+          color: var(--df-btn-default-color);
+          text-decoration: none;
+          background-color: var(--df-tab-bg-active);
+        }
+      }
     }
+  }
 }
 
-.tags{
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    flex-wrap: wrap; 
-    position: relative;
-    z-index: 2;
-    @media (max-width: 768px) {
-        z-index: unset; 
-    }
-}
-
-.tag {
+//tags
+.tags {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  @media (max-width: 768px) {
+    z-index: unset;
+  }
+  .tag {
     font-size: 0.75rem;
     display: flex;
     width: auto;
@@ -102,73 +155,129 @@
     padding: 0.5rem 1rem;
     border-radius: 1.5rem;
     cursor: pointer;
-}
-
-.count {
-    height: auto;
-    background: var(--white);
-    border-radius: 0.25rem;
-    padding: 0.0625rem 0.1875rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    min-width: 1rem;
-    margin: 0 0 0 1rem;
-    color: var(--blue);
-}
-
-@media (max-width: 768px) {
-    .discuss-card-content{
-        width: auto;
-    }
-}
-
-.df-btn{
-    height: 2rem;
-}
-
-.df-reply-btn,.df-cancel-btn{
-    background: var(--white);
-    padding: .5rem 1rem;
-    font-size: .75rem;
-    border: 1px solid var(--blue);
-    color: var(--blue);
-    border-radius: 0.25rem;
-  }
-
-  .ui.container {
-    display: block;
-    max-width: 100%!important;
-}
-  @media only screen and (max-width: 767px){
-  .ui.container {
-    width: auto!important;
-    margin-left: 1em!important;
-    margin-right: 1em!important;
   }
 }
 
-@media only screen and (max-width: 1199px) and (min-width: 768px){
-    .ui.container {
-        width: 90%;
-        margin-left: auto !important;
-        margin-right: auto !important;
+.df-cancel-btn {
+    background-color: var(--white);
+    color: var(--primary-400);
+    border-color: var(--primary-400);
+    // background-color: var(--df-cancel-btn-bg);
+    // color: var(--primary-400);
+    margin: 0 0.5rem;
+    &:hover,&:active{
+      color: var(--primary-800);
+      background-color: var(--primary-100);
+            // color: var(--primary-800);
+            // background-color: var(--primary-200);
     }
 }
 
-// rtl css
-
-html[dir='rtl'] .related-discuss-part{
-    padding: 0 1.5rem 1rem 0;  
+//scroll css
+.topic-list-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 150px) !important;
 }
 
-html[dir='rtl'] .df-back-btn img {
-    margin-right: inherit;
-    margin-left: 0.25rem;
+#topic-scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ccc;
 }
 
-html[dir='rtl'] .df-close-btn img {
-    margin-left: inherit;
-    margin-right: 0.25rem;
+#topic-scroll::-webkit-scrollbar {
+  width: 8px;
 }
+
+#topic-scroll::-webkit-scrollbar-thumb {
+  background: #808080;
+}
+
+//no data in card
+.no-card-content {
+  cursor: pointer;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  background: var(--df-card-bg);
+  color: var(--df-text);
+  flex: 1;
+  height: auto;
+  margin-bottom: 0;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  width: auto;
+  .no-data-label {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+}
+
+//button css
+.df-btn {
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: 0;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+  min-width: 4rem;
+  border-radius: 0.125rem;
+  position: relative;
+  line-height: 1;
+  text-transform: inherit;
+  text-decoration: none;
+}
+
+.df-btn-normal {
+  height: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.df-btn-primary {
+  background-color: var(--primary-400);
+}
+
+.df-btn-secondary {
+  background-color: var(--secondary-200);
+}
+
+.df-btn-tertiary {
+  background-color: var(--tertiary-100);
+}
+
+.df-btn-danger {
+  background-color: var(--red-100);
+  &:hover{
+      background-color: var(--red-400);
+  }
+}
+
+.df-btn-primary,.df-btn-secondary,.df-btn-tertiary,.df-btn-danger{
+  color: var(--df-btn-default-color);
+}
+
+.df-btn-primary.active,
+.df-btn-primary:active,
+.df-btn-primary:hover {
+  background-color: var(--primary-800);
+}
+
+.df-btn-secondary.active,
+.df-btn-secondary:active,
+.df-btn-secondary:hover {
+  background-color: var(--secondary-400);
+}
+
+.df-btn-tertiary.active,
+.df-btn-tertiary:active,
+.df-btn-tertiary:hover {
+  background-color: var(--tertiary-400);
+}
+
+
