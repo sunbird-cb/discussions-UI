@@ -12,7 +12,7 @@ export class DiscussCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('discussionData', this.discussionData);
+    console.log('discussionData', this.discussionData + '-------------');
   }
 
   public getBgColor(tagTitle: any) {

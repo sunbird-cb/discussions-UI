@@ -1,28 +1,34 @@
 @import '../../../../assets/styles/global.scss';
 
-.tag {
-  display: flex;
-  width: 276px;
-  height: 32px;
-  border-radius: 4px;
-  justify-content: space-between;
-  // margin: $size-m 0;
-  margin:10px 0;
-  // background-color: red;
-  align-items: center;
-  box-sizing: border-box;
+// .tag {
+//   display: flex;
+//   width: 276px;
+//   height: 32px;
+//   border-radius: 4px;
+//   justify-content: space-between;
+//   // margin: $size-m 0;
+//   margin:10px 0;
+//   // background-color: red;
+//   align-items: center;
+//   box-sizing: border-box;
 
-  // @include breakpoint-xs {
-  //   width: auto;
+//   // @include breakpoint-xs {
+//   //   width: auto;
 
-  // }
+//   // }
 
-  // @include breakpoint-s {
-  //   width: auto;
+//   // @include breakpoint-s {
+//   //   width: auto;
 
-  // }
+//   // }
+// }
+
+
+  .tag_title_box {
+    width: 100%;
+    display: block;
+
 }
-
 .custom-margin {
   margin-top: auto !important;
   margin-bottom: auto !important;

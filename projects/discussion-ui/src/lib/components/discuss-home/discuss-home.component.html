@@ -1,16 +1,37 @@
-<button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
-    class="sb-btn sb-btn-primary sb-btn-normal mb-16" data-toggle="modal" data-target="#myModal"
-    id="start-discussion">Start Discussion</button>
-<div *ngIf="discussionList && discussionList.length > 0" class="topic-list-container" #scrollContainerHeight>
-    <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
-        [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
-        [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
-        <div *ngFor="let discussionData of discussionList"
-            (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" id="topic-card">
-            <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+<div class="category_inner_box flex flex-row">
+    <div class="flex flex-3 flex-column category_main_box">
+        <div class="flex flex-1 flex-row margin-bottom-l border category_title_div justify-between">
+            <div class="flex">
+                <div class="main_title_box flex flex-row">
+                    <img alt="Buffer-image" class="margin-right-m category_img" src="./assets/discussion-ui/images/Buffer-512.svg">
+                    <h2 class="cursor-pointer f-medium">Announcements</h2>
+                </div>
+            </div>
+            <div class="start_discussion_box">
+                <button *ngIf="isTopicCreator" (click)="startDiscussion();logTelemetry($event)"
+                    class="sb-btn sb-btn-primary sb-btn-normal df-start-btn" data-toggle="modal" data-target="#myModal"
+                    id="start-discussion">Start Discussion</button>
+            </div>
+        </div>
+
+        <div *ngIf="discussionList && discussionList.length > 0" class="" #scrollContainerHeight>
+            <div [infiniteScrollContainer]="'.topic-list-container'" infinite-scroll class="infinite-scroll"
+                [scrollWindow]="false" [infiniteScrollDistance]="InfiniteScrollConfig.modalScrollDistance" [fromRoot]="true"
+                [infiniteScrollThrottle]="InfiniteScrollConfig.modalScrollThrottle" (scrolled)="onModalScrollDown()">
+                <div *ngFor="let discussionData of discussionList"
+                    (click)="navigateToDiscussionDetails(discussionData);logTelemetry($event)" id="topic-card">
+                    <lib-discuss-card [discussionData]="discussionData"></lib-discuss-card>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="flex flex-1 right_tag_box margin-left-xl">
+        <p class="mat-subheading-2">Trending tags</p>
+    </div>
 </div>
+
+
+
 <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
     <div class="discuss-card-content cursor-pointer" id="topic-card" tabindex="0">
         <div class="no-data-label">No Data</div>

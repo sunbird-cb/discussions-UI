@@ -29,6 +29,16 @@
     word-break: break-all;
 }
 
+.category_img {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.category-name {
+    display: inline-block;
+}
+
 .related-discuss-card-description {
 	display: flex;
     -webkit-box-align: center;

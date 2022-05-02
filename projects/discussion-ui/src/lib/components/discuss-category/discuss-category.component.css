@@ -1,6 +1,7 @@
 .discuss-category-cards{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(292px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, minmax(475px, 1fr));
     grid-gap: 24px;
     margin-bottom: 24px;
     cursor: pointer;

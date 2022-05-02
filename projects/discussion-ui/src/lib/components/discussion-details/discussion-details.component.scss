@@ -13,7 +13,7 @@
     display: block;
     position: relative;
     padding: 0.875rem 1rem;
-    border-radius: 1rem;
+    border-radius: 0.25rem;
     justify-content: space-between;
     z-index: unset;
     margin-bottom: 1rem;
@@ -62,18 +62,25 @@
 }
 
 .circle-text {
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
     justify-content: center;
     align-items: center;
-    background-color: rgb(48, 105, 51);
+    background-color: #306933;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    line-height: 25px;
+    font-size: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
 }
 
 .circle-label {
     color: var(--white);
-    font-size: 17px;
+    font-size: 10px;
     line-height: 12px;
     letter-spacing: .2625px;
     text-transform: uppercase;
@@ -171,7 +178,7 @@
 
 .post-card,
 .post-reply-card {
-    border-bottom: 1px solid #ddd;
+    // border-bottom: 1px solid #ddd;
     margin-bottom: 1rem;
 }
 
@@ -227,7 +234,7 @@
 }
 
 .comments-count {
-    color: #0074b6;
+    // color: #0074b6;
     font-weight: 700;
 }
 

@@ -18,6 +18,7 @@ import { NavigationServiceService } from '../../navigation-service.service';
 })
 export class DiscussHomeComponent implements OnInit {
   @Input() categoryId;
+  @Input() context: any
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
@@ -30,6 +31,8 @@ export class DiscussHomeComponent implements OnInit {
   showLoader = false;
   currentActivePage: number = 1;
   pagination = Object.create({});
+  // trendingTags!: NSDiscussData.ITag[];
+  // cIds: any = [];
 
   // Input parameters for infinite scroll
   InfiniteScrollConfig = {
@@ -68,6 +71,7 @@ export class DiscussHomeComponent implements OnInit {
       this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
+
   }
 
   /**
@@ -79,6 +83,10 @@ export class DiscussHomeComponent implements OnInit {
       this.elementView.nativeElement.style.height = (this.elementView.nativeElement.clientHeight - 10) + 'px';
     }
   }
+
+
+  
+
 
   navigateToDiscussionDetails(discussionData) {
     const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });

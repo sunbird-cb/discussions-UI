@@ -5,9 +5,13 @@
             class="related-discuss-card-content discuss-user-label" (click)="getDiscussion(discussion)"
             [innerHTML]="discussion?.title">
         </label>
-        <div class="related-discuss-card-description mt-8">
-            <div class="category-name" [innerHTML]="discussion.category.name"></div>
-            <div class="separator-dot mx-8"></div>
+        <div class="related-discuss-card-description mt-3">
+            <div class="category_text">
+                <img alt="Buffer-image" class="margin-right-xs category_img" src="./assets/discussion-ui/images/Buffer-512.svg">
+                <div class="category-name category-name ws-mat-default-text" [innerHTML]="discussion.category.name"></div>
+            </div>
+            
+            <div class="separator-dot mx-2"></div>
             <div class="time">{{ discussion.timestamp | pipeRelativeTime }}</div>
         </div>
     </div>

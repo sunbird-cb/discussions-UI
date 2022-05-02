@@ -2,3 +2,22 @@
   overflow-y: scroll;
   min-height: 250px;
 }
+.category_main_box {
+  width: 685px;
+}
+.category_title_div {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 4px;
+  background-image: url(assets/images/banners/category_header.svg);
+  background-position: center;
+  background-size: cover;
+}
+.category_img {
+  height: 48px;
+  width: 48px;
+}
+.right_tag_box {
+  width: 275px;
+}
+

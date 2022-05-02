@@ -2,13 +2,16 @@
 <div class="flex flex-1 margin-top-m flex-column discussion-tag-content">
   <ng-container *ngIf="filteredTags && filteredTags.length > 0">
     <div class="tags">
-      <div *ngFor="let tag of filteredTags " class="tag" [ngStyle]="getBgColor(tag.value)"
-        (click)="getAllDiscussions(tag)">
+      <!-- <div *ngFor="let tag of filteredTags " class="tag" [ngStyle]="getBgColor(tag.value)"
+        (click)="getAllDiscussions(tag)"> -->
+
+        <div *ngFor="let tag of filteredTags " class="tag" (click)="getAllDiscussions(tag)">
+
         <!-- Can enable random colors from below commented code -->
         <!-- <div *ngFor="let tag of filteredTags | pipeFilter:'score,value':query"
         class="tag text-capitalize" [ngStyle]="getBgColor(tag.value)"> -->
-        <span class="margin-left-m">{{tag.value}}</span>
-        <span class="ws-mat-default-text count">{{tag.score}}</span>
+        <span class="margin-left-s">{{tag.value}}</span>
+        <span class="ws-mat-black-text count">{{tag.score}}</span>
       </div>
     </div>
   </ng-container>

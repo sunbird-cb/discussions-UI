@@ -33,6 +33,10 @@
     }
 }
 
+.mat-sidenav-content {
+    overflow-x: hidden!important;
+}
+
 .discuss-card-comments{
   display: flex;
   justify-content: space-between;
@@ -48,6 +52,42 @@ word-break: break-word;
     display: -webkit-box;
     font-weight: 700;
     font-size: 14px;
+}
+
+.discuss_main_text_box {
+    white-space: inherit;
+    word-break: break-all;
+}
+// .user_name_div {
+
+// }
+.discuss-card-header .user_name_div .circle-text {
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    background-color: #306933;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    line-height: 25px;
+    font-size: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+.discuss-card-header .user_name_div .post_user_text_box {
+    // margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 42px);
+    // font: 400 14px/21px Lato;
+    // color: rgba(0,0,0,.6)!important;
+    text-transform: capitalize;
+}
+.icon_img {
+    vertical-align: middle;
 }
 
 .dot {

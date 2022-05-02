@@ -39,8 +39,12 @@
     }
 }
 
+.main_discuss_lib {
+    overflow-x: hidden;
+}
+
 .discussion-forum {
-    width: 100%;
+    width: 98%;
     min-height: 100vh;
     position: relative;
     z-index: unset;
@@ -53,7 +57,7 @@
 
     .discussion-forum-content {
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: auto 1fr;
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
@@ -63,6 +67,8 @@
             padding: 1.5rem 0;
             position: relative;
             z-index: 2;
+            width: 175px;
+            box-sizing: border-box;
 
             @media (max-width: 768px) {
                 padding: 0 0 1rem 0;
@@ -71,7 +77,9 @@
         }
 
         .discuss-right-panel {
-            padding: 1.5rem;
+            padding: 1.5rem 0;
+            width: 99%;
+            box-sizing: border-box;
 
             @media (max-width: 768px) {
                 padding: 0px 0px 3rem 0px;

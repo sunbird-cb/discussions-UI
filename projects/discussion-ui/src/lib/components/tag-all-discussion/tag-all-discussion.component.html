@@ -1,11 +1,11 @@
 <div class="main-div">
-    <div class="flex flex-1 margin-top-xl">
-        <h2 class="margin-remove-bottom tagtitle" [ngStyle]="getBgColor(tagName)">{{tagName}}</h2>
+    <div class="flex flex-1 tag_header_box">
+        <h2 class="margin-remove-bottom mat-h2">{{tagName}}</h2>
     </div>
-    <div>
+    <!-- <div>
         <span>&nbsp;</span>
-    </div>
-    <div class="flex flex-1 custom">
+    </div> -->
+    <div class="flex flex-1 custom margin-top-xl">
         <div class="flex flex-1 flex-column margin-fix">
             <lib-app-loader *ngIf="fetchSingleCategoryLoader"></lib-app-loader>
 
