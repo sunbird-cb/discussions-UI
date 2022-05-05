@@ -26,7 +26,7 @@
     height: 135px;
     border: 1px solid #ddd;
     margin-right: 24px;
-    background: green;
+    background: var(--green);
     text-align: center;
 }
 .profile-label{
@@ -39,6 +39,17 @@
 }
 .number{
     color: #0074b6;   
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    width: calc(100% - 180px);
+}
+.info-top-box{
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 

@@ -1,13 +1,17 @@
 
 :root {
-    font-size: 16px;
+    font-size: 1rem;
    // base colors
     --blue: #024f9d;
     --yellow: #ffc107;
     --black: #000000;
     --white: #ffffff;
+    --green: #008840;
     --tag-color: #ECECEC;
     --count-color: RGBA(246, 153, 83, 0.2);
+    --gray-100: #CCCCCC;
+    --gray-200: #999999;
+    --gray-800: #333333;
 }
 
 .recent-tabs{

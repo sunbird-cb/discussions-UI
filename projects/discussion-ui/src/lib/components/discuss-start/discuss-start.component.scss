@@ -16,7 +16,7 @@
 		max-width: 800px;
 		width: 90%;
 		position: relative;
-		margin: 0 auto;
+		margin: 2rem auto 0 auto;
 		padding: 24px;
 		border-radius: 3px;
 		background: #fff;
@@ -26,6 +26,7 @@
 		transform: translate(-50%, -50%);
 		overflow: auto;
 		max-height: calc(100% - 56px);
+		box-sizing: border-box;
 
 		.discussion-start-form {
 			.start-form-label {
@@ -39,13 +40,13 @@
 				position: relative;
 				margin-bottom: 0.5rem;
 
-				.select-category{
-					margin: 0 0.5rem;
-				}
+				// .select-category{
+				// 	// margin: 0 0.5rem;
+				// }
 
 				.start-form-field-control {
 					background-color: var(--white);
-					border: 0.0625rem solid var(--gray-200);
+					border: 1px solid var(--gray-200);
 					border-radius: 0.1875rem;
 					color: var(--gray-800);
 					display: block;
@@ -56,7 +57,8 @@
 					min-height: 2rem;
 					cursor: pointer;
 					outline:none;
-					padding: 0 0.875rem;
+					padding: .75rem .75rem;
+					box-sizing: border-box;
 					&:focus,.active{
 						border-color: var(--primary-400) !important;
 					}
@@ -74,6 +76,7 @@
 
 			.start-modal-buttons {
 				float: right;
+				display: flex;
 
 				.start-common-btn {
 					box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -103,9 +106,9 @@
 					cursor: pointer;
 				}
 
-				.df-btn-disabled {
-					background-color: var(--gray-100);
-				}
+				// .df-btn-disabled {
+				// 	// background-color: var(--gray-100);
+				// }
 			}
 
 		}
@@ -118,7 +121,9 @@
 }
 
 ::ng-deep.ng2-tag-input{
-	border: .0625rem solid var(--gray-200) !important;
+	// border: 1px solid var(--gray-200) !important;
+	border: 1px solid var(--gray-200)!important;
+	// border: 1px solid var(--gray-200);
 	border-radius: .1875rem; 
 	color: var(--gray-800) !important;
 	display: block;
@@ -131,4 +136,43 @@
 }
 .ng2-tag-input.active {
 	border-color: var(--primary-400) !important;
+}
+
+select.post_form_select {
+    padding: 0.75rem 0.75rem;
+    border-radius: 0.25rem;
+    font: 400 16px/24px Lato;
+    background-color: #f0f0f0;
+    width: 100%;
+}
+.top_form_field_box {
+	width: 100%;
+}
+.select_form_field_box {
+    width: 250px;
+    display: inline-block;
+}
+.df-discard-btn {
+    outline: 0;
+    font-weight: 700;
+    border: 1px solid!important;
+    border-radius: 0.25rem;
+    background: var(--white);
+    color: var(--blue);
+    padding: 0.5rem 0.75rem;
+    font-size: .75rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+ .textarea_box{
+    width: 100%;
+    max-width: 100%;
+    // border: 1px solid #70707069;
+    outline: 0;
+    // border-radius: 4px;
+    color: var(--gray-800)!important;
+    font: 400 16px/24px Lato;
 }

@@ -7,21 +7,26 @@
         <div class="profile-header-image">
           <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
         </div>
-        <div class="flex-1">
+        <div class="flex-1 info">
+          <div class="info-top-box flex justify-between">
+            <div class="user_info_box">
+
+            </div>
+          </div>
           <div class="profile-label fs-1 name mb-4" [innerHTML]="data?.username"></div>
-          <div class="profile-label fnormal department mb-4">{{department}}</div>
-          <div class="profile-label fnormal location mb-4">{{location}} </div>
-          <div class='profile-label fnormal email mb-4'>{{data?.email || data?.username}}</div>
+          <div class="profile-label fnormal department mb-4 mat-body-2">{{department}}</div>
+          <div class="profile-label fnormal location mb-4 mat-body-2 ws-mat-black60-text">{{location}} </div>
+          <div class="profile-label fnormal email mb-4">{{data?.email || data?.username}}</div>
           <ng-container>
             <div class="fnormal mt-16">
               <div class="flex flex-1 flex-custom-m">
                 <span class="flex mobile ">
-                  <span class="fnormal number">{{data?.topiccount || 0 }}</span>
-                  <span class="fnormal ml-4">Discussions</span>
+                  <span class="mat-h3 number">{{data?.topiccount || 0 }}</span>
+                  <span class="mat-h3 ml-4 ">Discussions</span>
                 </span>
                 <span class="flex post-count-area mobile">
-                  <span class="fnormal number">{{data?.postcount || 0 }}</span>
-                  <span class="fnormal ml-4">Posts</span>
+                  <span class="mat-h3 number">{{data?.postcount || 0 }}</span>
+                  <span class="mat-h3 ml-4">Posts</span>
                 </span>
               </div>
               <div class="flex flex-1" class="text-right mobile2">

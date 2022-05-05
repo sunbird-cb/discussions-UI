@@ -221,7 +221,7 @@
             <div class="flex flex-1 custom margin-0 margin-top-xl">
               <div class="width-expand flex align-center">
                 <div class="ml-2 flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle" tabindex="0">
-                  <span class="cursor-pointer fnormal font-weight-bold"> {{post?.replies?.count}} reply(s) </span>
+                  <span class="cursor-pointer mat-body-2"> {{post?.replies?.count}} reply(s) </span>
                   <div class="flex align-center" *ngIf="post?.replyCountToggle" i18n-aria-label
                     role="link" tabindex="0" aria-label="reply toggle">
                     <span class="pl-2 pr-1 sm:pr-2 cursor-pointer" *ngIf="post?.replyCountToggle"
@@ -240,8 +240,8 @@
                   </div>
                 </div>
               </div>
-              <div class="my-24 fnormal">
-                <span *ngIf="!post.replyCountToggle">Last reply
+              <div class="my-4 fnormal">
+                <span *ngIf="!post.replyCountToggle" class="mat-subheading-2 ws-mat-black60-text">Last reply
                   {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
               </div>
             </div>
@@ -281,13 +281,13 @@
       <!-- card -->
       <div class="post-sub-card border-0">
         <!-- card-header -->
-        <div class="my-16 comment-section align-center">
+        <div class="my-4 comment-section align-center">
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
             <span class="margin-left-s capitalize f-medium width-expand post-name" *ngIf="post?.user?.fullname"
               [innerHTML]="post?.user?.fullname"></span>
-            <span class="df-label-color post-name" *ngIf="!post?.user?.fullname"
+            <span class="discussion-labels ml-2" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
           </div>
           <span class="mat-body-2 fnormal">{{ post?.timestamp | date}}</span>
@@ -299,22 +299,22 @@
           <p role="link" tabindex="0" style="pointer-events: none;" tabindex="0" [innerHTML]="post?.content"></p>
           <div class="reply-area mt-0 mb-16 font-weight-bold fnormal">
             <div class="flex flex-1 flex-row margin-left-xs">
-              <span class="flex mr-24 mobile">
+              <span class="flex mr-6 mobile">
                 <!-- up arrow -->
                 <img *ngIf="!post?.upvoted" class="cursor-pointer" (click)="upvote(post);logTelemetry($event, post)"
                   src="./assets/discussion-ui/images/up-arrow.png" alt="up arrow icon" class="icons" tabindex="0">
                 <img *ngIf="post?.upvoted" class="cursor-pointer" (click)="deleteVote(post);logTelemetry($event, post)"
-                  src="./assets/discussion-ui/images/up.svg" alt="select up arrow icon" class="icons" tabindex="0">
-                <span class="ml-8">{{post.upvotes}}</span>
+                  src="./assets/discussion-ui/images/up-arrow.pngg" alt="select up arrow icon" class="icons" tabindex="0">
+                <span class="ml-2">{{post.upvotes}}</span>
               </span>
-              <span class="flex mr-24 mobile">
+              <span class="flex mr-6 mobile">
                 <img *ngIf="!post?.downvoted" class="cursor-pointer"
                   (click)="downvote(post); logTelemetry($event, post)" id="up-vote" tabindex="0"
                   src="./assets/discussion-ui/images/down-arrow.png" alt="down arrow icon" class="icons">
                 <img *ngIf="post?.downvoted" class="cursor-pointer"
                   (click)="deleteVote(post);logTelemetry($event, post)" id="delete-vote" tabindex="0"
-                  src="./assets/discussion-ui/images/down.svg" alt="select down arrow icon" class="icons">
-                <span class="ml-8">{{post?.downvotes}}</span>
+                  src="./assets/discussion-ui/images/arrow-down.png" alt="select down arrow icon" class="icons">
+                <span class="ml-2">{{post?.downvotes}}</span>
               </span>
             </div>
           </div>

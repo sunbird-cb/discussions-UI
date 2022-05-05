@@ -3,47 +3,48 @@
   <div class="discussion-start-modal">
     <div class="discussion-start-modal-content">
       <form [formGroup]="startForm" class="discussion-start-form">
-
-        <div class="mb-16" *ngIf="showSelectCategory" [ngClass]="{ 'is-invalid': showError('subTitle') }">
-          <label class="start-form-label">Select category*</label>
+      <div class="top_form_field_box">
+        <div class="mb-8 select_form_field_box" *ngIf="showSelectCategory" [ngClass]="{ 'is-invalid': showError('subTitle') }">
+          <!-- <label class="start-form-label">Select category*</label> -->
           <div class="start-form-field">
-            <label for="myList">Select list </label>
-            <select formControlName="category" #category [required]="true" id="myList" class="select-category">
+            <!-- <label for="myList">Select list </label> -->
+            <select formControlName="category" #category [required]="true" id="myList" class="select-category post_form_select">
               <option [value]="c.cid" *ngFor="let c of allCategories" [innerHTML]="c.name"></option>
             </select>
           </div>
-          <small class="text-error" *ngIf="showError('question')" i18n="category Error|Explains category is required">
-            category is mandatory</small>
+          <!-- <small class="text-error" *ngIf="showError('question')" i18n="category Error|Explains category is required">
+            category is mandatory</small> -->
         </div>
 
-        <div class="mb-16" [ngClass]="{ 'is-invalid': showError('subTitle') }">
+        <div class="mb-8" [ngClass]="{ 'is-invalid': showError('subTitle') }">
           <div class="start-form-field">
-            <label class="start-form-label" for="discussTopic">Discussion topic*</label>
-            <input class="start-form-field-control py-8" placeholder="Type here (minimum 8 characters)"
+            <!-- <label class="start-form-label" for="discussTopic">Discussion topic*</label> -->
+            <input class="start-form-field-control py-8" placeholder="Start a discussion, post an idea or ask a question"
               formControlName="question" #question maxlength="1000" [required]="true" id="discussTopic" />
           </div>
-          <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
-            Question is mandatory</small>
+          <!-- <small class="text-error" *ngIf="showError('question')" i18n="question Error|Explains question is required">
+            Question is mandatory</small> -->
         </div>
+      </div>
 
-        <div class="mb-16">
+        <div class="mb-8">
           <div class="start-form-field">
-            <label class="start-form-label" for="description">Please elaborate your question or idea here</label>
-            <textarea minlength="8" class="start-form-field-control py-8" rows="8" formControlName="description"
-              #description name="moretext" placeholder="Type here (minimum 8 characters)" id="description"></textarea>
+            <!-- <label class="start-form-label" for="description">Please elaborate your question or idea here</label> -->
+            <textarea minlength="8" class="start-form-field-control py-8 textarea_box" rows="8" formControlName="description"
+              #description name="moretext" placeholder="Please elaborate your discussion, idea or question here (min 8 characters)" id="description"></textarea>
           </div>
-          <small class="text-error" *ngIf="showError('description')"
+          <!-- <small class="text-error" *ngIf="showError('description')"
             i18n="description Error|Explains description is required"> Description is mandatory. It should be minimum of
-            8 characters </small>
+            8 characters </small> -->
         </div>
 
-        <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-24">
+        <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="mb-8">
           <label class="mb-0">Tags</label>
           <div *ngFor="let tag of postTagsArray">
             {{ tag }}
           </div>
           <!-- TODO: check the padding for placeholder -->
-          <tag-input class="py-8" secondaryPlaceholder="Add a tag and press Enter" formControlName="tags"
+          <tag-input class="pt-4" secondaryPlaceholder="Add a tag and press Enter" formControlName="tags"
             [modelAsStrings]="true">
           </tag-input>
         </div>
@@ -56,16 +57,16 @@
 
         <div class="start-modal-buttons">
           <button (click)="closeModal('discard');logTelemetry($event)" mat-raised-button type="button"
-            class="sb-btn sb-btn-normal sb-btn-outline-primary" id="discard-discussion-start-form">Cancel
+            class="df-btn df-discard-btn" id="discard-discussion-start-form">Discard
           </button>
           <span *ngIf="uploadSaveData" class="px-4 flex items-center justify-center">
           </span>
-          <button *ngIf="mode !== 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
+          <button *ngIf="mode !== 'edit'" type="submit" class="df-btn df-reply-btn df-btn-disabled"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
             (click)="submitPost(startForm);logTelemetry($event)" id="submit-discussion-start-form">
-            <span class="text-white">Submit</span>
+            <span class="text-white">Submit post</span>
           </button>
-          <button *ngIf="mode === 'edit'" type="submit" class="sb-btn sb-btn-normal sb-btn-primary ml-16"
+          <button *ngIf="mode === 'edit'" type="submit" class="df-btn df-reply-btn df-btn-disabled"
             [ngClass]="{'df-btn-disabled': !enableSubmitButton }" [disabled]="!enableSubmitButton"
             (click)="updatePost(startForm);logTelemetry($event)" id="update-topic-popup">
             <span class="text-white">Update</span>

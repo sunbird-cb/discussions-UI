@@ -53,12 +53,14 @@ export class MyDiscussionComponent implements OnInit {
       // if (this.configSvc.userProfile) {
       //   localStorage.setItem(this.configSvc.userProfile.userId, this.profilePhoto);
       // }
+     
     }, error => {
       this.showLoader = false;
       // error code check
       this.discussService.showTrafficAlert(error);
       // TODO: Toaster
       console.log('error fetching user details');
+      
     });
   }
 
