@@ -187,14 +187,27 @@
     height: 2rem;
 }
 
-.df-reply-btn,.df-cancel-btn{
+.df-cancel-btn{
     background: var(--white);
     padding: .5rem 1rem;
-    font-size: .75rem;
-    border: 1px solid var(--blue);
-    color: var(--blue);
+    font-size: 14px;
+    border: 1px solid var(--white);
+    color: var(--blue)!important;
     border-radius: 0.25rem;
   }
+.df-reply-btn, .df-update-btn {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 0;
+    padding: .5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 14px;
+    cursor: pointer;
+}
+.df-btn-disabled{
+    opacity: .7;
+    pointer-events: none;
+}
 
   .ui.container {
     display: block;

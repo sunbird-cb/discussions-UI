@@ -69,7 +69,7 @@
                   <span i18n-aria-label *ngIf="post.upvoted" role="link" tabindex="0"
                     (click)="deleteVote(post);logTelemetry($event, post)" aria-label="remove upvote" id="delete-vote" class="mr-2">
                     <!-- upward arrow -->
-                    <img src="./assets/discussion-ui/images/up.svg" alt="select-up-arrow" class="icons" alt="up image">
+                    <img src="./assets/discussion-ui/images/up-arrow.png" alt="select-up-arrow" class="icons" alt="up image">
                   </span>
                   <span class="ws-mat-black60-text mat-subheading-2" role="text"
                     [attr.aria-label]="'total upvoat is' + data?.upvotes">{{data?.upvotes}}</span>
@@ -149,12 +149,12 @@
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
-            <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
-            <span class="post-name df-label-color" *ngIf="!post?.user?.fullname"
+            <span class="mat-body-2 ws-mat-black60-text margin-left-s" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
+            <span class="mat-body-2 ws-mat-black60-text margin-left-s" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
           </div>
           <div class="custom-actions">
-            <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
+            <span class="mat-body-2 fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
             <ng-container *ngIf="mainUid === post?.uid">
               <img src="./assets/discussion-ui/images/edit.svg" class="edit-icon ml-16" id="edit-post" alt="edit icon"
                 (click)="getRealtimePost(post, i)" tabindex="0">
@@ -179,17 +179,17 @@
                 <!-- upward arrow -->
                 <span class="up-vote-text" *ngIf="!post?.upvoted" i18n-aria-label role="link" tabindex="0"
                   (click)="upvote(post);logTelemetry($event, post)" aria-label="upvote comment" id="up-vote">
-                  <img src="./assets/discussion-ui/images/up.svg" class="icons" alt="up icon">
+                  <img src="./assets/discussion-ui/images/up-arrow.png" class="icons" alt="up icon">
               </span>
               </span>
-              <span class="flex mr-24 mobile">
+              <span class="flex mr-6 mobile">
                 <!-- upward arrow -->
                 <span class="down-vote-text" *ngIf="post.upvoted" i18n-aria-label role="link" tabindex="0"
                   (click)="deleteVote(post);logTelemetry($event, post)" aria-label="delete upvote on comment"
                   id="delete-vote">
-                  <img src="./assets/discussion-ui/images/up.svg" class="icons" alt="up icon">
+                  <img src="./assets/discussion-ui/images/up-arrow.png" class="icons" alt="up icon">
               </span>
-                <span class="ml-8">{{post?.upvotes}}</span>
+                <span class="ml-2">{{post?.upvotes}}</span>
               </span>
 
               <span class="flex mobile">
@@ -199,17 +199,17 @@
                   <img src="./assets/discussion-ui/images/down-arrow.png" class="icons"  alt="down arrow icon">
                 </span>
               </span>
-              <span class="flex mr-24 mobile">
+              <span class="flex mr-6 mobile">
                 <span id="delete-vote" *ngIf="post?.downvoted" i18n-aria-label role="link" tabindex="0"
                   (click)="deleteVote(post);logTelemetry($event, post)" aria-label="delete downvote on comment">
                   <!-- down arrow -->
-                  <img src="./assets/discussion-ui/images/down.svg" class="icons" alt="down icon">
+                  <img src="./assets/discussion-ui/images/down-arrow.png" class="icons" alt="down icon">
                 </span>
-                <span class="ml-8">{{post?.downvotes}}</span>
+                <span class="ml-2">{{post?.downvotes}}</span>
               </span>
             </div>
 
-            <button (click)="togglePost(post); logTelemetry($event, post)" class="df-btn df-reply-btn" id="reply-comment">
+            <button (click)="togglePost(post); logTelemetry($event, post)" class="df-btn df-reply-btn transparent" id="reply-comment">
               Reply </button>
 
           </div>
@@ -290,7 +290,7 @@
             <span class="df-label-color post-name" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span>
           </div>
-          <span class="post-time fnormal">{{ post?.timestamp | date}}</span>
+          <span class="mat-body-2 fnormal">{{ post?.timestamp | date}}</span>
         </div>
         <!-- /card-header -->
 

@@ -15,21 +15,21 @@
       (click)="onCancelClick()" 
       id="cancel-update-post" 
       type="button">
-      <span class="text-white">Cancel</span>
+      <span class="">Cancel</span>
     </button>
-    <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+    <button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" 
       *ngIf="mode === 'edit'"
       [disabled]="!isButtonEnabled" 
-      class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
+      class="df-btn ml-8 df-reply-btn" 
       (click)="onReplyClick('edit')" 
       id="update-post"
       type="button">
       <span class="text-white">Update</span>
     </button>
-    <button [ngClass]="{'sb-btn-disabled': !isButtonEnabled }" 
+    <button [ngClass]="{'df-btn-disabled': !isButtonEnabled }" 
       *ngIf="mode !== 'edit'"
       [disabled]="!isButtonEnabled" 
-      class="sb-btn sb-btn-normal sb-btn-primary ml-8" 
+      class="df-btn ml-8 df-reply-btn" 
       (click)="onReplyClick('reply')" 
       id="update-post"
       type="button">
