@@ -28,6 +28,10 @@
 		max-height: calc(100% - 56px);
 		box-sizing: border-box;
 
+		@media screen and (max-width:480px) { 
+			top: 42%;
+		}
+
 		.discussion-start-form {
 			.start-form-label {
 				display: inline-block;
@@ -151,6 +155,11 @@ select.post_form_select {
 .select_form_field_box {
     width: 250px;
     display: inline-block;
+
+	@media screen and (max-width:480px) { 
+		width: 100%;
+	}
+
 }
 .df-discard-btn {
     outline: 0;

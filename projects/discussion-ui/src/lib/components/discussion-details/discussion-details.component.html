@@ -59,7 +59,7 @@
               </ng-container>
             </div>
             <div class="comments-area fnormal my-8">
-              <div class="flex flex-1 flex-row margin-left-xs margin-right-xs">
+              <div class="flex flex-1 flex-row">
                 <span class="flex mr-6 mobile">
                   <span i18n-aria-label role="link" tabindex="0" *ngIf="!post.upvoted"
                     (click)="upvote(post);logTelemetry($event, post)" aria-label="upvote the post" id="up-vote" class="mr-2">
@@ -156,10 +156,12 @@
           <div class="custom-actions">
             <span class="mat-body-2 fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
             <ng-container *ngIf="mainUid === post?.uid">
-              <img src="./assets/discussion-ui/images/edit.svg" class="edit-icon ml-16" id="edit-post" alt="edit icon"
-                (click)="getRealtimePost(post, i)" tabindex="0">
-              <img src="./assets/discussion-ui/images/delete.svg" class="delete-icon ml-16" id="delete-post" alt="delete icon"
-                (click)="confirmDelete(post?.pid)" tabindex="0">
+            <div>
+              <img src="./assets/discussion-ui/images/edit.svg" class="edit-icon ml-4" id="edit-post" alt="edit icon"
+              (click)="getRealtimePost(post, i)" tabindex="0">
+              <img src="./assets/discussion-ui/images/delete.svg" class="delete-icon ml-4" id="delete-post" alt="delete icon"
+              (click)="confirmDelete(post?.pid)" tabindex="0">
+            </div>
             </ng-container>
           </div>
         </div>
@@ -218,7 +220,7 @@
             </ng-container>
           </div>
           <ng-container *ngIf="post?.replies?.count > 0">
-            <div class="flex flex-1 custom margin-0 margin-top-xl">
+            <div class="flex flex-1 custom margin-0 margin-top-xl margin-bottom-m">
               <div class="width-expand flex align-center">
                 <div class="ml-2 flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle" tabindex="0">
                   <span class="cursor-pointer mat-body-2"> {{post?.replies?.count}} reply(s) </span>
@@ -240,8 +242,8 @@
                   </div>
                 </div>
               </div>
-              <div class="my-4 fnormal">
-                <span *ngIf="!post.replyCountToggle" class="mat-subheading-2 ws-mat-black60-text">Last reply
+              <div class=" fnormal">
+                <span *ngIf="!post.replyCountToggle" class="mat-subheading-2 ws-mat-black60-text rply_txt">Last reply
                   {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
               </div>
             </div>
@@ -281,7 +283,7 @@
       <!-- card -->
       <div class="post-sub-card border-0">
         <!-- card-header -->
-        <div class="my-4 comment-section align-center">
+        <div class=" comment-section align-center">
           <div class="post-header-content">
             <span class="circle-text"><span
                 class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>

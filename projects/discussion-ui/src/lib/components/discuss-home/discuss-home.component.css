@@ -5,6 +5,8 @@
 .category_main_box {
   width: 685px;
 }
+
+
 .category_title_div {
   background-color: #fff;
   padding: 1.5rem;
@@ -21,3 +23,30 @@
   width: 275px;
 }
 
+@media (max-width: 768px)  {
+  .category_main_box {
+    width: 100%;
+  }
+  .right_tag_box {
+    width: 100%;
+  }
+  .category_inner_box {
+    flex-direction: column!important;
+    margin-top:0.5rem;
+  }
+  /* .category_inner_box {
+    flex-direction: column!important;
+  }
+  .category_title_div {
+    flex-direction: column!important;
+  } */
+}
+@media (max-width: 480px)  {
+
+  .category_title_div {
+    flex-direction: column!important;
+  }
+  .start_discussion_box {
+    margin-top: 0.5rem;
+  }
+}

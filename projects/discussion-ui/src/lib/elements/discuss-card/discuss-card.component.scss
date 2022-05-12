@@ -101,14 +101,19 @@ word-break: break-word;
 
 .timing{
     color: #5C5757;
+    margin-left: 0.5rem;
     @media screen and (max-width:768px) { 
         flex: 0 0 auto;
     }
 }
 
-.views-content{
-    margin-left:24px;
+@media screen and (max-width:480px) { 
+    .views-content{
+        margin-left:16px!important;
+    }
 }
+
+
 
 .votes-content img,.views-content img{
     height: 20px;

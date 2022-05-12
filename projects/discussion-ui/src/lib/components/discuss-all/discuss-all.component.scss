@@ -112,6 +112,13 @@
   /* flex: 1; */
   min-width: fit-content;
   margin: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 380px)  {
+  .discuss-home {
+    padding: 13px 8px;
+  }
 }
 
 .flex-3 {
