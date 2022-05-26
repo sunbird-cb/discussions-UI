@@ -1,3 +1,7 @@
+.discussion-tag-content {
+	margin-top:16px
+}
+
 .sb-search-box {
 	display: flex;
 	align-items: center;
@@ -25,19 +29,23 @@
 
 .sb-search-box .input-div {
 	border-radius: 24px;
-	background: #ffff;
+	background: var(--white);
 	display: flex;
 	align-items: center;
-	border: 1px solid #ddd;
+	border: 1px solid var(--gray-200);
 	width: 100%;
 }
 
 .sb-search-box .input-div:hover {
-	border-color: #0074b6;
+	border-color: var(--blue-2);
 }
 
 .tag {
 	cursor: pointer;
+}
+
+.tag_value_txt {
+	margin-left: 12px;
 }
 
 @media (max-width: 768px) {

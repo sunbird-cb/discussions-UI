@@ -22,7 +22,7 @@
 
 .related-discuss-card-content {
 	margin: 0;
-    color: #000;
+    color: var(--black);
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 700;
@@ -52,10 +52,7 @@
     height: 6px;
     width: 6px;
     border-radius: 50%;
-    background-color: rgba(0,0,0,.4);
+    background-color: var(--gray-200);
 }
 
-.time {
-	color: rgba(0, 0, 0, 0.4);
-}
 

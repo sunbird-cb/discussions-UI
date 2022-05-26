@@ -2,8 +2,8 @@
 
 <div class="flex flex-1 flex-column my-discussion">
   <div class="flex-custom">
-    <div class="profileCard">
-      <div class="profilecard-content">
+    <div class="profileCard ws-mat-black-text">
+      <div class="profilecard-content ws-">
         <div class="profile-header-image">
           <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
         </div>
@@ -14,8 +14,8 @@
             </div>
           </div>
           <div class="profile-label fs-1 name mb-4" [innerHTML]="data?.username"></div>
-          <div class="profile-label fnormal department mb-4 mat-body-2">{{department}}</div>
-          <div class="profile-label fnormal location mb-4 mat-body-2 ws-mat-black60-text">{{location}} </div>
+          <div class="profile-label fnormal department mb-4">{{department}}</div>
+          <div class="profile-label fnormal location mb-4">{{location}} </div>
           <div class="profile-label fnormal email mb-4">{{data?.email || data?.username}}</div>
           <ng-container>
             <div class="fnormal mt-16">

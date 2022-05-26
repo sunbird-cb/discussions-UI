@@ -8,13 +8,12 @@
     min-height: 108px;
     max-height: 540px;
     /* width: 97.6%;  */
-    border: 1px solid rgba(0, 0, 0, 0.16);
+    border: 1px solid var(--gray-200);
     border-radius: 4px;
     cursor: pointer;
     padding: 16px;
     outline: none;
     box-sizing: border-box;
-    font: 400 14px/20px Lato;
 }
 
 .updatePostActions {
@@ -23,8 +22,8 @@
 }
 
 .post-btn,.post-reply-btn{
-    background-color: #0074b6;
-    color: #fff;
+    background-color: var(--blue-2);
+    color: var(--white);
     border: 0;
     vertical-align: baseline;
     text-align: center;

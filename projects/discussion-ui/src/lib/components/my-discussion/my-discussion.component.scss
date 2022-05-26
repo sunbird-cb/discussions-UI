@@ -1,7 +1,6 @@
 .profileCard{
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-    background: #fff;
-    color: rgba(0,0,0,.87);
+    background: var(--white);
     flex: 1;
     height: auto;
     margin-bottom: 0px;
@@ -24,13 +23,13 @@
     border-radius: 4px;
     max-width: 152px;
     height: 135px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--gray-200);
     margin-right: 24px;
     background: var(--green);
     text-align: center;
 }
 .profile-label{
-    color: rgba(0,0,0,.54);
+    color: var(--gray-200);
     font-weight: 700;
 }
 
@@ -38,7 +37,7 @@
     margin-left:32px;
 }
 .number{
-    color: #0074b6;   
+    color: var(--blue-2);   
 }
 .info {
     display: flex;
@@ -66,7 +65,7 @@
 
 .box-text{
     font-size: 4rem;
-    color: white;
+    color: var(--white);
     text-transform: uppercase;
 }
 .topic-list-container {

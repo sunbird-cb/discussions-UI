@@ -3,6 +3,7 @@
     font-size: 1rem;
    // base colors
     --blue: #024f9d;
+    --blue-2: #0074b6;
     --yellow: #ffc107;
     --black: #000000;
     --white: #ffffff;
@@ -12,6 +13,64 @@
     --gray-100: #CCCCCC;
     --gray-200: #999999;
     --gray-800: #333333;
+    --red: #ff6979
+}
+
+.ws-mat-black60-text {
+    color:rgba(0,0,0,.6);
+}
+.ws-mat-black-text {
+    color: rgba(0,0,0,.87);
+}
+
+.mat-h2 {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+.mat-body-2 {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.mat-subheading-1 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.mat-subheading-2 {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 700;
+}
+
+.margin-remove, .margin-0 {
+    margin:0px
+}
+.margin-left-xs {
+    margin-left:12px;
+}
+.margin-left-s {
+    margin-left: 8px;
+}
+.margin-left-l {
+    margin-left: 24px;
+}
+.margin-top-xl {
+    margin-top:32px
+} 
+.margin-bottom-s {
+    margin-bottom:12px;
+}
+.margin-bottom-m {
+    margin-bottom:16px;
+}
+.margin-bottom-l {
+    margin-bottom:24px;
+}
+.margin-remove-bottom {
+    margin-bottom:0;
 }
 
 .recent-tabs{

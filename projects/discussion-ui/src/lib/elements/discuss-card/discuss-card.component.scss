@@ -1,6 +1,6 @@
 .discuss-card-title{
     margin: 0px;
-    color: #000;  
+    color: var(--black);  
     cursor:pointer;
     font-size: 16px;
     font-weight: 700;
@@ -8,7 +8,7 @@
 }
 
 .discuss-card-label{
-    color: #0074b6;
+    color: var(--blue-2);
     @media screen and (max-width:768px) {
         flex-basis: 100%;
     }
@@ -68,8 +68,8 @@ word-break: break-word;
     display: inline-block;
     justify-content: center;
     align-items: center;
-    background-color: #306933;
-    color: #fff;
+    background-color: var(--green);
+    color: var(--white);
     text-align: center;
     font-weight: 600;
     line-height: 25px;
@@ -95,12 +95,12 @@ word-break: break-word;
     width: 6px;
     border-radius: 50%;
     display: inline-block;
-    background: #5C5757;
+    background: var(--gray-200);
     margin: 0 8px;
 }
 
 .timing{
-    color: #5C5757;
+    color: var(--gray-200);
     margin-left: 0.5rem;
     @media screen and (max-width:768px) { 
         flex: 0 0 auto;
@@ -121,7 +121,7 @@ word-break: break-word;
 }
 
 .comments-count{
-    color: #0074b6;
+    color: var(--blue-2);
     font-weight: 700;
 }
 

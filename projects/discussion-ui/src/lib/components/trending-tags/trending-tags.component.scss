@@ -74,7 +74,7 @@
       .card_head {
 
         p.blue_heading {
-          color: #0074b6;
+          color: var(--blue-2);
           margin-bottom: 8px;
         }
       }
@@ -94,9 +94,9 @@
         width: 100%;
         padding: 10px 0;
         text-align: center;
-        color: #0074b6;
+        color: var(--blue-2);
         border-radius: 4px 4px;
-        border: 1px solid rgba(0, 0, 0, 0.16);
+        border: 1px solid var(--gray-200);
       }
     }
     

@@ -4,8 +4,8 @@
       <img src="./assets/discussion-ui/images/card-icon.png" alt="category card icon" class="category-card-img">
     </div>
     <div>
-      <div class="category-card-header-label fs-1 mat-subheading-1 margin-remove-bottom" [innerHTML]="category.name"></div>
-      <p class="category-card-header-text my-8 fnormal">{{category.description}}</p>
+      <div class="category-card-header-label fs-1 mat-subheading-1 margin-remove-bottom ws-mat-black-text" [innerHTML]="category.name"></div>
+      <p class="category-card-header-text my-8 fnormal ws-mat-black60-text">{{category.description}}</p>
     </div>
       
   </div>
@@ -13,10 +13,10 @@
   <div class="category-card-main">
     <div class="category-card-main-content">
       <div class=" mr-6">
-        <span class="discussion-label fnormal mat-subheading-2">{{category.totalTopicCount}} Discussions</span>
+        <span class="discussion-label fnormal mat-subheading-2 ws-mat-black60-text">{{category.totalTopicCount}} Discussions</span>
       </div>
       <div>
-        <span class="post-label fnormal mat-subheading-2 ">{{category.totalPostCount}} Posts</span>
+        <span class="post-label fnormal mat-subheading-2 ws-mat-black60-text">{{category.totalPostCount}} Posts</span>
       </div>
     </div>
     <div class="flex flex-1" class="cursor-pointer text-right mobile2">
