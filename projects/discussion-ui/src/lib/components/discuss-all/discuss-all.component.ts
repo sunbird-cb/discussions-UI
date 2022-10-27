@@ -278,7 +278,6 @@ export class DiscussAllComponent implements OnInit {
   // }
 
   startDiscussion() {
-    debugger
     this.showStartDiscussionModal = true;
     if (this.context) {
       this.startDiscussionCategoryId = this.cIds;
