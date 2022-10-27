@@ -3,11 +3,11 @@
         <!-- user name -->
         <div class="user_name_div">
             <span class="circle-text"><span
-        class="circle-label">{{ discussionData?.user?.username | splitInitials }}</span></span>
+        class="circle-label">{{ discussionData?.user?.displayname | splitInitials }}</span></span>
 
             <div class="post_user_text_box">
-                <span class="discuss-user-label" *ngIf="discussionData?.user?.username">{{discussionData?.user?.username}}</span>
-                <span class="discuss-user-label" *ngIf="!(discussionData?.user?.username)">{{'Anonymous'}}</span>
+                <span class="discuss-user-label" *ngIf="discussionData?.user?.displayname">{{discussionData?.user?.displayname}}</span>
+                <span class="discuss-user-label" *ngIf="!(discussionData?.user?.displayname)">{{'Anonymous'}}</span>
                 <span class="timing">{{discussionData.lastposttime | date}}</span>
             </div>
 

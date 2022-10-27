@@ -7,10 +7,10 @@
                     <div *ngIf="post?.index === 0">
                         <div class="discussion-content" role="link" tabindex="0">
                             <span class="circle-text"><span
-                  class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+                  class="circle-label">{{ post?.user?.displayname | splitInitials }}</span></span>
                             <!-- <span class="discussion-labels">{{'Asked by '}}</span> -->
                             <span class="discussion-labels" *ngIf="post.user.fullname" [innerHTML]="post.user.fullname"></span>
-                            <span class="discussion-labels" *ngIf="!post.user.fullname" [innerHTML]="post.user.username"></span>
+                            <span class="discussion-labels" *ngIf="!post.user.fullname" [innerHTML]="post.user.displayname"></span>
                         </div>
                     </div>
                 </div>
@@ -162,13 +162,13 @@
                 <div class="comment-section" role="link" tabindex="0">
                     <div class="post-header-content">
                         <span class="circle-text"><span
-                class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+                class="circle-label">{{ post?.user?.displayname | splitInitials }}</span></span>
                         <!-- <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
             <span class="post-name df-label-color" *ngIf="!post?.user?.fullname"
               [innerHTML]="post?.user?.username"></span> -->
 
                         <span class="discussion-labels" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
-                        <span class="discussion-labels" *ngIf="!post?.user?.fullname" [innerHTML]="post?.user?.username"></span>
+                        <span class="discussion-labels" *ngIf="!post?.user?.fullname" [innerHTML]="post?.user?.displayname"></span>
                     </div>
                     <div class="custom-actions">
                         <span class="post-time fnormal">{{ post?.timestamp | date: 'dd MMM yyyy hh:mm a'}}</span>
@@ -350,9 +350,9 @@
                 <div class="comment-section" role="link" tabindex="0">
                     <div class="post-header-content">
                         <span class="circle-text"><span
-                class="circle-label">{{ post?.user?.username | splitInitials }}</span></span>
+                class="circle-label">{{ post?.user?.displayname | splitInitials }}</span></span>
                         <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
-                        <span class="df-label-color post-name" *ngIf="!post?.user?.fullname" [innerHTML]="post?.user?.username"></span>
+                        <span class="df-label-color post-name" *ngIf="!post?.user?.fullname" [innerHTML]="post?.user?.displayname"></span>
                     </div>
                     <span class="post-time fnormal">{{ post?.timestamp | date}}</span>
                 </div>
