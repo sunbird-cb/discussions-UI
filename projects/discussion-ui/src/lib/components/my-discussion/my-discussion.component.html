@@ -4,16 +4,16 @@
     <div class="profileCard">
         <div class="profilecard-content">
             <div class="profile-header-image">
-                <span class="box-text"><span class="circle-label"></span>{{ data?.username | splitInitials }}</span>
+                <span class="box-text"><span class="circle-label"></span>{{ data?.displayname | splitInitials }}</span>
 
             </div>
             <div class="info">
                 <div class="info-top-box flex justify-between">
                     <div class="user_info_box">
-                        <div class="profile-name" [innerHTML]="data?.username"></div>
+                        <div class="profile-name" [innerHTML]="data?.displayname"></div>
                         <div class="profile-label department_name">{{data?.department}}</div>
                         <div class="profile-label location_name">{{data?.location}} </div>
-                        <div class='profile-label'>{{data?.email || data?.username}}</div>
+                        <div class='profile-label'>{{data?.email || data?.displayname}}</div>
                     </div>
                     <div class="karma_box flex flex-column">
                         <!-- <a class="karma_btn">
