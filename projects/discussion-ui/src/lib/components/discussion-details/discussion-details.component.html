@@ -349,8 +349,12 @@
                 <!-- card-header -->
                 <div class="comment-section" role="link" tabindex="0">
                     <div class="post-header-content">
-                        <span class="circle-text"><span
-                class="circle-label">{{ post?.user?.displayname | splitInitials }}</span></span>
+                        <span class="circle-text">
+                          <span class="circle-label" 
+                          *ngIf="post?.user?.displayname">{{ post?.user?.displayname | splitInitials }}</span>
+                          <span class="circle-label" 
+                          *ngIf="!post?.user?.displayname">{{ post?.user?.username | splitInitials }}</span>
+                        </span>
                         <span class="post-name" *ngIf="post?.user?.fullname" [innerHTML]="post?.user?.fullname"></span>
                         <span class="df-label-color post-name" *ngIf="!post?.user?.fullname" [innerHTML]="post?.user?.displayname"></span>
                     </div>
