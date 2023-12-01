@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -17,8 +18,25 @@ export class DiscussTagsComponent implements OnInit {
   filteredTags: NSDiscussData.ITag[];
 
   constructor(
-    private discussionService: DiscussionService
-  ) { }
+    private discussionService: DiscussionService,
+    private translate: TranslateService,
+  ) {
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      let lang = localStorage.getItem('websiteLanguage')!
+     
+      this.translate.use(lang)
+      console.log('current lang ------', this.translate.getBrowserLang())
+      this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        console.log('onLangChange', event);
+      });
+    }
+   }
+
+   translateHub(hubName: string): string {
+    const translationKey =  hubName;
+    return this.translate.instant(translationKey);
+  }
 
   ngOnInit() {
     this.fetchAllTags();

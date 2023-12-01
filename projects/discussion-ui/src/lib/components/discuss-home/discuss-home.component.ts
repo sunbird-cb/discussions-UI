@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Constants from '../../common/constants.json';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DiscussionService } from '../../services/discussion.service';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
 
 /* tslint:disable */
 import * as _ from 'lodash'
@@ -21,8 +22,25 @@ export class DiscussHomeComponent implements OnInit {
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private discussionService: DiscussionService
-  ) { }
+    private discussionService: DiscussionService,
+    private translate: TranslateService,
+  ) { 
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      let lang = localStorage.getItem('websiteLanguage')!
+     
+      this.translate.use(lang)
+      console.log('current lang ------', this.translate.getBrowserLang())
+      this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        console.log('onLangChange', event);
+      });
+    }
+  }
+
+  translateHub(hubName: string): string {
+    const translationKey =  hubName;
+    return this.translate.instant(translationKey);
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

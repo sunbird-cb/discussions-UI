@@ -90,17 +90,17 @@
                 <span class="noocoments ws-mat-default-text" *ngIf="data?.postcount-1 > 0" i18n-aria-label
                   aria-label="comments count">
                   {{data?.postcount-1}}
-                  comments
+                  {{ 'discuss.comments' | translate }}
                 </span>
                 <span class="noocoments ws-mat-default-text" *ngIf="data?.postcount-1 <=0" i18n-aria-label
                   aria-label="comments count">
                   0
-                  comments</span>
+                  {{ 'discuss.comments' | translate }}</span>
               </div>
             </div>
   
             <div class="flex flex-1 flex-column margin-top-xl">
-              <h3 class="f-medium"> Your answer here </h3>
+              <h3 class="f-medium"> {{ 'discuss.Your_answer_here' | translate }} </h3>
               <form [formGroup]=" postAnswerForm">
                 <!-- <ws-widget-ck-editor [location]="location" [basic]="true" [id]="data.tid"
                   [content]="postAnswerForm.controls.answer.value || ''" (value)="updatedata('answer', $event)">
@@ -108,7 +108,7 @@
                 <div appearance="outline" class="flex-1 w-full text-form-field">
                   <textarea formControlName="answer" class="text-content"  [ngClass]="{ 'is-valid': showError('answer') }"></textarea>
                   <div *ngIf="showError('answer')" i18n="answer Error|Explains answer is required">
-                    This is mandatory
+                    {{ 'discuss.This_is_mandatory' | translate }}
                   </div>
                 </div>
               </form>
@@ -121,7 +121,7 @@
             <!-- TODO: Add check below:  [disabled]="answer.value.length < 3 -->
             <button mat-raised-button type="button" (click)="postReply(post)"
               class="text-white ws-mat-primary-background flex-auto-display margin-right-xs post-btn">
-              <span class="text-white" i18n>Post reply</span>
+              <span class="text-white" i18n>{{ 'discuss.Post_reply' | translate }}</span>
             </button>
             <!-- <button mat-raised-button type="button" [mat-dialog-close]="true"
                       class="ws-mat-accent-border flex-auto-display">
@@ -141,7 +141,7 @@
               <a href="javascript:void(0)" class="filter-option active" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border':currentFilter !== 'timestamp'}" mat-button
                 (click)="filter('timestamp')">
-                Recent </a>
+                 {{ 'discuss.Recent' | translate }}</a>
               <!-- <a href="javascript:void(0)" class="filter-option" role="link" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvotes',
                               'ws-mat-accent-border':currentFilter !== 'upvotes'}" mat-button
                 (click)="filter('upvotes')">
@@ -215,7 +215,7 @@
               </div>
               
                 <button mat-button (click)="post.toggle =! post.toggle; post.comment=''" class="reply-btn">
-                  <span class="noocoments"> Reply</span>
+                  <span class="noocoments"> {{ 'discuss.Reply' | translate }}</span>
                 </button>
            
             </div>
@@ -236,7 +236,7 @@
                   <div class="flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">,
                     <a href="javascript:void(0)" class="flex align-center" i18n-aria-label role="link"
                       aria-label="reply toggle">
-                      <span class="cursor-pointer margin-gap-tb"> 1 reply </span>
+                      <span class="cursor-pointer margin-gap-tb"> 1 {{ 'discuss.Reply' | translate }} </span>
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer ws-mat-accent-text" *ngIf="post?.replyCountToggle"
                         aria-label="reply toggle upwards">
                         <!-- up arrow -->
@@ -254,7 +254,7 @@
                   </div>
                 </div>
                 <div class="margin-gap-tb" role="link" tabindex="0">
-                  <span *ngIf="!post?.replyCountToggle">Last reply
+                  <span *ngIf="!post?.replyCountToggle">{{ 'discuss.Last_reply' | translate }}
                     {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
                 </div>
               </div>
@@ -276,7 +276,7 @@
                     </ng-container>
                   </div> -->
                   <div class="ml-2 flex align-center" (click)="post.replyCountToggle = !post.replyCountToggle">
-                    <span class="cursor-pointer margin-gap-tb"> {{post?.replies?.count}} replies </span>
+                    <span class="cursor-pointer margin-gap-tb"> {{post?.replies?.count}} {{ 'discuss.replies' | translate }} </span>
                     <a href="javascript:void(0)" class="flex align-center" *ngIf="post?.replyCountToggle" i18n-aria-label
                       role="link" aria-label="reply toggle">
                       <span class="pl-2 pr-1 sm:pr-2 cursor-pointer" *ngIf="post?.replyCountToggle"
@@ -296,7 +296,7 @@
                   </div>
                 </div>
                 <div class="margin-gap-tb">
-                  <span *ngIf="!post.replyCountToggle">Last reply
+                  <span *ngIf="!post.replyCountToggle">{{ 'discuss.Last_reply' | translate }}
                     {{ post?.replies?.timestampISO | date: 'dd MMM yyyy hh:mm a' }} </span>
                 </div>
               </div>
@@ -343,10 +343,10 @@
       </div>
       <div class="comment-btns">
         <button mat-button class="mr-2 cancel-btn" (click)="post.toggle=!post.toggle; post.comment=''">
-          <span class="noocoments"> Cancel</span>
+          <span class="noocoments"> {{ 'discuss.Cancel' | translate }}</span>
         </button>
         <button mat-raised-button type="button" (click)="postCommentsReply(post)" class="text-white ws-mat-primary-background flex-auto-display post-btn">
-          <span class="text-white" i18n>Post reply</span>
+          <span class="text-white" i18n>{{ 'discuss.Post_reply' | translate }}</span>
         </button>
       </div>
     </div>

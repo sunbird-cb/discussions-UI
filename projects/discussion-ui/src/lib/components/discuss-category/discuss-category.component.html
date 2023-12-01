@@ -1,5 +1,5 @@
 
- <button (click)="startDiscussion()" *ngIf="isTopicCreator" class="start-discussion-btn">Start Discusion</button>
+ <button (click)="startDiscussion()" *ngIf="isTopicCreator" class="start-discussion-btn">{{ 'discuss.startDiscuss' | translate }}</button>
   <div class="discuss-category-cards">
     <ng-container  *ngFor="let data of categories">
       <div (click)="navigateToDiscussionPage(data?.cid, data?.slug)" class="categories-card-content">

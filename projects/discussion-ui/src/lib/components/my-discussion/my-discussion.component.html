@@ -18,11 +18,11 @@
             <div class="flex flex-1 flex-custom-m">
               <span class="flex mobile ">
                 <span class="ws-mat-default-text number">{{data.topiccount || 0 }}</span>
-                <span class="pad-4 labels">Discussions</span>
+                <span class="pad-4 labels">{{ 'discuss.Discussions' | translate }}</span>
               </span>
               <span class="flex post-count-area mobile">
                 <span class="ws-mat-default-text number">{{data.postcount || 0 }}</span>
-                <span class="pad-4 labels">Posts</span>
+                <span class="pad-4 labels">{{ 'discuss.Posts' | translate }}</span>
               </span>
             </div>
             <div class="flex flex-1" class="text-right mobile2">
@@ -43,14 +43,14 @@
           <a href="javascript:void(0)" role="button" class="filter-option active" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'timestamp',
                               'ws-mat-accent-border font-medium':currentFilter !== 'timestamp'}"
             (click)="filter('timestamp')">
-            Recent posts </a>
+            {{ 'discuss.Recent_posts' | translate }}</a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'best',
                               'ws-mat-accent-border font-medium':currentFilter !== 'best'}" (click)="filter('best')">
-            Best posts </a>
+            {{ 'discuss.Best_posts' | translate }}</a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'saved',
                                           'ws-mat-accent-border font-medium':currentFilter !== 'saved'}"
             (click)="filter('saved')">
-            Saved posts </a>
+            {{ 'discuss.Saved_posts' | translate }}</a>
           <!-- <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'watched',
                                             'ws-mat-accent-border font-medium':currentFilter !== 'watched'}" mat-button
             (click)="filter('watched')">
@@ -58,11 +58,11 @@
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'upvoted',
                                               'ws-mat-accent-border font-medium':currentFilter !== 'upvoted'}"
             (click)="filter('upvoted')">
-            Upvoted </a>
+             {{ 'discuss.Upvoted' | translate }}</a>
           <a href="javascript:void(0)" role="button" class="filter-option" [ngClass]="{'ws-mat-accent-border-active' : currentFilter === 'downvoted',
                                                 'ws-mat-accent-border font-medium':currentFilter !== 'downvoted'}"
             (click)="filter('downvoted')">
-            Downvoted </a>
+             {{ 'discuss.Downvoted' | translate }}</a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
   <ng-container *ngIf="!(discussionList && discussionList.length > 0)">
     <div class="mat-card margin-bottom-l">
       <div>
-        <div>No Data</div>
+        <div>{{ 'discuss.nodata' | translate }}</div>
       </div>
       <div>
         <span>&nbsp;</span>

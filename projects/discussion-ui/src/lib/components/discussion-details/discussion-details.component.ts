@@ -5,6 +5,7 @@ import { NSDiscussData } from './../../models/discuss.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 /* tslint:disable */
 import * as _ from 'lodash'
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
 /* tslint:enable */
 
 
@@ -30,8 +31,25 @@ export class DiscussionDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private discussionService: DiscussionService,
     private formBuilder: FormBuilder,
-    public router: Router
-  ) { }
+    public router: Router,
+    private translate: TranslateService,
+  ) { 
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      let lang = localStorage.getItem('websiteLanguage')!
+     
+      this.translate.use(lang)
+      console.log('current lang ------', this.translate.getBrowserLang())
+      this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        console.log('onLangChange', event);
+      });
+    }
+  }
+
+  translateHub(hubName: string): string {
+    const translationKey =  hubName;
+    return this.translate.instant(translationKey);
+  }
 
   ngOnInit() {
     this.initializeFormFiled();

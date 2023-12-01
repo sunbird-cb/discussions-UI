@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscussionService } from '../../services/discussion.service';
 import { NSDiscussData } from './../../models/discuss.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
 
 
 /* tslint:disable */
@@ -30,7 +31,8 @@ export class DiscussCategoryComponent implements OnInit {
   constructor(
     public discussService: DiscussionService,
     public router: Router,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute,
+    private translate: TranslateService,) { }
 
   ngOnInit() {
     /** It will look for the queryParams, if back button is clicked,
@@ -45,6 +47,22 @@ export class DiscussCategoryComponent implements OnInit {
         this.fetchAllAvailableCategories(this.categoryIds);
       }
     });
+
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      let lang = localStorage.getItem('websiteLanguage')!
+     
+      this.translate.use(lang)
+      console.log('current lang ------', this.translate.getBrowserLang())
+      this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        console.log('onLangChange', event);
+      });
+    }
+  }
+
+  translateHub(hubName: string): string {
+    const translationKey =  hubName;
+    return this.translate.instant(translationKey);
   }
 
   fetchAllAvailableCategories(ids) {
