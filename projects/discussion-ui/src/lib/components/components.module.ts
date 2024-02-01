@@ -1,7 +1,7 @@
 import { PipesModule } from './../pipes/pipes.module';
 import { DiscussionService } from './../services/discussion.service';
 import { ConfigService } from './../services/config.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ElementsModule } from './../elements/elements.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,9 +17,16 @@ import {DiscussModerationComponent} from './discuss-moderation/discuss-moderatio
 import { TagInputModule } from 'ngx-chips';
 import { DiscussAllComponent } from './discuss-all/discuss-all.component';
 import { TagAllDiscussionComponent } from './tag-all-discussion/tag-all-discussion.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TrendingTagsComponent } from './trending-tags/trending-tags.component';
 import { LeaderBoardComponent } from './leader-board/leaderboard-component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+// tslint:disable-next-line:function-name
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http)
+}
 
 @NgModule({
   declarations: [
@@ -45,6 +52,13 @@ import { LeaderBoardComponent } from './leader-board/leaderboard-component';
     TagInputModule,
     PipesModule,
     InfiniteScrollModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   exports: [
     SidePannelComponent,

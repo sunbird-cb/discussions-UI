@@ -7,6 +7,7 @@ import { DiscussUtilsService } from '../../services/discuss-utils.service';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { ConfigService } from '../../services/config.service';
+import { TranslateService } from '@ngx-translate/core';
 /* tslint:enable */
 
 @Component({
@@ -39,8 +40,15 @@ export class DiscussStartComponent implements OnInit {
     private formBuilder: FormBuilder,
     private telemetryUtils: TelemetryUtilsService,
     private configService: ConfigService,
-    private discussUtils: DiscussUtilsService
-  ) { }
+    private discussUtils: DiscussUtilsService,
+    private translate: TranslateService 
+  ) { 
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      const lang = localStorage.getItem('websiteLanguage')!
+      this.translate.use(lang)
+    }
+  }
 
   ngOnInit() {
     // debugger

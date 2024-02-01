@@ -8,9 +8,10 @@ import * as CONSTANTS from './../../common/constants.json';
 /* tslint:disable */
 import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
-import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
+// import { DiscussStartComponent } from '../discuss-start/discuss-start.component';
 import { Subscription } from 'rxjs';
 import { NavigationServiceService } from '../../navigation-service.service';
+import { TranslateService } from '@ngx-translate/core';
 // import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 /* tslint:enable */
@@ -55,9 +56,16 @@ export class DiscussAllComponent implements OnInit {
     private configService: ConfigService,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService,
-    private navigationService: NavigationServiceService
+    private navigationService: NavigationServiceService,
+    private translate: TranslateService
     // private modalService: BsModalService
-  ) { }
+  ) { 
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      const lang = localStorage.getItem('websiteLanguage')!
+      this.translate.use(lang)
+    }
+  }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);

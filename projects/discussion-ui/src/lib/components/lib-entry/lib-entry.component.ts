@@ -65,10 +65,10 @@ export class LibEntryComponent implements OnInit {
       //setting the config so that other components can read the data
       this.configSvc.setConfig(JSON.parse(this.config))
       this.data = this.configSvc.getConfig();
-      this.discussionService.userName = _.get(this.data, 'userName');
+      this.discussionService.userName = _.get(this.data, 'userName') || _.get(this.data, 'username')
       const rawCategories = _.get(this.data, 'categories');
       this.discussionService.forumIds = _.get(rawCategories, 'result');
-      this.discussionService.initializeUserDetails(this.data.userName);
+      this.discussionService.initializeUserDetails(this.data.userName || this.data.username);
       this.headerOption = this.configSvc.getHeaderOption()
       this.bannerOption = this.configSvc.getBannerOption()
     })

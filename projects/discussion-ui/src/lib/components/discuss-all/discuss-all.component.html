@@ -1,19 +1,16 @@
 <div class="main-div">
-
     <!-- <button (click)="startDiscussion();logTelemetry($event)" class="df-btn df-start-btn" data-toggle="modal"
         data-target="#myModal" id="start-discussion">Start Discussion</button> -->
-
-
     <div class="flex flex-1 custom discussion_outer_box">
         <div class="flex flex-3 flex-column discussion_main_box">
             <div class="flex flex-1 cursor-pointer margin-fix height-48" (click)="startDiscussion();logTelemetry($event)" data-toggle="modal" data-target="#myModal" id="start-discussion">
                 <a href="javascript:void(0)" class="flex flex-1 cursor-pointer margin-fix height-48" i18n-aria-label role="link">
                     <div class="flex flex-1 items-center border discuss border-solid discuss-border ws-mat-primary-background-op100 ">
                         <div class="w-full discuss truncate">
-                            <span class="overflow ml-4 start-btn-hint mb-0 mat-body-1">Ask a question or post an idea</span>
+                            <span class="overflow ml-4 start-btn-hint mb-0 mat-body-1">{{ 'discuss.askQuestion' | translate }}</span>
                         </div>
                         <div class="discuss-home text-white flex items-center justify-center cursor-pointer mat-subheading-2">
-                            Start discussion
+                            {{ 'discuss.startDiscuss' | translate }}
                         </div>
                     </div>
                     <!-- <div class="text-box">Ask a question or post an idea</div> 
@@ -25,18 +22,17 @@
                 <div class="flex flex-1 flex-row margin-fix tab_margin">
                     <div class="flex flex-1 filter max-height-60">
                         <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'recent',
-          ' font-medium':currentFilter !== 'recent'}" mat-button (click)="filter('recent')" role="button">Recent</a>
+          ' font-medium':currentFilter !== 'recent'}" mat-button (click)="filter('recent')" role="button">{{ 'discuss.recent' | translate }}</a>
                         <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'popular',
-          ' font-medium':currentFilter !== 'popular'}" mat-button (click)="filter('popular')" role="button">Popular</a>
-                        <a href="javascript:void(0)" class="filter-option watching_link" mat-button role="button">Watching</a>
+          ' font-medium':currentFilter !== 'popular'}" mat-button (click)="filter('popular')" role="button">{{ 'discuss.popular' | translate }}</a>
+                        <a href="javascript:void(0)" class="filter-option watching_link" mat-button role="button">{{ 'discuss.watching' | translate }}</a>
                     </div>
                     <div class="flex items-center">
-                        <a class="all_category_link mat-subheading-2 margin-remove">All categories </a>
+                        <a class="all_category_link mat-subheading-2 margin-remove">{{ 'discuss.startDiscuss' | translate }}All categories </a>
                     </div>
                 </div>
             </ng-container>
             <!-- <lib-app-loader *ngIf="showLoader"></lib-app-loader> -->
-
 
             <ng-container *ngIf="discussionList  && discussionList.length > 0">
                 <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" *ngFor="let data of discussionList" id="discuss-card">
@@ -46,7 +42,7 @@
 
             <ng-container *ngIf=" !(discussionList && discussionList.length > 0)">
                 <div class="discuss-card-content cursor-pointer">
-                    <div class="no-data-label">No Data</div>
+                    <div class="no-data-label">{{ 'discuss.nodata' | translate }}</div>
                     <div>
                         <span>&nbsp;</span>
                     </div>

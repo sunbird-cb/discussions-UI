@@ -10,6 +10,7 @@ import * as CONSTANTS from './../../common/constants.json';
 import * as _ from 'lodash'
 import { ConfigService } from '../../services/config.service';
 import { NavigationServiceService } from '../../navigation-service.service';
+import { TranslateService } from '@ngx-translate/core';
 /* tslint:enable */
 
 @Component({
@@ -18,9 +19,6 @@ import { NavigationServiceService } from '../../navigation-service.service';
   styleUrls: ['./discuss-category.component.css']
 })
 export class DiscussCategoryComponent implements OnInit, OnDestroy {
-
-
-
   categories: NSDiscussData.ICategorie[] = [];
 
   forumIds: any;
@@ -49,9 +47,15 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     private telemetryUtils: TelemetryUtilsService,
-    private navigationService: NavigationServiceService
-    
-  ) { }
+    private navigationService: NavigationServiceService,
+    private translate: TranslateService
+  ) {
+    if (localStorage.getItem('websiteLanguage')) {
+      this.translate.setDefaultLang('en')
+      const lang = localStorage.getItem('websiteLanguage')!
+      this.translate.use(lang)
+    }
+  }
 
   ngOnInit() {
     /** It will look for the queryParams, if back button is clicked,
@@ -60,8 +64,6 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
      * 
      * 
      */
-
-  
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.CATEGORY);
     this.forumIds = this.categoryIds ? this.categoryIds : this.discussService.forumIds;
@@ -109,11 +111,6 @@ export class DiscussCategoryComponent implements OnInit, OnDestroy {
   fetchCategory(cid) {
     return this.discussService.fetchSingleCategoryDetails(cid);
   }
-
-
-
-  
-
   /**
    * It will fetch the children for each category click.
    * if there is no children available the it will redirect to the topic list page

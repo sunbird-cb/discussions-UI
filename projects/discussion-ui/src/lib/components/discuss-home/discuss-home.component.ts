@@ -9,6 +9,7 @@ import * as _ from 'lodash'
 import { NSDiscussData } from '../../models/discuss.model';
 import { ConfigService } from '../../services/config.service';
 import { NavigationServiceService } from '../../navigation-service.service';
+import { TranslateService } from '@ngx-translate/core';
 /* tslint:enable */
 
 @Component({
@@ -17,12 +18,9 @@ import { NavigationServiceService } from '../../navigation-service.service';
   styleUrls: ['./discuss-home.component.scss']
 })
 export class DiscussHomeComponent implements OnInit {
-  
   @Input() categoryId;
   @Input() categoryHomeAction;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
-
-  
 
   discussionList = [];
   routeParams: any;
@@ -49,7 +47,14 @@ export class DiscussHomeComponent implements OnInit {
     private discussionService: DiscussionService,
     private configService: ConfigService,
     private telemetryUtils: TelemetryUtilsService,
-    private navigationService: NavigationServiceService) { }
+    private navigationService: NavigationServiceService,
+    private translate: TranslateService ) {
+      if (localStorage.getItem('websiteLanguage')) {
+        this.translate.setDefaultLang('en')
+        const lang = localStorage.getItem('websiteLanguage')!
+        this.translate.use(lang)
+      }
+    }
 
   ngOnInit() {
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.HOME);
@@ -64,10 +69,7 @@ export class DiscussHomeComponent implements OnInit {
       // this.categoryId = this.discussionService.getContext(CONTEXT_PROPS.cid);
       // this.getDiscussionList(_.get(this.routeParams, 'slug'));
     });
-
     this.fetchAllTags();
-
-  
   }
 
   navigateToDiscussionDetails(discussionData) {

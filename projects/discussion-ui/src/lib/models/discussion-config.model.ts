@@ -1,6 +1,7 @@
 export interface IdiscussionConfig {
   menuOptions?: Array<IMenuOptions>
   userName: string
+  username: string
   context?: Object
   categories: Icategory
   path?: string

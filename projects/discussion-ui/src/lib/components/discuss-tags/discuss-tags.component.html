@@ -1,7 +1,7 @@
 <!-- <lib-app-loader *ngIf="showLoader"></lib-app-loader> -->
 <div class="flex flex-1 margin-top-m flex-column discussion-tag-content">
     <ng-container>
-        <input #question autocomplete="off" maxlength="20" [(ngModel)]="query" class="search" placeholder="Search by name" [required]="false" />
+        <input #question autocomplete="off" maxlength="20" [(ngModel)]="query" class="search" placeholder="{{ 'discuss.placeholderTagsSearch' | translate}}" [required]="false" />
     </ng-container>
 
     <ng-container *ngIf="filteredTags && filteredTags.length > 0">
