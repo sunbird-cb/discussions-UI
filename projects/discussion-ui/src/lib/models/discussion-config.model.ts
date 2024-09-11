@@ -7,6 +7,8 @@ export interface IdiscussionConfig {
   routerSlug?: string
   headerOptions?: boolean
   bannerOption?: boolean
+  userProfile?:any,
+  nodebbid?:any,
 }
 
 export interface Icontext {

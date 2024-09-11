@@ -53,6 +53,7 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
   editableTopicDetails: any;
   dropdownContent = true;
   categoryId: any;
+  igotUserProfile:any = {}
 
   constructor(
     private route: ActivatedRoute,
@@ -80,6 +81,11 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
     this.initializeFormFiled();
     if(this.widget){
       this.fetchSingleCategoryLoader = true
+    }
+    const config = this.configService.getConfig()
+    if(config.userProfile){
+      this.igotUserProfile = config.userProfile
+      console.log("this.igotUserProfile", this.igotUserProfile)
     }
     if (!this.topicId && !this.slug) {
       this.route.params.subscribe(params => {
@@ -450,6 +456,9 @@ export class DiscussionDetailsComponent implements OnInit, OnDestroy {
       this.refreshPostData(this.currentActivePage);
     }, error => {
       console.log('error while updating', error);
+      if(error && error.response && error.response._body){
+        
+      }
     });
   }
 

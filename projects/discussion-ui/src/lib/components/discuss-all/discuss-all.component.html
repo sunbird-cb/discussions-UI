@@ -21,7 +21,7 @@
                 </a>
             </div>
 
-            <ng-container>
+            <!-- <ng-container>
                 <div class="flex flex-1 flex-row margin-fix tab_margin">
                     <div class="flex flex-1 filter max-height-60">
                         <a href="javascript:void(0)" class="filter-option" [ngClass]="{'tabs-active' : currentFilter === 'recent',
@@ -34,14 +34,22 @@
                         <a class="all_category_link mat-subheading-2 margin-remove">All categories </a>
                     </div>
                 </div>
-            </ng-container>
+            </ng-container> -->
             <!-- <lib-app-loader *ngIf="showLoader"></lib-app-loader> -->
 
 
             <ng-container *ngIf="discussionList  && discussionList.length > 0">
-                <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" *ngFor="let data of discussionList" id="discuss-card">
-                    <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+                <div infinite-scroll 
+                [infiniteScrollDistance]="modalScrollDistance"
+                [infiniteScrollThrottle]="modalScrollThrottle"
+                [scrollWindow]="true"
+                (scrolled)="onScrollDown()">
+                    <div (click)="navigateToDiscussionDetails(data);logTelemetry($event)" *ngFor="let data of discussionList" 
+                     id="discuss-card">
+                        <lib-discuss-card [discussionData]="data"></lib-discuss-card>
+                    </div>
                 </div>
+                <lib-app-loader *ngIf="showLoader" [showLoader]="true" [showContent]="false"></lib-app-loader>
             </ng-container>
 
             <ng-container *ngIf=" !(discussionList && discussionList.length > 0)">
@@ -57,7 +65,8 @@
         </div> -->
         </div>
         <div *ngIf="!isWidget" class="flex flex-1 right_tag_box margin-left-xl" #stickyMenu [class.sticky]="sticky">
-            <lib-discuss-trending-tags [tags]="trendingTags" (stateChange)="acceptData($event)"></lib-discuss-trending-tags>
+            <!-- <lib-discuss-trending-tags [tags]="trendingTags" (stateChange)="acceptData($event)"></lib-discuss-trending-tags> -->
+            <lib-popular-discussions (passDiscussData)="acceptData($event)"></lib-popular-discussions>
         </div>
     </div>
 

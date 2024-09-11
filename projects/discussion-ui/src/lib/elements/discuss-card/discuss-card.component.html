@@ -12,7 +12,7 @@
             <div class="post_user_text_box">
                 <span class="discuss-user-label" *ngIf="discussionData?.user?.displayname">{{discussionData?.user?.displayname}}</span>
                 <span class="discuss-user-label" *ngIf="!(discussionData?.user?.displayname)">{{'Anonymous'}}</span>
-                <span class="timing">{{discussionData.lastposttime | date}}</span>
+                <span class="timing">{{relativeTime}}</span>
             </div>
 
         </div>

@@ -27,7 +27,7 @@ export class DiscussAllComponent implements OnInit {
 
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
-  discussionList: any[];
+  discussionList: any[] = [];
   routeParams: any;
   showStartDiscussionModal = false;
   categoryId: string;
@@ -47,6 +47,13 @@ export class DiscussAllComponent implements OnInit {
   startDiscussionCategoryId: any;
   isWidget: boolean;
   showModerationModal = false
+  currentPage = 1
+  totalPages=1
+
+  // Input parameters for infinite scroll
+  modalScrollDistance = 1;
+  modalScrollThrottle = 500;
+  scrollUpDistance = 5;
 
   constructor(
     public router: Router,
@@ -103,9 +110,9 @@ export class DiscussAllComponent implements OnInit {
       this.getContextBasedTags(this.cIds);
     } else {
       // this.currentActivePage = 1
-      this.refreshData();
+      this.refreshData(this.currentPage);
       // This is to show trending tags
-      this.fetchAllTags();
+      // this.fetchAllTags();
     }
   }
 
@@ -130,12 +137,34 @@ export class DiscussAllComponent implements OnInit {
     // this.router.navigate([`${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`], { queryParamsHandling: "merge" });
   }
 
-  acceptData(singleTagDetails) {
+  // acceptData(singleTagDetails) {
+  //   // debugger
+  //   if (this.context) {
+  //     singleTagDetails.cIds = this.cIds;
+  //   }
+  //   this.stateChange.emit(singleTagDetails);
+  // }
+
+  // new method
+  acceptData(discuss) {
     // debugger
-    if (this.context) {
-      singleTagDetails.cIds = this.cIds;
+    const matchedTopic = _.find(this.telemetryUtils.getContext(), { type: 'Topic' });
+    if (matchedTopic) {
+      this.telemetryUtils.deleteContext(matchedTopic);
     }
-    this.stateChange.emit(singleTagDetails);
+
+    this.telemetryUtils.uppendContext({
+      id: _.get(discuss, 'tid'),
+      type: 'Topic'
+    });
+
+    const slug = _.trim(_.get(discuss, 'slug'))
+    const input = {
+      data: { url: `${this.configService.getRouterSlug()}${CONSTANTS.ROUTES.TOPIC}${slug}`, queryParams: {} },
+      action: CONSTANTS.CATEGORY_DETAILS };
+
+    this.navigationService.navigate(input);
+    this.stateChange.emit({ action: CONSTANTS.CATEGORY_DETAILS, title: discuss.title, tid: discuss.tid });
   }
 
   getDiscussionList(slug: string) {
@@ -157,7 +186,7 @@ export class DiscussAllComponent implements OnInit {
       this.currentFilter = key;
       switch (key) {
         case 'recent':
-          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillrecent()
+          this.cIds.length ? this.getContextData(this.cIds.result) : this.fillrecent(this.currentPage)
           break;
         case 'popular':
           this.cIds.length ? this.getContextData(this.cIds.result) : this.fillPopular()
@@ -202,12 +231,15 @@ export class DiscussAllComponent implements OnInit {
     this.showLoader = true;
     return this.discussionService.fetchRecentD(page).subscribe(
       (data: any) => {
-        this.showLoader = false;
-        this.discussionList = [];
+        this.currentPage = _.get(data, 'pagination.currentPage')
+        this.totalPages = _.get(data, 'pagination.pageCount')
+        // this.discussionList = [];
         _.filter(data.topics, (topic) => {
           if (topic.user.uid !== 0 && topic.cid !== 1) {
             this.discussionList.push(topic);
           }
+          this.showLoader = false;
+          // console.log('getRecentData data: ', data)
         });
       }, error => {
         this.showLoader = false;
@@ -312,4 +344,14 @@ export class DiscussAllComponent implements OnInit {
   closeModerationModal(event) {
     this.showModerationModal = false
   }
+
+  onScrollDown() {
+    console.log('Inside scroll method')
+    this.currentPage++
+    if(this.currentPage <= this.totalPages) {
+      this.fillrecent(this.currentPage)
+    }
+
+  }
+
 }

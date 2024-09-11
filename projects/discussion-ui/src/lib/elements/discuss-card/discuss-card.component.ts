@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime);
 
 @Component({
   selector: 'lib-discuss-card',
@@ -12,13 +15,17 @@ export class DiscussCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('discussionData', this.discussionData);
+    // console.log('discussionData', this.discussionData);
   }
 
   public getBgColor(tagTitle: any) {
     const bgColor = this.stringToColor(tagTitle.toLowerCase());
     const color = this.getContrast();
     return { color, 'background-color': bgColor };
+  }
+
+  get relativeTime() {
+    return dayjs(this.discussionData.lastposttime).from(dayjs())
   }
 
   stringToColor(title) {

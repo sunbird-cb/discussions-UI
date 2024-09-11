@@ -24,6 +24,7 @@ export class MyDiscussionComponent implements OnInit {
   profilePhoto!: string;
   userInitial = '';
   showLoader = false;
+  igotUserProfile!: any
   constructor(
     private discussService: DiscussionService,
     private configService: ConfigService,
@@ -51,6 +52,11 @@ export class MyDiscussionComponent implements OnInit {
   }
 
   ngOnInit() {
+    const config = this.configService.getConfig()
+    if(config.userProfile){
+      this.igotUserProfile = config.userProfile
+      console.log("this.igotUserProfile", this.igotUserProfile)
+    }
     this.telemetryUtils.setContext([]);
     this.telemetryUtils.logImpression(NSDiscussData.IPageName.MY_DISCUSSION);
     if (this.discussService.userName) {

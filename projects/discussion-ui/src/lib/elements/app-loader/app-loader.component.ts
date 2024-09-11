@@ -12,6 +12,8 @@ import * as _ from 'lodash'
 export class AppLoaderComponent implements OnInit {
 
   @Input() data;
+  @Input() showLoader:boolean = true;
+  @Input() showContent:boolean = true;
   headerMessage: string;
   loaderMessage: string;
 

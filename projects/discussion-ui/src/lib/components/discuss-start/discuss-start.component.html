@@ -46,15 +46,15 @@
               8 characters </small> -->
           </div>
 
-          <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="post-tags">
+          <!-- <div #postTags [ngClass]="{ 'is-invalid': showError('tags') }" class="post-tags">
             <label class="mb-0 start-form-label">Tags</label>
             <div *ngFor="let tag of postTagsArray">
               {{ tag }}
             </div>
-            <!-- TODO: check the padding for placeholder -->
+            
             <tag-input secondaryPlaceholder="Add a tag and press Enter" formControlName="tags" [modelAsStrings]="true">
             </tag-input>
-          </div>
+          </div> -->
 
           <div *ngIf="showErrorMsg">
             <small class="mandatory-label">

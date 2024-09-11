@@ -181,6 +181,20 @@ a.karma_btn {
     z-index: 1!important;
 }
 
+.profile-image-wrapper{
+    margin-right: 24px;
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+}
+
+.verfied-logo {
+    height: 24px;
+    width: 24px;
+}
+
 @media (max-width: 768px) {
     .profileCard {
         width: auto;
