@@ -154,7 +154,8 @@ export class DiscussionService {
   }
 
   fetchRecentD(page?: any) {
-    return this.csDiscussionService.recentPost(page);
+    // return this.csDiscussionService.recentPost(page);
+    return this.http.get(`/apis/proxies/v8/${urlConfig.apiSlug}/recent?page=${page}`)
   }
 
   getTagBasedDiscussion(tag?: string, page?: any) {
